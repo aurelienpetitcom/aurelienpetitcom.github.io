@@ -112,12 +112,101 @@ body {
     background-color: black; /* Fond noir */
     color: white; /* Texte blanc pour assurer la lisibilité */
     font-size: 16px; /* Taille de texte par défaut, ajustable */
+    margin: 0; /* Élimine les marges par défaut */
+
 }
 
 @font-face {
     font-family: 'SFProRegular';
     src: url('fonts/SF-Pro-Display-Regular.otf') format('truetype');
 }
+@font-face {
+    font-family: 'SFProSemiBold';
+    src: url('fonts/SF-Pro-Display-Semibold.otf') format('truetype');
+}
+@font-face {
+    font-family: 'SFProLight';
+    src: url('fonts/SF-Pro-Display-Light.otf') format('truetype');
+}
+
+/* Hero Section CSS */
+.main{
+    background-color: rgb(0, 0, 0);
+    display: flex;                /* Utilise Flexbox pour le centrage */
+    align-items: center;         /* Centre verticalement */
+    justify-content: center;     /* Centre horizontalement */
+    height: 100vh;              /* Prend toute la hauteur de la fenêtre */
+    text-align: center;          /* Centre le texte */
+    flex-direction: column;      /* Aligne les enfants en colonne */
+}
+
+.main__content {
+    max-width: 600px;           /* Limite la largeur du contenu pour une meilleure lisibilité */
+    padding: 20px;              /* Ajoute du padding */
+}
+
+.main__container{
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    justify-self: center;
+    margin: 0 auto;
+    height: 90vh;
+    background-color: rgb(0, 0, 0);
+    z-index: 1;
+    width: 100%;
+    /*max-width: 1300px;
+    padding: 0 50px;*/
+}
+
+.main__content h1{
+    font-size: 40px;
+    font-family:'SFProSemiBold', sans-serif;
+}
+
+.main__content h2{
+    font-size: 40px;
+    font-family:'SFProLight', sans-serif;
+}
+
+.main__content p{
+    margin-top:1rem;
+    font-size: 14px;
+    font-family:'SFProLight', sans-serif;
+    max-width: 500px;
+}
+
+.main_btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none; /* Pas de soulignement */
+    padding: 10px 20px;
+    height: 100%;
+    width: auto; /* Ajustez si nécessaire */
+    border: 0.2px solid rgb(80, 80, 80);
+    outline: none;
+    outline-color: rgb(92, 0, 0);
+    border-radius: 10px;
+    background: black;
+    color: rgb(255, 255, 255); /* Couleur du texte en blanc */
+    font-size: 14px;
+    font-family: 'SFProRegular', sans-serif; /* Applique la police souhaitée */
+    transition: all 0.1s ease; /* Ajoute une transition */
+}
+
+.main_btn:hover {
+    border: 0.2px solid rgb(255, 255, 255); /* Couleur de bordure au survol */
+    color: rgb(255, 255, 255); /* Changez la couleur du texte si vous voulez au survol */
+}
+
+
+.title-container {
+    display: flex;              /* Utilise Flexbox pour aligner les titres */
+    justify-content: center;    /* Centre horizontalement les titres */
+    gap: 20px;                 /* Espace entre les titres */
+}
+
+
 
 /*Non utilisé pour le moment*/
 /*Mode mobile avec menu deroulant*/
