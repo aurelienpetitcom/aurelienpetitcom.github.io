@@ -105,7 +105,7 @@
     width: 150px;
     height: auto;
     cursor: pointer;
-    padding-top: 5px;
+    padding-top: 0px;
     opacity: 0.25;
 }
 
@@ -154,7 +154,6 @@ body {
     padding-top: 80px; 
     transform: translateY(-80px);
 }
-
 
 .main__container-bandebp {
     display: flex;            
@@ -212,6 +211,34 @@ body {
 .main_btn:hover {
     border: 0.2px solid rgb(255, 255, 255);
     color: rgb(255, 255, 255);
+}
+
+#langSelector {
+    text-align: right;
+    background-color: transparent;
+    color: #393939;
+    padding: 5px;
+    border: 1px solid #000000;
+    border-radius: 5px;
+    position: right;
+    z-index: 10;
+    appearance: none;
+    margin-left: 10px;
+    margin-top: 25px;
+}
+
+#langSelector:hover {
+    color: #ffffff;
+}
+
+#langSelector option {
+    background-color: black;
+    color: white;
+}
+
+#langSelector:focus {
+    outline: none;
+    border-color: #000000;
 }
 
 .title-container {

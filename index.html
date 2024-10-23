@@ -12,7 +12,6 @@
   <!-- Navbar Section-->
   <nav class="navbar">
     <div class="navbar__container">
-      <!-- Changement de l'attribut href pour rediriger vers aurelienpetit.com -->
       <a href="https://aurelienpetit.com" id="navbar__logo">
         <img src="images/logoap.png" alt="Logo Aurélien Petit" class="logo">
       </a>
@@ -22,49 +21,43 @@
         <span class="bar"></span>
       </div>
       <ul class="navbar__menu">
-        <!--<li class="navbar__item">
-          <a href="/cv.html" class="navbar__links">Curriculum Vitae</a>
-        </li>-->
-        <!--<li class="navbar__item">
-          <a href="/tech.html" class="navbar__links">Projets personnels</a>
-        </li>-->
         <li class="navbar__item">
-          <a href="/" class="navbar__links">Changer la langue</a>
+          <select id="langSelector">
+            <option value="en">English</option>
+            <option value="fr">Français</option>
+          </select>
         </li>
-        <!--<<li class="navbar__btn">
-          <a href="/" class="button">Contact</a>
-        </li>-->
       </ul>
     </div>
   </nav>
-  <!--Hero Section-->
+
+  <!-- Hero Section-->
   <div class="main">
     <div class="main__container">
       <div class="main__content">
-        <div class="title-container"> <!-- Nouveau conteneur pour les titres -->
+        <div class="title-container">
           <h1>PETIT</h1>
           <h2>Aurélien</h2>
         </div>
-        <p>Etudiant en 1ère master à l'ECAM. Je m'investis à fond pour l'ensemble des projets que je réalise avec comme
-          volonté de dépasser les attentes et repousser les limites. Mon objectif professionnel est de pouvoir allier
-          mes compétences techniques et artistiques acquises.</p>
-        <div class="title-container"> <!-- Nouveau conteneur pour les titres -->
+        <p class="text lang lang-en">Student in the 1st year of Master's at ECAM. I fully invest in all the projects I
+          undertake with the aim of exceeding expectations and pushing boundaries. My professional goal is to combine my
+          technical and artistic skills.</p>
+        <p class="text lang lang-fr" style="display: none;">Etudiant en 1ère master à l'ECAM. Je m'investis à fond pour
+          l'ensemble des projets que je réalise avec comme volonté de dépasser les attentes et repousser les limites.
+          Mon objectif professionnel est de pouvoir allier mes compétences techniques et artistiques acquises.</p>
+        <div class="title-container">
           <a href="/cv.html" target="_blank" class="txt_btn">Curriculum Vitae</a>
           <a href="mailto:contact@aurelienpetit.com" class="main_btn">Contact</a>
         </div>
       </div>
-
-
-
-      <!--<div class="main__img--container">
-        <img src="images/logoap.png" alt="" id="main__img">-->
     </div>
     <div class="main__container-bandebp">
-      <a href="/" class="txt_btn">Projets personnels</a>
+      <a href="/" class="text lang lang-en txt_btn">Personal projects</a>
+      <a href="/" class="text lang lang-fr txt_btn" style="display: none;">Projets personnels</a>
       <img src="images/indicationbasfleche.png" alt="Fleche vers le bas" class="flechebas">
     </div>
   </div>
-  </div>
+
   <script src="app.js"></script>
 </body>
 
