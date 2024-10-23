@@ -11,7 +11,7 @@
     justify-content: center;
     align-items: center ;
     font-size: 1.2rem;
-    position : sticky;
+    /*position : sticky;*/
     top:0;
     z-index: 999;
 }
@@ -58,8 +58,6 @@
     height : 100%;
     font-size: 14px;
     font-family:'SFProRegular', sans-serif;
-
-
 }
 
 .navbar_btn {
@@ -141,7 +139,7 @@ body {
 }
 
 .main__content {
-    max-width: 600px;           /* Limite la largeur du contenu pour une meilleure lisibilité */
+    max-width: 2000px;           /* Limite la largeur du contenu pour une meilleure lisibilité */
     padding: 20px;              /* Ajoute du padding */
 }
 
@@ -150,48 +148,53 @@ body {
     align-items: center;
     justify-self: center;
     margin: 0 auto;
-    height: 90vh;
+    height: 50vh;
     background-color: rgb(0, 0, 0);
     z-index: 1;
     width: 100%;
     /*max-width: 1300px;
     padding: 0 50px;*/
+
 }
 
 .main__content h1{
     font-size: 40px;
     font-family:'SFProSemiBold', sans-serif;
+    margin-bottom: 20px;
 }
 
 .main__content h2{
     font-size: 40px;
     font-family:'SFProLight', sans-serif;
+    margin-bottom: 20px;
 }
 
-.main__content p{
-    margin-top:1rem;
+.main__content p {
+    margin-top: 30px; /* Ajoute un espace de 30px au-dessus du paragraphe */
     font-size: 14px;
-    font-family:'SFProLight', sans-serif;
+    width: 100%;
+    margin: 0 auto; /* Centre horizontalement */
+    font-family: 'SFProLight', sans-serif;
     max-width: 500px;
+    text-align: center;
 }
 
 .main_btn {
-    display: flex;
+    display: inline-flex; /* Utilise inline-flex pour ajuster la taille au contenu */
     justify-content: center;
     align-items: center;
     text-decoration: none; /* Pas de soulignement */
-    padding: 10px 20px;
-    height: 100%;
-    width: auto; /* Ajustez si nécessaire */
+    padding: 10px 20px; /* Ajuste le padding autour du texte */
     border: 0.2px solid rgb(80, 80, 80);
     outline: none;
-    outline-color: rgb(92, 0, 0);
     border-radius: 10px;
     background: black;
     color: rgb(255, 255, 255); /* Couleur du texte en blanc */
     font-size: 14px;
     font-family: 'SFProRegular', sans-serif; /* Applique la police souhaitée */
     transition: all 0.1s ease; /* Ajoute une transition */
+    white-space: nowrap; /* Empêche le texte de passer à la ligne */
+    margin-top: 30px;
 }
 
 .main_btn:hover {
@@ -206,6 +209,23 @@ body {
     gap: 20px;                 /* Espace entre les titres */
 }
 
+
+.txt_btn{
+    color : rgb(80, 80, 80);
+    display : flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    height : 40px;
+    font-size: 14px;
+    font-family:'SFProRegular', sans-serif;
+    margin-top: 30px;
+}
+
+.txt_btn:hover{
+    color: rgb(255, 255, 255); 
+    transition: all 0.1s ease;
+}
 
 
 /*Non utilisé pour le moment*/
