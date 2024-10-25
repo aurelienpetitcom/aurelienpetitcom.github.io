@@ -338,7 +338,17 @@ body {
         position: relative;
         width: calc(80% - 40px); 
         margin: 20px auto; 
-        height: calc((80vw - 40px) * 1.595); 
+        height: calc((80vw - 40px) * 1.595);
+        overflow: hidden; /* Évite les débordements */
+     
+    }
+
+    .pdf-container iframe {
+        width: 50%;
+        height: 50%;
+        border: none;
+        display: block;
+    
     }
 }
 
