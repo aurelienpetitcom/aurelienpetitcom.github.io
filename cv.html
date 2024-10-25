@@ -9,17 +9,55 @@
 </head>
 
 <body>
+    <!-- Navbar Section-->
+    <nav class="navbar">
+        <div class="navbar__container">
+            <a href="https://aurelienpetit.com" id="navbar__logo">
+                <img src="images/logoap.png" alt="Logo Aurélien Petit" class="logo">
+            </a>
+            <div class="navbar__toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="navbar__menu">
+                <li class="navbar__item">
+                    <select id="langSelector">
+                        <option value="en">English</option>
+                        <option value="fr">Français</option>
+                    </select>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="main">
+        <div class="main__content">
+            <div class="section_verticale">
+                <h2>Curriculum vitae</h2>
+                <p class="text lang lang-en">Discover my background and more on my CV available below and for download.
+                </p>
+                <p class="text lang lang-fr" style="display: none;">Découvrez mon parcours et plus encore sur mon cv
+                    disponible
+                    ci-dessous et en
+                    téléchargement.</p>
+                <div class="title-container">
+                    <!-- Boutons de téléchargement en différentes langues -->
+                    <a href="fichiers/cv_aurelien_petit_25_10_24.pdf" class="text lang lang-fr main_btn"
+                        download>Télécharger le
+                        PDF</a>
+                    <a href="fichiers/cv_aurelien_petit_25_10_24.pdf" class="text lang lang-en main_btn"
+                        style="display: none;">Download
+                        the PDF</a>
+                    <h3>438 ko</h3>
 
-    <head>
-        <title>Redirection automatique en HTML</title>
-
-        <meta http-equiv="refresh" content="0; URL=https://pdfhost.io/v/vlY0LVDap_CV_Aurelien_Petit">
-    </head>
-
-
-
-
-
+                </div>
+            </div>
+            <div class="pdf-container">
+                <iframe src="fichiers/cv_aurelien_petit_25_10_24.pdf" type="application/pdf"></iframe>
+            </div>
+        </div>
+    </div>
+    <script src="app.js"></script> <!-- Inclure le script JavaScript -->
 </body>
 
 </html>
