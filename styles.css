@@ -186,8 +186,10 @@ body {
     width: 100%;
     margin: 0 auto;
     font-family: 'SFProLight', sans-serif;
-    max-width: 500px;
+    max-width: 550px;
     text-align: center;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 .main__content h3 {
@@ -277,21 +279,10 @@ body {
     transition: all 0.1s ease;
 }
 
-.pdf-container {
+.image_cv {
     position: relative;
-    width: calc(50vw - 40px); 
-    margin: 20px auto; 
-    height: calc((50vw - 40px) * 1.595);
-    overflow: hidden; /* Évite les débordements */
- 
-}
-  
-  .pdf-container iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
-    display: block;
-
+    width: 50%;
+    margin-top: 50px;
 }
 
 .section_verticale {
@@ -334,13 +325,10 @@ body {
         padding-bottom: 20px;
     }
 
-    .pdf-container {
+    .image_cv {
         position: relative;
-        width: calc(80vw - 40px); 
-        margin: 20px auto; 
-        height: calc((80vw - 40px) * 1.595);
-        overflow: hidden; /* Évite les débordements */
-     
+        width: 80%;
+        margin-top: 50px;
     }
 
 }
