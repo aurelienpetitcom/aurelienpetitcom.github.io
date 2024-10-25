@@ -279,7 +279,7 @@ body {
 
 .pdf-container {
     position: relative;
-    width: calc(50% - 40px); 
+    width: calc(50vw - 40px); 
     margin: 20px auto; 
     height: calc((50vw - 40px) * 1.595);
     overflow: hidden; /* Évite les débordements */
@@ -336,19 +336,12 @@ body {
 
     .pdf-container {
         position: relative;
-        width: calc(80% - 40px); 
+        width: calc(80vw - 40px); 
         margin: 20px auto; 
         height: calc((80vw - 40px) * 1.595);
         overflow: hidden; /* Évite les débordements */
      
     }
 
-    .pdf-container iframe {
-        width: 50%;
-        height: 50%;
-        border: none;
-        display: block;
-    
-    }
 }
 
