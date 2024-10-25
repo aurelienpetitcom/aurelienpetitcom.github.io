@@ -283,6 +283,7 @@ body {
     position: relative;
     width: 50%;
     margin-top: 50px;
+    border-radius: 10px;
 }
 
 .section_verticale {
