@@ -6,10 +6,101 @@
 
 
 
+
+.accueil_section1 {
+    position: relative;
+    max-width: 700px; /* Largeur maximale de la section */
+    padding: 40px;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto; /* Centre la section horizontalement */
+    background-color: #ffffff11;
+    text-align: left; /* Centre le texte */
+    flex-direction: column;
+    margin-bottom: 50px;
+}
+
+.content-container {
+    width: 100%; /* Largeur de 100% du conteneur */
+    position: relative;
+    max-width: 800px; /* Limite la largeur du conteneur */
+}
+
+/* Styles pour le bouton "learn-more" */
+.learn-more:hover {
+    color: #dddddd;
+    border-color: #dddddd;
+    background-color: #b536361e;
+}
+
+/* Icônes des réseaux sociaux */
+.social-icons {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.social-icon {
+    width: 20px;
+    height: 20px;
+    background-color: #ffffff;
+    display: inline-block;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    translate: 15px -20px;
+}
+
+.social-icon:hover {
+    background-color: #cccccc;
+}
+
+/* Couleurs spécifiques pour chaque réseau */
+.instagram {
+    background-color: #ffffff;
+}
+
+.youtube {
+    background-color: #ffffff;
+}
+
+/* Styles additionnels pour d'autres éléments */
+.date-category {
+    font-size: 15px;
+    color: #b5b5b5;
+    margin-bottom: 30px;
+}
+
+h2 {
+    font-size: 18px;
+    color: #fff;
+    font-family: 'SFProRegular', sans-serif;
+}
+
+.description {
+    font-size: 18px;
+    line-height: 1.5;
+    margin-top: 20px;
+    text-align: left;
+    font-family: 'SFProRegular', sans-serif;
+}
+
+
+
+
+
+
+
+
+
 .scroll-indicator {
     position: fixed;
     left: 30px;
-    top: 44%;
+    top: 47%;
     height: 140px; /* Barre fixe de 80% de la hauteur de l'écran */
     display: flex;
     align-items: center;
@@ -24,11 +115,12 @@
     content: "";
     display: block;
     width: 10px;
-    height: 100%; /* La barre occupe toute la hauteur de .scroll-indicator */
+    height: 146px; /* La barre occupe toute la hauteur de .scroll-indicator */
     background-color: #ffffff13;
     border-radius: 10px;
     position: absolute;
     left: 10px;
+    translate: 0px 6px;
 }
 
 .indicator-container {
@@ -59,6 +151,7 @@
     width: 15px; /* Nouvelle taille de la boule lorsqu'elle est agrandie */
     height: 15px; /* Nouvelle taille de la boule lorsqu'elle est agrandie */
     left: -22.5px; /* Décalage pour que la boule soit à gauche du texte */
+    background-color: rgba(255, 255, 255, 1); /* Couleur de la boule */
 
 }
 
@@ -80,8 +173,12 @@
 
 /* Sections */
 .accueil_section1 {
-    height: 1200px;
-    background-color: #000000;
+    background-color: #ffffff11;
+    position: center;
+    display: flex;
+    text-align: left;
+    flex-direction: column;
+    
 }
 
 .accueil_section2 {
@@ -112,7 +209,7 @@
     height: 80px;
     z-index: 1;
     width: 100%;
-    max-width: 1900px;
+    max-width: 1150px;
     margin: 0 auto;
     padding: 0px 30px 0 10px;
 }
@@ -249,8 +346,8 @@ body {
     background-color: rgb(0, 0, 0);
     z-index: 0;
     width: 100%; 
-    padding-top: 40px;  
-    height: 550px;
+    padding-top: 100px;  
+    height: 400px;
     transform: translateY(-80px);
 }
 
@@ -285,7 +382,7 @@ body {
     width: 100%;
     margin: 0 auto;
     font-family: 'SFProRegular', sans-serif;
-    max-width: 600px;
+    max-width: 960px;
     line-height: 1.4;
     text-align: center;
     padding-left: 60px;
@@ -460,5 +557,10 @@ body {
     .scroll-indicator::before {
         opacity: 0; 
     }
+    .content-defilement {
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
 }
 

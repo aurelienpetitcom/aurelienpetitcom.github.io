@@ -53,42 +53,37 @@ let isDragging = false; // État pour savoir si la boule est en cours de déplac
 
 // Fonction pour mettre à jour la position de l'indicateur
 function updateIndicator() {
-    const scrollTop = window.scrollY; // Position de défilement verticale
-    const windowHeight = window.innerHeight; // Hauteur de la fenêtre
-    const documentHeight = document.body.scrollHeight; // Hauteur totale du document
+    const scrollTop = window.scrollY;
+    const windowHeight = window.innerHeight;
+    const documentHeight = document.body.scrollHeight;
 
     // Calculer le ratio de défilement total
-    const totalScrollableHeight = documentHeight - windowHeight; // Hauteur totale défilable
-    const scrollRatio = scrollTop / totalScrollableHeight; // Ratio de défilement
+    const totalScrollableHeight = documentHeight - windowHeight;
+    const scrollRatio = scrollTop / totalScrollableHeight;
 
     // Positionner l'indicateur proportionnellement dans le contenu défilable
-    const indicatorPosition = scrollRatio * (scrollIndicator.offsetHeight); // Position de l'indicateur
+    const indicatorPosition = scrollRatio * (scrollIndicator.offsetHeight);
 
-    // Vérifier si on est tout en haut ou tout en bas
     if (scrollTop === 0) {
-        indicatorContainer.style.transform = `translateY(0)`; // Indicateur en haut
+        indicatorContainer.style.transform = `translateY(0)`;
     } else if (scrollTop + windowHeight >= documentHeight) {
-        indicatorContainer.style.transform = `translateY(${scrollIndicator.offsetHeight}px)`; // Indicateur en bas
+        indicatorContainer.style.transform = `translateY(${scrollIndicator.offsetHeight}px)`;
     } else {
-        // Appliquer la position calculée à l'indicateur
-        indicatorContainer.style.transform = `translateY(${indicatorPosition}px)`; // Appliquer la position de l'indicateur
+        indicatorContainer.style.transform = `translateY(${indicatorPosition}px)`;
     }
 
-    // Mettre à jour le texte de l'indicateur avec la section active si elle existe
+    // Trouver la section active
     let activeSection = null;
     sections.forEach(section => {
         const rect = section.getBoundingClientRect();
         const sectionHeight = rect.height;
+        const visibleTop = Math.max(0, rect.top);
+        const visibleBottom = Math.min(windowHeight, rect.bottom);
+        const visibleHeight = visibleBottom - visibleTop;
+        const visibilityPercentage = (visibleHeight / sectionHeight) * 100;
 
-        // Calculer le pourcentage de visibilité de chaque section
-        const visibleTop = Math.max(0, rect.top); // Position du haut visible de la section
-        const visibleBottom = Math.min(windowHeight, rect.bottom); // Position du bas visible de la section
-        const visibleHeight = visibleBottom - visibleTop; // Hauteur visible de la section
-        const visibilityPercentage = (visibleHeight / sectionHeight) * 100; // Pourcentage de visibilité
-
-        // Vérifier si la section est visible à au moins 20%
-        if (visibilityPercentage >= 20) {
-            activeSection = section; // Si oui, on marque cette section comme active
+        if (visibilityPercentage >= 50) {
+            activeSection = section;
         }
     });
 
@@ -97,18 +92,15 @@ function updateIndicator() {
         indicatorContainer.querySelector('.indicator-label').textContent = activeSection.getAttribute("data-label");
     }
 
-    // Vérifier si plus de 20% de la dernière section est visible
+    // Vérifier si moins de 20% de la dernière section est visible
     const lastSection = sections[sections.length - 1];
     const lastSectionRect = lastSection.getBoundingClientRect();
+    const lastSectionVisible = lastSectionRect.bottom;
 
-    // Calculer combien de la dernière section est visible
-    const lastSectionVisible = lastSectionRect.bottom; // Position du bas de la dernière section
-
-    // Si moins de 20% de la dernière section est visible, masquer l'indicateur
-    if (lastSectionVisible < windowHeight * 0.2) {
-        scrollIndicator.classList.add('hidden'); // Masquer l'indicateur
+    if (lastSectionVisible < windowHeight * 0.5) {
+        scrollIndicator.classList.add('hidden');
     } else {
-        scrollIndicator.classList.remove('hidden'); // Afficher l'indicateur
+        scrollIndicator.classList.remove('hidden');
     }
 }
 
@@ -120,28 +112,26 @@ document.addEventListener('DOMContentLoaded', updateIndicator);
 
 // Gestion des événements de glissement sur le conteneur
 indicatorContainer.addEventListener('mousedown', (event) => {
-    isDragging = true; // Activer le mode de glissement
-    indicatorContainer.style.cursor = 'grabbing'; // Changer le curseur lors du glissement
-    indicatorBall.classList.add('expanded'); // Agrandir la boule
-    event.preventDefault(); // Empêcher la sélection de texte
+    isDragging = true;
+    indicatorContainer.style.cursor = 'grabbing';
+    indicatorBall.classList.add('expanded');
+    event.preventDefault();
 });
 
-// Événement pour suivre le mouvement de la souris
 document.addEventListener('mousemove', (event) => {
     if (isDragging) {
         const scrollIndicatorRect = scrollIndicator.getBoundingClientRect();
-        const offsetY = event.clientY - scrollIndicatorRect.top; // Position Y de la souris dans la barre
-        const percentage = offsetY / scrollIndicatorRect.height; // Pourcentage de la barre
-        const scrollTop = percentage * (document.body.scrollHeight - window.innerHeight); // Calculer la position de défilement
-        window.scrollTo(0, scrollTop); // Appliquer le défilement
+        const offsetY = event.clientY - scrollIndicatorRect.top;
+        const percentage = offsetY / scrollIndicatorRect.height;
+        const scrollTop = percentage * (document.body.scrollHeight - window.innerHeight);
+        window.scrollTo(0, scrollTop);
     }
 });
 
-// Événement pour désactiver le glissement
 document.addEventListener('mouseup', () => {
-    isDragging = false; // Désactiver le mode de glissement
-    indicatorContainer.style.cursor = 'grab'; // Rétablir le curseur
-    indicatorBall.classList.remove('expanded'); // Rétablir la taille de la boule
+    isDragging = false;
+    indicatorContainer.style.cursor = 'grab';
+    indicatorBall.classList.remove('expanded');
 });
 
 // Initialiser l'indicateur au chargement
