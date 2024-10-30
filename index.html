@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Aurélien Petit</title>
+  <link rel="icon" href="images/faviconap.png" type="image/png">
   <link rel="stylesheet" href="styles.css">
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-HEM24T99FD"></script>
@@ -12,12 +13,16 @@
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
-
     gtag('config', 'G-HEM24T99FD');
   </script>
 </head>
 
 <body>
+  <!-- Écran de chargement -->
+  <div id="loader">
+    <img src="images/LogoAP.gif" alt="Chargement..." class="loader-gif"> <!-- Remplacez par le chemin de votre GIF -->
+  </div>
+
   <!-- Navbar Section-->
   <nav class="navbar">
     <div class="navbar__container">
@@ -41,7 +46,6 @@
   </nav>
 
   <!-- Hero Section-->
-
   <div class="main">
     <div class="main__container">
       <div class="main__content">
@@ -62,16 +66,12 @@
         </div>
       </div>
     </div>
-    <!--<div class="main__container-bandebp">
-      <a href="/" class="text lang lang-en txt_btn">Personal projects</a>
-      <a href="/" class="text lang lang-fr txt_btn" style="display: none;">Projets personnels</a>
-      <img src="images/indicationbasfleche.png" alt="Fleche vers le bas" class="flechebas">
-    </div> -->
   </div>
+
   <div class="scroll-indicator">
     <div class="indicator-container">
-      <div class="indicator-ball"></div> <!-- Boule blanche -->
-      <div class="indicator-label">Okbots Expedition</div> <!-- Le texte de la section active -->
+      <div class="indicator-ball"></div>
+      <div class="indicator-label">Okbots Expedition</div>
     </div>
   </div>
 
@@ -79,84 +79,34 @@
     <section id="section1" class="accueil_section1" data-label="Okbots Expedition">
       <div class="content-container">
         <div class="date-category">
-          <span>September 12</span> · <span>Okbots Expedition</span>
+          <span>1 Janvier 2025</span> · <span>Okbots Expedition</span>
         </div>
-        <h2>Titre de la publication</h2>
+        <img src="images/okbotsexpedition/wallpaperlogo1.png" alt="Logo Okbots Expedition avec fond" class="imagepost">
         <p class="description">
-          Dans un monde en constante évolution, l’importance de l’éducation ne cesse de croître. Elle constitue un
-          pilier essentiel pour le développement des individus et des sociétés, car elle permet de transmettre non
-          seulement des connaissances, mais aussi des valeurs et des compétences essentielles à la vie en communauté.
-          L’éducation, sous toutes ses formes, encourage la pensée critique, la créativité et l’autonomie. Elle est la
-          clé pour comprendre les complexités du monde moderne et pour répondre aux défis de demain, qu’il s’agisse de
-          technologie, d’écologie ou de droits humains.
+          Okbots Expedition est un projet de jeu de type plateforme narratif produit sur Unreal Engine 5.<br><br>
 
-          Aujourd’hui, avec l’émergence des nouvelles technologies, l’accès au savoir est plus démocratisé que jamais.
-          Les plateformes éducatives en ligne, les cours à distance et les bibliothèques numériques ouvrent des portes à
-          ceux qui, autrefois, étaient exclus du système éducatif classique. Cela crée une opportunité sans précédent
-          pour tous, quel que soit leur lieu de résidence ou leurs moyens financiers.
+          Les okbots, des machines intelligentes créées par les humains, avaient été envoyées pour explorer un autre
+          système solaire potentiellement habitable. Les okbots ont beaucoup appris de leur voyage et ont revendiqué les
+          territoires explorés.<br><br>
 
-          Toutefois, l’éducation rencontre encore de nombreux obstacles dans certaines régions du monde. La pauvreté,
-          les conflits et le manque de ressources freinent l’accès à l’école pour des millions d’enfants. Ces disparités
-          rappellent que l’éducation n’est pas encore un droit pleinement universel et qu’il reste du chemin à parcourir
-          pour garantir l’égalité des chances.
-
-          Dans ce contexte, le rôle des enseignants, des familles et des communautés est crucial. Ensemble, ils peuvent
-          inspirer les jeunes générations à devenir des citoyens responsables et engagés. En valorisant l’apprentissage
-          et la curiosité, nous posons les bases d’un avenir meilleur, fondé sur l’empathie, l’innovation et le respect
-          de la diversité.
+          Après de nombreuses années, les humains ont pris la décision de les désactiver. Mais la tâche n'est pas aisée
+          tant ces robots sont devenus indépendants. Vôtre rôle sera de pénétrer leur civilisation et de les empêcher de
+          dépasser l'humanité.
         </p>
-        <a href="mailto:contact@aurelienpetit.com" class="main_btn">En savoir plus <img
-            src="images/logoreflechenoir.png" alt="Logo fleche redirection" class="logoflecheredirection"></a>
+
+        <a href="https://okbotsexpedition.com" class="main_btn">En savoir plus <img src="images/logoreflechenoir.png"
+            alt="Logo fleche redirection" class="logoflecheredirection"></a>
         <div class="social-icons">
-          <a href="https://instagram.com" target="_blank" class="social-icon instagram"></a>
-          <a href="https://youtube.com" target="_blank" class="social-icon youtube"></a>
+          <a href="https://www.instagram.com/ap.aurelienpetit/"><img src="images/logoinstagram.png" alt="Logo Instagram"
+              class="social-icon">
+          </a>
+          <a href="https://linkedin.com"><img src="images/logolinkedin.png" alt="Logo Linkedin" class="social-icon">
+          </a>
         </div>
       </div>
     </section>
-    <section id="section2" class="accueil_section1" data-label="Chateau de la Belle au bois dormant">
-      <div class="content-container">
-        <div class="date-category">
-          <span>September 12</span> · <span>Okbots Expedition</span>
-        </div>
-        <h2>Titre de la publication</h2>
-        <p class="description">
-          Dans un monde en constante évolution, l’importance de l’éducation ne cesse de croître. Elle constitue un
-          pilier essentiel pour le développement des individus et des sociétés, car elle permet de transmettre non
-          seulement des connaissances, mais aussi des valeurs et des compétences essentielles à la vie en communauté.
-          L’éducation, sous toutes ses formes, encourage la pensée critique, la créativité et l’autonomie. Elle est la
-          clé pour comprendre les complexités du monde moderne et pour répondre aux défis de demain, qu’il s’agisse de
-          technologie, d’écologie ou de droits humains.
-
-          Aujourd’hui, avec l’émergence des nouvelles technologies, l’accès au savoir est plus démocratisé que jamais.
-          Les plateformes éducatives en ligne, les cours à distance et les bibliothèques numériques ouvrent des portes à
-          ceux qui, autrefois, étaient exclus du système éducatif classique. Cela crée une opportunité sans précédent
-          pour tous, quel que soit leur lieu de résidence ou leurs moyens financiers.
-
-          Toutefois, l’éducation rencontre encore de nombreux obstacles dans certaines régions du monde. La pauvreté,
-          les conflits et le manque de ressources freinent l’accès à l’école pour des millions d’enfants. Ces disparités
-          rappellent que l’éducation n’est pas encore un droit pleinement universel et qu’il reste du chemin à parcourir
-          pour garantir l’égalité des chances.
-
-          Dans ce contexte, le rôle des enseignants, des familles et des communautés est crucial. Ensemble, ils peuvent
-          inspirer les jeunes générations à devenir des citoyens responsables et engagés. En valorisant l’apprentissage
-          et la curiosité, nous posons les bases d’un avenir meilleur, fondé sur l’empathie, l’innovation et le respect
-          de la diversité.
-        </p>
-        <a href="mailto:contact@aurelienpetit.com" class="main_btn">En savoir plus <img
-            src="images/logoreflechenoir.png" alt="Logo fleche redirection" class="logoflecheredirection"></a>
-        <div class="social-icons">
-          <a href="https://instagram.com" target="_blank" class="social-icon instagram"></a>
-          <a href="https://youtube.com" target="_blank" class="social-icon youtube"></a>
-        </div>
-      </div>
-    </section>
-    <section id="section3" class="accueil_section3" data-label="September 14">...</section>
-    <section id="section4" class="accueil_section4" data-label="September 15">....</section>
-
-    <section id="section5" class="accueil_section5" data-label="September 16">....</section>
     <!-- Ajoutez autant de sections que nécessaire -->
   </div>
-
 
   <script src="app.js"></script>
 </body>
