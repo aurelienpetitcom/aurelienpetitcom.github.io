@@ -29,7 +29,7 @@
 #navbar__logo {
     align-items: center;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 18px;
 }
 
 .fa-gem {
@@ -55,7 +55,7 @@
     text-decoration: none;
     padding: 0 15px 0 0px;
     height: 100%;
-    font-size: 14px;
+    font-size: 18px;
     font-family: 'SFProRegular', sans-serif;
 }
 
@@ -81,7 +81,7 @@
     border-radius: 10px;
     background: black;
     color: rgb(255, 255, 255);
-    font-size: 14px;
+    font-size: 18px;
     font-family: 'SFProRegular', sans-serif;
 }
 
@@ -99,6 +99,13 @@
     width: 80px;
     height: auto;
     cursor: pointer;
+}
+
+.logoflecheredirection {
+    width: 10px;
+    height: auto;
+    cursor: pointer;
+    margin-left: 5px;
 }
 
 .flechebas {
@@ -169,31 +176,32 @@ body {
 }
 
 .main__content h1 {
-    font-size: 40px;
+    font-size: 50px;
     font-family: 'SFProSemiBold', sans-serif;
     margin-bottom: 20px;
 }
 
 .main__content h2 {
-    font-size: 40px;
+    font-size: 50px;
     font-family: 'SFProLight', sans-serif;
     margin-bottom: 20px;
 }
 
 .main__content p {
     margin-top: 30px;
-    font-size: 14px;
+    font-size: 18px;
     width: 100%;
     margin: 0 auto;
-    font-family: 'SFProLight', sans-serif;
+    font-family: 'SFProRegular', sans-serif;
     max-width: 550px;
+    line-height: 1.4;
     text-align: center;
     padding-left: 20px;
     padding-right: 20px;
 }
 
 .main__content h3 {
-    font-size: 14px;
+    font-size: 15px;
     width: 100%;
     margin: 0 auto;
     font-family: 'SFProLight', sans-serif;
@@ -210,27 +218,31 @@ body {
     align-items: center;
     text-decoration: none;
     padding: 10px 20px;
-    border: 1px solid rgb(50, 50, 50);
     outline: none;
-    border-radius: 10px;
-    background: black;
+    border-radius: 20px;
+    background: white;
     color: rgb(255, 255, 255);
-    font-size: 14px;
+    font-size: 15px;
     font-family: 'SFProRegular', sans-serif;
-    transition: all 0.1s ease;
+    color: #000000;
+    transition: all 1s ease;
     white-space: nowrap;
     margin-top: 30px;
 }
 
 .main_btn:hover {
-    border: 1px solid rgb(255, 255, 255);
-    color: rgb(255, 255, 255);
+    background: rgb(240, 240, 240);
 }
+
+.marginleft{
+    margin-left: 10px;
+}
+
 
 #langSelector {
     text-align: right;
     background-color: transparent;
-    color: #393939;
+    color: #ffffff;
     padding: 5px;
     border: 1px solid #000000;
     border-radius: 5px;
@@ -239,6 +251,7 @@ body {
     appearance: none;
     margin-left: 10px;
     margin-top: 25px;
+    font-size: 15px;
 }
 
 #langSelector:hover {
@@ -263,20 +276,15 @@ body {
 }
 
 .txt_btn {
-    color: rgb(80, 80, 80);
+    color: rgb(255, 255, 255);
     display: flex;
     align-items: center;
     justify-content: center;
     text-decoration: none;
     height: 40px;
-    font-size: 14px;
+    font-size: 15px;
     font-family: 'SFProRegular', sans-serif;
     margin-top: 30px;
-}
-
-.txt_btn:hover {
-    color: rgb(255, 255, 255);
-    transition: all 0.1s ease;
 }
 
 .image_cv {
