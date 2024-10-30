@@ -4,6 +4,97 @@
     padding: 0;
 }
 
+
+
+.scroll-indicator {
+    position: fixed;
+    left: 30px;
+    top: 44%;
+    height: 140px; /* Barre fixe de 80% de la hauteur de l'écran */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    flex-direction: column;
+    transition: opacity 1s ease;
+    opacity: 1; 
+}
+
+.scroll-indicator::before {
+    content: "";
+    display: block;
+    width: 10px;
+    height: 100%; /* La barre occupe toute la hauteur de .scroll-indicator */
+    background-color: #ffffff13;
+    border-radius: 10px;
+    position: absolute;
+    left: 10px;
+}
+
+.indicator-container {
+    display: flex;
+    align-items: center; /* Aligne la boule et le texte au centre */
+    position: relative; /* Position relative pour placer la boule */
+    translate: 30px -65px;
+    cursor: grab; /* Curseur pour indiquer que l'élément peut être déplacé */
+
+}
+
+.scroll-indicator.hidden {
+    opacity: 0; /* Masquer l'indicateur avec opacité 0 */
+}
+
+.indicator-ball {
+    width: 10px; /* Diamètre de la boule */
+    height: 10px;
+    background-color: rgba(255, 255, 255, 0.501); /* Couleur de la boule */
+    border-radius: 50%; /* Rendre la boule circulaire */
+    position: absolute; /* Positionnement absolu par rapport au conteneur */
+    left: -20px; /* Décalage pour que la boule soit à gauche du texte */
+    transition: transform 0.0s, width 0.0s, height 0.1s; /* Ajout de la transition pour la taille */
+}
+
+
+.indicator-ball.expanded {
+    width: 15px; /* Nouvelle taille de la boule lorsqu'elle est agrandie */
+    height: 15px; /* Nouvelle taille de la boule lorsqu'elle est agrandie */
+    left: -22.5px; /* Décalage pour que la boule soit à gauche du texte */
+
+}
+
+.indicator-ball:active {
+    cursor: grabbing; /* Curseur lorsque la boule est en cours de glissement */
+}
+
+
+.indicator-label {
+    background-color: rgba(255, 255, 255, 0.094); /* Rouge avec 50% d'opacité */
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-size: 15px;
+    font-family: 'SFProRegular', sans-serif;
+    position: relative; /* Position relative pour pouvoir la déplacer */
+    transition: transform 0s ease-in-out;
+}
+
+/* Sections */
+.accueil_section1 {
+    height: 1200px;
+    background-color: #000000;
+}
+
+.accueil_section2 {
+    height: 1800px;
+    background-color: #000000;
+}
+
+.accueil_section3 {
+    height: 1200px;
+    background-color: #000000;
+}
+
+
 .navbar {
     background: rgb(0, 0, 0);
     height: 80px;
@@ -229,10 +320,14 @@ body {
     transition: all 1s ease;
     white-space: nowrap;
     margin-top: 30px;
+    transition: transform 0.3s ease, opacity 0.3s ease; /* Transition pour la transformation et l'opacité */
+
 }
 
 .main_btn:hover {
     background: rgb(240, 240, 240);
+    transform: scale(0.95); /* Réduit la taille à 80% */
+
 }
 
 .marginleft{
@@ -354,5 +449,16 @@ body {
         margin-bottom: 20px;
     }
 
+    .indicator-container {
+        opacity: 0;
+    }
+
+    .scroll-indicator {
+        opacity: 0; 
+    }
+    
+    .scroll-indicator::before {
+        opacity: 0; 
+    }
 }
 
