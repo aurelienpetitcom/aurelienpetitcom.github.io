@@ -78,6 +78,7 @@
     padding-bottom: 20px;
 }
 
+
 h2 {
     font-size: 24px;
     color: #fff;
@@ -620,9 +621,12 @@ body {
     }
 
     .date-category {
-       /* display: flex;             
-        flex-direction: column; */
+       display: flex;             
+        flex-direction: column;
         gap: 5px;
+    }
+    .nonmobile{
+            font-size: 0px;
     }
 }
 
