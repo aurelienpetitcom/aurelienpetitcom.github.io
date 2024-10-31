@@ -10,7 +10,7 @@
 .accueil_section1 {
     position: relative;
     max-width: 700px; /* Largeur maximale de la section */
-    padding: 40px;
+    padding-bottom: 40px;
     color: #ffffff;
     font-family: Arial, sans-serif;
     border-radius: 20px;
@@ -39,8 +39,8 @@
 /* Icônes des réseaux sociaux */
 .social-icons {
     position: absolute;
-    top: 20px;
-    right: 20px;
+    bottom: -20px;
+    right: 60px;
     display: flex;
     gap: 10px;
 }
@@ -73,8 +73,9 @@
 .date-category {
     font-size: 15px;
     color: #b5b5b5;
-    margin-bottom: 30px;
     gap: 10px;
+    padding: 40px;
+    padding-bottom: 20px;
 }
 
 h2 {
@@ -94,13 +95,22 @@ h4 {
 .description {
     font-size: 18px;
     line-height: 1.5;
-    margin-top: 20px;
     text-align: left;
     font-family: 'SFProRegular', sans-serif;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-bottom: 0px;
 }
 
 
-
+.imagepost {
+    width: 100%;
+    height: auto;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+}
 
 
 
@@ -298,12 +308,7 @@ h4 {
     height: auto;
     cursor: pointer;
 }
-.imagepost {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-    margin-bottom: 10px;
-}
+
 
 
 .logoflecheredirection {
@@ -463,6 +468,10 @@ body {
 }
 
 
+.marginleft40{
+    margin-left: 40px;
+}
+
 #langSelector {
     text-align: right;
     background-color: transparent;
@@ -606,12 +615,13 @@ body {
     }
 
     .accueil_section1 {
-        padding: 30px;
+        padding: 0px;
+        padding-bottom: 40px;
     }
 
     .date-category {
-        display: flex;              /* Active le modèle de boîte flexible */
-        flex-direction: column; 
+       /* display: flex;             
+        flex-direction: column; */
         gap: 5px;
     }
 }
