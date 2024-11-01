@@ -528,6 +528,13 @@ body {
     border-radius: 10px;
 }
 
+.image_production {
+    position: center;
+    width: 100%;
+    margin-top: 20px;
+    border-radius: 0px;
+}
+
 .section_verticale {
     display: flex;            
     flex-direction: column;  
