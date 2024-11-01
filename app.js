@@ -1,19 +1,3 @@
-// Attendre que la page soit complètement chargée
-window.onload = function() {
-    // Ajouter la classe fade-out pour l'animation
-    const loader = document.getElementById('loader');
-    loader.classList.add('fade-out');
-
-    // Masquer l'écran de chargement après 2 secondes et l'animation
-    setTimeout(() => {
-        loader.style.display = 'none'; // Masquer l'écran de chargement
-    }, 2000); // Temps correspondant à 2 secondes
-};
-
-
-
-
-
 
 
 

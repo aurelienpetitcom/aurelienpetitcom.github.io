@@ -532,7 +532,7 @@ body {
     display: block; /* Permet de centrer l'image avec margin auto */
     width: 100vw; /* Largeur de 100% de la largeur de la fenêtre */
     max-width: 100%; /* Empêche l'image de dépasser la largeur de son conteneur */
-    margin: 20px auto 0 auto; /* Centre l'image horizontalement et ajoute une marge en haut */
+    margin: 0px auto 0 auto; /* Centre l'image horizontalement et ajoute une marge en haut */
     border-radius: 0px;
 }
 
