@@ -628,6 +628,7 @@ body {
 
     .scroll-indicator {
         opacity: 0; 
+        visibility: hidden;
     }
     
     .scroll-indicator::before {
