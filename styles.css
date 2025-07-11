@@ -27,6 +27,7 @@
     width: 100%; /* Largeur de 100% du conteneur */
     position: relative;
     max-width: 800px; /* Limite la largeur du conteneur */
+    margin-bottom: -30px;
 }
 
 /* Styles pour le bouton "learn-more" */
@@ -47,7 +48,7 @@
 
 .social-icons-left {
     position: absolute;
-    bottom: -20px;
+    bottom: 0px;
     left: 25px;
     display: flex;
     gap: 10px;
@@ -479,7 +480,13 @@ body {
 
 .marginleft40{
     margin-left: 40px;
+    margin-bottom: -40px;    
 }
+
+.marginleft40-hidden {
+    visibility: hidden;
+}
+
 
 #langSelector {
     text-align: right;
