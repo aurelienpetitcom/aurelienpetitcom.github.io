@@ -10,7 +10,7 @@
 .accueil_section1 {
     position: relative;
     max-width: 700px; /* Largeur maximale de la section */
-    padding-bottom: 40px;
+    padding-bottom: 0px;
     color: #ffffff;
     font-family: Arial, sans-serif;
     border-radius: 20px;
@@ -38,17 +38,16 @@
 
 /* Icônes des réseaux sociaux */
 .social-icons {
-    position: absolute;
-    bottom: -20px;
-    right: 60px;
+        position: absolute;
+    bottom: 40px;
+    right: 40px;
     display: flex;
     gap: 10px;
 }
 
 .social-icons-left {
     position: absolute;
-    bottom: -20px;
-    left: 25px;
+    left: 0px;
     display: flex;
     gap: 10px;
 }
@@ -59,7 +58,7 @@
     display: inline-block;
     cursor: pointer;
     transition: background-color 0.3s;
-    translate: 15px -20px;
+    translate: 0px 0px;
     opacity: 0.5;
 }
 
@@ -69,7 +68,7 @@
     display: inline-block;
     cursor: pointer;
     transition: background-color 0.3s;
-    translate: 15px -20px;
+    translate: 0px -0px;
     opacity: 1;
 }
 
@@ -461,7 +460,7 @@ body {
     color: #000000;
     transition: all 1s ease;
     white-space: nowrap;
-    margin-top: 30px;
+    margin-top: 0px;
     transition: transform 0.3s ease, opacity 0.3s ease; /* Transition pour la transformation et l'opacité */
 
 }
@@ -515,6 +514,7 @@ body {
     justify-content: center;
     align-items: center;
     gap: 20px;
+    margin-top: 30px;
 }
 
 .txt_btn {
@@ -526,7 +526,7 @@ body {
     height: 40px;
     font-size: 15px;
     font-family: 'SFProRegular', sans-serif;
-    margin-top: 30px;
+    margin-top: 0px;
 }
 
 .image_cv {
@@ -621,7 +621,7 @@ body {
 
     .scroll-indicator {
         opacity: 0; 
-        visibility: hidden;
+                visibility: hidden;
     }
     
     .scroll-indicator::before {
@@ -634,7 +634,7 @@ body {
 
     .accueil_section1 {
         padding: 0px;
-        padding-bottom: 40px;
+        padding-bottom: 0px;
     }
 
     .date-category {
@@ -681,4 +681,33 @@ body {
 .fade-out {
     opacity: 0;
     transition: opacity 0.2s ease-out; /* Durée de l'animation */
+}
+
+
+.row-flex {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center; /* centre verticalement */
+  gap: 20px;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 50px;
+  margin-left: 35px;
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+.row-flex-sans-boutons {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center; /* centre verticalement */
+  gap: 20px;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 50px;
+  margin-left: 35px;
+  margin-top: 20px;
+  margin-bottom: 0px;
 }
