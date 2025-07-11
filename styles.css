@@ -45,6 +45,14 @@
     gap: 10px;
 }
 
+.social-icons-left {
+    position: absolute;
+    bottom: -20px;
+    left: 25px;
+    display: flex;
+    gap: 10px;
+}
+
 .social-icon {
     width: 20px;
     height: 20px;
