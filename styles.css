@@ -1,707 +1,676 @@
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-
-
-
 .accueil_section1 {
-    position: relative;
-    max-width: 700px; /* Largeur maximale de la section */
-    padding-bottom: 0px;
-    color: #ffffff;
-    font-family: Arial, sans-serif;
-    border-radius: 20px;
-    display: flex;
-    justify-content: center;
-    margin: 0 auto; /* Centre la section horizontalement */
-    background-color: #ffffff11;
-    text-align: left; /* Centre le texte */
-    flex-direction: column;
-    margin-bottom: 50px;
+  position: relative;
+  max-width: 700px; /* Largeur maximale de la section */
+  padding-bottom: 0px;
+  color: #ffffff;
+  font-family: Arial, sans-serif;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto; /* Centre la section horizontalement */
+  background-color: #ffffff11;
+  text-align: left; /* Centre le texte */
+  flex-direction: column;
+  margin-bottom: 50px;
 }
 
 .content-container {
-    width: 100%; /* Largeur de 100% du conteneur */
-    position: relative;
-    max-width: 800px; /* Limite la largeur du conteneur */
+  width: 100%; /* Largeur de 100% du conteneur */
+  position: relative;
+  max-width: 800px; /* Limite la largeur du conteneur */
 }
-
 
 /* Styles pour le bouton "learn-more" */
 .learn-more:hover {
-    color: #dddddd;
-    border-color: #dddddd;
-    background-color: #b536361e;
+  color: #dddddd;
+  border-color: #dddddd;
+  background-color: #b536361e;
 }
 
 /* Icônes des réseaux sociaux */
 .social-icons {
-    position: absolute;
-    bottom: 40px;
-    right: 40px;
-    display: flex;
-    gap: 10px;
+  position: absolute;
+  bottom: 40px;
+  right: 40px;
+  display: flex;
+  gap: 10px;
 }
 
 .social-icons-left {
-    position: absolute;
-    left: 40px;
-    display: flex;
-    gap: 10px;
+  position: absolute;
+  left: 40px;
+  display: flex;
+  gap: 10px;
 }
 
 .social-icon {
-    width: 20px;
-    height: 20px;
-    display: inline-block;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    translate: 0px 0px;
-    opacity: 0.5;
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  translate: 0px 0px;
+  opacity: 0.5;
 }
 
 .social-icon:hover {
-    width: 20px;
-    height: 20px;
-    display: inline-block;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    translate: 0px -0px;
-    opacity: 1;
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  translate: 0px -0px;
+  opacity: 1;
 }
-
 
 /* Couleurs spécifiques pour chaque réseau */
 
-
 /* Styles additionnels pour d'autres éléments */
 .date-category {
-    font-size: 15px;
-    color: #b5b5b5;
-    gap: 0px;
-    padding: 40px;
-    padding-bottom: 20px;
+  font-size: 15px;
+  color: #b5b5b5;
+  gap: 0px;
+  padding: 40px;
+  padding-bottom: 20px;
 }
 
-
 h2 {
-    font-size: 24px;
-    color: #fff;
-    font-family: 'SFProSemiBold', sans-serif;
-    line-height: 1; /* Réduit l'interligne */
-    padding-bottom: 0px;
-
+  font-size: 24px;
+  color: #fff;
+  font-family: "SFProSemiBold", sans-serif;
+  line-height: 1; /* Réduit l'interligne */
+  padding-bottom: 0px;
 }
 
 h4 {
-    font-size: 18px;
-    color: #fff;
-    font-family: 'SFProSemiBold', sans-serif;
-    margin-bottom: 10px;
-    margin-top: 30px;
+  font-size: 18px;
+  color: #fff;
+  font-family: "SFProSemiBold", sans-serif;
+  margin-bottom: 10px;
+  margin-top: 30px;
 }
 
 h5 {
-    font-size: 11px;
-    color: #d0d0d0;
-    font-family: 'SFProLight', sans-serif;
-    margin-bottom: 10px;
-    margin-top: 10px;
+  font-size: 11px;
+  color: #d0d0d0;
+  font-family: "SFProLight", sans-serif;
+  margin-bottom: 10px;
+  margin-top: 10px;
 }
 
 .description {
-    font-size: 18px;
-    line-height: 1.5;
-    text-align: left;
-    font-family: 'SFProRegular', sans-serif;
-    padding-left: 40px;
-    padding-right: 40px;
-    padding-bottom: 0px;
+  font-size: 18px;
+  line-height: 1.5;
+  text-align: left;
+  font-family: "SFProRegular", sans-serif;
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-bottom: 0px;
 }
-
 
 .imagepost {
-    width: 100%;
-    height: auto;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-    border-bottom-right-radius: 0px;
-    border-bottom-left-radius: 0px;
+  width: 100%;
+  height: auto;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0px;
 }
 
-
-
-
-
-
 .scroll-indicator {
-    position: fixed;
-    left: 10px;
-    top: 47%;
-    height: 140px; /* Barre fixe de 80% de la hauteur de l'écran */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
-    flex-direction: column;
-    transition: opacity 1s ease;
-    opacity: 1; 
+  position: fixed;
+  left: 10px;
+  top: 47%;
+  height: 140px; /* Barre fixe de 80% de la hauteur de l'écran */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  flex-direction: column;
+  transition: opacity 1s ease;
+  opacity: 1;
 }
 
 .scroll-indicator::before {
-    content: "";
-    display: block;
-    width: 10px;
-    height: 146px; /* La barre occupe toute la hauteur de .scroll-indicator */
-    background-color: #ffffff13;
-    border-radius: 10px;
-    position: absolute;
-    left: 10px;
-    translate: 0px 6px;
+  content: "";
+  display: block;
+  width: 10px;
+  height: 146px; /* La barre occupe toute la hauteur de .scroll-indicator */
+  background-color: #ffffff13;
+  border-radius: 10px;
+  position: absolute;
+  left: 10px;
+  translate: 0px 6px;
 }
 
 .indicator-container {
-    display: flex;
-    align-items: center; /* Aligne la boule et le texte au centre */
-    position: relative; /* Position relative pour placer la boule */
-    translate: 30px -65px;
-    cursor: grab; /* Curseur pour indiquer que l'élément peut être déplacé */
-
+  display: flex;
+  align-items: center; /* Aligne la boule et le texte au centre */
+  position: relative; /* Position relative pour placer la boule */
+  translate: 30px -65px;
+  cursor: grab; /* Curseur pour indiquer que l'élément peut être déplacé */
 }
 
 .scroll-indicator.hidden {
-    opacity: 0; /* Masquer l'indicateur avec opacité 0 */
+  opacity: 0; /* Masquer l'indicateur avec opacité 0 */
 }
 
 .indicator-ball {
-    width: 10px; /* Diamètre de la boule */
-    height: 10px;
-    background-color: rgba(255, 255, 255, 0.501); /* Couleur de la boule */
-    border-radius: 50%; /* Rendre la boule circulaire */
-    position: absolute; /* Positionnement absolu par rapport au conteneur */
-    left: -20px; /* Décalage pour que la boule soit à gauche du texte */
-    transition: transform 0.0s, width 0.0s, height 0.1s; /* Ajout de la transition pour la taille */
+  width: 10px; /* Diamètre de la boule */
+  height: 10px;
+  background-color: rgba(255, 255, 255, 0.501); /* Couleur de la boule */
+  border-radius: 50%; /* Rendre la boule circulaire */
+  position: absolute; /* Positionnement absolu par rapport au conteneur */
+  left: -20px; /* Décalage pour que la boule soit à gauche du texte */
+  transition: transform 0s, width 0s, height 0.1s; /* Ajout de la transition pour la taille */
 }
 
-
 .indicator-ball.expanded {
-    width: 15px; /* Nouvelle taille de la boule lorsqu'elle est agrandie */
-    height: 15px; /* Nouvelle taille de la boule lorsqu'elle est agrandie */
-    left: -22.5px; /* Décalage pour que la boule soit à gauche du texte */
-    background-color: rgba(255, 255, 255, 1); /* Couleur de la boule */
-
+  width: 15px; /* Nouvelle taille de la boule lorsqu'elle est agrandie */
+  height: 15px; /* Nouvelle taille de la boule lorsqu'elle est agrandie */
+  left: -22.5px; /* Décalage pour que la boule soit à gauche du texte */
+  background-color: rgba(255, 255, 255, 1); /* Couleur de la boule */
 }
 
 .indicator-ball:active {
-    cursor: grabbing; /* Curseur lorsque la boule est en cours de glissement */
+  cursor: grabbing; /* Curseur lorsque la boule est en cours de glissement */
 }
 
-
 .indicator-label {
-    background-color: rgba(255, 255, 255, 0.094); /* Rouge avec 50% d'opacité */
-    color: #fff;
-    padding: 10px 20px;
-    border-radius: 20px;
-    font-size: 15px;
-    font-family: 'SFProRegular', sans-serif;
-    position: relative; /* Position relative pour pouvoir la déplacer */
-    transition: transform 0s ease-in-out;
+  background-color: rgba(255, 255, 255, 0.094); /* Rouge avec 50% d'opacité */
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-size: 15px;
+  font-family: "SFProRegular", sans-serif;
+  position: relative; /* Position relative pour pouvoir la déplacer */
+  transition: transform 0s ease-in-out;
 }
 
 /* Sections */
 .accueil_section1 {
-    background-color: #ffffff11;
-    position: center;
-    display: flex;
-    text-align: left;
-    flex-direction: column;
-    
+  background-color: #ffffff11;
+  position: center;
+  display: flex;
+  text-align: left;
+  flex-direction: column;
 }
 
 .accueil_section2 {
-    height: 1800px;
-    background-color: #000000;
+  height: 1800px;
+  background-color: #000000;
 }
 
 .accueil_section3 {
-    height: 1200px;
-    background-color: #000000;
+  height: 1200px;
+  background-color: #000000;
 }
 
-
 .navbar {
-    background: rgb(0, 0, 0);
-    height: 80px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.2rem;
-    top: 0;
-    z-index: 999;
+  background: rgb(0, 0, 0);
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  top: 0;
+  z-index: 999;
 }
 
 .navbar__container {
-    display: flex;
-    justify-content: space-between;
-    height: 80px;
-    z-index: 1;
-    width: 100%;
-    max-width: 1150px;
-    margin: 0 auto;
-    padding: 0px 30px 0 10px;
+  display: flex;
+  justify-content: space-between;
+  height: 80px;
+  z-index: 1;
+  width: 100%;
+  max-width: 1150px;
+  margin: 0 auto;
+  padding: 0px 30px 0 10px;
 }
 
 #navbar__logo {
-    align-items: center;
-    cursor: pointer;
-    font-size: 18px;
+  align-items: center;
+  cursor: pointer;
+  font-size: 18px;
 }
 
 #navbar__logo_bp {
-    align-items: center;
-    cursor: pointer;
-    font-size: 18px;
-    margin-bottom: -20px;
+  align-items: center;
+  cursor: pointer;
+  font-size: 18px;
+  margin-bottom: -20px;
 }
 
-
 .fa-gem {
-    margin-right: 0.5rem;
+  margin-right: 0.5rem;
 }
 
 .navbar__menu {
-    display: flex;
-    align-items: center;
-    list-style: none;
-    text-align: center;
+  display: flex;
+  align-items: center;
+  list-style: none;
+  text-align: center;
 }
 
 .navbar__item {
-    height: 80px;
+  height: 80px;
 }
 
 .navbar__links {
-    color: rgb(80, 80, 80);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    padding: 0 15px 0 0px;
-    height: 100%;
-    font-size: 18px;
-    font-family: 'SFProRegular', sans-serif;
+  color: rgb(80, 80, 80);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  padding: 0 15px 0 0px;
+  height: 100%;
+  font-size: 18px;
+  font-family: "SFProRegular", sans-serif;
 }
 
 .navbar_btn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0 10px;
-    width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 10px;
+  width: 100%;
 }
 
 .button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-decoration: none;
-    padding: 10px 20px;
-    height: 100%;
-    width: 100%;
-    border: 0.4px solid rgb(80, 80, 80);
-    outline: none;
-    outline-color: rgb(92, 0, 0);
-    border-radius: 10px;
-    background: black;
-    color: rgb(255, 255, 255);
-    font-size: 18px;
-    font-family: 'SFProRegular', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  padding: 10px 20px;
+  height: 100%;
+  width: 100%;
+  border: 0.4px solid rgb(80, 80, 80);
+  outline: none;
+  outline-color: rgb(92, 0, 0);
+  border-radius: 10px;
+  background: black;
+  color: rgb(255, 255, 255);
+  font-size: 18px;
+  font-family: "SFProRegular", sans-serif;
 }
 
 .button:hover {
-    border: 0.4px solid rgb(255, 255, 255);
-    transition: all 0.1s ease;
+  border: 0.4px solid rgb(255, 255, 255);
+  transition: all 0.1s ease;
 }
 
 .navbar__links:hover {
-    color: rgb(255, 255, 255);
-    transition: all 0.1s ease;
+  color: rgb(255, 255, 255);
+  transition: all 0.1s ease;
 }
 
 .logo {
-    width: 80px;
-    height: auto;
-    cursor: pointer;
+  width: 80px;
+  height: auto;
+  cursor: pointer;
 }
 
-
-
 .logoflecheredirection {
-    width: 10px;
-    height: auto;
-    cursor: pointer;
-    margin-left: 5px;
+  width: 10px;
+  height: auto;
+  cursor: pointer;
+  margin-left: 5px;
 }
 
 .flechebas {
-    width: 150px;
-    height: auto;
-    cursor: pointer;
-    padding-top: 0px;
-    opacity: 0.25;
+  width: 150px;
+  height: auto;
+  cursor: pointer;
+  padding-top: 0px;
+  opacity: 0.25;
 }
 
 body {
-    background-color: black;
-    color: white;
-    font-size: 16px;
-    margin: 0;
-    flex-direction: column; 
+  background-color: black;
+  color: white;
+  font-size: 16px;
+  margin: 0;
+  flex-direction: column;
 }
 
 @font-face {
-    font-family: 'SFProRegular';
-    src: url('fonts/SF-Pro-Display-Regular.otf') format('truetype');
+  font-family: "SFProRegular";
+  src: url("fonts/SF-Pro-Display-Regular.otf") format("truetype");
 }
 
 @font-face {
-    font-family: 'SFProSemiBold';
-    src: url('fonts/SF-Pro-Display-Semibold.otf') format('truetype');
+  font-family: "SFProSemiBold";
+  src: url("fonts/SF-Pro-Display-Semibold.otf") format("truetype");
 }
 
 @font-face {
-    font-family: 'SFProLight';
-    src: url('fonts/SF-Pro-Display-Light.otf') format('truetype');
+  font-family: "SFProLight";
+  src: url("fonts/SF-Pro-Display-Light.otf") format("truetype");
 }
 
 .main {
-    background-color: rgb(0, 0, 0);
-    display: flex;
-    text-align: center;
-    flex-direction: column;
+  background-color: rgb(0, 0, 0);
+  display: flex;
+  text-align: center;
+  flex-direction: column;
 }
 
 .main__content {
-    max-width: 2000px;
+  max-width: 2000px;
 }
 
 .main__container {
-    display: flex;            
-    align-items: center;       
-    justify-content: center;    
-    /*height: 80vh;         */     
-    background-color: rgb(0, 0, 0);
-    z-index: 0;
-    width: 100%; 
-    padding-top: 100px;  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /*height: 80vh;         */
+  background-color: rgb(0, 0, 0);
+  z-index: 0;
+  width: 100%;
+  padding-top: 100px;
 
-    transform: translateY(-80px);
+  transform: translateY(-80px);
 }
 
 .main__container2 {
-    display: flex;            
-    align-items: center;       
-    justify-content: center;    
-    /*height: 80vh;         */     
-    background-color: rgb(0, 0, 0);
-    z-index: 0;
-    width: 100%; 
-    padding-top: 150px;  
-    height: 450px;
-    transform: translateY(-80px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /*height: 80vh;         */
+  background-color: rgb(0, 0, 0);
+  z-index: 0;
+  width: 100%;
+  padding-top: 150px;
+  height: 450px;
+  transform: translateY(-80px);
 }
 
-
 .main__container-bandebp {
-    display: flex;            
-    align-items: center;   
-    flex-direction: column; 
-    justify-content: flex-end;                 
-    height: 150px;
-    background-color: rgb(0, 0, 0);
-    z-index: 1;
-    width: 100%;           
-    padding-bottom: 50px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 150px;
+  background-color: rgb(0, 0, 0);
+  z-index: 1;
+  width: 100%;
+  padding-bottom: 50px;
 }
 
 .main__content h1 {
-    font-size: 55px;
-    font-family: 'SFProSemiBold', sans-serif;
-    margin-top: 0px;
+  font-size: 55px;
+  font-family: "SFProSemiBold", sans-serif;
+  margin-top: 0px;
 }
 
 .main__content h2 {
-    font-size: 55px;
-    font-family: 'SFProLight', sans-serif;
-    margin-bottom: 0px;
+  font-size: 55px;
+  font-family: "SFProLight", sans-serif;
+  margin-bottom: 0px;
 }
 
 .main__content p {
-    margin-top: 30px;
-    font-size: 18px;
-    width: 100%;
-    margin: 0 auto;
-    font-family: 'SFProRegular', sans-serif;
-    max-width: 960px;
-    line-height: 1.4;
-    text-align: center;
-    padding-left: 60px;
-    padding-right: 60px;
+  margin-top: 30px;
+  font-size: 18px;
+  width: 100%;
+  margin: 0 auto;
+  font-family: "SFProRegular", sans-serif;
+  max-width: 960px;
+  line-height: 1.4;
+  text-align: center;
+  padding-left: 60px;
+  padding-right: 60px;
 }
 
 .main__content h3 {
-    font-size: 15px;
-    width: 100%;
-    margin: 0 auto;
-    font-family: 'SFProLight', sans-serif;
-    opacity: 25%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 0px;
+  font-size: 15px;
+  width: 100%;
+  margin: 0 auto;
+  font-family: "SFProLight", sans-serif;
+  opacity: 25%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0px;
 }
 
 .main_btn {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    text-decoration: none;
-    padding: 10px 20px;
-    outline: none;
-    border-radius: 20px;
-    background: white;
-    color: rgb(255, 255, 255);
-    font-size: 15px;
-    font-family: 'SFProRegular', sans-serif;
-    color: #000000;
-    transition: all 1s ease;
-    white-space: nowrap;
-    margin-top: 0px;
-    transition: transform 0.3s ease, opacity 0.3s ease; /* Transition pour la transformation et l'opacité */
-
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  padding: 10px 20px;
+  outline: none;
+  border-radius: 20px;
+  background: white;
+  color: rgb(255, 255, 255);
+  font-size: 15px;
+  font-family: "SFProRegular", sans-serif;
+  color: #000000;
+  transition: all 1s ease;
+  white-space: nowrap;
+  margin-top: 0px;
+  transition: transform 0.3s ease, opacity 0.3s ease; /* Transition pour la transformation et l'opacité */
 }
 
 .main_btn:hover {
-    background: rgb(240, 240, 240);
-    transform: scale(0.95); /* Réduit la taille à 80% */
-
+  background: rgb(240, 240, 240);
+  transform: scale(0.95); /* Réduit la taille à 80% */
 }
 
-.marginleft{
-    margin-left: 10px;
+.marginleft {
+  margin-left: 10px;
 }
 
-
-.marginleft40{
-    margin-left: 40px;
+.marginleft40 {
+  margin-left: 40px;
 }
 
 #langSelector {
-    text-align: right;
-    background-color: transparent;
-    color: #ffffff;
-    padding: 5px;
-    border: 1px solid #000000;
-    border-radius: 5px;
-    position: right;
-    z-index: 10;
-    appearance: none;
-    margin-left: 10px;
-    margin-top: 25px;
-    font-size: 15px;
+  text-align: right;
+  background-color: transparent;
+  color: #ffffff;
+  padding: 5px;
+  border: 1px solid #000000;
+  border-radius: 5px;
+  position: right;
+  z-index: 10;
+  appearance: none;
+  margin-left: 10px;
+  margin-top: 25px;
+  font-size: 15px;
 }
 
 #langSelector:hover {
-    color: #ffffff;
+  color: #ffffff;
 }
 
 #langSelector option {
-    background-color: black;
-    color: white;
+  background-color: black;
+  color: white;
 }
 
 #langSelector:focus {
-    outline: none;
-    border-color: #000000;
+  outline: none;
+  border-color: #000000;
 }
 
 .title-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    margin-top: 30px;
-    margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-top: 30px;
+  margin-bottom: 20px;
 }
 
 .txt_btn {
-    color: rgb(255, 255, 255);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    height: 40px;
-    font-size: 15px;
-    font-family: 'SFProRegular', sans-serif;
-    margin-top: 0px;
+  color: rgb(255, 255, 255);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  height: 40px;
+  font-size: 15px;
+  font-family: "SFProRegular", sans-serif;
+  margin-top: 0px;
 }
 
 .image_cv {
-    position: relative;
-    width: 50%;
-    margin-top: 50px;
-    border-radius: 10px;
+  position: relative;
+  width: 50%;
+  margin-top: 50px;
+  border-radius: 10px;
 }
 
 .image_production {
-    display: block; /* Permet de centrer l'image avec margin auto */
-    width: 100vw; /* Largeur de 100% de la largeur de la fenêtre */
-    max-width: 100%; /* Empêche l'image de dépasser la largeur de son conteneur */
-    margin: 0px auto 0 auto; /* Centre l'image horizontalement et ajoute une marge en haut */
-    border-radius: 0px;
+  display: block; /* Permet de centrer l'image avec margin auto */
+  width: 100vw; /* Largeur de 100% de la largeur de la fenêtre */
+  max-width: 100%; /* Empêche l'image de dépasser la largeur de son conteneur */
+  margin: 0px auto 0 auto; /* Centre l'image horizontalement et ajoute une marge en haut */
+  border-radius: 0px;
 }
 
 .section_verticale {
-    display: flex;            
-    flex-direction: column;  
-    align-items: center;    
-    justify-content: center;         
-    background-color: rgb(0, 0, 0);
-    z-index: 0;
-    margin-top: 30px;
-    margin-bottom: 50px;
-    width: 100%;  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(0, 0, 0);
+  z-index: 0;
+  margin-top: 30px;
+  margin-bottom: 50px;
+  width: 100%;
 }
 
 @media (max-width: 960px) {
-    .main__container {
-        display: flex;            
-        align-items: center;       
-        justify-content: center;    
-        /*height: 80vh;         */     
-        background-color: rgb(0, 0, 0);
-        z-index: 0;
-        width: 100%; 
-        padding-top: 40px;  
-        height: 500px;
-        transform: translateY(-80px);
-    }
+  .main__container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /*height: 80vh;         */
+    background-color: rgb(0, 0, 0);
+    z-index: 0;
+    width: 100%;
+    padding-top: 80px;
+    transform: translateY(-80px);
+  }
 
-    .main__container2 {
-        display: flex;            
-        align-items: center;       
-        justify-content: center;    
-        /*height: 80vh;         */     
-        background-color: rgb(0, 0, 0);
-        z-index: 0;
-        width: 100%; 
-        padding-top: 100px;  
-        height: 500px;
-        transform: translateY(-80px);
-    }
+  .main__container2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /*height: 80vh;         */
+    background-color: rgb(0, 0, 0);
+    z-index: 0;
+    width: 100%;
+    padding-top: 100px;
+    height: 500px;
+    transform: translateY(-80px);
+  }
 
-    .main__container-bandebp {
-    display: flex;            
-    align-items: center;   
-    flex-direction: column; 
-    justify-content: flex-end;                 
+  .main__container-bandebp {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: flex-end;
     height: 150px;
     background-color: rgb(0, 0, 0);
     z-index: 1;
-    width: 100%;           
+    width: 100%;
     padding-bottom: 50px;
-    }
+  }
 
-    .image_cv {
-        position: relative;
-        width: 80%;
-        margin-top: 50px;
-        border-radius: 10px;
-    }
+  .image_cv {
+    position: relative;
+    width: 80%;
+    margin-top: 50px;
+    border-radius: 10px;
+  }
 
-    .main__content h1 {
-        font-size: 50px;
-        font-family: 'SFProSemiBold', sans-serif;
-        margin-bottom: 0px;
-    }
-    
-    .main__content h2 {
-        font-size: 50px;
-        font-family: 'SFProLight', sans-serif;
-        margin-bottom: 0px;
-    }
+  .main__content h1 {
+    font-size: 50px;
+    font-family: "SFProSemiBold", sans-serif;
+    margin-bottom: 0px;
+  }
 
-    .indicator-container {
-        opacity: 0;
-    }
+  .main__content h2 {
+    font-size: 50px;
+    font-family: "SFProLight", sans-serif;
+    margin-bottom: 0px;
+  }
 
-    .scroll-indicator {
-        opacity: 0; 
-                visibility: hidden;
-    }
-    
-    .scroll-indicator::before {
-        opacity: 0; 
-    }
-    .content-defilement {
-        margin-left: 20px;
-        margin-right: 20px;
-    }
+  .indicator-container {
+    opacity: 0;
+  }
 
-    .accueil_section1 {
-        padding: 0px;
-        padding-bottom: 0px;
-    }
+  .scroll-indicator {
+    opacity: 0;
+    visibility: hidden;
+  }
 
-    .date-category {
-       display: flex;             
-        flex-direction: column;
-        gap: 5px;
-    }
-    .nonmobile{
-            font-size: 0px;
-    }
+  .scroll-indicator::before {
+    opacity: 0;
+  }
+  .content-defilement {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  .accueil_section1 {
+    padding: 0px;
+    padding-bottom: 0px;
+  }
+
+  .date-category {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .nonmobile {
+    font-size: 0px;
+  }
+
+  .section_verticale {
+    margin-top: 0px;
+  }
 }
-
-
 
 ::selection {
-    background-color: #ffffff; /* Couleur de fond de la sélection */
-    color: #000000; /* Couleur du texte sélectionné */
+  background-color: #ffffff; /* Couleur de fond de la sélection */
+  color: #000000; /* Couleur du texte sélectionné */
 }
 
-
-
-
-
 #loader {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%; /* Largeur à 100% pour occuper tout l'écran */
-    height: 100%; /* Hauteur à 100% pour occuper tout l'écran */
-    background-color: black; /* Fond noir */
-    display: flex;
-    justify-content: center; /* Centre horizontalement */
-    align-items: center; /* Centre verticalement */
-    z-index: 1000; /* Assurez-vous qu'il est au-dessus de tout */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%; /* Largeur à 100% pour occuper tout l'écran */
+  height: 100%; /* Hauteur à 100% pour occuper tout l'écran */
+  background-color: black; /* Fond noir */
+  display: flex;
+  justify-content: center; /* Centre horizontalement */
+  align-items: center; /* Centre verticalement */
+  z-index: 1000; /* Assurez-vous qu'il est au-dessus de tout */
 }
 
 /* Styles pour le GIF */
 .loader-gif {
-    width: 200px; /* Ajustez la largeur souhaitée */
-    height: auto; /* Garder les proportions */
+  width: 200px; /* Ajustez la largeur souhaitée */
+  height: auto; /* Garder les proportions */
 }
 
 /* Animation de disparition */
 .fade-out {
-    opacity: 0;
-    transition: opacity 0.2s ease-out; /* Durée de l'animation */
+  opacity: 0;
+  transition: opacity 0.2s ease-out; /* Durée de l'animation */
 }
-
 
 .row-flex {
   display: flex;
