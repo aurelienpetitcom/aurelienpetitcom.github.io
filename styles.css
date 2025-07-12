@@ -81,7 +81,7 @@
 .date-category {
     font-size: 15px;
     color: #b5b5b5;
-    gap: 10px;
+    gap: 0px;
     padding: 40px;
     padding-bottom: 20px;
 }
@@ -91,6 +91,7 @@ h2 {
     font-size: 24px;
     color: #fff;
     font-family: 'SFProSemiBold', sans-serif;
+    line-height: 1.1; /* Réduit l'interligne */
 }
 
 h4 {
@@ -425,13 +426,13 @@ body {
 }
 
 .main__content h1 {
-    font-size: 60px;
+    font-size: 55px;
     font-family: 'SFProSemiBold', sans-serif;
     margin-top: 0px;
 }
 
 .main__content h2 {
-    font-size: 60px;
+    font-size: 55px;
     font-family: 'SFProLight', sans-serif;
     margin-bottom: 0px;
 }
@@ -531,7 +532,7 @@ body {
     align-items: center;
     gap: 20px;
     margin-top: 30px;
-    margin-bottom: 20px;
+    margin-bottom: 0px;
 }
 
 .txt_btn {
@@ -622,13 +623,13 @@ body {
     .main__content h1 {
         font-size: 50px;
         font-family: 'SFProSemiBold', sans-serif;
-        margin-bottom: 0px;
+        margin-bottom: 15px;
     }
     
     .main__content h2 {
         font-size: 50px;
         font-family: 'SFProLight', sans-serif;
-        margin-bottom: 0px;
+        margin-bottom: 15px;
     }
 
     .indicator-container {
