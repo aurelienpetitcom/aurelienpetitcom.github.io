@@ -397,7 +397,7 @@ body {
     z-index: 0;
     width: 100%; 
     padding-top: 100px;  
-    height: 400px;
+
     transform: translateY(-80px);
 }
 
@@ -571,7 +571,7 @@ body {
     justify-content: center;         
     background-color: rgb(0, 0, 0);
     z-index: 0;
-    margin-top: 50px;
+    margin-top: 30px;
     margin-bottom: 50px;
     width: 100%;  
 }
@@ -585,7 +585,7 @@ body {
         background-color: rgb(0, 0, 0);
         z-index: 0;
         width: 100%; 
-        padding-top: 100px;  
+        padding-top: 40px;  
         height: 500px;
         transform: translateY(-80px);
     }
