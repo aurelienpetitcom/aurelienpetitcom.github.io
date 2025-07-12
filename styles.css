@@ -38,7 +38,7 @@
 
 /* Icônes des réseaux sociaux */
 .social-icons {
-        position: absolute;
+    position: absolute;
     bottom: 40px;
     right: 40px;
     display: flex;
@@ -47,7 +47,7 @@
 
 .social-icons-left {
     position: absolute;
-    left: 0px;
+    left: 40px;
     display: flex;
     gap: 10px;
 }
@@ -442,7 +442,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 30px;
+    margin-top: 0px;
 }
 
 .main_btn {
@@ -691,23 +691,8 @@ body {
   align-items: center; /* centre verticalement */
   gap: 20px;
   flex-wrap: wrap;
-  width: 100%;
   height: 50px;
-  margin-left: 35px;
+  margin-left: 0px;
   margin-top: 20px;
   margin-bottom: 30px;
-}
-
-.row-flex-sans-boutons {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center; /* centre verticalement */
-  gap: 20px;
-  flex-wrap: wrap;
-  width: 100%;
-  height: 50px;
-  margin-left: 35px;
-  margin-top: 20px;
-  margin-bottom: 0px;
 }
