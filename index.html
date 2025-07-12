@@ -87,10 +87,17 @@
           <span>Le Château de la Belle au Bois Dormant</span> <span class="nonmobile"> - </span> <span>Production
             2024</span>
         </div>
-        <p class="description">
-          Découvrez le célèbre château dans un style graphique unique, accompagné par les okbots explorant les lieux.
-          Plus de 8000 traits ont été tracés pour un total de 11 heures de travail.
-        </p>
+        <div class="description-container">
+          <p class="description">
+            Découvrez le célèbre château dans un style graphique unique, accompagné par les okbots explorant les lieux.
+            Plus de 8000 traits ont été tracés pour un total de 11 heures de travail.
+            <!--<button class="inline-button" onclick="toggleText(this)">...</button>-->
+          </p>
+
+          <p class="description more-text hidden">
+            Et voici la suite du texte qui était cachée. Elle peut être très longue selon le contenu !
+          </p>
+        </div>
         <div class="row-flex">
           <div class="social-icons-left">
             <a href="https://www.instagram.com/ap.aurelienpetit/">
@@ -116,17 +123,23 @@
         <div class="date-category">
           <span>Okbots Expedition</span> <span class="nonmobile"> - </span> <span>En développement</span>
         </div>
-        <p class="description">
-          Okbots Expedition est un projet de jeu de type plateforme narratif produit sur Unreal Engine 5.<br><br>
-
-          Les okbots, des machines intelligentes créées par les humains, avaient été envoyées pour explorer un autre
-          système solaire potentiellement habitable. Les okbots ont beaucoup appris de leur voyage et ont revendiqué les
-          territoires explorés.<br><br>
-
-          Après de nombreuses années, les humains ont pris la décision de les désactiver. Mais la tâche n'est pas aisée
-          tant ces robots sont devenus indépendants. Votre rôle sera de pénétrer leur civilisation et de les empêcher de
-          dépasser l'humanité.
-        </p>
+        <div class="description-container">
+          <p class="description">
+            Okbots Expedition est un projet de jeu de type plateforme narratif produit sur Unreal Engine 5. <br><br> Les
+            okbots, des machines intelligentes créées par les humains, avaient été envoyées pour explorer un autre
+            système solaire potentiellement habitable. Les okbots ont beaucoup appris de leur voyage et ont revendiqué
+            les territoires explorés.
+            <span class="more-text hidden">
+              <br><br>
+              Après de nombreuses années, les humains ont pris la décision de les désactiver. Mais la tâche n'est pas
+              aisée
+              tant ces robots sont devenus indépendants. Votre rôle sera de pénétrer leur civilisation et de les
+              empêcher de
+              dépasser l'humanité.
+            </span>
+            <button class="inline-button" onclick="toggleText(this)">...</button>
+          </p>
+        </div>
         <div class="row-flex">
           <a href="https://okbotsexpedition.com" class="main_btn marginleft40">Découvrir la production <img
               src="images/logoreflechenoir.png" alt="Logo fleche redirection" class="logoflecheredirection"></a>
@@ -222,6 +235,7 @@
     <h5 class="text lang lang-fr">Copyright © 2025 Aurélien Petit. Tous droits réservés.</h5>
   </div>
   <script src="app.js"></script>
+
 </body>
 
 </html>
