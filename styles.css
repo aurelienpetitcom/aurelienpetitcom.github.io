@@ -4,6 +4,10 @@
   padding: 0;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 .accueil_section1 {
   position: relative;
   max-width: 700px; /* Largeur maximale de la section */
