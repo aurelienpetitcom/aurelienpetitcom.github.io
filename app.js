@@ -139,3 +139,43 @@ function toggleText(button) {
   moreText.classList.remove("hidden"); // Affiche le texte
   button.style.display = "none"; // Cache le bouton
 }
+
+let hasUserScrolled = false;
+
+function handleParallaxScroll() {
+  const elements = document.querySelectorAll(".scroll-parallax");
+
+  elements.forEach((el) => {
+    const rect = el.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
+
+    const startTrigger = windowHeight * 0.95;
+
+    if (rect.top < startTrigger && rect.bottom > 0) {
+      // Pas d'effet tant que l'utilisateur n'a pas scrollé
+      if (!hasUserScrolled) return;
+
+      const distanceFromBottom = windowHeight - rect.top;
+      const visibleRatio = Math.min(1, distanceFromBottom / windowHeight);
+
+      const translateY = (1 - visibleRatio) * 40; // max 40px de décalage
+      const scale = 0.95 + visibleRatio * 0.05; // de 0.97 à 1
+
+      el.style.transform = `translateY(${translateY}px) scale(${scale})`;
+    }
+  });
+}
+
+function activateParallaxOnFirstScroll() {
+  hasUserScrolled = true;
+  handleParallaxScroll(); // Appliquer directement après scroll
+  window.removeEventListener("scroll", activateParallaxOnFirstScroll);
+}
+
+// Attache les événements
+window.addEventListener("scroll", activateParallaxOnFirstScroll, {
+  once: true,
+});
+window.addEventListener("scroll", handleParallaxScroll);
+window.addEventListener("resize", handleParallaxScroll);
+document.addEventListener("DOMContentLoaded", handleParallaxScroll);

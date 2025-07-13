@@ -715,3 +715,9 @@ body {
 .more-text {
   margin-top: 15px;
 }
+
+.scroll-parallax {
+  transform: scale(0.95); /* ✅ position initiale */
+  transition: transform 0.3s ease;
+  will-change: transform;
+}
