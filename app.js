@@ -179,3 +179,20 @@ window.addEventListener("scroll", activateParallaxOnFirstScroll, {
 window.addEventListener("scroll", handleParallaxScroll);
 window.addEventListener("resize", handleParallaxScroll);
 document.addEventListener("DOMContentLoaded", handleParallaxScroll);
+
+function updateTxtBtnText() {
+  const el = document.querySelector(".txt_btn_cv");
+  if (!el) return;
+
+  if (window.innerWidth < 600) {
+    el.textContent = "Curr. Vitae";
+  } else {
+    el.textContent = "Curriculum Vitae";
+  }
+}
+
+// Appel initial
+updateTxtBtnText();
+
+// Met à jour si on redimensionne la fenêtre
+window.addEventListener("resize", updateTxtBtnText);
