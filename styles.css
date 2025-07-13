@@ -35,7 +35,6 @@
 
 /* Icônes des réseaux sociaux */
 .social-icons {
-  position: absolute;
   bottom: 40px;
   right: 40px;
   display: flex;
@@ -43,10 +42,25 @@
 }
 
 .social-icons-left {
-  position: absolute;
   left: 40px;
   display: flex;
   gap: 10px;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.social-icons-contact {
+  display: flex;
+  gap: 10px;
+  border-radius: 20px;
+  color: rgb(255, 255, 255);
+  border: 1.5px solid rgba(255, 255, 255, 0.5); /* ajout du contour blanc */
+  padding: 5.7px; /* optionnel, pour que le contenu ne touche pas la bordure */
+  margin-left: -55px;
+  padding-left: 45px;
+  padding-right: 15px;
 }
 
 .social-icon {
@@ -59,6 +73,16 @@
   opacity: 0.5;
 }
 
+.social-icon-contact {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  translate: 0px 2px;
+  opacity: 0.5;
+}
+
 .social-icon:hover {
   width: 20px;
   height: 20px;
@@ -66,6 +90,16 @@
   cursor: pointer;
   transition: background-color 0.3s;
   translate: 0px -0px;
+  opacity: 1;
+}
+
+.social-icon-contact:hover {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  translate: 0px 2px;
   opacity: 1;
 }
 
