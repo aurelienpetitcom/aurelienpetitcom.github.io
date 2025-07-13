@@ -184,7 +184,7 @@ function updateTxtBtnText() {
   const el = document.querySelector(".txt_btn_cv");
   if (!el) return;
 
-  if (window.innerWidth < 600) {
+  if (window.innerWidth < 500) {
     el.textContent = "Curr. Vitae";
   } else {
     el.textContent = "Curriculum Vitae";
