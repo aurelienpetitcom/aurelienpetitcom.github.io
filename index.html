@@ -45,19 +45,28 @@
     <div class="main__container">
       <div class="main__content">
         <div class="title-container">
-          <h1>Petit</h1>
-          <h2>Aurélien</h2>
+          <h1 data-lang="en">Petit</h1>
+          <h1 data-lang="fr" style="display:none;">Petit</h1>
+          <h2 data-lang="en">Aurélien</h2>
+          <h2 data-lang="fr" style="display:none;">Aurélien</h2>
         </div>
-        <p class="text lang lang-en">Student in the 1st year of Master's at ECAM. I fully invest in all the projects I
+        <p data-lang="en">Student in master Ing. industrial at ECAM. I fully invest in all the projects I
           undertake with the aim of exceeding expectations and pushing boundaries. My professional goal is to combine my
           technical and artistic skills.</p>
-        <p class="text lang lang-fr" style="display: none;">Étudiant en 1ère année de Master à l'ECAM. Je m'investis
+        <p data-lang="fr" style="display: none;">Étudiant en master Ing. industriel à l'ECAM. Je m'investis
           pleinement dans
           chaque projet que je réalise avec la volonté de dépasser les attentes et repousser les limites.
           Mon objectif professionnel est d'allier mes compétences techniques et artistiques.</p>
+
         <div class="title-container">
-          <a href="https://aurelienpetit.com/cv" class="txt_btn_cv">Curriculum Vitae</a>
-          <a href="mailto:contact@aurelienpetit.com" class="main_btn marginleft">Contact
+          <a href="https://aurelienpetit.com/cv" class="txt_btn_cv" data-lang="en">Curriculum Vitae</a>
+          <a href="https://aurelienpetit.com/cv" class="txt_btn_cv" data-lang="fr" style="display:none;">Curriculum
+            Vitae</a>
+          <a href="mailto:contact@aurelienpetit.com" class="main_btn marginleft" data-lang="en">Contact
+            <img src="images/logoreflechenoir.png" alt="Logo fleche redirection" class="logoflecheredirection">
+          </a>
+          <a href="mailto:contact@aurelienpetit.com" class="main_btn marginleft" data-lang="fr"
+            style="display:none;">Contact
             <img src="images/logoreflechenoir.png" alt="Logo fleche redirection" class="logoflecheredirection">
           </a>
           <div class="social-icons-contact">
@@ -78,33 +87,142 @@
     <div class="indicator-container">
       <div class="indicator-ball"></div>
       <div class="indicator-label">Okbots Expedition</div>
+      <div id="scrollNextSection" class="scroll-arrow">&#x2193</div>
     </div>
   </div>
 
   <!-- Sections -->
   <div class="content-defilement">
 
-    <!-- SECTION 1 -->
-    <section class="accueil_section1 hidden scroll-parallax" data-label="Le Château de la Belle au Bois Dormant">
+    <section id="section1" class="accueil_section1 hidden scroll-parallax" data-label-en="Okbots Expedition"
+      data-label-fr="Okbots Expedition">
       <div class="content-container">
-        <div class="image-wrapper">
-          <img src="images/productions/Le_Chateau_de_la_Belle_au_Bois_Dormant_post.png" alt="Le Château"
-            class="imagepost">
-        </div>
+        <img src="images/okbotsexpedition/okbotsexpedition_img2025_01.png" alt="Logo Okbots Expedition avec fond"
+          class="imagepost">
+
         <div class="date-category">
-          <span>Le Château de la Belle au Bois Dormant</span> <span class="nonmobile"> - </span> <span>Production
-            2024</span>
+          <span data-lang="en">Okbots Expedition</span>
+          <span data-lang="fr" style="display:none;">Okbots Expedition</span>
+          <span class="nonmobile">-</span>
+          <span data-lang="en">In development</span>
+          <span data-lang="fr" style="display:none;">En développement</span>
         </div>
         <div class="description-container">
-          <p class="description">
+          <p class="description" data-lang="en">
+            Okbots Expedition is a narrative platformer game project produced on Unreal Engine 5.
+            <span class="more-text hidden">
+              <br><br>The okbots, intelligent machines created by humans, were sent to explore another potentially
+              habitable solar system. The okbots learned a lot from their journey and claimed the explored territories.
+              <br><br>
+              <img src="images/okbotsexpedition/okbotsexpedition_img2025_02.png"
+                alt="Le Château de la Belle au Bois Dormant" class="imagesouspost">
+              <br>
+              After many years, humans decided to deactivate them. But the task is not easy as these robots have become
+              independent. Your role will be to penetrate their civilization and prevent them from surpassing humanity.
+              <br><br>
+              <img src="images/okbotsexpedition/okbotsexpedition_img2025_03.png"
+                alt="Le Château de la Belle au Bois Dormant" class="imagesouspost">
+              <br>
+              After many years, humans decided to deactivate them. But the task is not easy
+
+              surpassing humanity.
+            </span>
+            <button class="inline-button" onclick="toggleText(this)">...</button>
+          </p>
+          <p class="description" data-lang="fr" style="display:none;">
+            Okbots Expedition est un projet de jeu de type plateforme narratif produit sur Unreal Engine 5.
+            <span class="more-text hidden">
+              <br><br>Les
+              okbots, des machines intelligentes créées par les humains, avaient été envoyées pour explorer un autre
+              système solaire potentiellement habitable. Les okbots ont beaucoup appris de leur voyage et ont revendiqué
+              les territoires explorés.
+              <br><br>
+              <img src="images/okbotsexpedition/okbotsexpedition_img2025_02.png"
+                alt="Le Château de la Belle au Bois Dormant" class="imagesouspost">
+              <br>
+              Après de nombreuses années, les humains ont pris la décision de les désactiver. Mais la tâche n'est pas
+              aisée
+              tant ces robots sont devenus indépendants. Votre rôle sera de pénétrer leur civilisation et de les
+              empêcher de dépasser l'humanité.
+              <br><br>
+              <img src="images/okbotsexpedition/okbotsexpedition_img2025_03.png"
+                alt="Le Château de la Belle au Bois Dormant" class="imagesouspost">
+              <br>
+              Après de nombreuses années, les humains ont pris la décision de les désactiver. Mais la tâche n'est pas
+              aisée
+
+              dépasser l'humanité.
+            </span>
+            <button class="inline-button" onclick="toggleText(this)">...</button>
+          </p>
+        </div>
+        <div class="row-flex">
+          <a href="https://okbotsexpedition.com" class="main_btn marginleft40" data-lang="en">Discover the production
+            <img src="images/logoreflechenoir.png" alt="Logo fleche redirection" class="logoflecheredirection"></a>
+          <a href="https://okbotsexpedition.com" class="main_btn marginleft40" data-lang="fr"
+            style="display:none;">Découvrir la production <img src="images/logoreflechenoir.png"
+              alt="Logo fleche redirection" class="logoflecheredirection"></a>
+          <div class="social-icons absolute">
+            <a href="https://www.instagram.com/ap.aurelienpetit/"><img src="images/logoinstagram.png"
+                alt="Logo Instagram" class="social-icon">
+            </a>
+            <a href="https://thread.com"><img src="images/logothread.png" alt="Logo Thread" class="social-icon">
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- SECTION 1 -->
+    <section class="accueil_section1 hidden scroll-parallax" data-label-en="The Sleeping Beauty Castle"
+      data-label-fr="Le Château de la Belle au Bois Dormant">
+      <div class="content-container">
+        <img src="images/productions/Le_Chateau_de_la_Belle_au_Bois_Dormant_post.png"
+          alt="Le Château de la Belle au Bois Dormant" class="imagepost">
+        <div class="date-category">
+          <span data-lang="en">The Sleeping Beauty Castle</span>
+          <span data-lang="fr" style="display:none;">Le Château de la Belle au Bois Dormant</span>
+          <span class="nonmobile"> - </span>
+          <span data-lang="en">Production 2024</span>
+          <span data-lang="fr" style="display:none;">Production 2024</span>
+        </div>
+        <div class="description-container">
+          <p class="description" data-lang="en">
+            Discover the famous castle in a unique graphic style, accompanied by the okbots exploring the place.
+            Over 8000 strokes were drawn for a total of 11 hours of work.
+            <span class="more-text hidden">
+              <br><br>
+              After many years, humans decided to deactivate them. But the task is not easy
+              <br><br>
+              <img src="images/productions/Le_Chateau_de_la_Belle_au_Bois_Dormant_post.png"
+                alt="Le Château de la Belle au Bois Dormant" class="imagesouspost">
+              <br><br>
+              as these robots have become independent. Your role will be to penetrate their civilization and prevent
+              them from surpassing humanity.
+
+            </span>
+            <button class="inline-button" onclick="toggleText(this)">...</button>
+          </p>
+          <p class="description" data-lang="fr" style="display:none;">
             Découvrez le célèbre château dans un style graphique unique, accompagné par les okbots explorant les lieux.
             Plus de 8000 traits ont été tracés pour un total de 11 heures de travail.
-            <!--<button class="inline-button" onclick="toggleText(this)">...</button>-->
+            <span class="more-text hidden">
+              <br><br>
+              Après de nombreuses années, les humains ont pris la décision de les désactiver. Mais la tâche n'est pas
+              aisée
+              <br><br>
+              <img src="images/productions/Le_Chateau_de_la_Belle_au_Bois_Dormant_post.png"
+                alt="Le Château de la Belle au Bois Dormant" class="imagesouspost">
+              <br><br>
+              tant ces robots sont devenus indépendants. Votre rôle sera de pénétrer leur civilisation et de les
+              empêcher de dépasser l'humanité.
+
+            </span>
+            <button class="inline-button" onclick="toggleText(this)">...</button>
           </p>
 
-          <p class="description more-text hidden">
-            Et voici la suite du texte qui était cachée. Elle peut être très longue selon le contenu !
-          </p>
+
         </div>
         <div class="row-flex">
           <div class="social-icons-left absolute">
@@ -124,122 +242,280 @@
         </div>
       </div>
     </section>
-    <section id="section1" class="accueil_section1 hidden scroll-parallax" data-label="Okbots Expedition">
-      <div class="content-container">
-        <img src="images/okbotsexpedition/wallpaperlogo1.png" alt="Logo Okbots Expedition avec fond" class="imagepost">
 
+
+
+
+    <!-- PUBLICATION : The Electronic Brain -->
+
+
+    <section class="accueil_section1 scroll-parallax" data-label-en="The Electronic Brain"
+      data-label-fr="The Electronic Brain">
+      <div class="content-container">
+        <img src="images/productions/The_Electronic_Brain_post.png" alt="The Electronic Brain" class="imagepost">
         <div class="date-category">
-          <span>Okbots Expedition</span> <span class="nonmobile"> - </span> <span>En développement</span>
+          <span data-lang="en">The Electronic Brain</span>
+          <span data-lang="fr" style="display:none;">The Electronic Brain</span>
+          <span class="nonmobile"> - </span>
+          <span data-lang="en">Production 2021</span>
+          <span data-lang="fr" style="display:none;">Production 2021</span>
         </div>
         <div class="description-container">
-          <p class="description">
-            Okbots Expedition est un projet de jeu de type plateforme narratif produit sur Unreal Engine 5. <br><br> Les
-            okbots, des machines intelligentes créées par les humains, avaient été envoyées pour explorer un autre
-            système solaire potentiellement habitable. Les okbots ont beaucoup appris de leur voyage et ont revendiqué
-            les territoires explorés.
+          <p class="description" data-lang="en">
+            Discover a unique graphic representation of the brain and its structure, accompanied by the okbots.
+            Tirelessly, they work to ensure the proper functioning of each of its parts.
             <span class="more-text hidden">
               <br><br>
-              Après de nombreuses années, les humains ont pris la décision de les désactiver. Mais la tâche n'est pas
-              aisée
-              tant ces robots sont devenus indépendants. Votre rôle sera de pénétrer leur civilisation et de les
-              empêcher de
-              dépasser l'humanité.
+              From a distance, the shape of the brain is clearly distinguishable, surrounded by a dense network of nerve
+              and electrical connections. Up close, it reveals a veritable anthill of okbots hard at work in each area
+              of the brain, faithfully depicted to remain true to anatomical reality.
+              <br><br><br>
+              <img src="images/productions/The_Electronic_Brain_post_01.png" alt="The Electronic Brain"
+                class="imagesouspost">
+              <span class="images-row two-images">
+                <img src="images/productions/The_Electronic_Brain_post_02.png" alt="The Electronic Brain"
+                  class="imagesouspost">
+                <img src="images/productions/The_Electronic_Brain_post_03.png" alt="The Electronic Brain"
+                  class="imagesouspost">
+              </span>
+              <br>
+              The main goal was to infuse the artwork with energy through the lightning bolts and electrical connections
+              emanating from the brain. The black-and-white contrast applied to one half of it brought both a sense of
+              stability and a strong visual depth. Over 5,000 strokes were drawn, representing roughly 30 hours of work.
             </span>
             <button class="inline-button" onclick="toggleText(this)">...</button>
           </p>
+          <p class="description" data-lang="fr" style="display:none;">
+            Découvrez une représentation du cerveau et de sa structure dans un style graphique unique,
+            accompagnée par les okbots. Infatigables, ces derniers s’activent pour assurer le bon
+            fonctionnement de chacune de ses parties. <span class="more-text hidden">
+              <br><br>
+              Avec une vue d’ensemble, la forme du cerveau se distingue clairement, entourée d’un réseau dense de
+              connexions nerveuses et électriques. En s’approchant, on découvre une véritable fourmilière d’okbots à
+              l’œuvre, s’affairant dans chacune des zones du cerveau, fidèlement représentées pour rester en accord avec
+              la réalité anatomique.
+              <br><br><br>
+              <img src="images/productions/The_Electronic_Brain_post_01.png" alt="The Electronic Brain"
+                class="imagesouspost">
+              <span class="images-row two-images">
+                <img src="images/productions/The_Electronic_Brain_post_02.png" alt="The Electronic Brain"
+                  class="imagesouspost">
+                <img src="images/productions/The_Electronic_Brain_post_03.png" alt="The Electronic Brain"
+                  class="imagesouspost">
+              </span>
+              <br>
+              L’objectif principal était d’insuffler du dynamisme à la création grâce aux éclairs et aux connexions
+              électriques émanant du cerveau. Le jeu de contraste noir et blanc sur l’une des moitiés a permis
+              d’apporter à la fois une impression de stabilité et une profondeur visuelle marquée. Plus de 5 000 traits
+              ont été réalisés, pour un travail total d’environ 30 heures.
+            </span>
+            <button class="inline-button" onclick="toggleText(this)">...</button>
+          </p>
+
+
         </div>
         <div class="row-flex">
-          <a href="https://okbotsexpedition.com" class="main_btn marginleft40">Découvrir la production <img
-              src="images/logoreflechenoir.png" alt="Logo fleche redirection" class="logoflecheredirection"></a>
-          <div class="social-icons absolute">
-            <a href="https://www.instagram.com/ap.aurelienpetit/"><img src="images/logoinstagram.png"
-                alt="Logo Instagram" class="social-icon">
-            </a>
-            <a href="https://thread.com"><img src="images/logothread.png" alt="Logo Thread" class="social-icon">
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- SECTION 2 -->
-    <section class="accueil_section1 scroll-parallax" data-label="The Electronic Brain">
-      <div class="content-container">
-        <div class="image-wrapper">
-          <img src="images/productions/The_Electronic_Brain_post.png" alt="The Electronic Brain" class="imagepost">
-        </div>
-        <div class="date-category">
-          <span>The Electronic Brain</span> <span class="nonmobile"> - </span> <span>Production 2021</span>
-        </div>
-        <p class="description">
-          Découvrez le cerveau et sa composition dans un style graphique unique accompagné par les okbots. Plus de 5000
-          traits ont été réalisés pour un total de 14 heures de travail.
-        </p>
-        <div class="row-flex">
-          <!--<a href="https://aurelienpetit.com/productions/the-electronic-brain" class="main_btn">Découvrir la
-            production</a>-->
           <div class="social-icons-left absolute">
-            <a href="https://www.instagram.com/p/CNFvOzPhKi9/?img_index=1">
+            <a href="https://www.instagram.com/ap.aurelienpetit/">
               <img src="images/logoinstagram.png" alt="Instagram" class="social-icon">
             </a>
+
           </div>
+          <!--<div class="row-flex">
+          <a href="https://aurelienpetit.com/productions/le-chateau-de-la-belle-au-bois-dormant"
+            class="main_btn">Découvrir la production</a>
+          <div class="social-icons">
+            <a href="https://www.instagram.com/ap.aurelienpetit/">
+              <img src="images/logoinstagram.png" alt="Instagram" class="social-icon">
+            </a>
+          </div>-->
         </div>
       </div>
     </section>
 
-    <!-- SECTION 3 -->
-    <section class="accueil_section1 scroll-parallax" data-label="The ISS">
+
+
+
+
+    <!-- PUBLICATION : L'ISS -->
+
+    <section class="accueil_section1 scroll-parallax" data-label-en="The ISS" data-label-fr="L'ISS">
       <div class="content-container">
-        <div class="image-wrapper">
-          <img src="images/productions/The_ISS_post.png" alt="The ISS" class="imagepost">
-        </div>
+        <img src="images/productions/The_ISS_post.png" alt="The ISS" class="imagepost">
         <div class="date-category">
-          <span>The ISS</span> <span class="nonmobile"> - </span> <span>Production 2021</span>
+          <span data-lang="en">The ISS</span>
+          <span data-lang="fr" style="display:none;">L'ISS</span>
+          <span class="nonmobile"> - </span>
+          <span data-lang="en">Production 2021</span>
+          <span data-lang="fr" style="display:none;">Production 2021</span>
         </div>
-        <p class="description">
-          Découvrez la Station Spatiale Internationale dans un style graphique unique accompagné par les okbots. Plus de
-          4000 traits ont été réalisés pour un total de 15 heures de travail.
-        </p>
+        <div class="description-container">
+          <p class="description" data-lang="en">
+            Discover the International Space Station, now under the control of the okbots… who, apparently, have not all
+            completed the proper training.
+            <span class="more-text hidden">
+              <br><br>
+              From afar, this famous scientific station orbiting the Earth is easily recognizable, known for numerous
+              breakthroughs, particularly in the scientific field. Upon closer inspection, it becomes clear that it now
+              has far more crew members than usual… and that humans are no longer in charge.
+              <br><br><br>
+              <img src="images/productions/The_ISS_post_01.png" alt="The ISS" class="imagesouspost">
+
+              <img src="images/productions/The_ISS_post_02.png" alt="The ISS" class="imagesouspost">
+
+              <img src="images/productions/The_ISS_post_03.png" alt="The ISS" class="imagesouspost">
+              <br><br>
+              Special attention was paid to the depiction of the arrangement of the different modules, respecting their
+              actual relief while simplifying them to preserve graphical coherence. About 30 hours of work and over
+              7,000 strokes were required for this creation.
+            </span>
+            <button class="inline-button" onclick="toggleText(this)">...</button>
+          </p>
+          <p class="description" data-lang="fr" style="display:none;">
+            Découvrez la Station spatiale internationale, désormais sous le contrôle des okbots… qui, visiblement, n’ont
+            pas tous suivi la formation adéquate.
+            <span class="more-text hidden">
+              <br><br>
+              De loin, on reconnaît sans difficulté cette célèbre station scientifique en orbite autour de la Terre, à
+              l’origine de nombreuses avancées, notamment dans le domaine scientifique. En s’approchant, on constate
+              qu’elle compte bien plus de membres qu’à l’ordinaire… et que ce ne sont plus des humains aux commandes.
+              <br><br><br>
+              <img src="images/productions/The_ISS_post_01.png" alt="The ISS" class="imagesouspost">
+
+              <img src="images/productions/The_ISS_post_02.png" alt="The ISS" class="imagesouspost">
+
+              <img src="images/productions/The_ISS_post_03.png" alt="The ISS" class="imagesouspost">
+              <br><br>
+              Une attention particulière a été portée à la représentation de l’agencement des différents modules, en
+              respectant leur relief réel tout en les simplifiant afin de préserver la cohérence graphique. Environ 30
+              heures de travail et plus de 7 000 traits ont été nécessaires à cette réalisation.
+            </span>
+            <button class="inline-button" onclick="toggleText(this)">...</button>
+          </p>
+
+
+        </div>
         <div class="row-flex">
-          <!--<a href="https://aurelienpetit.com/productions/the-iss" class="main_btn">Découvrir la production</a> -->
           <div class="social-icons-left absolute">
-            <a href="https://www.instagram.com/ap.aurelienpetit/p/CXD-C7UI-zS/?img_index=1">
+            <a href="https://www.instagram.com/ap.aurelienpetit/">
               <img src="images/logoinstagram.png" alt="Instagram" class="social-icon">
             </a>
+
           </div>
+          <!--<div class="row-flex">
+          <a href="https://aurelienpetit.com/productions/le-chateau-de-la-belle-au-bois-dormant"
+            class="main_btn">Découvrir la production</a>
+          <div class="social-icons">
+            <a href="https://www.instagram.com/ap.aurelienpetit/">
+              <img src="images/logoinstagram.png" alt="Instagram" class="social-icon">
+            </a>
+          </div>-->
         </div>
       </div>
     </section>
 
-    <!-- SECTION 4 -->
-    <section class="accueil_section1 scroll-parallax" data-label="The Gift Agency">
+
+
+
+
+
+    <!-- PUBLICATION : THE GIFT AGENCY -->
+
+    <section class="accueil_section1 scroll-parallax" data-label-en="The Gift Agency" data-label-fr="The Gift Agency">
       <div class="content-container">
-        <div class="image-wrapper">
-          <img src="images/productions/The_Gift_Agency_post.png" alt="The Gift Agency" class="imagepost">
-        </div>
+        <img src="images/productions/The_Gift_Agency_post.png" alt="The Gift Agency" class="imagepost">
         <div class="date-category">
-          <span>The Gift Agency</span> <span class="nonmobile"> - </span> <span>Production 2020</span>
+          <span data-lang="en">The Gift Agency</span>
+          <span data-lang="fr" style="display:none;">The Gift Agency</span>
+          <span class="nonmobile"> - </span>
+          <span data-lang="en">Production 2020</span>
+          <span data-lang="fr" style="display:none;">Production 2020</span>
         </div>
-        <p class="description">
-          Découvrez une agence secrète dans un style graphique unique accompagné par les okbots. Plus de 4000 traits ont
-          été réalisés pour un total de 15 heures de travail.
-        </p>
+        <div class="description-container">
+          <p class="description" data-lang="en">
+            Discover the gift distribution agency in a unique graphic style, alongside the okbots. The delivery time has
+            finally arrived.
+            <span class="more-text hidden">
+              <br><br>
+              The illustration adopts a two-dimensional perspective: from afar, a flying mountain of gifts distributes
+              presents to the okbots through various channels. Up close, you can catch some okbots climbing the mountain
+              to grab their gifts early, while others are already having fun testing their new finds!
+              <br><br><br>
+              <span class="images-row two-images">
+                <img src="images/productions/The_Gift_Agency_post_01.png" alt="The Gift Agency" class="imagesouspost">
+                <img src="images/productions/The_Gift_Agency_post_02.png" alt="The Gift Agency" class="imagesouspost">
+              </span>
+              <span class="images-row three-images">
+                <img src="images/productions/The_Gift_Agency_post_03.png" alt="The Gift Agency" class="imagesouspost">
+                <img src="images/productions/The_Gift_Agency_post_04.png" alt="The Gift Agency" class="imagesouspost">
+                <img src="images/productions/The_Gift_Agency_post_05.png" alt="The Gift Agency" class="imagesouspost">
+              </span>
+              <br>
+              Over 4,000 strokes were made, totaling 15 hours of work. Special attention was given to the "3D" effect of
+              the gift mountain, notably through the use of dark zones, creating multiple "layers" of depth in this 2D
+              illustration.
+            </span>
+            <button class="inline-button" onclick="toggleText(this)">...</button>
+          </p>
+          <p class="description" data-lang="fr" style="display:none;">
+            Découvrez l’agence de distribution de cadeaux dans un style graphique unique, aux côtés des okbots. L’heure
+            de la livraison a enfin sonné.
+            <span class="more-text hidden">
+              <br><br>
+              L’illustration adopte une perspective en double dimension : de loin, une montagne volante de cadeaux
+              distribue, par différents conduits, les présents aux okbots. En s’approchant, on peut surprendre certains
+              okbots en train de grimper sur la montagne pour récupérer leurs cadeaux en avance, tandis que d’autres
+              s’amusent déjà à tester leurs nouvelles trouvailles !
+              <br><br><br>
+              <span class="images-row two-images">
+                <img src="images/productions/The_Gift_Agency_post_01.png" alt="The Gift Agency" class="imagesouspost">
+                <img src="images/productions/The_Gift_Agency_post_02.png" alt="The Gift Agency" class="imagesouspost">
+              </span>
+              <span class="images-row three-images">
+                <img src="images/productions/The_Gift_Agency_post_03.png" alt="The Gift Agency" class="imagesouspost">
+                <img src="images/productions/The_Gift_Agency_post_04.png" alt="The Gift Agency" class="imagesouspost">
+                <img src="images/productions/The_Gift_Agency_post_05.png" alt="The Gift Agency" class="imagesouspost">
+              </span>
+              <br>
+              Plus de 4 000 traits ont été réalisés, pour un total de 15 heures de travail. Une attention particulière a
+              été portée à l’effet « 3D » de la montagne de cadeaux, notamment grâce au choix de zones noires, créant
+              plusieurs « couches » de profondeur dans cette illustration en 2D.
+            </span>
+            <button class="inline-button" onclick="toggleText(this)">...</button>
+          </p>
+
+
+        </div>
         <div class="row-flex">
-          <!--<a href="https://aurelienpetit.com/productions/the-gift-agency" class="main_btn">Découvrir la production</a>-->
           <div class="social-icons-left absolute">
-            <a href="https://www.instagram.com/p/CJLufSphTmn/">
+            <a href="https://www.instagram.com/ap.aurelienpetit/">
               <img src="images/logoinstagram.png" alt="Instagram" class="social-icon">
             </a>
+
           </div>
+          <!--<div class="row-flex">
+          <a href="https://aurelienpetit.com/productions/le-chateau-de-la-belle-au-bois-dormant"
+            class="main_btn">Découvrir la production</a>
+          <div class="social-icons">
+            <a href="https://www.instagram.com/ap.aurelienpetit/">
+              <img src="images/logoinstagram.png" alt="Instagram" class="social-icon">
+            </a>
+          </div>-->
         </div>
       </div>
     </section>
+
+
+
+
+
   </div>
   <div class="main__container-bandebp">
     <a href="https://aurelienpetit.com" id="navbar__logo_bp">
       <img src="images/logoap.png" alt="Logo Aurélien Petit" class="logo">
     </a>
-    <h5 class="text lang lang-en">Copyright © 2025 Aurélien Petit. All rights reserved.</h5>
-    <h5 class="text lang lang-fr">Copyright © 2025 Aurélien Petit. Tous droits réservés.</h5>
+    <h5 data-lang="en">Copyright © 2025 Aurélien Petit. All rights reserved.</h5>
+    <h5 data-lang="fr" style="display:none;">Copyright © 2025 Aurélien Petit. Tous droits réservés.</h5>
   </div>
   <script src="app.js"></script>
 

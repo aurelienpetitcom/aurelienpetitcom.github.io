@@ -6,21 +6,61 @@ menu.addEventListener("click", function () {
   menuLinks.classList.toggle("active");
 });
 
+function getCurrentLanguage() {
+  const selector = document.getElementById("langSelector");
+  return selector ? selector.value : "fr"; // valeur par défaut
+}
+
 function changeLanguage(languageCode) {
-  const texts = document.querySelectorAll(".text");
-  texts.forEach(function (elem) {
-    if (elem.classList.contains("lang-" + languageCode)) {
-      elem.style.display = "block"; // Afficher le texte dans la langue sélectionnée
+  const elements = document.querySelectorAll("[data-lang]");
+  elements.forEach(function (elem) {
+    const tag = elem.tagName.toLowerCase();
+    if (elem.getAttribute("data-lang") === languageCode) {
+      // display inline for span, block otherwise
+      elem.style.display = tag === "span" ? "inline" : "block";
     } else {
-      elem.style.display = "none"; // Cacher les autres textes
+      elem.style.display = "none";
     }
   });
+
+  // Update toggleText buttons
+  document
+    .querySelectorAll(".description-container button.inline-button")
+    .forEach((button) => {
+      const container = button.closest(".description-container");
+      const lang = languageCode;
+      const moreText = container.querySelector(
+        `.description[data-lang="${lang}"] .more-text`
+      );
+
+      if (moreText && moreText.classList.contains("hidden")) {
+        button.textContent = lang === "en" ? "Show more" : "En voir plus";
+      } else {
+        button.textContent = lang === "en" ? "Show less" : "En voir moins";
+      }
+    });
+
+  // Update scroll indicator labels
+  const indicatorLabels = document.querySelectorAll(".indicator-label");
+  indicatorLabels.forEach((label) => {
+    if (label.getAttribute("data-lang") === languageCode) {
+      label.style.display = "block";
+    } else {
+      label.style.display = "none";
+    }
+  });
+
+  // Scroll to 1px first, then 0px after a short delay to ensure proper page refresh
+  window.scrollTo(0, 1);
+  setTimeout(() => {
+    window.scrollTo(0, 0);
+  }, 5); // 5ms delay
 }
 
 // select handler
 const selector = document.getElementById("langSelector");
 selector.addEventListener("change", function () {
-  changeLanguage(this.value); // Appeler la fonction pour changer la langue
+  changeLanguage(this.value);
 });
 
 // détecter la langue de départ
@@ -44,17 +84,14 @@ const indicatorBall = document.querySelector(".indicator-ball");
 
 let isDragging = false; // État pour savoir si la boule est en cours de déplacement
 
-// Fonction pour mettre à jour la position de l'indicateur
 function updateIndicator() {
   const scrollTop = window.scrollY;
   const windowHeight = window.innerHeight;
   const documentHeight = document.body.scrollHeight;
 
-  // Calculer le ratio de défilement total
   const totalScrollableHeight = documentHeight - windowHeight;
   const scrollRatio = scrollTop / totalScrollableHeight;
 
-  // Positionner l'indicateur proportionnellement dans le contenu défilable
   const indicatorPosition = scrollRatio * scrollIndicator.offsetHeight;
 
   if (scrollTop === 0) {
@@ -65,28 +102,57 @@ function updateIndicator() {
     indicatorContainer.style.transform = `translateY(${indicatorPosition}px)`;
   }
 
-  // Trouver la section active
   let activeSection = null;
-  sections.forEach((section) => {
+  let sectionProgress = 0;
+  const quarterFromBottom = window.innerHeight * 0.75; // point 1/4 from the bottom
+  const triggerPoint = window.scrollY + quarterFromBottom;
+
+  for (const section of sections) {
     const rect = section.getBoundingClientRect();
-    const sectionHeight = rect.height;
-    const visibleTop = Math.max(0, rect.top);
-    const visibleBottom = Math.min(windowHeight, rect.bottom);
-    const visibleHeight = visibleBottom - visibleTop;
-    const visibilityPercentage = (visibleHeight / sectionHeight) * 100;
+    const sectionTop = window.scrollY + rect.top;
+    let sectionHeight = rect.height;
 
-    if (visibilityPercentage >= 50) {
+    if (
+      triggerPoint >= sectionTop &&
+      triggerPoint <= sectionTop + sectionHeight
+    ) {
       activeSection = section;
+      // Check if .more-text is visible and adjust sectionHeight accordingly
+      const moreText = activeSection.querySelector(".more-text");
+      if (moreText && !moreText.classList.contains("hidden")) {
+        sectionHeight = activeSection.scrollHeight;
+      }
+      sectionProgress = ((triggerPoint - sectionTop) / sectionHeight) * 100;
+      sectionProgress = Math.min(Math.max(sectionProgress, 0), 100);
+      sectionProgress = Math.round(sectionProgress / 10) * 10;
+      break;
     }
-  });
-
-  // Mettre à jour le texte de l'indicateur
-  if (activeSection) {
-    indicatorContainer.querySelector(".indicator-label").textContent =
-      activeSection.getAttribute("data-label");
   }
 
-  // Vérifier si moins de 20% de la dernière section est visible
+  if (activeSection) {
+    let sectionProgressDisplay = sectionProgress;
+
+    // Cap the displayed progress between 0% and 100
+    sectionProgressDisplay = Math.min(Math.max(sectionProgressDisplay, 0), 100);
+
+    const lang = getCurrentLanguage();
+    const indicatorLabel = indicatorContainer.querySelector(".indicator-label");
+    if (indicatorLabel) {
+      let labelText =
+        lang === "en"
+          ? activeSection.getAttribute("data-label-en")
+          : activeSection.getAttribute("data-label-fr");
+
+      // Append percentage only if between 20% and 80
+      //if (sectionProgressDisplay >= 20 && sectionProgressDisplay <= 80) {
+      //  labelText += ` - ${sectionProgressDisplay}%`;
+      //}
+
+      indicatorLabel.textContent = labelText;
+      indicatorLabel.style.display = "block";
+    }
+  }
+
   const lastSection = sections[sections.length - 1];
   const lastSectionRect = lastSection.getBoundingClientRect();
   const lastSectionVisible = lastSectionRect.bottom;
@@ -98,13 +164,33 @@ function updateIndicator() {
   }
 }
 
-// Événement de défilement pour mettre à jour la position de l'indicateur
-window.addEventListener("scroll", updateIndicator);
+function updateScrollNextArrow() {
+  const scrollNextBtn = document.getElementById("scrollNextSection");
+  if (!scrollNextBtn) return;
 
-// Initialiser l'indicateur à la première section si déjà visible
+  const sections = document.querySelectorAll("section.scroll-parallax");
+  const viewportHeight = window.innerHeight;
+  const currentScroll = window.scrollY;
+  const triggerPoint = currentScroll + viewportHeight * 0.75;
+
+  const nextSection = Array.from(sections).find(
+    (section) => section.offsetTop > triggerPoint
+  );
+
+  if (nextSection) {
+    scrollNextBtn.style.display = "block";
+  } else {
+    scrollNextBtn.style.display = "none";
+  }
+}
+
+window.addEventListener("scroll", updateScrollNextArrow);
+window.addEventListener("resize", updateScrollNextArrow);
+document.addEventListener("DOMContentLoaded", updateScrollNextArrow);
+
+window.addEventListener("scroll", updateIndicator);
 document.addEventListener("DOMContentLoaded", updateIndicator);
 
-// Gestion des événements de glissement sur le conteneur
 indicatorContainer.addEventListener("mousedown", (event) => {
   isDragging = true;
   indicatorContainer.style.cursor = "grabbing";
@@ -129,16 +215,69 @@ document.addEventListener("mouseup", () => {
   indicatorBall.classList.remove("expanded");
 });
 
-// Initialiser l'indicateur au chargement
 document.addEventListener("DOMContentLoaded", updateIndicator);
 
 function toggleText(button) {
   const container = button.closest(".description-container");
-  const moreText = container.querySelector(".more-text");
+  const lang = getCurrentLanguage();
+  const descriptionEl = container.querySelector(
+    `.description[data-lang="${lang}"]`
+  );
+  // Updated logic: find the .more-text inside the description element, which may contain multiple elements
+  const moreText = descriptionEl
+    ? descriptionEl.querySelector(".more-text")
+    : null;
+  const wasHidden = moreText && moreText.classList.contains("hidden");
 
-  moreText.classList.remove("hidden"); // Affiche le texte
-  button.style.display = "none"; // Cache le bouton
+  if (wasHidden) {
+    // Si on affiche plus → montrer le texte et scroller en haut du texte supplémentaire
+    moreText.classList.remove("hidden");
+    const imagesRows = moreText.querySelectorAll(".images-row");
+    imagesRows.forEach((row) => {
+      row.style.display = "";
+    });
+    button.textContent = lang === "en" ? "Show less" : "En voir moins";
+
+    const textTop = moreText.getBoundingClientRect().top + window.scrollY;
+    window.scrollTo({ top: textTop - 300, behavior: "smooth" });
+  } else {
+    // Si on affiche moins → garder la même distance visuelle
+    const buttonOffsetBefore = button.getBoundingClientRect().top;
+
+    moreText.classList.add("hidden");
+    const imagesRows = moreText.querySelectorAll(".images-row");
+    imagesRows.forEach((row) => {
+      row.style.display = "none";
+    });
+    button.textContent = lang === "en" ? "Show more" : "En voir plus";
+
+    const buttonOffsetAfter = button.getBoundingClientRect().top;
+    const scrollDiff = buttonOffsetAfter - buttonOffsetBefore;
+    window.scrollBy({ top: scrollDiff, behavior: "smooth" });
+  }
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  const lang = getCurrentLanguage();
+
+  document
+    .querySelectorAll(".description-container button.inline-button")
+    .forEach((button) => {
+      const container = button.closest(".description-container");
+      const descriptionEl = container.querySelector(
+        `.description[data-lang="${lang}"]`
+      );
+      const moreText = descriptionEl
+        ? descriptionEl.querySelector(".more-text")
+        : null;
+
+      if (moreText && moreText.classList.contains("hidden")) {
+        button.textContent = lang === "en" ? "Show more" : "En voir plus";
+      } else {
+        button.textContent = lang === "en" ? "Show less" : "En voir moins";
+      }
+    });
+});
 
 let hasUserScrolled = false;
 
@@ -152,14 +291,13 @@ function handleParallaxScroll() {
     const startTrigger = windowHeight * 0.95;
 
     if (rect.top < startTrigger && rect.bottom > 0) {
-      // Pas d'effet tant que l'utilisateur n'a pas scrollé
       if (!hasUserScrolled) return;
 
       const distanceFromBottom = windowHeight - rect.top;
       const visibleRatio = Math.min(1, distanceFromBottom / windowHeight);
 
-      const translateY = (1 - visibleRatio) * 40; // max 40px de décalage
-      const scale = 0.95 + visibleRatio * 0.05; // de 0.97 à 1
+      const translateY = (1 - visibleRatio) * 40;
+      const scale = 0.95 + visibleRatio * 0.05;
 
       el.style.transform = `translateY(${translateY}px) scale(${scale})`;
     }
@@ -168,11 +306,10 @@ function handleParallaxScroll() {
 
 function activateParallaxOnFirstScroll() {
   hasUserScrolled = true;
-  handleParallaxScroll(); // Appliquer directement après scroll
+  handleParallaxScroll();
   window.removeEventListener("scroll", activateParallaxOnFirstScroll);
 }
 
-// Attache les événements
 window.addEventListener("scroll", activateParallaxOnFirstScroll, {
   once: true,
 });
@@ -181,18 +318,44 @@ window.addEventListener("resize", handleParallaxScroll);
 document.addEventListener("DOMContentLoaded", handleParallaxScroll);
 
 function updateTxtBtnText() {
-  const el = document.querySelector(".txt_btn_cv");
+  const lang = getCurrentLanguage();
+  const el = document.querySelector(`.txt_btn_cv[data-lang="${lang}"]`);
   if (!el) return;
 
   if (window.innerWidth < 500) {
-    el.textContent = "Curr. Vitae";
+    // For English show "Curr. Vitae", for French show "CV"
+    el.textContent = lang === "en" ? "Curr. Vitae" : "Curr. Vitae";
   } else {
-    el.textContent = "Curriculum Vitae";
+    // Full text for both languages
+    el.textContent = lang === "en" ? "Curriculum Vitae" : "Curriculum Vitae";
   }
 }
 
-// Appel initial
+// Call initially
 updateTxtBtnText();
-
-// Met à jour si on redimensionne la fenêtre
+// Update on resize
 window.addEventListener("resize", updateTxtBtnText);
+
+// Scroll arrow to next section
+const scrollNextBtn = document.getElementById("scrollNextSection");
+if (scrollNextBtn) {
+  scrollNextBtn.addEventListener("click", () => {
+    const sections = document.querySelectorAll("section.scroll-parallax");
+    const viewportHeight = window.innerHeight;
+    const currentScroll = window.scrollY;
+    const triggerPoint = currentScroll + viewportHeight * 0.75; // 1/4 from bottom
+
+    // Filter sections strictly below the triggerPoint
+    const nextSection = Array.from(sections)
+      .filter((section) => section.offsetTop > triggerPoint)
+      .shift(); // pick the first one
+
+    if (nextSection) {
+      const targetScroll = nextSection.offsetTop - (viewportHeight * 2) / 3;
+      window.scrollTo({
+        top: targetScroll + 400,
+        behavior: "smooth",
+      });
+    }
+  });
+}

@@ -111,9 +111,20 @@
 .date-category {
   font-size: 15px;
   color: #b5b5b5;
-  gap: 0px;
+  gap: 5px;
   padding: 40px;
   padding-bottom: 20px;
+  display: inline-flex;
+  align-items: center;
+  white-space: normal;
+}
+.date-category span {
+  display: inline;
+}
+
+.nonmobile {
+  margin: 0 1px;
+  white-space: nowrap;
 }
 
 h2 {
@@ -159,6 +170,16 @@ h5 {
   border-bottom-left-radius: 0px;
 }
 
+.imagesouspost {
+  width: 100%;
+  height: auto;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  margin-bottom: 20px;
+  border-bottom-left-radius: 20px;
+}
+
 .scroll-indicator {
   position: fixed;
   left: 10px;
@@ -190,7 +211,8 @@ h5 {
   align-items: center; /* Aligne la boule et le texte au centre */
   position: relative; /* Position relative pour placer la boule */
   translate: 30px -65px;
-  cursor: grab; /* Curseur pour indiquer que l'élément peut être déplacé */
+  /* cursor: grab;  Curseur pour indiquer que l'élément peut être déplacé */
+  cursor: default; /* overrides the grab cursor */
 }
 
 .scroll-indicator.hidden {
@@ -214,14 +236,10 @@ h5 {
   background-color: rgba(255, 255, 255, 1); /* Couleur de la boule */
 }
 
-.indicator-ball:active {
-  cursor: grabbing; /* Curseur lorsque la boule est en cours de glissement */
-}
-
 .indicator-label {
   background-color: rgba(255, 255, 255, 0.094); /* Rouge avec 50% d'opacité */
   color: #fff;
-  padding: 10px 20px;
+  padding: 10px 15px;
   border-radius: 20px;
   font-size: 15px;
   font-family: "SFProRegular", sans-serif;
@@ -556,6 +574,7 @@ body {
   font-size: 15px;
   font-family: "SFProRegular", sans-serif;
   margin-top: 0px;
+  line-height: 40px;
 }
 
 .image_cv {
@@ -681,6 +700,17 @@ body {
     padding-left: 30px;
     padding-right: 30px;
   }
+  .images-row {
+    flex-direction: column !important;
+    align-items: center;
+  }
+
+  .images-row .imagesouspost {
+    width: 100% !important; /* force la largeur complète */
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
 }
 
 .vertical-mobile {
@@ -738,12 +768,12 @@ body {
 
 /* Bouton intégré dans le texte */
 .inline-button {
-  background-color: #ffffff2e; /* Fond gris */
+  background-color: #ffffff16; /* Fond gris */
   color: white; /* Texte blanc */
   border: none;
   padding: 2px 8px;
   padding-bottom: 5px;
-  margin-left: 4px;
+  margin-left: 0px;
   border-radius: 5px;
   cursor: pointer;
   font-size: 14px;
@@ -761,6 +791,33 @@ body {
   display: none;
 }
 
+/* Images row layout for two and three images per row */
+.images-row {
+  display: flex;
+  flex-wrap: wrap; /* allow wrapping if necessary */
+  gap: 20px; /* space between images */
+  justify-content: flex-start; /* align to left */
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.images-row.two-images .imagesouspost {
+  width: calc(50% - 10px); /* 50% minus half the gap */
+  height: auto;
+}
+
+.images-row.three-images .imagesouspost {
+  width: calc(33.333% - 13.333px); /* 33.333% minus half the gap */
+  height: auto;
+}
+
+.images-row .imagesouspost {
+  display: block; /* ensure block layout inside flex row */
+  max-width: 100%;
+}
+
 .more-text {
   margin-top: 15px;
 }
@@ -769,4 +826,19 @@ body {
   transform: scale(0.95); /* ✅ position initiale */
   transition: transform 0.3s ease;
   will-change: transform;
+}
+
+#scrollNextSection {
+  margin-left: 5px;
+  margin-bottom: 3px;
+  transform: none;
+  cursor: pointer;
+  font-size: 20px;
+  color: white;
+  z-index: 1001;
+  opacity: 0.5; /* initial transparency */
+}
+
+#scrollNextSection:hover {
+  opacity: 1; /* fully visible on hover */
 }
