@@ -401,3 +401,42 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
+// Splash video on page load with smooth fade and scroll unlock at fade start
+document.addEventListener("DOMContentLoaded", () => {
+  const splash = document.getElementById("splash-screen");
+  const video = document.getElementById("splash-video");
+
+  if (!splash || !video) return;
+
+  // Disable scrolling
+  document.body.style.overflow = "hidden";
+
+  // Ensure initial opacity
+  splash.style.opacity = "1";
+  splash.style.transition = "opacity 0.2s ease";
+
+  const hideSplash = () => {
+    splash.style.opacity = "0";
+    // Re-enable scrolling immediately as fade starts
+    document.body.style.overflow = "";
+    setTimeout(() => {
+      splash.style.display = "none";
+      document.body.classList.add("loaded");
+    }, 200); // match the CSS transition duration
+  };
+
+  // When video ends
+  video.addEventListener("ended", hideSplash);
+
+  // Force hide after 3 seconds if video doesn't end naturally
+  setTimeout(() => {
+    if (splash.style.display !== "none") {
+      video.pause();
+      hideSplash();
+    }
+  }, 1300);
+
+  // Ensure page is scrolled to top during splash
+  window.scrollTo(0, 0);
+});
