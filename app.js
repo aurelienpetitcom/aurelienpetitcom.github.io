@@ -402,14 +402,14 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// Splash video on page load with smooth fade and scroll unlock at fade start
+// Splash video on page load with fade triggered at 1.3s
 document.addEventListener("DOMContentLoaded", () => {
   const splash = document.getElementById("splash-screen");
   const video = document.getElementById("splash-video");
 
   if (!splash || !video) return;
 
-  // Disable scrolling
+  // Disable scrolling initially
   document.body.style.overflow = "hidden";
 
   // Ensure initial opacity
@@ -418,7 +418,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const hideSplash = () => {
     splash.style.opacity = "0";
-    // Re-enable scrolling immediately as fade starts
+    // Re-enable scrolling immediately
     document.body.style.overflow = "";
     setTimeout(() => {
       splash.style.display = "none";
@@ -426,16 +426,18 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 200); // match the CSS transition duration
   };
 
-  // When video ends
-  video.addEventListener("ended", hideSplash);
-
-  // Force hide after 3 seconds if video doesn't end naturally
-  setTimeout(() => {
-    if (splash.style.display !== "none") {
-      video.pause();
+  // Use timeupdate event to check video currentTime
+  const onTimeUpdate = () => {
+    if (video.currentTime >= 1.2) {
       hideSplash();
+      video.removeEventListener("timeupdate", onTimeUpdate);
     }
-  }, 1300);
+  };
+
+  video.addEventListener("timeupdate", onTimeUpdate);
+
+  // Also end if video naturally ends before 1.3s
+  video.addEventListener("ended", hideSplash);
 
   // Ensure page is scrolled to top during splash
   window.scrollTo(0, 0);
