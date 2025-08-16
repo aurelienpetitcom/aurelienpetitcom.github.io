@@ -467,6 +467,13 @@ document.addEventListener("DOMContentLoaded", () => {
   // Also end if video naturally ends before 1.3s
   video.addEventListener("ended", hideSplash);
 
+  // Fallback: if video doesn't start (e.g. iOS low power mode), hide splash after short delay
+  setTimeout(() => {
+    if (video.currentTime === 0) {
+      hideSplash();
+    }
+  }, 1000);
+
   // Ensure page is scrolled to top during splash
   window.scrollTo(0, 0);
 });
