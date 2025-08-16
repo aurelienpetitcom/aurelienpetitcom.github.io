@@ -359,3 +359,45 @@ if (scrollNextBtn) {
     }
   });
 }
+
+// Lightbox functionality
+document.addEventListener("DOMContentLoaded", () => {
+  const lightbox = document.getElementById("lightbox");
+  const lightboxImg = document.getElementById("lightboxImg");
+  const lightboxCloseBtn = document.getElementById("lightboxClose");
+
+  if (!lightbox || !lightboxImg || !lightboxCloseBtn) return;
+
+  // Function to disable scroll
+  function disableScroll() {
+    document.body.style.overflow = "hidden";
+  }
+
+  // Function to enable scroll
+  function enableScroll() {
+    document.body.style.overflow = "";
+  }
+
+  // Open lightbox on image click
+  document.querySelectorAll(".imagesouspost").forEach((img) => {
+    img.addEventListener("click", () => {
+      lightboxImg.src = img.src;
+      lightbox.style.display = "flex";
+      disableScroll();
+    });
+  });
+
+  // Close on click of the close button
+  lightboxCloseBtn.addEventListener("click", () => {
+    lightbox.style.display = "none";
+    enableScroll();
+  });
+
+  // Close when clicking outside the image
+  lightbox.addEventListener("click", (e) => {
+    if (e.target === lightbox) {
+      lightbox.style.display = "none";
+      enableScroll();
+    }
+  });
+});

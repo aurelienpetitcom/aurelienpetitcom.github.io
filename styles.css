@@ -890,3 +890,47 @@ body {
 #scrollNextSection:hover {
   opacity: 1; /* fully visible on hover */
 }
+
+/* Hover zoom léger */
+.imagesouspost {
+  transition: transform 0.2s ease;
+  cursor: pointer;
+}
+
+.imagesouspost:hover {
+  transform: scale(1.01);
+}
+
+/* Lightbox overlay */
+.lightbox {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 20px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 30px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  transition: color 0.2s;
+  z-index: 1001;
+}
