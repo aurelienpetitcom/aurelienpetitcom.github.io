@@ -169,18 +169,34 @@ function updateScrollNextArrow() {
   if (!scrollNextBtn) return;
 
   const sections = document.querySelectorAll("section.scroll-parallax");
-  const viewportHeight = window.innerHeight;
-  const currentScroll = window.scrollY;
-  const triggerPoint = currentScroll + viewportHeight * 0.75;
+  if (sections.length === 0) return;
 
-  const nextSection = Array.from(sections).find(
-    (section) => section.offsetTop > triggerPoint
-  );
+  const lang = getCurrentLanguage();
+  const lastSection = sections[sections.length - 1];
+  const lastLabel =
+    lang === "en"
+      ? lastSection.getAttribute("data-label-en")
+      : lastSection.getAttribute("data-label-fr");
 
-  if (nextSection) {
-    scrollNextBtn.style.display = "block";
+  const indicatorLabel = document.querySelector(".indicator-label");
+  if (!indicatorLabel) return;
+
+  const currentLabel = indicatorLabel.textContent.trim();
+
+  // Transition for both fade in and fade out
+  scrollNextBtn.style.transition = "opacity 0.2s ease";
+
+  if (currentLabel === lastLabel) {
+    scrollNextBtn.style.opacity = "0";
+    setTimeout(() => {
+      scrollNextBtn.style.display = "none";
+    }, 200);
   } else {
-    scrollNextBtn.style.display = "none";
+    scrollNextBtn.style.display = "block";
+    // tiny timeout ensures display:block is applied before opacity transition
+    setTimeout(() => {
+      scrollNextBtn.style.opacity = "1";
+    }, 10);
   }
 }
 
@@ -343,7 +359,7 @@ if (scrollNextBtn) {
     const sections = document.querySelectorAll("section.scroll-parallax");
     const viewportHeight = window.innerHeight;
     const currentScroll = window.scrollY;
-    const triggerPoint = currentScroll + viewportHeight * 0.75; // 1/4 from bottom
+    const triggerPoint = currentScroll + viewportHeight * 0.25; // 1/4 from bottom
 
     // Filter sections strictly below the triggerPoint
     const nextSection = Array.from(sections)
@@ -351,7 +367,7 @@ if (scrollNextBtn) {
       .shift(); // pick the first one
 
     if (nextSection) {
-      const targetScroll = nextSection.offsetTop - (viewportHeight * 2) / 3;
+      const targetScroll = nextSection.offsetTop - 150;
       window.scrollTo({
         top: targetScroll + 400,
         behavior: "smooth",
@@ -417,9 +433,21 @@ document.addEventListener("DOMContentLoaded", () => {
   splash.style.transition = "opacity 0.2s ease";
 
   const hideSplash = () => {
+    // Scroll to 1px first, then back to 0 quickly
+    window.scrollTo(0, 1);
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+    }, 5);
+
     splash.style.opacity = "0";
     // Re-enable scrolling immediately
     document.body.style.overflow = "";
+
+    // Trigger the content-defilement animation
+    document.querySelectorAll(".content-defilement").forEach((el) => {
+      el.classList.add("active");
+    });
+
     setTimeout(() => {
       splash.style.display = "none";
       document.body.classList.add("loaded");

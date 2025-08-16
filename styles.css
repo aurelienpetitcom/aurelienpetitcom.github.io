@@ -892,13 +892,15 @@ body {
   transform: none;
   cursor: pointer;
   font-size: 20px;
-  color: white;
+  color: rgba(80, 80, 80);
   z-index: 1001;
   opacity: 0.5; /* initial transparency */
+  transition: color 1s ease, opacity 1s ease;
 }
 
 #scrollNextSection:hover {
   opacity: 1; /* fully visible on hover */
+  color: rgb(255, 255, 255);
 }
 
 /* Hover zoom léger */
@@ -968,4 +970,16 @@ body.loaded #splash-screen {
   opacity: 0;
   transition: opacity 0.2s ease;
   pointer-events: none;
+}
+
+.content-defilement {
+  opacity: 0.7;
+  transform: translateY(100px);
+  transition: transform 0.8s cubic-bezier(0.25, 0.1, 0.25, 1),
+    opacity 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.content-defilement.active {
+  transform: translateY(0);
+  opacity: 1;
 }
