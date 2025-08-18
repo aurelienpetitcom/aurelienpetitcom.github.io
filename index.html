@@ -4,18 +4,53 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aurélien Petit</title>
-  <meta name="description"
-    content="Etudiant en Master Ingénieur Industriel électromécanique, Je partage mes différents projets personnels que je réalise.">
-  <link rel="icon" href="images/faviconap.png" type="image/png">
+  <title id="page-title">Aurélien Petit</title>
+
+  <!-- Meta description pour Google (par défaut FR) -->
+  <meta id="meta-desc" name="description"
+    content="Étudiant en Master Ingénieur Industriel électromécanique, je partage mes différents projets personnels que je réalise.">
+
+  <!-- Favicon & icônes -->
+  <link rel="icon" href="/favicon.ico" sizes="any"> <!-- version classique -->
+  <link rel="icon" href="/images/faviconap.png" type="image/png"> <!-- version PNG -->
+  <link rel="apple-touch-icon" href="/images/faviconap.png"> <!-- iOS/Apple -->
+  <link rel="manifest" href="/site.webmanifest"> <!-- optionnel PWA -->
+
+  <!-- Feuille de style -->
   <link rel="stylesheet" href="styles.css">
-  <!-- Google tag (gtag.js) -->
+
+  <!-- Données structurées : logo de site pour Google -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "url": "https://okbotsexpedition.com",
+    "name": "Aurélien Petit",
+    "logo": "https://okbotsexpedition.com/images/faviconap.png"
+  }
+  </script>
+
+  <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-HEM24T99FD"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
     gtag('config', 'G-HEM24T99FD');
+  </script>
+
+  <!-- Script pour changer titre/meta en fonction de la langue -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const userLang = navigator.language || navigator.userLanguage;
+      const titleEl = document.getElementById("page-title");
+      const descEl = document.getElementById("meta-desc");
+
+      if (userLang.startsWith("en")) {
+        titleEl.textContent = "Aurélien Petit - Industrial Engineering Student";
+        descEl.setAttribute("content", "Master's student in Industrial Electromechanical Engineering, sharing personal projects and creations.");
+      }
+    });
   </script>
 </head>
 
