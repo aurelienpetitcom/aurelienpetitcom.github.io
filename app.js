@@ -59,22 +59,24 @@ function changeLanguage(languageCode) {
 
 // select handler
 const selector = document.getElementById("langSelector");
-selector.addEventListener("change", function () {
-  changeLanguage(this.value);
-});
+if (selector) {
+  selector.addEventListener("change", function () {
+    changeLanguage(this.value);
+  });
 
-// détecter la langue de départ
-const lang = navigator.userLanguage || navigator.language || "en-EN";
-const startLang =
-  Array.from(selector.options)
+  // détecter la langue de départ
+  const lang = navigator.language || "en";
+  const startLang =
+    Array.from(selector.options)
+      .map((opt) => opt.value)
+      .find((val) => lang.includes(val)) || "en";
+  changeLanguage(startLang);
+
+  // mettre à jour le select avec la valeur de départ
+  selector.selectedIndex = Array.from(selector.options)
     .map((opt) => opt.value)
-    .find((val) => lang.includes(val)) || "en";
-changeLanguage(startLang);
-
-// mettre à jour le select avec la valeur de départ
-selector.selectedIndex = Array.from(selector.options)
-  .map((opt) => opt.value)
-  .indexOf(startLang);
+    .indexOf(startLang);
+}
 
 // Sélection des sections et de l'élément d'indicateur
 const sections = document.querySelectorAll("section");
@@ -148,7 +150,7 @@ function updateIndicator() {
       //  labelText += ` - ${sectionProgressDisplay}%`;
       //}
 
-      indicatorLabel.textContent = labelText;
+      indicatorLabel.innerHTML = labelText;
       indicatorLabel.style.display = "block";
     }
   }
@@ -339,7 +341,7 @@ function updateTxtBtnText() {
   if (!el) return;
 
   if (window.innerWidth < 500) {
-    // For English show "Curr. Vitae", for French show "CV"
+    // For English show "Resume", for French show "CV"
     el.textContent = lang === "en" ? "Curr. Vitae" : "Curr. Vitae";
   } else {
     // Full text for both languages

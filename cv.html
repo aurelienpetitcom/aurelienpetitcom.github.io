@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
@@ -11,10 +11,10 @@
         content="Découvrez le CV d'Aurélien Petit, étudiant en Master Ingénieur Industriel électromécanique, avec expériences, projets personnels et compétences techniques.">
 
     <!-- Favicon & icônes -->
-    <link rel="icon" href="/favicon.ico" sizes="any"> <!-- version classique -->
-    <link rel="icon" href="/images/faviconap.png" type="image/png"> <!-- version PNG -->
-    <link rel="apple-touch-icon" href="/images/faviconap.png"> <!-- iOS/Apple -->
-    <link rel="manifest" href="/site.webmanifest"> <!-- optionnel PWA -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/images/faviconap.png" type="image/png">
+    <link rel="apple-touch-icon" href="/images/faviconap.png">
+    <link rel="manifest" href="/site.webmanifest">
 
     <!-- Feuille de style -->
     <link rel="stylesheet" href="styles.css">
@@ -39,64 +39,87 @@
         gtag('config', 'G-HEM24T99FD');
     </script>
 
-    <!-- Script pour changer titre/meta en fonction de la langue -->
+    <!-- Titre/description dynamiques (détection langue navigateur) -->
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            const userLang = navigator.language || navigator.userLanguage;
+            const userLang = (navigator.language || "").toLowerCase();
             const titleEl = document.getElementById("page-title");
             const descEl = document.getElementById("meta-desc");
 
             if (userLang.startsWith("en")) {
                 titleEl.textContent = "CV - Aurélien Petit";
-                descEl.setAttribute("content",
-                    "Discover the resume of Aurélien Petit, Master's student in Industrial Electromechanical Engineering, including experiences, personal projects, and technical skills.");
+                descEl.setAttribute(
+                    "content",
+                    "Discover the resume of Aurélien Petit, Master's student in Industrial Electromechanical Engineering, including experiences, personal projects, and technical skills."
+                );
             }
         });
     </script>
+
+    <!-- Cache EN par défaut (FR visible avant que JS ne bascule) -->
+    <style>
+        [data-lang="en"] {
+            display: none;
+        }
+    </style>
 </head>
 
 <body>
-    <!-- Navbar Section-->
+    <!-- Navbar -->
     <nav class="navbar">
         <div class="navbar__container">
             <a href="https://aurelienpetit.com" id="navbar__logo">
                 <img src="images/logoap.png" alt="Logo Aurélien Petit" class="logo">
             </a>
             <div class="navbar__toggle" id="mobile-menu">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
+                <span class="bar"></span><span class="bar"></span><span class="bar"></span>
             </div>
             <ul class="navbar__menu">
                 <li class="navbar__item">
                     <select id="langSelector">
-                        <option value="en">English</option>
                         <option value="fr">Français</option>
+                        <option value="en">English</option>
                     </select>
                 </li>
             </ul>
         </div>
     </nav>
+
     <div class="main">
         <div class="main__content">
             <div class="section_verticale">
+
                 <div class="title-container">
-                    <h2>Curriculum vitae</h2>
+                    <h2 class="lang" data-lang="fr">Curriculum vitae</h2>
+                    <h2 class="lang" data-lang="en">Curriculum vitae</h2>
                 </div>
-                <p class="text lang lang-en">Discover my background and more on my CV available below and for download.
+
+                <p class="text lang" data-lang="en">
+                    Discover my background and more on my resume available below and for download.
                 </p>
-                <p class="text lang lang-fr" style="display: none;">Découvrez mon parcours et plus encore sur mon cv
-                    disponible ci-dessous ainsi qu'en téléchargement.</p>
+                <p class="text lang" data-lang="fr">
+                    Découvrez mon parcours et plus encore sur mon résumé disponible ci-dessous ainsi qu'en
+                    téléchargement.
+                </p>
+
                 <div class="title-container">
-                    <!-- Boutons de téléchargement en différentes langues -->
-                    <a href="fichiers/cv_aurelien_petit_09_07_25.pdf" class="text lang lang-fr main_btn"
-                        download>Télécharger en PDF</a>
-                    <a href="fichiers/cv_aurelien_petit_09_07_25.pdf" class="text lang lang-en main_btn"
-                        style="display: none;">Download in PDF</a>
-                    <h3>421 ko</h3>
+                    <!-- Boutons téléchargement -->
+                    <a href="fichiers/cv_aurelien_petit_09_07_25.pdf" class="text main_btn lang" data-lang="fr"
+                        download>
+                        Télécharger en PDF
+                    </a>
+                    <a href="fichiers/cv_aurelien_petit_09_07_25.pdf" class="text main_btn lang" data-lang="en"
+                        download>
+                        Download PDF
+                    </a>
+
+                    <!-- Taille du fichier -->
+                    <h3 class="lang" data-lang="fr">421&nbsp;ko</h3>
+                    <h3 class="lang" data-lang="en">421&nbsp;ko</h3>
                 </div>
+
                 <img src="images/cv_aurelien_petit_09_07_25.png"
-                    alt="CV Aurélien Petit Etudiant en master ingénieur industriel orientation électromécanique à l'ECAM Bruxelles. Je m'investis à fond pour l'ensemble des projets que je réalise avec comme volonté de dépasser les attentes et repousser les limites. Mon objectif professionnel est de pouvoir allier mes compétences techniques et artistiques acquises. Étudiant en Master Ingénieur Industriel électromécanique à l'ECAM Brussels Engineering School, avec un parcours en bachelier électromécanique, enseignement artistique en infographie et arts numériques. Projets personnels incluent le développement complet du jeu vidéo Okbots Expedition sur Unreal Engine 5. Expériences : stage d'observation chez Lemaire Ingénieurs et cours particuliers de mathématiques et physique. Compétences : Solidworks (CSWA), Matlab, Affinity Designer/Photo/Publisher, Unreal Engine 5, Final Cut Pro, Motion, Logic Pro, Fusion. Langues : Français et Anglais (B2). Centres dintérêts : design, jeux vidéo, parcs d'attractions, spatial, musique et photographie."
+                    alt="CV Aurélien Petit, étudiant en master ingénieur industriel orientation électromécanique à l'ECAM Bruxelles, avec expériences, projets personnels et compétences."
                     class="image_cv">
             </div>
         </div>
@@ -106,11 +129,11 @@
         <a href="https://aurelienpetit.com" id="navbar__logo_bp">
             <img src="images/logoap.png" alt="Logo Aurélien Petit" class="logo">
         </a>
-        <h5 data-lang="en">Copyright © 2025 Aurélien Petit. All rights reserved.</h5>
-        <h5 data-lang="fr" style="display:none;">Copyright © 2025 Aurélien Petit. Tous droits réservés.</h5>
+        <h5 class="lang" data-lang="fr">Copyright © 2025 Aurélien Petit. Tous droits réservés.</h5>
+        <h5 class="lang" data-lang="en">Copyright © 2025 Aurélien Petit. All rights reserved.</h5>
     </div>
 
-    <script src="app.js"></script> <!-- Inclure le script JavaScript -->
+    <script src="app.js"></script>
 </body>
 
 </html>

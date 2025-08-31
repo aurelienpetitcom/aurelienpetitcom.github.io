@@ -161,6 +161,18 @@ h5 {
   padding-bottom: 0px;
 }
 
+.mention {
+  font-size: 15px;
+  line-height: 1.5;
+  text-align: left;
+  font-family: "SFProRegular", sans-serif;
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-top: 10px;
+  color: #989898;
+  transform: translateY(20px);
+}
+
 .imagepost {
   width: 100%;
   height: auto;
@@ -721,6 +733,18 @@ body {
     padding-left: 30px;
     padding-right: 30px;
     padding-bottom: 0px;
+  }
+
+  .mention {
+    font-size: 15px;
+    line-height: 1.5;
+    text-align: left;
+    font-family: "SFProRegular", sans-serif;
+    padding-left: 30px;
+    padding-top: 10px;
+    padding-right: 30px;
+    color: #989898;
+    transform: translateY(20px);
   }
 
   .date-category {
