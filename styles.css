@@ -577,7 +577,7 @@ body {
 }
 
 .txt_btn_cv {
-  color: rgb(255, 255, 255);
+  color: rgba(255, 255, 255, 0.7);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -587,6 +587,10 @@ body {
   font-family: "SFProRegular", sans-serif;
   margin-top: 0px;
   line-height: 40px;
+}
+
+.txt_btn_cv:hover {
+  color: rgba(255, 255, 255, 1);
 }
 
 .image_cv {
