@@ -453,7 +453,7 @@ function handleParallaxScroll() {
     const rect = el.getBoundingClientRect();
     const windowHeight = window.innerHeight;
 
-    const startTrigger = windowHeight * 0.95;
+    const startTrigger = windowHeight * 1;
 
     if (rect.top < startTrigger && rect.bottom > 0) {
       // Always apply transform regardless of hasUserScrolled
@@ -524,13 +524,18 @@ if (scrollNextBtn) {
   });
 }
 
-// Lightbox functionality
+// Lightbox functionality with navigation arrows
 document.addEventListener("DOMContentLoaded", () => {
   const lightbox = document.getElementById("lightbox");
   const lightboxImg = document.getElementById("lightboxImg");
   const lightboxCloseBtn = document.getElementById("lightboxClose");
+  const prevBtn = document.getElementById("lightboxPrev");
+  const nextBtn = document.getElementById("lightboxNext");
 
   if (!lightbox || !lightboxImg || !lightboxCloseBtn) return;
+
+  let currentIndex = 0;
+  let currentGroup = [];
 
   // Function to disable scroll
   function disableScroll() {
@@ -542,19 +547,67 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.style.overflow = "";
   }
 
+  function showImage(index) {
+    if (!currentGroup.length) return;
+    if (index < 0) index = currentGroup.length - 1;
+    if (index >= currentGroup.length) index = 0;
+    currentIndex = index;
+    lightboxImg.src = currentGroup[currentIndex].src;
+    // Reset and trigger scale animation
+    lightboxImg.style.transition = "none";
+    lightboxImg.style.transform = "scale(0.95)";
+    void lightboxImg.offsetWidth; // force reflow
+    lightboxImg.style.transition = "transform 0.4s ease";
+    lightboxImg.style.transform = "scale(1)";
+  }
+
   // Open lightbox on image click
   document.querySelectorAll(".imagesouspost").forEach((img) => {
     img.addEventListener("click", () => {
+      // Find all images in the same description-container
+      currentGroup = Array.from(
+        img
+          .closest(".description-container")
+          ?.querySelectorAll(".imagesouspost") || []
+      );
+      currentIndex = currentGroup.indexOf(img);
+
       lightboxImg.src = img.src;
+
+      // --- ANIMATION SCALE AJOUTÉE ---
+      lightboxImg.style.transition = "none";
+      lightboxImg.style.transform = "scale(0.95)";
+      void lightboxImg.offsetWidth; // force reflow
+      lightboxImg.style.transition = "transform 0.4s ease";
+      lightboxImg.style.transform = "scale(1)";
+      // --- FIN DE L'ANIMATION ---
+
       lightbox.style.display = "flex";
       disableScroll();
+      document.querySelector(".scroll-indicator").style.opacity = "0";
     });
   });
+
+  // Navigation arrows
+  if (prevBtn) {
+    prevBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      showImage(currentIndex - 1);
+    });
+  }
+
+  if (nextBtn) {
+    nextBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      showImage(currentIndex + 1);
+    });
+  }
 
   // Close on click of the close button
   lightboxCloseBtn.addEventListener("click", () => {
     lightbox.style.display = "none";
     enableScroll();
+    document.querySelector(".scroll-indicator").style.opacity = "1";
   });
 
   // Close when clicking outside the image
@@ -562,6 +615,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.target === lightbox) {
       lightbox.style.display = "none";
       enableScroll();
+      document.querySelector(".scroll-indicator").style.opacity = "1";
     }
   });
 });
