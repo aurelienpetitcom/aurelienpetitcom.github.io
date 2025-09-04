@@ -55,6 +55,125 @@ function changeLanguage(languageCode) {
   setTimeout(() => {
     window.scrollTo(0, 0);
   }, 5); // 5ms delay
+
+  // Gérer les options du filtre des publications
+  rebuildPostFilter(languageCode);
+}
+
+function rebuildPostFilter(languageCode) {
+  const postFilter = document.getElementById("postFilter");
+  if (!postFilter) return;
+
+  // Cache all localized options once
+  if (!window.__postFilterStore) {
+    const store = {};
+    Array.from(postFilter.querySelectorAll("option[data-lang]")).forEach(
+      (opt) => {
+        const lang = opt.getAttribute("data-lang");
+        if (!store[lang]) store[lang] = [];
+        store[lang].push({ value: opt.value, text: opt.textContent });
+      }
+    );
+    window.__postFilterStore = store;
+  }
+
+  const data = window.__postFilterStore[languageCode] || [];
+  const previousValue = postFilter.value;
+
+  // Rebuild the select with only the options for the active language
+  postFilter.innerHTML = "";
+  data.forEach(({ value, text }) => {
+    const o = document.createElement("option");
+    o.value = value;
+    o.textContent = text;
+    postFilter.appendChild(o);
+  });
+
+  // Restore previous value if still available, otherwise select the first option
+  if (data.some((d) => d.value === previousValue)) {
+    postFilter.value = previousValue;
+  } else if (data[0]) {
+    postFilter.value = data[0].value;
+  }
+
+  // Apply filtering immediately
+  filterPosts();
+}
+
+// Filter posts based on selected category
+function filterPosts() {
+  const postFilter = document.getElementById("postFilter");
+  if (!postFilter) return;
+
+  const selectedCategory = postFilter.value;
+  const sections = document.querySelectorAll("section.accueil_section1");
+
+  sections.forEach((section) => {
+    // Toujours cacher les sections avec la classe 'hidden'
+    if (section.classList.contains("hidden")) {
+      section.style.display = "none";
+      return;
+    }
+
+    const categoriesAttr = section.getAttribute("data-category") || "";
+    const categories = categoriesAttr
+      .split(",")
+      .map((c) => c.trim())
+      .filter((c) => c.length > 0);
+
+    if (selectedCategory === "all" || categories.includes(selectedCategory)) {
+      section.style.display = "block";
+
+      // Animation verticale des éléments .content-defilement
+      section.querySelectorAll(".content-defilement").forEach((content) => {
+        // Reset temporaire pour repartir de 100px plus bas
+        // Neutraliser la contribution du parallax
+        content.style.transition = "none";
+        content.style.transform = "translateY(100px) scale(1)";
+        content.style.opacity = "0";
+
+        // Forcer reflow
+        void content.offsetWidth;
+
+        // Animation vers la position normale
+        content.style.transition =
+          "transform 0.5s ease-out, opacity 0.5s ease-out";
+        content.style.transform = "translateY(0)";
+        content.style.opacity = "1";
+      });
+    } else {
+      section.style.display = "none";
+    }
+  });
+
+  // Mettre à jour l'indicator-label avec la première section visible
+  const visibleSections = Array.from(sections).filter(
+    (s) => s.style.display !== "none"
+  );
+  if (visibleSections.length > 0) {
+    const lang = getCurrentLanguage();
+    const indicatorLabel = document.querySelector(".indicator-label");
+    if (indicatorLabel) {
+      const firstSection = visibleSections[0];
+      const labelText =
+        lang === "en"
+          ? firstSection.getAttribute("data-label-en")
+          : firstSection.getAttribute("data-label-fr");
+      indicatorLabel.textContent = labelText;
+    }
+  }
+
+  // Mettre à jour la flèche scrollNextSection
+  updateScrollNextArrow();
+  handleParallaxScroll();
+}
+
+// Attach change event
+const postFilter = document.getElementById("postFilter");
+if (postFilter) {
+  postFilter.addEventListener("change", () => {
+    filterPosts();
+  });
 }
 
 // select handler
@@ -131,6 +250,27 @@ function updateIndicator() {
     }
   }
 
+  function updateIndicatorLabelAfterFilter() {
+    const sections = Array.from(
+      document.querySelectorAll("section.scroll-parallax")
+    ).filter((s) => s.style.display !== "none"); // seulement les sections visibles
+
+    if (!sections.length) return;
+
+    const lang = getCurrentLanguage();
+    const indicatorLabel = document.querySelector(".indicator-label");
+    if (!indicatorLabel) return;
+
+    // Affiche le label de la première section visible
+    const firstSection = sections[0];
+    const labelText =
+      lang === "en"
+        ? firstSection.getAttribute("data-label-en")
+        : firstSection.getAttribute("data-label-fr");
+
+    indicatorLabel.textContent = labelText;
+  }
+
   if (activeSection) {
     let sectionProgressDisplay = sectionProgress;
 
@@ -155,23 +295,29 @@ function updateIndicator() {
     }
   }
 
-  const lastSection = sections[sections.length - 1];
-  const lastSectionRect = lastSection.getBoundingClientRect();
-  const lastSectionVisible = lastSectionRect.bottom;
-
-  if (lastSectionVisible < windowHeight * 0.5) {
-    scrollIndicator.classList.add("hidden");
-  } else {
-    scrollIndicator.classList.remove("hidden");
-  }
+  //  const lastSection = sections[sections.length - 1];
+  //  const lastSectionRect = lastSection.getBoundingClientRect();
+  //  const lastSectionVisible = lastSectionRect.bottom;
+  //
+  //  if (lastSectionVisible < windowHeight * 0.5) {
+  //    scrollIndicator.classList.add("hidden");
+  //  } else {
+  //    scrollIndicator.classList.remove("hidden");
+  //  }
 }
 
 function updateScrollNextArrow() {
   const scrollNextBtn = document.getElementById("scrollNextSection");
   if (!scrollNextBtn) return;
 
-  const sections = document.querySelectorAll("section.scroll-parallax");
-  if (sections.length === 0) return;
+  const sections = Array.from(
+    document.querySelectorAll("section.scroll-parallax")
+  ).filter((s) => s.style.display !== "none"); // seulement les sections visibles
+
+  if (sections.length === 0) {
+    scrollNextBtn.style.display = "none";
+    return;
+  }
 
   const lang = getCurrentLanguage();
   const lastSection = sections[sections.length - 1];
@@ -185,7 +331,7 @@ function updateScrollNextArrow() {
 
   const currentLabel = indicatorLabel.textContent.trim();
 
-  // Transition for both fade in and fade out
+  // Transition pour l'opacité
   scrollNextBtn.style.transition = "opacity 0.2s ease";
 
   if (currentLabel === lastLabel) {
@@ -195,7 +341,6 @@ function updateScrollNextArrow() {
     }, 200);
   } else {
     scrollNextBtn.style.display = "block";
-    // tiny timeout ensures display:block is applied before opacity transition
     setTimeout(() => {
       scrollNextBtn.style.opacity = "1";
     }, 10);
@@ -300,7 +445,9 @@ document.addEventListener("DOMContentLoaded", () => {
 let hasUserScrolled = false;
 
 function handleParallaxScroll() {
-  const elements = document.querySelectorAll(".scroll-parallax");
+  const elements = document.querySelectorAll(
+    ".scroll-parallax, .filter-container.scroll-parallax"
+  );
 
   elements.forEach((el) => {
     const rect = el.getBoundingClientRect();
@@ -309,8 +456,7 @@ function handleParallaxScroll() {
     const startTrigger = windowHeight * 0.95;
 
     if (rect.top < startTrigger && rect.bottom > 0) {
-      if (!hasUserScrolled) return;
-
+      // Always apply transform regardless of hasUserScrolled
       const distanceFromBottom = windowHeight - rect.top;
       const visibleRatio = Math.min(1, distanceFromBottom / windowHeight);
 
@@ -478,4 +624,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Ensure page is scrolled to top during splash
   window.scrollTo(0, 0);
+});
+
+// Ensure parallax placement is correct on initial load
+document.addEventListener("DOMContentLoaded", () => {
+  handleParallaxScroll();
 });

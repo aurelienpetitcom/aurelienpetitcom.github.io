@@ -135,10 +135,22 @@
     </div>
   </div>
 
+  <!-- Filter Selector -->
+  <div class="filter-container scroll-parallax">
+    <select id="postFilter">
+      <option value="all" data-lang="en">All posts</option>
+      <option value="featured" data-lang="en">Featured</option>
+      <option value="all" data-lang="fr" style="display:none;">Toutes les publications</option>
+      <option value="featured" data-lang="fr" style="display:none;">Mis en avant</option>
+    </select>
+    <div id="scrollfilterfleche" class="scroll-arrow">&#x2193</div>
+  </div>
+
+
   <!-- Sections -->
   <div class="content-defilement">
-    <section id="section1" class="accueil_section1 hidden scroll-parallax" data-label-en="Okbots Expedition"
-      data-label-fr="Okbots Expedition">
+    <section class="accueil_section1 hidden scroll-parallax" data-label-en="Okbots Expedition"
+      data-label-fr="Okbots Expedition" data-category="featured">
       <div class="content-container">
         <img src="images/okbotsexpedition/okbotsexpedition_img2025_01.png" alt="Logo Okbots Expedition avec fond"
           class="imagepost">
@@ -213,8 +225,8 @@
 
     <!-- PUBLICATION : Famous castle -->
 
-    <section class="accueil_section1 hidden scroll-parallax" data-label-en="Famous castle"
-      data-label-fr="Famous castle">
+    <section class="accueil_section1 scroll-parallax" data-label-en="Famous castle" data-label-fr="Famous castle"
+      data-category="featured">
       <div class="content-container">
         <img src="images/productions/Le_Chateau_de_la_Belle_au_Bois_Dormant_post.png" alt="Famous castle"
           class="imagepost">
@@ -300,7 +312,7 @@
     <!-- PUBLICATION : The Electronic Brain -->
 
     <section class="accueil_section1 scroll-parallax" data-label-en="The Electronic Brain"
-      data-label-fr="The Electronic Brain">
+      data-label-fr="The Electronic Brain" data-category="featured">
       <div class="content-container">
         <img src="images/productions/The_Electronic_Brain_post.png" alt="The Electronic Brain" class="imagepost">
         <div class="date-category">
