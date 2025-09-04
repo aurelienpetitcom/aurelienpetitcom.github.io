@@ -684,3 +684,38 @@ document.addEventListener("DOMContentLoaded", () => {
 document.addEventListener("DOMContentLoaded", () => {
   handleParallaxScroll();
 });
+
+document.addEventListener("keydown", (e) => {
+  const lightbox = document.getElementById("lightbox");
+  const lightboxImg = document.getElementById("lightboxImg");
+  if (!lightbox || lightbox.style.display !== "flex" || !lightboxImg) return;
+
+  const currentSrc = lightboxImg.src;
+  const currentImgElement = Array.from(
+    document.querySelectorAll(".imagesouspost")
+  ).find((img) => img.src === currentSrc);
+  if (!currentImgElement) return;
+
+  const container =
+    currentImgElement.closest(".description-container") || document.body;
+  const allImgs = Array.from(container.querySelectorAll(".imagesouspost"));
+  let currentIndex = allImgs.findIndex((img) => img.src === currentSrc);
+  if (currentIndex === -1) return;
+
+  if (e.key === "ArrowRight") {
+    currentIndex = (currentIndex + 1) % allImgs.length; // boucle à 0 si dépasse
+  } else if (e.key === "ArrowLeft") {
+    currentIndex = (currentIndex - 1 + allImgs.length) % allImgs.length; // boucle à max si inférieur à 0
+  } else {
+    return; // autre touche ignorée
+  }
+
+  lightboxImg.src = allImgs[currentIndex].src;
+
+  // scale animation
+  lightboxImg.style.transition = "none";
+  lightboxImg.style.transform = "scale(0.95)";
+  void lightboxImg.offsetWidth; // force reflow
+  lightboxImg.style.transition = "transform 0.4s ease";
+  lightboxImg.style.transform = "scale(1)";
+});
