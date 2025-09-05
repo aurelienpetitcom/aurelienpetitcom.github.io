@@ -11,6 +11,29 @@ function getCurrentLanguage() {
   return selector ? selector.value : "fr"; // valeur par défaut
 }
 
+// Return the visible/active "Show more" button for the current language in a container
+function getVisibleToggleButton(descContainer, lang) {
+  // Prefer a button inside a localized wrapper if it exists
+  let btn = descContainer.querySelector(
+    `[data-lang="${lang}"] button.inline-button`
+  );
+  if (btn) return btn;
+
+  // Otherwise, pick the visible button
+  const candidates = Array.from(
+    descContainer.querySelectorAll("button.inline-button")
+  );
+  btn = candidates.find((b) => {
+    const cs = window.getComputedStyle(b);
+    return (
+      cs.display !== "none" &&
+      cs.visibility !== "hidden" &&
+      b.offsetParent !== null
+    );
+  });
+  return btn || candidates[0] || null;
+}
+
 function changeLanguage(languageCode) {
   const elements = document.querySelectorAll("[data-lang]");
   elements.forEach(function (elem) {
@@ -23,22 +46,21 @@ function changeLanguage(languageCode) {
     }
   });
 
-  // Update toggleText buttons
-  document
-    .querySelectorAll(".description-container button.inline-button")
-    .forEach((button) => {
-      const container = button.closest(".description-container");
-      const lang = languageCode;
-      const moreText = container.querySelector(
-        `.description[data-lang="${lang}"] .more-text`
-      );
+  // Update toggleText buttons (per container, pick the visible/active button for current lang)
+  document.querySelectorAll(".description-container").forEach((container) => {
+    const lang = languageCode;
+    const moreText = container.querySelector(
+      `.description[data-lang="${lang}"] .more-text`
+    );
+    const button = getVisibleToggleButton(container, lang);
+    if (!button) return;
 
-      if (moreText && moreText.classList.contains("hidden")) {
-        button.textContent = lang === "en" ? "Show more" : "En voir plus";
-      } else {
-        button.textContent = lang === "en" ? "Show less" : "En voir moins";
-      }
-    });
+    if (moreText && moreText.classList.contains("hidden")) {
+      button.textContent = lang === "en" ? "Show more" : "En voir plus";
+    } else {
+      button.textContent = lang === "en" ? "Show less" : "En voir moins";
+    }
+  });
 
   // Update scroll indicator labels
   const indicatorLabels = document.querySelectorAll(".indicator-label");
@@ -421,23 +443,22 @@ function toggleText(button) {
 document.addEventListener("DOMContentLoaded", () => {
   const lang = getCurrentLanguage();
 
-  document
-    .querySelectorAll(".description-container button.inline-button")
-    .forEach((button) => {
-      const container = button.closest(".description-container");
-      const descriptionEl = container.querySelector(
-        `.description[data-lang="${lang}"]`
-      );
-      const moreText = descriptionEl
-        ? descriptionEl.querySelector(".more-text")
-        : null;
+  document.querySelectorAll(".description-container").forEach((container) => {
+    const descriptionEl = container.querySelector(
+      `.description[data-lang="${lang}"]`
+    );
+    const moreText = descriptionEl
+      ? descriptionEl.querySelector(".more-text")
+      : null;
+    const button = getVisibleToggleButton(container, lang);
+    if (!button) return;
 
-      if (moreText && moreText.classList.contains("hidden")) {
-        button.textContent = lang === "en" ? "Show more" : "En voir plus";
-      } else {
-        button.textContent = lang === "en" ? "Show less" : "En voir moins";
-      }
-    });
+    if (moreText && moreText.classList.contains("hidden")) {
+      button.textContent = lang === "en" ? "Show more" : "En voir plus";
+    } else {
+      button.textContent = lang === "en" ? "Show less" : "En voir moins";
+    }
+  });
 });
 
 let hasUserScrolled = false;
@@ -686,6 +707,7 @@ document.addEventListener("DOMContentLoaded", () => {
 document.addEventListener("keydown", (e) => {
   const lightbox = document.getElementById("lightbox");
   const lightboxImg = document.getElementById("lightboxImg");
+  const lightboxCloseBtn = document.getElementById("lightboxClose");
   if (!lightbox || lightbox.style.display !== "flex" || !lightboxImg) return;
 
   const currentSrc = lightboxImg.src;
@@ -701,14 +723,21 @@ document.addEventListener("keydown", (e) => {
   if (currentIndex === -1) return;
 
   if (e.key === "ArrowRight") {
-    currentIndex = (currentIndex + 1) % allImgs.length; // boucle à 0 si dépasse
+    currentIndex = (currentIndex + 1) % allImgs.length;
+    lightboxImg.src = allImgs[currentIndex].src;
   } else if (e.key === "ArrowLeft") {
-    currentIndex = (currentIndex - 1 + allImgs.length) % allImgs.length; // boucle à max si inférieur à 0
+    currentIndex = (currentIndex - 1 + allImgs.length) % allImgs.length;
+    lightboxImg.src = allImgs[currentIndex].src;
+  } else if (e.key === "Escape") {
+    // Ferme la lightbox comme le bouton de fermeture
+    lightbox.style.display = "none";
+    document.body.style.overflow = ""; // réactive le scroll
+    const scrollIndicator = document.querySelector(".scroll-indicator");
+    if (scrollIndicator) scrollIndicator.style.opacity = "1";
+    return; // stop ici
   } else {
     return; // autre touche ignorée
   }
-
-  lightboxImg.src = allImgs[currentIndex].src;
 
   // scale animation
   lightboxImg.style.transition = "none";
@@ -716,4 +745,68 @@ document.addEventListener("keydown", (e) => {
   void lightboxImg.offsetWidth; // force reflow
   lightboxImg.style.transition = "transform 0.4s ease";
   lightboxImg.style.transform = "scale(1)";
+});
+
+// Hide all .more-text elements (and reset buttons) if user scrolls near top of page
+window.addEventListener("scroll", function () {
+  if (window.scrollY < window.innerHeight * 0.3) {
+    document.querySelectorAll(".more-text:not(.hidden)").forEach((moreText) => {
+      moreText.classList.add("hidden");
+      moreText.querySelectorAll(".images-row").forEach((row) => {
+        row.style.display = "none";
+      });
+
+      const descContainer = moreText.closest(".description-container");
+      if (descContainer) {
+        const lang = getCurrentLanguage();
+        const button = getVisibleToggleButton(descContainer, lang);
+        if (button) {
+          button.textContent = lang === "en" ? "Show more" : "En voir plus";
+        }
+      }
+    });
+  }
+});
+
+// Swipe detection for lightbox (mobile)
+let touchStartY = 0;
+let touchEndY = 0;
+
+function handleSwipeGesture() {
+  const lightbox = document.getElementById("lightbox");
+  if (!lightbox || lightbox.style.display !== "flex") return;
+
+  const deltaY = touchEndY - touchStartY;
+  const minSwipeDistance = 50; // px
+
+  if (deltaY < -minSwipeDistance) {
+    // swipe up → next image
+    const nextBtn = document.getElementById("lightboxNext");
+    if (nextBtn) nextBtn.click();
+  } else if (deltaY > minSwipeDistance) {
+    // swipe down → previous image
+    const prevBtn = document.getElementById("lightboxPrev");
+    if (prevBtn) prevBtn.click();
+  }
+}
+
+document.addEventListener("touchstart", (e) => {
+  if (!e.touches.length) return;
+  touchStartY = e.touches[0].clientY;
+});
+
+document.addEventListener("touchend", (e) => {
+  touchEndY = e.changedTouches[0].clientY;
+  handleSwipeGesture();
+});
+
+// Close lightbox if user scrolls
+window.addEventListener("scroll", () => {
+  const lightbox = document.getElementById("lightbox");
+  if (lightbox && lightbox.style.display === "flex") {
+    lightbox.style.display = "none";
+    document.body.style.overflow = ""; // réactive le scroll
+    const scrollIndicator = document.querySelector(".scroll-indicator");
+    if (scrollIndicator) scrollIndicator.style.opacity = "1";
+  }
 });
