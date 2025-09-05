@@ -625,7 +625,7 @@ body {
   max-width: 80%;
   max-height: 80%;
   border-radius: 20px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  /*box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);*/
   z-index: 1000;
 }
 
