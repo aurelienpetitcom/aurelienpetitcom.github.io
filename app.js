@@ -121,13 +121,11 @@ function filterPosts() {
       .map((c) => c.trim())
       .filter((c) => c.length > 0);
 
-    if (selectedCategory === "all" || categories.includes(selectedCategory)) {
+    if (categories.includes(selectedCategory)) {
       section.style.display = "block";
 
       // Animation verticale des éléments .content-defilement
       section.querySelectorAll(".content-defilement").forEach((content) => {
-        // Reset temporaire pour repartir de 100px plus bas
-        // Neutraliser la contribution du parallax
         content.style.transition = "none";
         content.style.transform = "translateY(100px) scale(1)";
         content.style.opacity = "0";
