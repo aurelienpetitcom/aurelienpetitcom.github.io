@@ -593,6 +593,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
       lightboxImg.src = img.src;
 
+      lightbox.style.display = "flex";
+      lightbox.tabIndex = -1; // Rendre focusable
+      lightbox.focus(); // Forcer le focus
+      disableScroll();
+      document.querySelector(".scroll-indicator").style.opacity = "0";
+
       // --- ANIMATION SCALE AJOUTÉE ---
       lightboxImg.style.transition = "none";
       lightboxImg.style.transform = "scale(0.95)";
@@ -768,27 +774,37 @@ window.addEventListener("scroll", function () {
   }
 });
 
-// Swipe detection for lightbox (mobile)
-let touchStartY = 0;
-let touchEndY = 0;
+// Swipe detection for lightbox (mobile) - horizontal swipes
+let touchStartX = 0;
+let touchEndX = 0;
 
 function handleSwipeGesture() {
   const lightbox = document.getElementById("lightbox");
   if (!lightbox || lightbox.style.display !== "flex") return;
 
-  const deltaY = touchEndY - touchStartY;
+  const deltaX = touchEndX - touchStartX;
   const minSwipeDistance = 50; // px
 
-  if (deltaY < -minSwipeDistance) {
-    // swipe up → next image
+  if (deltaX < -minSwipeDistance) {
+    // swipe left → next image
     const nextBtn = document.getElementById("lightboxNext");
     if (nextBtn) nextBtn.click();
-  } else if (deltaY > minSwipeDistance) {
-    // swipe down → previous image
+  } else if (deltaX > minSwipeDistance) {
+    // swipe right → previous image
     const prevBtn = document.getElementById("lightboxPrev");
     if (prevBtn) prevBtn.click();
   }
 }
+
+document.addEventListener("touchstart", (e) => {
+  if (!e.touches.length) return;
+  touchStartX = e.touches[0].clientX;
+});
+
+document.addEventListener("touchend", (e) => {
+  touchEndX = e.changedTouches[0].clientX;
+  handleSwipeGesture();
+});
 
 document.addEventListener("touchstart", (e) => {
   if (!e.touches.length) return;
