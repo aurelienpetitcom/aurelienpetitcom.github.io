@@ -974,6 +974,7 @@ body {
   color: rgb(255, 255, 255);
   cursor: pointer;
   font-size: 20px;
+  pointer-events: none; /* la flèche ne capte pas le clic */
 }
 
 @media (min-width: 750px) {
@@ -1088,6 +1089,7 @@ body.loaded #splash-screen {
   padding: 5px 10px;
   border-radius: 5px;
   font-size: 15px;
+  translate: 25px;
   font-family: "SFProRegular", sans-serif;
   appearance: none;
   cursor: pointer;
@@ -1097,6 +1099,7 @@ body.loaded #splash-screen {
   border: none;
   outline: none;
   width: 200px; /* largeur fixe pour que texte reste aligné */
+  padding-right: 25px; /* espace pour la flèche */
 }
 
 #postFilter option {
