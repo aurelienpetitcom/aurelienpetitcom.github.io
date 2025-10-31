@@ -24,7 +24,11 @@
   width: 100%; /* Largeur de 100% du conteneur */
   position: relative;
   max-width: 800px; /* Limite la largeur du conteneur */
-  padding-bottom: 1px;
+  padding-bottom: 20px;
+}
+
+.description-container {
+  padding-bottom: 20px;
 }
 
 /* Styles pour le bouton "learn-more" */
@@ -36,7 +40,7 @@
 
 /* Icônes des réseaux sociaux */
 .social-icons {
-  bottom: 30px;
+  bottom: 43px;
   right: 40px;
   display: flex;
   gap: 10px;
@@ -171,7 +175,7 @@ h5 {
   padding-right: 40px;
   padding-top: 10px;
   color: #989898;
-  transform: translateY(20px);
+  transform: translateY(0px);
 }
 
 .imagepost {
@@ -757,7 +761,7 @@ body {
     padding-top: 10px;
     padding-right: 30px;
     color: #989898;
-    transform: translateY(20px);
+    transform: translateY(0px);
   }
 
   .date-category {
@@ -858,6 +862,19 @@ body {
   transition: opacity 0.2s ease-out; /* Durée de l'animation */
 }
 
+.row-flex-bouton {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center; /* centre verticalement */
+  gap: 20px;
+  flex-wrap: wrap;
+  height: 60px;
+  margin-left: 0px;
+  margin-top: 0px;
+  margin-bottom: 10px;
+}
+
 .row-flex {
   display: flex;
   flex-direction: row;
@@ -867,8 +884,8 @@ body {
   flex-wrap: wrap;
   height: 50px;
   margin-left: 0px;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
 
 /* Bouton intégré dans le texte */

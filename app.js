@@ -826,3 +826,58 @@ window.addEventListener("scroll", () => {
     if (scrollIndicator) scrollIndicator.style.opacity = "1";
   }
 });
+
+function updateBackgroundColor() {
+  const indicatorLabel = document.querySelector(".indicator-label");
+  const currentLabel = indicatorLabel ? indicatorLabel.textContent.trim() : "";
+  const sections = document.querySelectorAll(
+    "section[data-label-en], section[data-label-fr]"
+  );
+  const body = document.body;
+  let appliedColor = "#000000ff"; // couleur par défaut
+
+  sections.forEach((section) => {
+    const labelEN = section.getAttribute("data-label-en")?.trim();
+    const labelFR = section.getAttribute("data-label-fr")?.trim();
+    if (currentLabel === labelEN || currentLabel === labelFR) {
+      appliedColor = section.getAttribute("data-bgcolor") || "#000000ff";
+    }
+  });
+
+  body.style.transition = "background-color 1s ease";
+  body.style.backgroundColor = appliedColor;
+  const mainContainer = document.querySelector(".main__container");
+  if (mainContainer) {
+    mainContainer.style.transition = "background-color 1s ease";
+    mainContainer.style.backgroundColor = appliedColor;
+  }
+  // Ajout pour appliquer la couleur et la transition à .main
+  const main = document.querySelector(".main");
+  if (main) {
+    main.style.transition = "background-color 1s ease";
+    main.style.backgroundColor = appliedColor;
+  }
+  // Ajout pour appliquer la couleur et la transition à .main__container-bandebp
+  const bandeBP = document.querySelector(".main__container-bandebp");
+  if (bandeBP) {
+    bandeBP.style.transition = "background-color 1s ease";
+    bandeBP.style.backgroundColor = appliedColor;
+  }
+}
+
+// --- Exécuter sur scroll ---
+document.addEventListener("scroll", updateBackgroundColor);
+
+// --- Exécuter quand le label change ---
+const indicatorLabel = document.querySelector(".indicator-label");
+if (indicatorLabel) {
+  const observer = new MutationObserver(updateBackgroundColor);
+  observer.observe(indicatorLabel, {
+    childList: true,
+    subtree: true,
+    characterData: true,
+  });
+}
+
+// --- Exécuter aussi au chargement initial ---
+document.addEventListener("DOMContentLoaded", updateBackgroundColor);
