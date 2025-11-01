@@ -154,6 +154,9 @@ h5 {
   font-family: "SFProLight", sans-serif;
   margin-bottom: 10px;
   margin-top: 10px;
+  margin-left: 50px;
+  margin-right: 50px;
+  text-align: center;
 }
 
 .description {
