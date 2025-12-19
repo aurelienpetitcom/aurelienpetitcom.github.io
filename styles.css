@@ -636,6 +636,17 @@ body {
   z-index: 1000;
 }
 
+@media (max-width: 1200px) {
+  .scroll-indicator {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .scroll-indicator::before {
+    opacity: 0;
+  }
+}
+
 @media (max-width: 960px) {
   .main__container {
     display: flex;
@@ -698,14 +709,6 @@ body {
     opacity: 0;
   }
 
-  .scroll-indicator {
-    opacity: 0;
-    visibility: hidden;
-  }
-
-  .scroll-indicator::before {
-    opacity: 0;
-  }
   .content-defilement {
     margin-left: 20px;
     margin-right: 20px;
@@ -738,18 +741,6 @@ body {
     padding-left: 30px;
     padding-right: 30px;
   }
-  /*.images-row {
-    /* flex-direction: column !important;
-    align-items: center;
-  }
-
-  .images-row .imagesouspost {
-    width: 100% !important;
-    max-width: 100%;
-    margin-left: 0;
-    margin-right: 0;
-    margin-bottom: 0;
-  }*/
 
   .description {
     font-size: 18px;
