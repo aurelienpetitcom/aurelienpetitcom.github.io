@@ -919,7 +919,7 @@ if (indicatorLabel) {
 // --- Exécuter aussi au chargement initial ---
 document.addEventListener("DOMContentLoaded", updateBackgroundColor);
 
-// Partage d'une publication (détection automatique de l'ID) uniquement via Web Share API
+// Partage d'une publication (détection automatique de l'ID) avec titre et lien adaptés à la langue
 document.querySelectorAll(".social-share").forEach((button) => {
   button.addEventListener("click", async (e) => {
     e.preventDefault();
@@ -928,14 +928,22 @@ document.querySelectorAll(".social-share").forEach((button) => {
     if (!section) return;
 
     const postId = section.id;
-    const url = `${window.location.origin}/#${postId}`;
+    const lang = getCurrentLanguage();
+
+    // Récupère le titre de la section selon la langue
+    const title =
+      lang === "en"
+        ? section.getAttribute("data-label-en")
+        : section.getAttribute("data-label-fr");
+
+    // Construire le lien sans le https://
+    const link = `${window.location.host}/#${postId}`;
 
     if (navigator.share) {
       try {
         await navigator.share({
-          title: document.title,
-          text: `Check out this publication: ${url}`,
-          url: url,
+          title: title,
+          text: `${title}\n${link}`,
         });
       } catch (err) {
         console.log("Sharing failed", err);
