@@ -145,7 +145,12 @@ function filterPosts() {
 
     if (categories.includes(selectedCategory)) {
       section.style.display = "block";
-
+      // Charger les images seulement si un more-text est déjà ouvert
+      section
+        .querySelectorAll(".more-text:not(.hidden)")
+        .forEach((moreText) => {
+          loadMoreTextImages(moreText);
+        });
       // Animation verticale des éléments .content-defilement
       section.querySelectorAll(".content-defilement").forEach((content) => {
         content.style.transition = "none";
@@ -400,6 +405,17 @@ document.addEventListener("mouseup", () => {
 
 document.addEventListener("DOMContentLoaded", updateIndicator);
 
+// 🔽 Lazy-load des images contenues dans .more-text
+function loadMoreTextImages(moreText) {
+  if (!moreText) return;
+
+  moreText.querySelectorAll("img[data-src]").forEach((img) => {
+    if (!img.src || img.src === "") {
+      img.src = img.dataset.src;
+    }
+  });
+}
+
 function toggleText(button) {
   const container = button.closest(".description-container");
   const lang = getCurrentLanguage();
@@ -413,7 +429,10 @@ function toggleText(button) {
   const wasHidden = moreText && moreText.classList.contains("hidden");
 
   if (wasHidden) {
-    // Si on affiche plus → montrer le texte et scroller en haut du texte supplémentaire
+    // ✅ Charger les images UNIQUEMENT à l'ouverture
+    loadMoreTextImages(moreText);
+
+    // Afficher le texte
     moreText.classList.remove("hidden");
     const imagesRows = moreText.querySelectorAll(".images-row");
     imagesRows.forEach((row) => {
