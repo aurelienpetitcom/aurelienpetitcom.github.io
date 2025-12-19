@@ -645,6 +645,40 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+function handleHashNavigation() {
+  const hash = window.location.hash;
+  if (!hash) return;
+
+  const targetSection = document.querySelector(hash);
+  if (!targetSection) return;
+
+  const categories = targetSection.dataset.category;
+  if (!categories) return;
+
+  const mainCategory = categories.split(",")[0];
+
+  const filterSelect = document.getElementById("postFilter");
+  if (filterSelect) {
+    filterSelect.value = mainCategory;
+    filterSelect.dispatchEvent(new Event("change"));
+  }
+
+  setTimeout(() => {
+    targetSection.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+
+    const moreText = targetSection.querySelector(".more-text");
+    const button = targetSection.querySelector(".inline-button");
+
+    if (moreText && moreText.classList.contains("hidden")) {
+      moreText.classList.remove("hidden");
+      if (button) button.style.display = "none";
+    }
+  }, 400);
+}
+
 // Splash video on page load with fade triggered at 1.3s
 document.addEventListener("DOMContentLoaded", () => {
   const splash = document.getElementById("splash-screen");
@@ -678,6 +712,9 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => {
       splash.style.display = "none";
       document.body.classList.add("loaded");
+
+      // 🔗 Navigation par lien direct (hash) APRÈS le splash
+      handleHashNavigation();
     }, 200); // match the CSS transition duration
   };
 
@@ -881,43 +918,3 @@ if (indicatorLabel) {
 
 // --- Exécuter aussi au chargement initial ---
 document.addEventListener("DOMContentLoaded", updateBackgroundColor);
-
-document.addEventListener("DOMContentLoaded", () => {
-  const hash = window.location.hash;
-  if (!hash) return;
-
-  const targetSection = document.querySelector(hash);
-  if (!targetSection) return;
-
-  /* 1️⃣ Récupérer la catégorie de la publication */
-  const categories = targetSection.dataset.category;
-  if (!categories) return;
-
-  // On prend la première catégorie (ex: "highlights,2021" → "highlights")
-  const mainCategory = categories.split(",")[0];
-
-  /* 2️⃣ Forcer le filtre */
-  const filterSelect = document.getElementById("postFilter");
-  if (filterSelect) {
-    filterSelect.value = mainCategory;
-    filterSelect.dispatchEvent(new Event("change"));
-  }
-
-  /* 3️⃣ Attendre que le filtre soit appliqué */
-  setTimeout(() => {
-    // Scroll vers la publication
-    targetSection.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
-
-    // Ouvrir le more-text
-    const moreText = targetSection.querySelector(".more-text");
-    const button = targetSection.querySelector(".inline-button");
-
-    if (moreText && button && moreText.classList.contains("hidden")) {
-      moreText.classList.remove("hidden");
-      button.style.display = "none";
-    }
-  }, 300);
-});
