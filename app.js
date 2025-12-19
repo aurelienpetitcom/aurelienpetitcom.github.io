@@ -590,49 +590,57 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function showImage(index) {
-    if (!currentGroup.length) return;
-    if (index < 0) index = currentGroup.length - 1;
-    if (index >= currentGroup.length) index = 0;
-    currentIndex = index;
-    lightboxImg.src = currentGroup[currentIndex].src;
-    // Reset and trigger scale animation
-    lightboxImg.style.transition = "none";
-    lightboxImg.style.transform = "scale(0.95)";
-    void lightboxImg.offsetWidth; // force reflow
-    lightboxImg.style.transition = "transform 0.4s ease";
-    lightboxImg.style.transform = "scale(1)";
-  }
+    if (!currentGroup || currentGroup.length === 0) return;
 
-  // Open lightbox on image click
-  document.querySelectorAll(".imagesouspost").forEach((img) => {
-    img.addEventListener("click", () => {
-      // Find all images in the same description-container
-      currentGroup = Array.from(
-        img
-          .closest(".description-container")
-          ?.querySelectorAll(".imagesouspost") || []
-      );
-      currentIndex = currentGroup.indexOf(img);
+    // Circular navigation
+    if (index < 0) {
+      currentIndex = currentGroup.length - 1;
+    } else if (index >= currentGroup.length) {
+      currentIndex = 0;
+    } else {
+      currentIndex = index;
+    }
 
-      lightboxImg.src = img.src;
+    const imgSrc = currentGroup[currentIndex].src;
+    if (imgSrc) {
+      lightboxImg.src = imgSrc;
 
-      lightbox.style.display = "flex";
-      lightbox.tabIndex = -1; // Rendre focusable
-      lightbox.focus(); // Forcer le focus
-      disableScroll();
-      document.querySelector(".scroll-indicator").style.opacity = "0";
-
-      // --- ANIMATION SCALE AJOUTÉE ---
+      // Scale animation
       lightboxImg.style.transition = "none";
       lightboxImg.style.transform = "scale(0.95)";
       void lightboxImg.offsetWidth; // force reflow
       lightboxImg.style.transition = "transform 0.4s ease";
       lightboxImg.style.transform = "scale(1)";
-      // --- FIN DE L'ANIMATION ---
+    }
+  }
+
+  // Open lightbox on image click
+  document.querySelectorAll(".imagesouspost").forEach((img) => {
+    img.addEventListener("click", () => {
+      currentGroup = Array.from(
+        img
+          .closest(".description-container")
+          ?.querySelectorAll(".imagesouspost") || []
+      ).filter((i) => !!i.src); // Remove undefined or empty src
+      currentIndex = currentGroup.indexOf(img);
+
+      if (!currentGroup.length) return;
+
+      lightboxImg.src = currentGroup[currentIndex].src;
 
       lightbox.style.display = "flex";
+      lightbox.tabIndex = -1;
+      lightbox.focus();
       disableScroll();
-      document.querySelector(".scroll-indicator").style.opacity = "0";
+      const scrollIndicator = document.querySelector(".scroll-indicator");
+      if (scrollIndicator) scrollIndicator.style.opacity = "0";
+
+      // Scale animation
+      lightboxImg.style.transition = "none";
+      lightboxImg.style.transform = "scale(0.95)";
+      void lightboxImg.offsetWidth; // force reflow
+      lightboxImg.style.transition = "transform 0.4s ease";
+      lightboxImg.style.transform = "scale(1)";
     });
   });
 
@@ -655,7 +663,8 @@ document.addEventListener("DOMContentLoaded", () => {
   lightboxCloseBtn.addEventListener("click", () => {
     lightbox.style.display = "none";
     enableScroll();
-    document.querySelector(".scroll-indicator").style.opacity = "1";
+    const scrollIndicator = document.querySelector(".scroll-indicator");
+    if (scrollIndicator) scrollIndicator.style.opacity = "1";
   });
 
   // Close when clicking outside the image
@@ -663,7 +672,8 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.target === lightbox) {
       lightbox.style.display = "none";
       enableScroll();
-      document.querySelector(".scroll-indicator").style.opacity = "1";
+      const scrollIndicator = document.querySelector(".scroll-indicator");
+      if (scrollIndicator) scrollIndicator.style.opacity = "1";
     }
   });
 });
