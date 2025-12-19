@@ -881,3 +881,26 @@ if (indicatorLabel) {
 
 // --- Exécuter aussi au chargement initial ---
 document.addEventListener("DOMContentLoaded", updateBackgroundColor);
+
+document.addEventListener("DOMContentLoaded", () => {
+  const hash = window.location.hash;
+  if (!hash) return;
+
+  const targetSection = document.querySelector(hash);
+  if (!targetSection) return;
+
+  // Scroll doux vers la publication
+  targetSection.scrollIntoView({
+    behavior: "smooth",
+    block: "start",
+  });
+
+  // Ouvrir automatiquement le more-text
+  const moreText = targetSection.querySelector(".more-text");
+  const button = targetSection.querySelector(".inline-button");
+
+  if (moreText && button && moreText.classList.contains("hidden")) {
+    moreText.classList.remove("hidden");
+    button.style.display = "none";
+  }
+});
