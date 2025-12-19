@@ -11,8 +11,6 @@
 
     <!-- Open Graph -->
     <meta property="og:title" content="Okbots Expedition">
-    <meta property="og:description"
-        content="Okbots Expedition is a narrative platformer game project produced on Unreal Engine 5.">
     <meta property="og:image" content="/images/okbotsexpedition/okbotsexpedition_img2025_01.png">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://aurelienpetit.com/share/okbots-expedition.html">
@@ -20,14 +18,36 @@
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Okbots Expedition">
-    <meta name="twitter:description"
-        content="Okbots Expedition is a narrative platformer game project produced on Unreal Engine 5.">
     <meta name="twitter:image" content="/images/okbotsexpedition/okbotsexpedition_img2025_01.png">
 
     <!-- Redirection instantanée vers la section sur le site principal -->
     <script>
         const lang = new URLSearchParams(window.location.search).get('lang') || 'fr';
         const title = lang === 'en' ? 'Okbots Expedition' : 'Okbots Expedition';
+
+        // Première phrase de la description selon la langue
+        const description = lang === 'en'
+            ? 'Okbots Expedition is a narrative platformer game project produced on Unreal Engine 5.'
+            : 'Okbots Expedition est un projet de jeu de type plateforme narratif produit sur Unreal Engine 5.';
+
+        // Mettre à jour les meta OG et Twitter description dynamiquement
+        let ogDesc = document.querySelector('meta[property="og:description"]');
+        if (!ogDesc) {
+            ogDesc = document.createElement('meta');
+            ogDesc.setAttribute('property', 'og:description');
+            document.head.appendChild(ogDesc);
+        }
+        ogDesc.setAttribute('content', description);
+
+        let twitterDesc = document.querySelector('meta[name="twitter:description"]');
+        if (!twitterDesc) {
+            twitterDesc = document.createElement('meta');
+            twitterDesc.setAttribute('name', 'twitter:description');
+            document.head.appendChild(twitterDesc);
+        }
+        twitterDesc.setAttribute('content', description);
+
+        // Redirection instantanée vers la section principale
         window.location.replace(`https://aurelienpetit.com/#okbots-expedition`);
     </script>
 </head>

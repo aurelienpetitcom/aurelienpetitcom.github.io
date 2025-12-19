@@ -11,8 +11,6 @@
 
     <!-- Open Graph -->
     <meta property="og:title" content="Famous Castle">
-    <meta property="og:description"
-        content="Discover the castle reimagined in a unique graphic style, where the okbots seem willing to do anything to reach the very top.">
     <meta property="og:image" content="/images/productions/Le_Chateau_de_la_Belle_au_Bois_Dormant_post.png">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://aurelienpetit.com/share/famous-castle.html">
@@ -20,14 +18,36 @@
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Famous Castle">
-    <meta name="twitter:description"
-        content="Discover the castle reimagined in a unique graphic style, where the okbots seem willing to do anything to reach the very top.">
     <meta name="twitter:image" content="/images/productions/Le_Chateau_de_la_Belle_au_Bois_Dormant_post.png">
 
     <!-- Redirection instantanée vers la section sur le site principal -->
     <script>
         const lang = new URLSearchParams(window.location.search).get('lang') || 'fr';
         const title = lang === 'en' ? 'Famous Castle' : 'Famous Castle';
+
+        // Première phrase de la description selon la langue
+        const description = lang === 'en'
+            ? 'Discover the castle reimagined in a unique graphic style, where the okbots seem willing to do anything to reach the very top.'
+            : 'Découvrez le château revisité dans un style graphique unique, où les okbots semblent prêts à tout pour atteindre le sommet.';
+
+        // Mettre à jour les meta OG et Twitter description dynamiquement
+        let ogDesc = document.querySelector('meta[property="og:description"]');
+        if (!ogDesc) {
+            ogDesc = document.createElement('meta');
+            ogDesc.setAttribute('property', 'og:description');
+            document.head.appendChild(ogDesc);
+        }
+        ogDesc.setAttribute('content', description);
+
+        let twitterDesc = document.querySelector('meta[name="twitter:description"]');
+        if (!twitterDesc) {
+            twitterDesc = document.createElement('meta');
+            twitterDesc.setAttribute('name', 'twitter:description');
+            document.head.appendChild(twitterDesc);
+        }
+        twitterDesc.setAttribute('content', description);
+
+        // Redirection instantanée vers la section principale
         window.location.replace(`https://aurelienpetit.com/#famous-castle`);
     </script>
 </head>
