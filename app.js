@@ -919,7 +919,7 @@ if (indicatorLabel) {
 // --- Exécuter aussi au chargement initial ---
 document.addEventListener("DOMContentLoaded", updateBackgroundColor);
 
-// Partage d'une publication via une page dédiée (share page) pour contrôler titre et icône
+// Partage d'une publication via une page dédiée (share page) pour ne partager que le lien
 document.querySelectorAll(".social-share").forEach((button) => {
   button.addEventListener("click", async (e) => {
     e.preventDefault();
@@ -928,23 +928,14 @@ document.querySelectorAll(".social-share").forEach((button) => {
     if (!section) return;
 
     const postId = section.id;
-    const lang = getCurrentLanguage();
 
-    // Construire l'URL de la page dédiée à cette publication
-    const shareUrl = `aurelienpetit.com/share/${postId}`;
-
-    // Récupérer le titre de la section selon la langue
-    const title =
-      lang === "en"
-        ? section.getAttribute("data-label-en")
-        : section.getAttribute("data-label-fr");
+    // Construire le lien à partager uniquement
+    const shareLink = `aurelienpetit.com/share/${postId}`;
 
     if (navigator.share) {
       try {
         await navigator.share({
-          title: title,
-          text: title,
-          url: shareUrl,
+          text: shareLink,
         });
       } catch (err) {
         console.log("Sharing failed", err);
