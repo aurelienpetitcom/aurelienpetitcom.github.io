@@ -919,7 +919,7 @@ if (indicatorLabel) {
 // --- Exécuter aussi au chargement initial ---
 document.addEventListener("DOMContentLoaded", updateBackgroundColor);
 
-// Partage d'une publication (détection automatique de l'ID) avec titre, lien et image
+// Partage d'une publication via une page dédiée (share page) pour contrôler titre et icône
 document.querySelectorAll(".social-share").forEach((button) => {
   button.addEventListener("click", async (e) => {
     e.preventDefault();
@@ -930,35 +930,22 @@ document.querySelectorAll(".social-share").forEach((button) => {
     const postId = section.id;
     const lang = getCurrentLanguage();
 
-    // Récupère le titre de la section selon la langue
+    // Construire l'URL de la page dédiée à cette publication
+    const shareUrl = `${window.location.origin}/share/${postId}?lang=${lang}`;
+
+    // Récupérer le titre de la section selon la langue
     const title =
       lang === "en"
         ? section.getAttribute("data-label-en")
         : section.getAttribute("data-label-fr");
 
-    // Construire le lien sans le https://
-    const link = `${window.location.host}/#${postId}`;
-
-    // Récupérer l'image principale de la section (première image)
-    const imgEl = section.querySelector("img");
-    const imageUrl = imgEl ? imgEl.src : undefined;
-
     if (navigator.share) {
       try {
-        const shareData = {
+        await navigator.share({
           title: title,
-          text: `${title}\n${link}`,
-          url: link,
-        };
-        if (
-          imageUrl &&
-          navigator.canShare &&
-          navigator.canShare({ files: [] })
-        ) {
-          // Pour certains navigateurs supportant le partage de fichiers/images
-          // Ici on ne crée pas de fichier Blob mais on peut envisager si besoin
-        }
-        await navigator.share(shareData);
+          text: title,
+          url: shareUrl,
+        });
       } catch (err) {
         console.log("Sharing failed", err);
       }
