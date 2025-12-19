@@ -930,7 +930,7 @@ document.querySelectorAll(".social-share").forEach((button) => {
     const postId = section.id;
 
     // Construire le lien à partager uniquement
-    const shareLink = `aurelienpetit.com/share/${postId}`;
+    const shareLink = `https://aurelienpetit.com/share/${postId}`;
 
     // Choisir le titre selon la langue actuelle
     const lang = getCurrentLanguage();
