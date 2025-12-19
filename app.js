@@ -932,9 +932,17 @@ document.querySelectorAll(".social-share").forEach((button) => {
     // Construire le lien à partager uniquement
     const shareLink = `aurelienpetit.com/share/${postId}`;
 
+    // Choisir le titre selon la langue actuelle
+    const lang = getCurrentLanguage();
+    const title =
+      lang === "en"
+        ? section.getAttribute("data-label-en") || postId
+        : section.getAttribute("data-label-fr") || postId;
+
     if (navigator.share) {
       try {
         await navigator.share({
+          title: title,
           text: shareLink,
         });
       } catch (err) {
