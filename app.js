@@ -919,7 +919,7 @@ if (indicatorLabel) {
 // --- Exécuter aussi au chargement initial ---
 document.addEventListener("DOMContentLoaded", updateBackgroundColor);
 
-// Partage d'une publication (détection automatique de l'ID) avec fallback et toast traduit
+// Partage d'une publication (détection automatique de l'ID) uniquement via Web Share API
 document.querySelectorAll(".social-share").forEach((button) => {
   button.addEventListener("click", async (e) => {
     e.preventDefault();
@@ -929,69 +929,17 @@ document.querySelectorAll(".social-share").forEach((button) => {
 
     const postId = section.id;
     const url = `${window.location.origin}/#${postId}`;
-    const lang = getCurrentLanguage();
-    const toastMessage =
-      lang === "fr" ? "copié dans le presse-papiers !" : "copied to clipboard!";
 
-    // Vérifie si le navigateur supporte le partage natif et peut partager des URLs
-    const canShareNative =
-      navigator.share && navigator.canShare && navigator.canShare({ url });
-
-    if (canShareNative) {
-      // Partage natif (mobile ou desktop supportant URL)
+    if (navigator.share) {
       try {
         await navigator.share({
           title: document.title,
           text: `Check out this publication: ${url}`,
           url: url,
         });
-        // Ne pas afficher le toast si partage natif réussi
       } catch (err) {
         console.log("Sharing failed", err);
-        copyFallback(url, toastMessage);
       }
-    } else {
-      // Fallback : copier dans le presse-papiers seulement si pas de partage natif
-      copyFallback(url, toastMessage);
     }
   });
 });
-
-// Fonction fallback pour copier le lien et afficher le lien copié dans le toast
-async function copyFallback(url, message) {
-  try {
-    await navigator.clipboard.writeText(url);
-    showToast(
-      `<span style="font-style: italic; text-decoration: underline;">${url}</span> ${message}`
-    );
-  } catch (err) {
-    prompt("Copy this link manually:", url);
-  }
-}
-
-// Fonction pour afficher un toast simple
-function showToast(message, duration = 2000) {
-  let toast = document.createElement("div");
-  toast.innerHTML = message; // <-- utiliser innerHTML pour interpréter le HTML du lien
-  toast.style.position = "fixed";
-  toast.style.bottom = "30px";
-  toast.style.left = "50%";
-  toast.style.transform = "translateX(-50%)";
-  toast.style.backgroundColor = "rgba(255, 255, 255, 1)";
-  toast.style.color = "#000000ff";
-  toast.style.padding = "10px 20px";
-  toast.style.borderRadius = "5px";
-  toast.style.fontSize = "14px";
-  toast.style.fontFamily = "SF Pro, system-ui, sans-serif"; // ajout de la font
-  toast.style.zIndex = "9999";
-  toast.style.opacity = "0";
-  toast.style.transition = "opacity 0.3s ease";
-  document.body.appendChild(toast);
-  requestAnimationFrame(() => {
-    toast.style.opacity = "1";
-  });
-  setTimeout(() => {
-    toast.style.opacity = "0";
-    toast.addEventListener("transitionend", () => toast.remove());
-  }, duration);
-}
