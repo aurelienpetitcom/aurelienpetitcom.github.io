@@ -889,18 +889,35 @@ document.addEventListener("DOMContentLoaded", () => {
   const targetSection = document.querySelector(hash);
   if (!targetSection) return;
 
-  // Scroll doux vers la publication
-  targetSection.scrollIntoView({
-    behavior: "smooth",
-    block: "start",
-  });
+  /* 1️⃣ Récupérer la catégorie de la publication */
+  const categories = targetSection.dataset.category;
+  if (!categories) return;
 
-  // Ouvrir automatiquement le more-text
-  const moreText = targetSection.querySelector(".more-text");
-  const button = targetSection.querySelector(".inline-button");
+  // On prend la première catégorie (ex: "highlights,2021" → "highlights")
+  const mainCategory = categories.split(",")[0];
 
-  if (moreText && button && moreText.classList.contains("hidden")) {
-    moreText.classList.remove("hidden");
-    button.style.display = "none";
+  /* 2️⃣ Forcer le filtre */
+  const filterSelect = document.getElementById("postFilter");
+  if (filterSelect) {
+    filterSelect.value = mainCategory;
+    filterSelect.dispatchEvent(new Event("change"));
   }
+
+  /* 3️⃣ Attendre que le filtre soit appliqué */
+  setTimeout(() => {
+    // Scroll vers la publication
+    targetSection.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+
+    // Ouvrir le more-text
+    const moreText = targetSection.querySelector(".more-text");
+    const button = targetSection.querySelector(".inline-button");
+
+    if (moreText && button && moreText.classList.contains("hidden")) {
+      moreText.classList.remove("hidden");
+      button.style.display = "none";
+    }
+  }, 300);
 });
