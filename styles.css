@@ -200,6 +200,21 @@ h5 {
   border-bottom-left-radius: 20px;
 }
 
+/* Images lazy : réserve l’espace + fade-in */
+.imagesouspost.lazy-more {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  background-color: rgba(255, 255, 255, 0);
+  display: block;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.imagesouspost.lazy-more.loaded {
+  opacity: 1;
+}
+
 .scroll-indicator {
   position: fixed;
   left: 10px;
@@ -1152,4 +1167,13 @@ body.loaded #splash-screen {
 
 .lightbox-footer {
   padding: 15px;
+}
+
+/* Réserve l’espace pour les images lazy (évite les sauts) */
+.imagesouspost.lazy-more {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2; /* ratio par défaut */
+  background-color: rgba(255, 255, 255, 0);
+  display: block;
 }

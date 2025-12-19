@@ -405,12 +405,16 @@ document.addEventListener("mouseup", () => {
 
 document.addEventListener("DOMContentLoaded", updateIndicator);
 
-// 🔽 Lazy-load des images contenues dans .more-text
+// Lazy-load des images contenues dans .more-text
 function loadMoreTextImages(moreText) {
   if (!moreText) return;
 
   moreText.querySelectorAll("img[data-src]").forEach((img) => {
     if (!img.src || img.src === "") {
+      img.onload = () => {
+        img.classList.add("loaded");
+      };
+
       img.src = img.dataset.src;
     }
   });
