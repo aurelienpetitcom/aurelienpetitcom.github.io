@@ -20,6 +20,27 @@
     <meta name="twitter:title" content="Yin Yang">
     <meta name="twitter:image" content="/images/productions/Yin_Yang_post.png">
 
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'SF Pro', system-ui, sans-serif;
+            text-align: center;
+        }
+
+        a {
+            color: #1e90ff;
+            text-decoration: underline;
+            margin-top: 1rem;
+        }
+    </style>
+
     <!-- Description dynamique selon la langue et redirection instantanée -->
     <script>
         const lang = new URLSearchParams(window.location.search).get('lang') || 'fr';

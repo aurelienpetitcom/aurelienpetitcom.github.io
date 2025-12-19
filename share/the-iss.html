@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Titres pour partage -->
+    <title>The ISS</title>
+    <link rel="icon" href="/images/productions/The_ISS_post.png" type="image/png">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="The ISS">
+    <meta property="og:image" content="/images/productions/The_ISS_post.png">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://aurelienpetit.com/share/the-iss.html">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="The ISS">
+    <meta name="twitter:image" content="/images/productions/The_ISS_post.png">
+
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'SF Pro', system-ui, sans-serif;
+            text-align: center;
+        }
+
+        a {
+            color: #1e90ff;
+            text-decoration: underline;
+            margin-top: 1rem;
+        }
+    </style>
+
+    <!-- Description dynamique selon la langue et redirection instantanée -->
+    <script>
+        const lang = new URLSearchParams(window.location.search).get('lang') || 'fr';
+        const title = lang === 'en' ? 'The ISS' : 'The ISS';
+        const description = lang === 'en'
+            ? 'The ISS project explores orbital mechanics and futuristic space designs.'
+            : "Le projet The ISS explore la mécanique orbitale et les designs spatiaux futuristes.";
+
+        // Mettre à jour les meta OG et Twitter description dynamiquement
+        let ogDesc = document.querySelector('meta[property="og:description"]');
+        if (!ogDesc) {
+            ogDesc = document.createElement('meta');
+            ogDesc.setAttribute('property', 'og:description');
+            document.head.appendChild(ogDesc);
+        }
+        ogDesc.setAttribute('content', description);
+
+        let twitterDesc = document.querySelector('meta[name="twitter:description"]');
+        if (!twitterDesc) {
+            twitterDesc = document.createElement('meta');
+            twitterDesc.setAttribute('name', 'twitter:description');
+            document.head.appendChild(twitterDesc);
+        }
+        twitterDesc.setAttribute('content', description);
+
+        // Redirection instantanée vers la section principale
+        window.location.replace(`https://aurelienpetit.com/#the-iss`);
+    </script>
+</head>
+
+<body>
+    <p>Redirection en cours vers la publication...</p>
+    <p>
+        <a href="https://aurelienpetit.com/#the-iss">Cliquez ici si la redirection ne fonctionne pas</a>
+    </p>
+</body>
+
+</html>
