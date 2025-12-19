@@ -919,7 +919,7 @@ if (indicatorLabel) {
 // --- Exécuter aussi au chargement initial ---
 document.addEventListener("DOMContentLoaded", updateBackgroundColor);
 
-// Partage d'une publication (détection automatique de l'ID) avec titre et lien adaptés à la langue
+// Partage d'une publication (détection automatique de l'ID) avec titre, lien et image
 document.querySelectorAll(".social-share").forEach((button) => {
   button.addEventListener("click", async (e) => {
     e.preventDefault();
@@ -939,12 +939,26 @@ document.querySelectorAll(".social-share").forEach((button) => {
     // Construire le lien sans le https://
     const link = `${window.location.host}/#${postId}`;
 
+    // Récupérer l'image principale de la section (première image)
+    const imgEl = section.querySelector("img");
+    const imageUrl = imgEl ? imgEl.src : undefined;
+
     if (navigator.share) {
       try {
-        await navigator.share({
+        const shareData = {
           title: title,
           text: `${title}\n${link}`,
-        });
+          url: link,
+        };
+        if (
+          imageUrl &&
+          navigator.canShare &&
+          navigator.canShare({ files: [] })
+        ) {
+          // Pour certains navigateurs supportant le partage de fichiers/images
+          // Ici on ne crée pas de fichier Blob mais on peut envisager si besoin
+        }
+        await navigator.share(shareData);
       } catch (err) {
         console.log("Sharing failed", err);
       }
