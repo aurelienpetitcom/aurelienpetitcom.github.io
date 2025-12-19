@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Titres pour partage -->
+    <title>White House Run</title>
+    <link rel="icon" href="/images/productions/White_House_Run_post.png" type="image/png">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="White House Run">
+    <meta property="og:image" content="/images/productions/White_House_Run_post.png">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://aurelienpetit.com/share/white-house-run.html">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="White House Run">
+    <meta name="twitter:image" content="/images/productions/White_House_Run_post.png">
+
+    <!-- Description dynamique selon la langue et redirection instantanée -->
+    <script>
+        const lang = new URLSearchParams(window.location.search).get('lang') || 'fr';
+        const title = lang === 'en' ? 'White House Run' : 'White House Run';
+        const description = lang === 'en'
+            ? 'White House Run is a creative project exploring political architecture and interactive narrative.'
+            : 'White House Run est un projet créatif explorant l’architecture politique et la narration interactive.';
+
+        // Mettre à jour les meta OG et Twitter description dynamiquement
+        let ogDesc = document.querySelector('meta[property="og:description"]');
+        if (!ogDesc) {
+            ogDesc = document.createElement('meta');
+            ogDesc.setAttribute('property', 'og:description');
+            document.head.appendChild(ogDesc);
+        }
+        ogDesc.setAttribute('content', description);
+
+        let twitterDesc = document.querySelector('meta[name="twitter:description"]');
+        if (!twitterDesc) {
+            twitterDesc = document.createElement('meta');
+            twitterDesc.setAttribute('name', 'twitter:description');
+            document.head.appendChild(twitterDesc);
+        }
+        twitterDesc.setAttribute('content', description);
+
+        // Redirection instantanée vers la section principale
+        window.location.replace(`https://aurelienpetit.com/#white-house-run`);
+    </script>
+</head>
+
+<body>
+    <p>Redirection en cours vers la publication...</p>
+    <p>
+        <a href="https://aurelienpetit.com/#white-house-run">Cliquez ici si la redirection ne fonctionne pas</a>
+    </p>
+</body>
+
+</html>

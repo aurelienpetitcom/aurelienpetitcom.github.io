@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Titres pour partage -->
+    <title>Yin Yang</title>
+    <link rel="icon" href="/images/productions/Yin_Yang_post.png" type="image/png">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Yin Yang">
+    <meta property="og:image" content="/images/productions/Yin_Yang_post.png">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://aurelienpetit.com/share/yin-yang.html">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Yin Yang">
+    <meta name="twitter:image" content="/images/productions/Yin_Yang_post.png">
+
+    <!-- Description dynamique selon la langue et redirection instantanée -->
+    <script>
+        const lang = new URLSearchParams(window.location.search).get('lang') || 'fr';
+        const title = lang === 'en' ? 'Yin Yang' : 'Yin Yang';
+        const description = lang === 'en'
+            ? 'Yin Yang is a conceptual project exploring balance and duality through graphic design.'
+            : 'Yin Yang est un projet conceptuel explorant l’équilibre et la dualité à travers le design graphique.';
+
+        // Mettre à jour les meta OG et Twitter description dynamiquement
+        let ogDesc = document.querySelector('meta[property="og:description"]');
+        if (!ogDesc) {
+            ogDesc = document.createElement('meta');
+            ogDesc.setAttribute('property', 'og:description');
+            document.head.appendChild(ogDesc);
+        }
+        ogDesc.setAttribute('content', description);
+
+        let twitterDesc = document.querySelector('meta[name="twitter:description"]');
+        if (!twitterDesc) {
+            twitterDesc = document.createElement('meta');
+            twitterDesc.setAttribute('name', 'twitter:description');
+            document.head.appendChild(twitterDesc);
+        }
+        twitterDesc.setAttribute('content', description);
+
+        // Redirection instantanée vers la section principale
+        window.location.replace(`https://aurelienpetit.com/#yin-yang`);
+    </script>
+</head>
+
+<body>
+    <p>Redirection en cours vers la publication...</p>
+    <p>
+        <a href="https://aurelienpetit.com/#yin-yang">Cliquez ici si la redirection ne fonctionne pas</a>
+    </p>
+</body>
+
+</html>

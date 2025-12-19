@@ -931,7 +931,7 @@ document.querySelectorAll(".social-share").forEach((button) => {
     const lang = getCurrentLanguage();
 
     // Construire l'URL de la page dédiée à cette publication
-    const shareUrl = `${window.location.origin}/share/${postId}?lang=${lang}`;
+    const shareUrl = `aurelienpetit.com/share/${postId}`;
 
     // Récupérer le titre de la section selon la langue
     const title =
