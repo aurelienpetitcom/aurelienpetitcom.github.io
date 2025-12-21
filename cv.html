@@ -19,17 +19,6 @@
     <!-- Feuille de style -->
     <link rel="stylesheet" href="styles.css">
 
-    <!-- Données structurées : logo de site pour Google -->
-    <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "url": "https://okbotsexpedition.com",
-    "name": "Aurélien Petit",
-    "logo": "https://okbotsexpedition.com/images/faviconap.png"
-  }
-  </script>
-
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-HEM24T99FD"></script>
     <script>
@@ -64,7 +53,10 @@
     </style>
 </head>
 
+
 <body>
+
+
     <!-- Navbar -->
     <nav class="navbar">
         <div class="navbar__container">
@@ -94,22 +86,20 @@
                     <h2 class="lang" data-lang="en">Curriculum vitae</h2>
                 </div>
 
-                <p class="text lang" data-lang="en">
+                <p class="text lang" data-lang="en" style="color: white; text-align: center;">
                     Discover my background and more on my resume available below and for download.
                 </p>
-                <p class="text lang" data-lang="fr">
+                <p class="text lang" data-lang="fr" style="color: white; text-align: center;">
                     Découvrez mon parcours et plus encore sur mon résumé disponible ci-dessous ainsi qu'en
                     téléchargement.
                 </p>
 
                 <div class="title-container">
                     <!-- Boutons téléchargement -->
-                    <a href="fichiers/cv_aurelien_petit_19_12_25_fr.pdf" class="text main_btn lang" data-lang="fr"
-                        download>
+                    <a href="fichiers/cv_aurelien_petit_19_12_25_fr.pdf" class="text main_btn" data-lang="fr" download>
                         Télécharger en PDF
                     </a>
-                    <a href="fichiers/cv_aurelien_petit_19_12_25_en.pdf" class="text main_btn lang" data-lang="en"
-                        download>
+                    <a href="fichiers/cv_aurelien_petit_19_12_25_en.pdf" class="text main_btn" data-lang="en" download>
                         Download PDF
                     </a>
 
@@ -133,9 +123,24 @@
         <a href="https://aurelienpetit.com" id="navbar__logo_bp">
             <img src="images/logoap.png" alt="Logo Aurélien Petit" class="logo">
         </a>
-        <h5 class="lang" data-lang="fr">Copyright © 2025 Aurélien Petit. Tous droits réservés.</h5>
-        <h5 class="lang" data-lang="en">Copyright © 2025 Aurélien Petit. All rights reserved.</h5>
+        <h5 data-lang="fr">Copyright © 2025 Aurélien Petit. Tous droits réservés.<br>
+            Les marques de commerce, logos et droits d'auteur appartiennent à leurs propriétaires respectifs. Tous
+            droits réservés.</h5>
+        <h5 data-lang="en" style="display:none;">Copyright © 2025 Aurélien Petit. All rights reserved.<br>
+            Trademarks, logos and copyrights are property of their respective owners. All rights reserved.</h5>
+        <div class="footer-links">
+            <a href="https://aurelienpetit.com/privacy-policy.com" class="txt_btn" data-lang="en">Privacy policy</a>
+            <a href="https://aurelienpetit.com/privacy-policy.com" class="txt_btn" data-lang="fr" style="display:none;">
+                Politique de confidentialité
+            </a>
+
+            <a href="https://aurelienpetit.com/terms.com" class="txt_btn" data-lang="en">Terms and conditions</a>
+            <a href="https://aurelienpetit.com/terms.com" class="txt_btn" data-lang="fr" style="display:none;">
+                Conditions générales
+            </a>
+        </div>
     </div>
+
 
     <script src="app.js"></script>
 </body>

@@ -984,3 +984,100 @@ document.querySelectorAll(".social-share").forEach((button) => {
     }
   });
 });
+
+// --- Cookie consent banner ---
+function initCookieBanner() {
+  const cookieBanner = document.getElementById("cookie-banner");
+  const acceptBtns = document.querySelectorAll("#accept-cookies");
+  const rejectBtns = document.querySelectorAll("#reject-cookies");
+
+  if (!cookieBanner || !acceptBtns.length || !rejectBtns.length) return;
+
+  // Show banner only if consent not already given
+  if (localStorage.getItem("cookiesConsent")) return;
+
+  // Set initial state for fade-in
+  cookieBanner.style.opacity = "0";
+  cookieBanner.style.display = "flex";
+
+  // Trigger reflow to allow transition
+  void cookieBanner.offsetWidth;
+
+  // Fade in
+  cookieBanner.style.transition = "opacity 0.5s ease";
+  cookieBanner.style.opacity = "1";
+
+  acceptBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      localStorage.setItem("cookiesConsent", "accepted");
+      cookieBanner.style.transition = "opacity 0.3s ease";
+      cookieBanner.style.opacity = "0";
+      setTimeout(() => {
+        cookieBanner.style.display = "none";
+      }, 300);
+      if (typeof gtag === "function") {
+        gtag("js", new Date());
+        gtag("config", "G-HEM24T99FD");
+      }
+    });
+  });
+
+  rejectBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      localStorage.setItem("cookiesConsent", "rejected");
+      cookieBanner.style.transition = "opacity 0.3s ease";
+      cookieBanner.style.opacity = "0";
+      setTimeout(() => {
+        cookieBanner.style.display = "none";
+      }, 300);
+    });
+  });
+
+  const lang = getCurrentLanguage();
+  acceptBtns.forEach((btn) => {
+    btn.style.display =
+      btn.getAttribute("data-lang") === lang ? "inline-block" : "none";
+  });
+  rejectBtns.forEach((btn) => {
+    btn.style.display =
+      btn.getAttribute("data-lang") === lang ? "inline-block" : "none";
+  });
+}
+
+// Only show the banner after splash ends
+function onSplashEnd() {
+  initCookieBanner();
+}
+
+// Splash handling (cookie banner hidden until splash ends)
+document.addEventListener("DOMContentLoaded", () => {
+  const splash = document.getElementById("splash-screen");
+  const video = document.getElementById("splash-video");
+  const cookieBanner = document.getElementById("cookie-banner");
+
+  if (!splash || !video) return;
+
+  // Force hide cookie banner during splash
+  if (cookieBanner) cookieBanner.style.display = "none";
+
+  document.body.style.overflow = "hidden"; // block scrolling during splash
+
+  const hideSplash = () => {
+    splash.style.opacity = "0";
+    document.body.style.overflow = "";
+    setTimeout(() => {
+      splash.style.display = "none";
+      document.body.classList.add("loaded");
+      handleHashNavigation();
+      onSplashEnd(); // show cookie banner only here
+    }, 200);
+  };
+
+  video.addEventListener("timeupdate", () => {
+    if (video.currentTime >= 1.2) hideSplash();
+  });
+  video.addEventListener("ended", hideSplash);
+  setTimeout(() => {
+    if (video.currentTime === 0) hideSplash();
+  }, 1000);
+});

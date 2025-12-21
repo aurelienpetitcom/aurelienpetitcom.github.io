@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page-title">Politique de confidentialité - Aurélien Petit</title>
+
+    <!-- Meta description par défaut FR -->
+    <meta id="meta-desc" name="description"
+        content="Découvrez la politique de confidentialité du site d'Aurélien Petit, détaillant la collecte et l'utilisation des données personnelles et vos droits.">
+
+    <!-- Favicon & icônes -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/images/faviconap.png" type="image/png">
+    <link rel="apple-touch-icon" href="/images/faviconap.png">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <!-- Feuille de style -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HEM24T99FD"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-HEM24T99FD');
+    </script>
+
+    <!-- Titre/description dynamiques (détection langue navigateur) -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const userLang = (navigator.language || "").toLowerCase();
+            const titleEl = document.getElementById("page-title");
+            const descEl = document.getElementById("meta-desc");
+
+            if (userLang.startsWith("en")) {
+                titleEl.textContent = "Privacy policy - Aurélien Petit";
+                descEl.setAttribute(
+                    "content",
+                    "View the privacy policy of Aurélien Petit's website, detailing the collection and use of personal data and your rights."
+                );
+            }
+        });
+    </script>
+
+    <!-- Cache EN par défaut (FR visible avant que JS ne bascule) -->
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar__container">
+            <a href="https://aurelienpetit.com" id="navbar__logo">
+                <img src="images/logoap.png" alt="Logo Aurélien Petit" class="logo">
+            </a>
+            <div class="navbar__toggle" id="mobile-menu">
+                <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+            </div>
+            <ul class="navbar__menu">
+                <li class="navbar__item">
+                    <select id="langSelector">
+                        <option value="fr">Français</option>
+                        <option value="en">English</option>
+                    </select>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="main">
+        <div class="main__content">
+            <div class="section_verticale">
+
+                <div class="title-container">
+                    <h2 class="lang" data-lang="fr">Politique de confidentialité</h2>
+                    <h2 class="lang" data-lang="en">Privacy policy</h2>
+                </div>
+
+                <div class="privacy-section">
+                    <br><br>
+                    <h2 class="lang section-title" data-lang="fr">1. Responsable du traitement</h2>
+                    <h2 class="lang section-title" data-lang="en">1. Data controller</h2>
+
+                    <p class="text lang" data-lang="fr">
+                        Le présent site est édité par Aurélien Petit et hébergé sur GitHub Pages via le nom de domaine
+                        aurelienpetit.com (OVH).
+                        Pour toute question relative à la protection des données personnelles, vous pouvez me contacter
+                        par e-mail à
+                        <a href="mailto:contact@aurelienpetit.com" class="contact-link">contact@aurelienpetit.com</a>.
+                    </p>
+                    <p class="text lang" data-lang="en">
+                        This website is operated by Aurélien Petit and hosted on GitHub Pages via the domain
+                        aurelienpetit.com (OVH).
+                        For any questions regarding the protection of personal data, you may contact me by e-mail at
+                        <a href="mailto:contact@aurelienpetit.com" class="contact-link">contact@aurelienpetit.com</a>.
+                    </p>
+                    <br><br>
+
+                    <h2 class="lang section-title" data-lang="fr">2. Données collectées</h2>
+                    <h2 class="lang section-title" data-lang="en">2. Collected data</h2>
+
+                    <p class="text lang" data-lang="fr">
+                        Ce site ne collecte pas de données personnelles directement identifiables (formulaires, comptes
+                        utilisateurs, etc.).
+                        Toutefois, certaines informations techniques anonymes telles que l’adresse IP, le type de
+                        navigateur et les pages consultées
+                        peuvent être collectées via Google Analytics afin d’améliorer le site et produire des
+                        statistiques.
+                        Pour plus d’informations, consultez la politique de confidentialité de Google :
+                        <a href="https://policies.google.com/privacy"
+                            target="_blank">https://policies.google.com/privacy</a>.
+                    </p>
+                    <p class="text lang" data-lang="en">
+                        This website does not collect directly identifiable personal data (such as forms or user
+                        accounts).
+                        However, certain anonymous technical information such as IP address, browser type, and visited
+                        pages may be collected via Google Analytics to improve the site and produce statistics.
+                        For more information, see Google's privacy policy:
+                        <a href="https://policies.google.com/privacy"
+                            target="_blank">https://policies.google.com/privacy</a>.
+                    </p>
+                    <br><br>
+
+                    <h2 class="lang section-title" data-lang="fr">3. Cookies</h2>
+                    <h2 class="lang section-title" data-lang="en">3. Cookies</h2>
+
+                    <p class="text lang" data-lang="fr">
+                        Les cookies sont de petits fichiers stockés sur votre appareil lors de la navigation. Ils
+                        permettent
+                        d’analyser l’utilisation du site et d’en améliorer le fonctionnement. Vous pouvez refuser ou
+                        supprimer
+                        les cookies via les paramètres de votre navigateur. Le refus des cookies peut limiter certaines
+                        fonctionnalités du site.
+                    </p>
+                    <p class="text lang" data-lang="en">
+                        Cookies are small files stored on your device during browsing. They are used to analyze website
+                        usage
+                        and improve functionality. You can refuse or delete cookies through your browser settings.
+                        Refusing cookies may limit some site features.
+                    </p>
+                    <br><br>
+
+                    <h2 class="lang section-title" data-lang="fr">4. Durée de conservation</h2>
+                    <h2 class="lang section-title" data-lang="en">4. Data retention</h2>
+
+                    <p class="text lang" data-lang="fr">
+                        Les données collectées via Google Analytics sont conservées pour une durée limitée, conformément
+                        aux paramètres définis dans l’outil et à la politique de Google. Aucune information personnelle
+                        identifiable n’est stockée.
+                    </p>
+                    <p class="text lang" data-lang="en">
+                        Data collected via Google Analytics is retained for a limited period, in accordance with
+                        the settings defined in the tool and Google’s privacy policy. No personally identifiable
+                        information is stored.
+                    </p>
+                    <br><br>
+
+                    <h2 class="lang section-title" data-lang="fr">5. Droits des utilisateurs</h2>
+                    <h2 class="lang section-title" data-lang="en">5. User rights</h2>
+
+                    <p class="text lang" data-lang="fr">
+                        Si vous êtes résident européen, vous avez le droit d’accéder aux données personnelles que nous
+                        détenons sur vous. Les informations collectées via Google Analytics sont anonymes et ne
+                        permettent
+                        pas d’identifier directement un individu, elles ne peuvent donc pas être supprimées par nos
+                        soins.
+                        Pour toute question concernant vos données, vous pouvez me contacter par e-mail à
+                        <a href="mailto:contact@aurelienpetit.com" class="contact-link">contact@aurelienpetit.com</a>.
+                    </p>
+                    <p class="text lang" data-lang="en">
+                        If you are a resident of Europe, you have the right to access the personal data we hold about
+                        you.
+                        Data collected via Google Analytics is anonymized and does not allow direct identification of
+                        any individual,
+                        and therefore cannot be deleted by us. For any questions regarding your data, you may contact me
+                        by e-mail at
+                        <a href="mailto:contact@aurelienpetit.com" class="contact-link">contact@aurelienpetit.com</a>.
+                    </p>
+                    <br><br>
+
+                    <h2 class="lang section-title" data-lang="fr">6. Modifications</h2>
+                    <h2 class="lang section-title" data-lang="en">6. Changes to this policy</h2>
+
+                    <p class="text lang" data-lang="fr">
+                        Cette politique de confidentialité peut être modifiée à tout moment afin de rester conforme
+                        aux évolutions légales ou techniques. La date de mise à jour fait foi.
+                    </p>
+                    <p class="text lang" data-lang="en">
+                        This privacy policy may be updated at any time to remain compliant with legal or technical
+                        changes. The latest update date shall prevail.
+                    </p>
+
+                    <p class="text lang" data-lang="fr">Dernière mise à jour : 21 décembre 2025</p>
+                    <p class="text lang" data-lang="en">Last update: December 21, 2025</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main__container-bandebp">
+        <a href="https://aurelienpetit.com" id="navbar__logo_bp">
+            <img src="images/logoap.png" alt="Logo Aurélien Petit" class="logo">
+        </a>
+        <h5 data-lang="fr">Copyright © 2025 Aurélien Petit. Tous droits réservés.<br>
+            Les marques de commerce, logos et droits d'auteur appartiennent à leurs propriétaires respectifs. Tous
+            droits réservés.</h5>
+        <h5 data-lang="en" style="display:none;">Copyright © 2025 Aurélien Petit. All rights reserved.<br>
+            Trademarks, logos and copyrights are property of their respective owners. All rights reserved.</h5>
+        <div class="footer-links">
+            <a href="https://aurelienpetit.com/privacy-policy.com" class="txt_btn" data-lang="en">Privacy policy</a>
+            <a href="https://aurelienpetit.com/privacy-policy.com" class="txt_btn" data-lang="fr" style="display:none;">
+                Politique de confidentialité
+            </a>
+
+            <a href="https://aurelienpetit.com/terms.com" class="txt_btn" data-lang="en">Terms and conditions</a>
+            <a href="https://aurelienpetit.com/terms.com" class="txt_btn" data-lang="fr" style="display:none;">
+                Conditions générales
+            </a>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>

@@ -482,7 +482,7 @@ body {
   align-items: center;
   flex-direction: column;
   justify-content: flex-end;
-  height: 150px;
+  height: 180px;
   background-color: rgb(0, 0, 0);
   z-index: 1;
   width: 100%;
@@ -596,6 +596,30 @@ body {
   margin-bottom: 20px;
 }
 
+.txt_btn {
+  color: #d0d0d0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  height: 15px;
+  font-size: 11px;
+  font-family: "SFProRegular", sans-serif;
+  margin-top: 0px;
+  line-height: 15px;
+}
+
+.txt_btn:hover {
+  color: rgba(255, 255, 255, 1);
+}
+
+.footer-links {
+  display: flex;
+  gap: 20px; /* espace entre les boutons */
+  justify-content: center; /* ou flex-start si tu préfères */
+  flex-wrap: wrap; /* évite les débordements mobile */
+}
+
 .txt_btn_cv {
   color: rgba(255, 255, 255, 0.7);
   display: flex;
@@ -691,7 +715,7 @@ body {
     align-items: center;
     flex-direction: column;
     justify-content: flex-end;
-    height: 150px;
+    height: 180px;
     background-color: rgb(0, 0, 0);
     z-index: 1;
     width: 100%;
@@ -1171,4 +1195,109 @@ body.loaded #splash-screen {
   width: 100%;
   height: auto;
   background-color: rgba(255, 255, 255, 0);
+}
+
+/* Style pour les éléments .text.lang (Privacy Policy, etc.) */
+.text.lang {
+  font-family: "SFProRegular", sans-serif;
+  font-size: 18px;
+  line-height: 1.5;
+  text-align: left;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 20px; /* espace entre les paragraphes */
+  max-width: 960px;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.text.lang.center {
+  font-family: "SFProRegular", sans-serif;
+  font-size: 18px;
+  line-height: 1.5;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 20px; /* espace entre les paragraphes */
+  max-width: 960px;
+  padding-left: 10px;
+  padding-right: 40px;
+}
+
+.lang.section-title {
+  font-family: "SFProRegular", sans-serif;
+  font-size: 18px;
+  line-height: 1.3;
+  text-align: left;
+  color: #ffffff; /* Titles in white */
+  margin-bottom: 12px; /* Space below each title */
+  max-width: 960px;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.privacy-section a {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+/* Cookie Consent Banner */
+#cookie-banner {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(255, 255, 255, 1); /* White with slight transparency */
+  box-shadow: 0 2px 8px Igba (1, 1, 1, 0.2);
+  color: black;
+  padding: 15px 20px;
+  border-radius: 12px;
+  z-index: 10000;
+  font-family: "SFProRegular", sans-serif;
+  max-width: 90%;
+  font-size: 14px;
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px; /* espace entre texte et boutons */
+}
+
+#cookie-banner p {
+  margin: 0;
+  display: inline;
+}
+
+/* Bouton Accepter */
+#accept-cookies {
+  padding: 5px 12px;
+  border: 1px solid #000000; /* Black border with 5px thickness */
+  background: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+  border-radius: 10px;
+  cursor: pointer;
+  font-family: "SFProRegular", sans-serif;
+  font-size: 14px;
+}
+
+#accept-cookies:hover {
+  background: #000000;
+  color: rgb(255, 255, 255);
+}
+
+/* Bouton Refuser */
+#reject-cookies {
+  padding: 5px 12px;
+  border: 1px solid #000000; /* Black border with 5px thickness */
+  background: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+  border-radius: 10px;
+  cursor: pointer;
+  font-family: "SFProRegular", sans-serif;
+  font-size: 14px;
+}
+
+#reject-cookies:hover {
+  background: #ffffff;
+  color: rgb(0, 0, 0);
 }
