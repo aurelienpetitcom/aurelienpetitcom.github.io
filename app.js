@@ -985,36 +985,40 @@ document.querySelectorAll(".social-share").forEach((button) => {
   });
 });
 
-// --- Cookie consent banner ---
+// -------------------- COOKIE BANNER --------------------
+function getCurrentLanguage() {
+  const selector = document.getElementById("langSelector");
+  return selector ? selector.value : "fr"; // fallback à français
+}
+
 function initCookieBanner() {
   const cookieBanner = document.getElementById("cookie-banner");
-  const acceptBtns = document.querySelectorAll("#accept-cookies");
-  const rejectBtns = document.querySelectorAll("#reject-cookies");
+  if (!cookieBanner) return;
 
-  if (!cookieBanner || !acceptBtns.length || !rejectBtns.length) return;
+  const acceptBtns = cookieBanner.querySelectorAll(".accept-cookies");
+  const rejectBtns = cookieBanner.querySelectorAll(".reject-cookies");
+  if (!acceptBtns.length || !rejectBtns.length) return;
 
-  // Show banner only if consent not already given
-  if (localStorage.getItem("cookiesConsent")) return;
+  if (localStorage.getItem("cookiesConsent")) return; // déjà accepté ou refusé
 
-  // Set initial state for fade-in
+  // Fade-in
   cookieBanner.style.opacity = "0";
   cookieBanner.style.display = "flex";
-
-  // Trigger reflow to allow transition
   void cookieBanner.offsetWidth;
-
-  // Fade in
   cookieBanner.style.transition = "opacity 0.5s ease";
   cookieBanner.style.opacity = "1";
 
+  const lang = getCurrentLanguage();
+
   acceptBtns.forEach((btn) => {
+    btn.style.display =
+      btn.getAttribute("data-lang") === lang ? "inline-block" : "none";
     btn.addEventListener("click", () => {
       localStorage.setItem("cookiesConsent", "accepted");
-      cookieBanner.style.transition = "opacity 0.3s ease";
       cookieBanner.style.opacity = "0";
-      setTimeout(() => {
-        cookieBanner.style.display = "none";
-      }, 300);
+      setTimeout(() => (cookieBanner.style.display = "none"), 300);
+
+      // Activer Google Analytics uniquement si accepté
       if (typeof gtag === "function") {
         gtag("js", new Date());
         gtag("config", "G-HEM24T99FD");
@@ -1023,59 +1027,17 @@ function initCookieBanner() {
   });
 
   rejectBtns.forEach((btn) => {
+    btn.style.display =
+      btn.getAttribute("data-lang") === lang ? "inline-block" : "none";
     btn.addEventListener("click", () => {
       localStorage.setItem("cookiesConsent", "rejected");
-      cookieBanner.style.transition = "opacity 0.3s ease";
       cookieBanner.style.opacity = "0";
-      setTimeout(() => {
-        cookieBanner.style.display = "none";
-      }, 300);
+      setTimeout(() => (cookieBanner.style.display = "none"), 300);
     });
-  });
-
-  const lang = getCurrentLanguage();
-  acceptBtns.forEach((btn) => {
-    btn.style.display =
-      btn.getAttribute("data-lang") === lang ? "inline-block" : "none";
-  });
-  rejectBtns.forEach((btn) => {
-    btn.style.display =
-      btn.getAttribute("data-lang") === lang ? "inline-block" : "none";
   });
 }
 
-// Splash/cookie banner handling for all pages
+// Initialisation sur toutes les pages
 document.addEventListener("DOMContentLoaded", () => {
-  const splash = document.getElementById("splash-screen");
-  const video = document.getElementById("splash-video");
-  const cookieBanner = document.getElementById("cookie-banner");
-
-  if (splash && video) {
-    // page avec splash → cacher banner pendant splash
-    if (cookieBanner) cookieBanner.style.display = "none";
-
-    document.body.style.overflow = "hidden";
-
-    const hideSplash = () => {
-      splash.style.opacity = "0";
-      document.body.style.overflow = "";
-      setTimeout(() => {
-        splash.style.display = "none";
-        document.body.classList.add("loaded");
-        handleHashNavigation();
-        initCookieBanner(); // affiche cookie banner après splash
-      }, 200);
-    };
-
-    video.addEventListener("timeupdate", () => {
-      if (video.currentTime >= 1.2) hideSplash();
-    });
-    video.addEventListener("ended", hideSplash);
-    setTimeout(() => {
-      if (video.currentTime === 0) hideSplash();
-    }, 1000);
-  } else {
-    // page sans splash → affiche directement le cookie banner
-    initCookieBanner();
-  }
+  initCookieBanner();
 });

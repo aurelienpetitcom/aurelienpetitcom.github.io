@@ -1246,8 +1246,8 @@ body.loaded #splash-screen {
   bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
-  background-color: rgba(255, 255, 255, 1); /* White with slight transparency */
-  box-shadow: 0 2px 8px Igba (1, 1, 1, 0.2);
+  background-color: rgba(255, 255, 255, 1); /* White */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   color: black;
   padding: 15px 20px;
   border-radius: 12px;
@@ -1269,9 +1269,9 @@ body.loaded #splash-screen {
 }
 
 /* Bouton Accepter */
-#accept-cookies {
+.accept-cookies {
   padding: 5px 12px;
-  border: 1px solid #000000; /* Black border with 5px thickness */
+  border: 1px solid #000000; /* Black border */
   background: rgb(0, 0, 0);
   color: rgb(255, 255, 255);
   border-radius: 10px;
@@ -1280,15 +1280,15 @@ body.loaded #splash-screen {
   font-size: 14px;
 }
 
-#accept-cookies:hover {
+.accept-cookies:hover {
   background: #000000;
   color: rgb(255, 255, 255);
 }
 
 /* Bouton Refuser */
-#reject-cookies {
+.reject-cookies {
   padding: 5px 12px;
-  border: 1px solid #000000; /* Black border with 5px thickness */
+  border: 1px solid #000000; /* Black border */
   background: rgb(255, 255, 255);
   color: rgb(0, 0, 0);
   border-radius: 10px;
@@ -1297,7 +1297,28 @@ body.loaded #splash-screen {
   font-size: 14px;
 }
 
-#reject-cookies:hover {
+.reject-cookies:hover {
   background: #ffffff;
   color: rgb(0, 0, 0);
+}
+
+/* Cookie Banner Button Row */
+#cookie-banner .button-row {
+  display: flex;
+  justify-content: center;
+  gap: 10px; /* space between buttons */
+  flex-wrap: nowrap; /* keep buttons on one line */
+}
+
+@media (max-width: 600px) {
+  #cookie-banner .button-row {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  #cookie-banner .accept-cookies,
+  #cookie-banner .reject-cookies {
+    flex: 1 1 auto; /* buttons adapt to available space */
+    min-width: 80px; /* ensure minimum width */
+  }
 }
