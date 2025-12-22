@@ -11,6 +11,172 @@ function getCurrentLanguage() {
   return selector ? selector.value : "fr"; // valeur par défaut
 }
 
+/* =========================
+   COOKIE CONSENT + GA LOAD
+   ========================= */
+
+function loadGoogleAnalytics() {
+  if (window.__gaLoaded) return;
+  window.__gaLoaded = true;
+
+  const gaScript = document.createElement("script");
+  gaScript.async = true;
+  gaScript.src = "https://www.googletagmanager.com/gtag/js?id=G-HEM24T99FD";
+  document.head.appendChild(gaScript);
+
+  gaScript.onload = () => {
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    window.gtag = gtag;
+
+    gtag("js", new Date());
+    gtag("config", "G-HEM24T99FD", { anonymize_ip: true });
+  };
+}
+
+function updateCookieBannerLanguage(lang) {
+  const banner = document.getElementById("cookie-banner");
+  if (!banner) return;
+  // Hide all accept/reject buttons and all <p>
+  banner.querySelectorAll(".accept-cookies, .reject-cookies").forEach((btn) => {
+    btn.style.display = "none";
+  });
+  banner.querySelectorAll("p[data-lang]").forEach((p) => {
+    p.style.display = "none";
+  });
+  // Show only those matching the current language
+  banner
+    .querySelectorAll(
+      `.accept-cookies[data-lang="${lang}"], .reject-cookies[data-lang="${lang}"]`
+    )
+    .forEach((btn) => {
+      btn.style.display = "inline-block";
+    });
+  banner.querySelectorAll(`p[data-lang="${lang}"]`).forEach((p) => {
+    p.style.display = "block";
+  });
+}
+
+function initCookieBanner() {
+  const banner = document.getElementById("cookie-banner");
+  if (!banner) return;
+
+  // Remove any CSS transitions on opacity, we will handle it fully in JS
+  banner.style.transition = "none";
+  banner.style.opacity = "0";
+  banner.style.visibility = "hidden";
+  banner.style.pointerEvents = "none";
+
+  // Forcer l'affichage du banner dans la langue actuelle dès l'initialisation
+  updateCookieBannerLanguage(getCurrentLanguage());
+
+  // Attach click events only once
+  let handlersAttached = false;
+
+  function fadeTo(targetOpacity, duration, callback) {
+    // duration in ms
+    const step = 16; // ~60fps
+    let opacity = parseFloat(banner.style.opacity) || 0;
+    const start = performance.now();
+    const initial = opacity;
+    const delta = targetOpacity - initial;
+    function animate(now) {
+      const elapsed = now - start;
+      let progress = Math.min(elapsed / duration, 1);
+      let current = initial + delta * progress;
+      banner.style.opacity = current;
+      if (
+        (delta > 0 && current < targetOpacity) ||
+        (delta < 0 && current > targetOpacity)
+      ) {
+        requestAnimationFrame(animate);
+      } else {
+        banner.style.opacity = targetOpacity;
+        if (callback) callback();
+      }
+    }
+    requestAnimationFrame(animate);
+  }
+
+  const showBanner = () => {
+    const banner = document.getElementById("cookie-banner");
+    if (!banner) return;
+
+    // Préparer le banner pour le fade
+    banner.style.opacity = "0";
+    banner.style.visibility = "visible";
+    banner.style.pointerEvents = "none";
+
+    // Afficher uniquement les boutons et textes pour la langue active
+    const lang = getCurrentLanguage();
+    updateCookieBannerLanguage(lang);
+
+    // Attendre 2 secondes avant d'afficher le banner
+    setTimeout(() => {
+      // Fade-in sur 400ms
+      fadeTo(1, 400, () => {
+        banner.style.pointerEvents = "auto";
+      });
+
+      // Attacher les événements aux boutons après le fade
+      if (!handlersAttached) {
+        const acceptButtons = banner.querySelectorAll(".accept-cookies");
+        const rejectButtons = banner.querySelectorAll(".reject-cookies");
+
+        acceptButtons.forEach((btn) => {
+          btn.addEventListener("click", () => {
+            localStorage.setItem("cookiesConsent", "accepted");
+            hideBanner(true);
+            loadGoogleAnalytics();
+          });
+        });
+
+        rejectButtons.forEach((btn) => {
+          btn.addEventListener("click", () => {
+            localStorage.setItem("cookiesConsent", "rejected");
+            hideBanner(true);
+          });
+        });
+
+        handlersAttached = true;
+      }
+    }, 2000); // délai de 2 secondes
+  };
+
+  function hideBanner(animate) {
+    banner.style.pointerEvents = "none";
+    if (animate) {
+      fadeTo(0, 400, () => {
+        banner.style.visibility = "hidden";
+      });
+    } else {
+      banner.style.opacity = "0";
+      banner.style.visibility = "hidden";
+    }
+  }
+
+  // Vérifie le consentement
+  const consent = localStorage.getItem("cookiesConsent");
+  if (consent === "accepted") {
+    hideBanner(false);
+    loadGoogleAnalytics();
+  } else if (consent === "rejected") {
+    hideBanner(false);
+  } else {
+    // Aucun consentement → afficher
+    showBanner();
+  }
+}
+
+// Appel après DOMContentLoaded
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initCookieBanner);
+} else {
+  initCookieBanner();
+}
+
 // Return the visible/active "Show more" button for the current language in a container
 function getVisibleToggleButton(descContainer, lang) {
   // Prefer a button inside a localized wrapper if it exists
@@ -37,9 +203,11 @@ function getVisibleToggleButton(descContainer, lang) {
 function changeLanguage(languageCode) {
   const elements = document.querySelectorAll("[data-lang]");
   elements.forEach(function (elem) {
+    // ❗ Ne jamais toucher au cookie banner
+    if (elem.closest("#cookie-banner")) return;
+
     const tag = elem.tagName.toLowerCase();
     if (elem.getAttribute("data-lang") === languageCode) {
-      // display inline for span, block otherwise
       elem.style.display = tag === "span" ? "inline" : "block";
     } else {
       elem.style.display = "none";
@@ -206,6 +374,7 @@ const selector = document.getElementById("langSelector");
 if (selector) {
   selector.addEventListener("change", function () {
     changeLanguage(this.value);
+    updateCookieBannerLanguage(this.value); // Met à jour le cookie banner lors du changement de langue
   });
 
   // détecter la langue de départ
@@ -215,6 +384,7 @@ if (selector) {
       .map((opt) => opt.value)
       .find((val) => lang.includes(val)) || "en";
   changeLanguage(startLang);
+  updateCookieBannerLanguage(startLang); // Initialise le cookie banner dans la bonne langue
 
   // mettre à jour le select avec la valeur de départ
   selector.selectedIndex = Array.from(selector.options)
@@ -983,61 +1153,4 @@ document.querySelectorAll(".social-share").forEach((button) => {
       }
     }
   });
-});
-
-// -------------------- COOKIE BANNER --------------------
-function getCurrentLanguage() {
-  const selector = document.getElementById("langSelector");
-  return selector ? selector.value : "fr"; // fallback à français
-}
-
-function initCookieBanner() {
-  const cookieBanner = document.getElementById("cookie-banner");
-  if (!cookieBanner) return;
-
-  const acceptBtns = cookieBanner.querySelectorAll(".accept-cookies");
-  const rejectBtns = cookieBanner.querySelectorAll(".reject-cookies");
-  if (!acceptBtns.length || !rejectBtns.length) return;
-
-  if (localStorage.getItem("cookiesConsent")) return; // déjà accepté ou refusé
-
-  // Fade-in
-  cookieBanner.style.opacity = "0";
-  cookieBanner.style.display = "flex";
-  void cookieBanner.offsetWidth;
-  cookieBanner.style.transition = "opacity 0.5s ease";
-  cookieBanner.style.opacity = "1";
-
-  const lang = getCurrentLanguage();
-
-  acceptBtns.forEach((btn) => {
-    btn.style.display =
-      btn.getAttribute("data-lang") === lang ? "inline-block" : "none";
-    btn.addEventListener("click", () => {
-      localStorage.setItem("cookiesConsent", "accepted");
-      cookieBanner.style.opacity = "0";
-      setTimeout(() => (cookieBanner.style.display = "none"), 300);
-
-      // Activer Google Analytics uniquement si accepté
-      if (typeof gtag === "function") {
-        gtag("js", new Date());
-        gtag("config", "G-HEM24T99FD");
-      }
-    });
-  });
-
-  rejectBtns.forEach((btn) => {
-    btn.style.display =
-      btn.getAttribute("data-lang") === lang ? "inline-block" : "none";
-    btn.addEventListener("click", () => {
-      localStorage.setItem("cookiesConsent", "rejected");
-      cookieBanner.style.opacity = "0";
-      setTimeout(() => (cookieBanner.style.display = "none"), 300);
-    });
-  });
-}
-
-// Initialisation sur toutes les pages
-document.addEventListener("DOMContentLoaded", () => {
-  initCookieBanner();
 });
