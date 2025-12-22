@@ -1245,12 +1245,11 @@ body.loaded #splash-screen {
   left: 50%;
   transform: translateX(-50%);
   bottom: 20px;
-  background-color: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 1);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   color: black;
   padding: 15px 20px;
-  border-radius: 12px;
+  border-radius: 15px;
   z-index: 10000;
   font-family: "SFProRegular", sans-serif;
   max-width: 80%;
@@ -1316,14 +1315,11 @@ body.loaded #splash-screen {
   font-size: 14px;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 800px) {
   #cookie-banner {
-    left: 50%;
     transform: translateX(-50%);
-    width: auto; /* s’adapte au texte sans marges étirées */
-    max-width: 100%; /* largeur max sans marge latérale */
-    border-radius: 10px;
-    padding: 15px 8px; /* padding vertical conservé, horizontal réduit */
+    width: 100%;
+    border-radius: 15px;
   }
 
   #cookie-banner .button-row {
