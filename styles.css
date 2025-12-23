@@ -409,6 +409,22 @@ h5 {
   margin-left: 5px;
 }
 
+.logoflecheredirection.right {
+  width: 8px;
+  height: auto;
+  cursor: pointer;
+  margin-left: 2px;
+  margin-right: 5px;
+}
+
+.logoflecheredirection.right.white {
+  width: 8px;
+  height: auto;
+  cursor: pointer;
+  margin-left: 3px;
+  margin-right: 5px;
+}
+
 .flechebas {
   width: 150px;
   height: auto;
@@ -597,7 +613,8 @@ body {
 }
 
 .txt_btn {
-  color: #d0d0d0;
+  color: #ffffff;
+  opacity: 80%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -610,7 +627,7 @@ body {
 }
 
 .txt_btn:hover {
-  color: rgba(255, 255, 255, 1);
+  opacity: 100%;
 }
 
 .footer-links {
@@ -1301,6 +1318,11 @@ body.loaded #splash-screen {
   cursor: pointer;
   font-family: "SFProRegular", sans-serif;
   font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.accept-cookies:hover {
+  transform: scale(0.95); /* Réduit la taille à 80% */
 }
 
 /* Reject button */
@@ -1313,6 +1335,11 @@ body.loaded #splash-screen {
   cursor: pointer;
   font-family: "SFProRegular", sans-serif;
   font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.reject-cookies:hover {
+  transform: scale(0.95); /* Réduit la taille à 80% */
 }
 
 @media (max-width: 800px) {
