@@ -177,6 +177,49 @@ if (document.readyState === "loading") {
   initCookieBanner();
 }
 
+// Nouvelle gestion des boutons "Modifier mon consentement"
+function attachCookieResetButtons() {
+  const resetBtnFr = document.getElementById("reset-cookie-consent");
+  const resetBtnEn = document.getElementById("reset-cookie-consent-en");
+
+  function resetConsent() {
+    localStorage.removeItem("cookiesConsent");
+
+    const banner = document.getElementById("cookie-banner");
+    if (!banner) return;
+
+    banner.style.opacity = "0";
+    banner.style.visibility = "visible";
+    banner.style.pointerEvents = "none";
+
+    const lang = getCurrentLanguage();
+    updateCookieBannerLanguage(lang);
+
+    // Fade-in sur 400ms après 2 secondes
+    setTimeout(() => {
+      let start = performance.now();
+      function animate(now) {
+        let elapsed = now - start;
+        let progress = Math.min(elapsed / 400, 1);
+        banner.style.opacity = progress;
+        if (progress < 1) {
+          requestAnimationFrame(animate);
+        } else {
+          banner.style.pointerEvents = "auto";
+        }
+      }
+      requestAnimationFrame(animate);
+    }, 0);
+  }
+
+  if (resetBtnFr) resetBtnFr.addEventListener("click", resetConsent);
+  if (resetBtnEn) resetBtnEn.addEventListener("click", resetConsent);
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  attachCookieResetButtons();
+});
+
 // Return the visible/active "Show more" button for the current language in a container
 function getVisibleToggleButton(descContainer, lang) {
   // Prefer a button inside a localized wrapper if it exists
