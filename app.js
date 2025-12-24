@@ -369,27 +369,41 @@ if (postFilter) {
   });
 }
 
-// select handler
+// --- Gestion du cookie de langue ---
+function getLangCookie() {
+  const match = document.cookie.match(/(?:^|; )siteLanguage=([^;]+)/);
+  return match ? decodeURIComponent(match[1]) : "none";
+}
+
+function setLangCookie(lang) {
+  document.cookie = `siteLanguage=${encodeURIComponent(
+    lang
+  )}; path=/; max-age=31536000; SameSite=Lax`;
+}
+
+// Nouvelle logique d'initialisation de la langue avec cookie
+let startLang = getLangCookie();
+
+if (startLang === "none") {
+  const browserLang = navigator.language || "en";
+  startLang = browserLang.includes("fr") ? "fr" : "en";
+  setLangCookie(startLang);
+}
+
+// Appliquer la langue sur TOUTES les pages
+changeLanguage(startLang);
+updateCookieBannerLanguage(startLang);
+
+// Gestion du sélecteur de langue (si présent)
 const selector = document.getElementById("langSelector");
 if (selector) {
+  selector.value = startLang;
+
   selector.addEventListener("change", function () {
     changeLanguage(this.value);
-    updateCookieBannerLanguage(this.value); // Met à jour le cookie banner lors du changement de langue
+    updateCookieBannerLanguage(this.value);
+    setLangCookie(this.value);
   });
-
-  // détecter la langue de départ
-  const lang = navigator.language || "en";
-  const startLang =
-    Array.from(selector.options)
-      .map((opt) => opt.value)
-      .find((val) => lang.includes(val)) || "en";
-  changeLanguage(startLang);
-  updateCookieBannerLanguage(startLang); // Initialise le cookie banner dans la bonne langue
-
-  // mettre à jour le select avec la valeur de départ
-  selector.selectedIndex = Array.from(selector.options)
-    .map((opt) => opt.value)
-    .indexOf(startLang);
 }
 
 // Sélection des sections et de l'élément d'indicateur
