@@ -1391,7 +1391,6 @@ body.loaded #splash-screen {
 @media (max-width: 800px) {
   .cookies-table-container {
     visibility: collapse;
-    margin-bottom: -40px;
   }
 }
 
@@ -1401,6 +1400,7 @@ body.loaded #splash-screen {
       width: 100%;
       margin-left: 40px;
       margin-right: 40px;
+      margin-bottom: 0px;
     }
   }
   .cookies-table th,
