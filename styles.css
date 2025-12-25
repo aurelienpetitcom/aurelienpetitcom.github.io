@@ -999,9 +999,9 @@ body {
 }
 
 .scroll-parallax {
-  transform: scale(0.95); /* ✅ position initiale */
-  transition: transform 0.3s ease;
+  transform: translateY(0) scale(0.92);
   will-change: transform;
+  transition: transform 0s ease-out; /* lissage de la transformation */
 }
 
 #scrollNextSection {
@@ -1184,8 +1184,8 @@ body.loaded #splash-screen {
 }
 
 .filter-container.scroll-parallax {
-  transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1),
-    opacity 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+  transition: transform 0.1s cubic-bezier(0.25, 0.1, 0.25, 1),
+    opacity 0.1s cubic-bezier(0.25, 0.1, 0.25, 1);
   will-change: transform, scale;
 }
 

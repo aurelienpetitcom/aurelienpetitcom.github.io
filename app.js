@@ -711,44 +711,64 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-let hasUserScrolled = false;
+// --- Nouvelle gestion fluide du scroll-parallax ---
+// --- Nouvelle gestion fluide du scroll-parallax (progressive scale & translateY) ---
+let parallaxScrollScheduled = false;
 
 function handleParallaxScroll() {
   const elements = document.querySelectorAll(
     ".scroll-parallax, .filter-container.scroll-parallax"
   );
-
+  const windowHeight = window.innerHeight;
   elements.forEach((el) => {
     const rect = el.getBoundingClientRect();
-    const windowHeight = window.innerHeight;
-
-    const startTrigger = windowHeight * 1;
-
-    if (rect.top < startTrigger && rect.bottom > 0) {
-      // Always apply transform regardless of hasUserScrolled
-      const distanceFromBottom = windowHeight - rect.top;
-      const visibleRatio = Math.min(1, distanceFromBottom / windowHeight);
-
-      const translateY = (1 - visibleRatio) * 40;
-      const scale = 0.95 + visibleRatio * 0.05;
-
-      el.style.transform = `translateY(${translateY}px) scale(${scale})`;
+    // Si l'élément est complètement hors de la fenêtre, ne rien faire
+    if (rect.bottom < 0 || rect.top > windowHeight) {
+      el.style.transform = ""; // Reset si jamais il y avait un style
+      return;
     }
+    // Progress linéaire: 0 quand l'élément est à 10% visible, 1 quand il est à 90% visible
+    // On mesure la fraction de l'élément visible dans la fenêtre
+    const elementTop = rect.top;
+    const elementBottom = rect.bottom;
+    const elementHeight = rect.height;
+    // Calcul du pourcentage visible de l'élément dans la fenêtre
+    const visibleTop = Math.max(0, elementTop);
+    const visibleBottom = Math.min(windowHeight, elementBottom);
+    const visibleHeight = Math.max(0, visibleBottom - visibleTop);
+    const visibleFraction =
+      elementHeight > 0 ? visibleHeight / elementHeight : 0;
+    // On veut progress=0 à 10% visible, progress=1 à 90% visible
+    let progress = (visibleFraction - 0.1) / 0.8;
+    progress = Math.max(0, Math.min(1, progress));
+    // Scale: commence à 0.96, approche 1 au fur et à mesure que progress → 1
+    const minScale = 0.96;
+    const maxScale = 1.0;
+    const scale = minScale + (maxScale - minScale) * progress;
+    // TranslateY: commence à 40px (en bas), va vers 0px
+    const maxTranslateY = 0; // px
+    const translateY = maxTranslateY * (1 - progress);
+    el.style.transform = `translateY(${translateY.toFixed(
+      2
+    )}px) scale(${scale.toFixed(3)})`;
+    el.style.willChange = "transform";
   });
 }
 
-function activateParallaxOnFirstScroll() {
-  hasUserScrolled = true;
-  handleParallaxScroll();
-  window.removeEventListener("scroll", activateParallaxOnFirstScroll);
+function scheduleParallaxScroll() {
+  if (parallaxScrollScheduled) return;
+  parallaxScrollScheduled = true;
+  requestAnimationFrame(() => {
+    handleParallaxScroll();
+    parallaxScrollScheduled = false;
+  });
 }
 
-window.addEventListener("scroll", activateParallaxOnFirstScroll, {
-  once: true,
+window.addEventListener("scroll", scheduleParallaxScroll, { passive: true });
+window.addEventListener("resize", scheduleParallaxScroll, { passive: true });
+document.addEventListener("DOMContentLoaded", () => {
+  handleParallaxScroll();
 });
-window.addEventListener("scroll", handleParallaxScroll);
-window.addEventListener("resize", handleParallaxScroll);
-document.addEventListener("DOMContentLoaded", handleParallaxScroll);
 
 function updateTxtBtnText() {
   const lang = getCurrentLanguage();
