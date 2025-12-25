@@ -1405,13 +1405,15 @@ body.loaded #splash-screen {
 /* Mobile */
 @media (max-width: 700px) {
   .cookies-table-wrapper {
-    margin: 20px 40px;
+    margin: 20px 0px;
+    padding-right: 40px;
+    padding-left: 40px;
   }
 
   .cookies-table-wrapper th,
   .cookies-table-wrapper td {
     padding: 6px 8px;
-    padding-right: 15px;
+    padding-right: 10px;
 
     font-size: 13px;
     -webkit-overflow-scrolling: touch; /* scroll fluide iOS */
