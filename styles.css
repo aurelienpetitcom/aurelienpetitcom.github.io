@@ -999,9 +999,9 @@ body {
 }
 
 .scroll-parallax {
-  transform: translateY(0) scale(0.92);
+  transform: translateY(0) scale(0.96);
   will-change: transform;
-  transition: transform 0s ease-out; /* lissage de la transformation */
+  transition: transform 0.5s ease-out; /* lissage de la transformation */
 }
 
 #scrollNextSection {
