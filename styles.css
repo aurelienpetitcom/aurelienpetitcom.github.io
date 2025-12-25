@@ -1077,13 +1077,14 @@ body {
   opacity: 1;
 }
 
-/* Hover zoom léger */
 .imagesouspost {
-  transition: transform 0.2s ease;
-  cursor: pointer;
+  transition: transform 2s cubic-bezier(0.25, 0.1, 0.25, 1);
+  will-change: transform;
 }
 
 .imagesouspost:hover {
+  transition: transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+
   transform: scale(1.04);
 }
 
