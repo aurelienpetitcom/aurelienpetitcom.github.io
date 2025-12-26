@@ -8,12 +8,8 @@ menu.addEventListener("click", function () {
 
 function getCurrentLanguage() {
   const selector = document.getElementById("langSelector");
-  return selector ? selector.value : "fr"; // valeur par défaut
+  return selector ? selector.value : "fr";
 }
-
-/* =========================
-   COOKIE CONSENT + GA LOAD
-   ========================= */
 
 function loadGoogleAnalytics() {
   if (window.__gaLoaded) return;
@@ -39,14 +35,12 @@ function loadGoogleAnalytics() {
 function updateCookieBannerLanguage(lang) {
   const banner = document.getElementById("cookie-banner");
   if (!banner) return;
-  // Hide all accept/reject buttons and all <p>
   banner.querySelectorAll(".accept-cookies, .reject-cookies").forEach((btn) => {
     btn.style.display = "none";
   });
   banner.querySelectorAll("p[data-lang]").forEach((p) => {
     p.style.display = "none";
   });
-  // Show only those matching the current language
   banner
     .querySelectorAll(
       `.accept-cookies[data-lang="${lang}"], .reject-cookies[data-lang="${lang}"]`
@@ -63,21 +57,17 @@ function initCookieBanner() {
   const banner = document.getElementById("cookie-banner");
   if (!banner) return;
 
-  // Remove any CSS transitions on opacity, we will handle it fully in JS
   banner.style.transition = "none";
   banner.style.opacity = "0";
   banner.style.visibility = "hidden";
   banner.style.pointerEvents = "none";
 
-  // Forcer l'affichage du banner dans la langue actuelle dès l'initialisation
   updateCookieBannerLanguage(getCurrentLanguage());
 
-  // Attach click events only once
   let handlersAttached = false;
 
   function fadeTo(targetOpacity, duration, callback) {
-    // duration in ms
-    const step = 16; // ~60fps
+    const step = 16;
     let opacity = parseFloat(banner.style.opacity) || 0;
     const start = performance.now();
     const initial = opacity;
@@ -104,23 +94,18 @@ function initCookieBanner() {
     const banner = document.getElementById("cookie-banner");
     if (!banner) return;
 
-    // Préparer le banner pour le fade
     banner.style.opacity = "0";
     banner.style.visibility = "visible";
     banner.style.pointerEvents = "none";
 
-    // Afficher uniquement les boutons et textes pour la langue active
     const lang = getCurrentLanguage();
     updateCookieBannerLanguage(lang);
 
-    // Attendre 2 secondes avant d'afficher le banner
     setTimeout(() => {
-      // Fade-in sur 400ms
       fadeTo(1, 400, () => {
         banner.style.pointerEvents = "auto";
       });
 
-      // Attacher les événements aux boutons après le fade
       if (!handlersAttached) {
         const acceptButtons = banner.querySelectorAll(".accept-cookies");
         const rejectButtons = banner.querySelectorAll(".reject-cookies");
@@ -142,7 +127,7 @@ function initCookieBanner() {
 
         handlersAttached = true;
       }
-    }, 2000); // délai de 2 secondes
+    }, 2000);
   };
 
   function hideBanner(animate) {
@@ -157,7 +142,6 @@ function initCookieBanner() {
     }
   }
 
-  // Vérifie le consentement
   const consent = localStorage.getItem("cookiesConsent");
   if (consent === "accepted") {
     hideBanner(false);
@@ -165,19 +149,16 @@ function initCookieBanner() {
   } else if (consent === "rejected") {
     hideBanner(false);
   } else {
-    // Aucun consentement → afficher
     showBanner();
   }
 }
 
-// Appel après DOMContentLoaded
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", initCookieBanner);
 } else {
   initCookieBanner();
 }
 
-// Nouvelle gestion des boutons "Modifier mon consentement"
 function attachCookieResetButtons() {
   const resetBtnFr = document.getElementById("reset-cookie-consent");
   const resetBtnEn = document.getElementById("reset-cookie-consent-en");
@@ -195,7 +176,6 @@ function attachCookieResetButtons() {
     const lang = getCurrentLanguage();
     updateCookieBannerLanguage(lang);
 
-    // Fade-in sur 400ms après 2 secondes
     setTimeout(() => {
       let start = performance.now();
       function animate(now) {
@@ -220,15 +200,12 @@ document.addEventListener("DOMContentLoaded", () => {
   attachCookieResetButtons();
 });
 
-// Return the visible/active "Show more" button for the current language in a container
 function getVisibleToggleButton(descContainer, lang) {
-  // Prefer a button inside a localized wrapper if it exists
   let btn = descContainer.querySelector(
     `[data-lang="${lang}"] button.inline-button`
   );
   if (btn) return btn;
 
-  // Otherwise, pick the visible button
   const candidates = Array.from(
     descContainer.querySelectorAll("button.inline-button")
   );
@@ -246,7 +223,6 @@ function getVisibleToggleButton(descContainer, lang) {
 function changeLanguage(languageCode) {
   const elements = document.querySelectorAll("[data-lang]");
   elements.forEach(function (elem) {
-    // ❗ Ne jamais toucher au cookie banner
     if (elem.closest("#cookie-banner")) return;
 
     const tag = elem.tagName.toLowerCase();
@@ -257,7 +233,6 @@ function changeLanguage(languageCode) {
     }
   });
 
-  // Update toggleText buttons (per container, pick the visible/active button for current lang)
   document.querySelectorAll(".description-container").forEach((container) => {
     const lang = languageCode;
     const moreText = container.querySelector(
@@ -273,7 +248,6 @@ function changeLanguage(languageCode) {
     }
   });
 
-  // Update scroll indicator labels
   const indicatorLabels = document.querySelectorAll(".indicator-label");
   indicatorLabels.forEach((label) => {
     if (label.getAttribute("data-lang") === languageCode) {
@@ -283,13 +257,11 @@ function changeLanguage(languageCode) {
     }
   });
 
-  // Scroll to 1px first, then 0px after a short delay to ensure proper page refresh
   window.scrollTo(0, 1);
   setTimeout(() => {
     window.scrollTo(0, 0);
-  }, 5); // 5ms delay
+  }, 5);
 
-  // Gérer les options du filtre des publications
   rebuildPostFilter(languageCode);
 }
 
@@ -297,7 +269,6 @@ function rebuildPostFilter(languageCode) {
   const postFilter = document.getElementById("postFilter");
   if (!postFilter) return;
 
-  // Cache all localized options once
   if (!window.__postFilterStore) {
     const store = {};
     Array.from(postFilter.querySelectorAll("option[data-lang]")).forEach(
@@ -313,7 +284,6 @@ function rebuildPostFilter(languageCode) {
   const data = window.__postFilterStore[languageCode] || [];
   const previousValue = postFilter.value;
 
-  // Rebuild the select with only the options for the active language
   postFilter.innerHTML = "";
   data.forEach(({ value, text }) => {
     const o = document.createElement("option");
@@ -322,18 +292,15 @@ function rebuildPostFilter(languageCode) {
     postFilter.appendChild(o);
   });
 
-  // Restore previous value if still available, otherwise select the first option
   if (data.some((d) => d.value === previousValue)) {
     postFilter.value = previousValue;
   } else if (data[0]) {
     postFilter.value = data[0].value;
   }
 
-  // Apply filtering immediately
   filterPosts();
 }
 
-// Filter posts based on selected category
 function filterPosts() {
   const postFilter = document.getElementById("postFilter");
   if (!postFilter) return;
@@ -342,7 +309,6 @@ function filterPosts() {
   const sections = document.querySelectorAll("section.accueil_section1");
 
   sections.forEach((section) => {
-    // Toujours cacher les sections avec la classe 'hidden'
     if (section.classList.contains("hidden")) {
       section.style.display = "none";
       return;
@@ -356,22 +322,18 @@ function filterPosts() {
 
     if (categories.includes(selectedCategory)) {
       section.style.display = "block";
-      // Charger les images seulement si un more-text est déjà ouvert
       section
         .querySelectorAll(".more-text:not(.hidden)")
         .forEach((moreText) => {
           loadMoreTextImages(moreText);
         });
-      // Animation verticale des éléments .content-defilement
       section.querySelectorAll(".content-defilement").forEach((content) => {
         content.style.transition = "none";
         content.style.transform = "translateY(100px) scale(1)";
         content.style.opacity = "0";
 
-        // Forcer reflow
         void content.offsetWidth;
 
-        // Animation vers la position normale
         content.style.transition =
           "transform 0.5s ease-out, opacity 0.5s ease-out";
         content.style.transform = "translateY(0)";
@@ -382,7 +344,6 @@ function filterPosts() {
     }
   });
 
-  // Mettre à jour l'indicator-label avec la première section visible
   const visibleSections = Array.from(sections).filter(
     (s) => s.style.display !== "none"
   );
@@ -399,12 +360,10 @@ function filterPosts() {
     }
   }
 
-  // Mettre à jour la flèche scrollNextSection
   updateScrollNextArrow();
   handleParallaxScroll();
 }
 
-// Attach change event
 const postFilter = document.getElementById("postFilter");
 if (postFilter) {
   postFilter.addEventListener("change", () => {
@@ -412,7 +371,6 @@ if (postFilter) {
   });
 }
 
-// --- Gestion du cookie de langue ---
 function getLangCookie() {
   const match = document.cookie.match(/(?:^|; )siteLanguage=([^;]+)/);
   return match ? decodeURIComponent(match[1]) : "none";
@@ -424,7 +382,6 @@ function setLangCookie(lang) {
   )}; path=/; max-age=31536000; SameSite=Lax`;
 }
 
-// Nouvelle logique d'initialisation de la langue avec cookie
 let startLang = getLangCookie();
 
 if (startLang === "none") {
@@ -433,11 +390,9 @@ if (startLang === "none") {
   setLangCookie(startLang);
 }
 
-// Appliquer la langue sur TOUTES les pages
 changeLanguage(startLang);
 updateCookieBannerLanguage(startLang);
 
-// Gestion du sélecteur de langue (si présent)
 const selector = document.getElementById("langSelector");
 if (selector) {
   selector.value = startLang;
@@ -449,13 +404,12 @@ if (selector) {
   });
 }
 
-// Sélection des sections et de l'élément d'indicateur
 const sections = document.querySelectorAll("section");
 const scrollIndicator = document.querySelector(".scroll-indicator");
 const indicatorContainer = document.querySelector(".indicator-container");
 const indicatorBall = document.querySelector(".indicator-ball");
 
-let isDragging = false; // État pour savoir si la boule est en cours de déplacement
+let isDragging = false;
 
 function updateIndicator() {
   const scrollTop = window.scrollY;
@@ -477,7 +431,7 @@ function updateIndicator() {
 
   let activeSection = null;
   let sectionProgress = 0;
-  const quarterFromBottom = window.innerHeight * 0.75; // point 1/4 from the bottom
+  const quarterFromBottom = window.innerHeight * 0.75;
   const triggerPoint = window.scrollY + quarterFromBottom;
 
   for (const section of sections) {
@@ -490,7 +444,6 @@ function updateIndicator() {
       triggerPoint <= sectionTop + sectionHeight
     ) {
       activeSection = section;
-      // Check if .more-text is visible and adjust sectionHeight accordingly
       const moreText = activeSection.querySelector(".more-text");
       if (moreText && !moreText.classList.contains("hidden")) {
         sectionHeight = activeSection.scrollHeight;
@@ -505,7 +458,7 @@ function updateIndicator() {
   function updateIndicatorLabelAfterFilter() {
     const sections = Array.from(
       document.querySelectorAll("section.scroll-parallax")
-    ).filter((s) => s.style.display !== "none"); // seulement les sections visibles
+    ).filter((s) => s.style.display !== "none");
 
     if (!sections.length) return;
 
@@ -513,7 +466,6 @@ function updateIndicator() {
     const indicatorLabel = document.querySelector(".indicator-label");
     if (!indicatorLabel) return;
 
-    // Affiche le label de la première section visible
     const firstSection = sections[0];
     const labelText =
       lang === "en"
@@ -526,7 +478,6 @@ function updateIndicator() {
   if (activeSection) {
     let sectionProgressDisplay = sectionProgress;
 
-    // Cap the displayed progress between 0% and 100
     sectionProgressDisplay = Math.min(Math.max(sectionProgressDisplay, 0), 100);
 
     const lang = getCurrentLanguage();
@@ -537,25 +488,10 @@ function updateIndicator() {
           ? activeSection.getAttribute("data-label-en")
           : activeSection.getAttribute("data-label-fr");
 
-      // Append percentage only if between 20% and 80
-      //if (sectionProgressDisplay >= 20 && sectionProgressDisplay <= 80) {
-      //  labelText += ` - ${sectionProgressDisplay}%`;
-      //}
-
       indicatorLabel.innerHTML = labelText;
       indicatorLabel.style.display = "block";
     }
   }
-
-  //  const lastSection = sections[sections.length - 1];
-  //  const lastSectionRect = lastSection.getBoundingClientRect();
-  //  const lastSectionVisible = lastSectionRect.bottom;
-  //
-  //  if (lastSectionVisible < windowHeight * 0.5) {
-  //    scrollIndicator.classList.add("hidden");
-  //  } else {
-  //    scrollIndicator.classList.remove("hidden");
-  //  }
 }
 
 function updateScrollNextArrow() {
@@ -564,7 +500,7 @@ function updateScrollNextArrow() {
 
   const sections = Array.from(
     document.querySelectorAll("section.scroll-parallax")
-  ).filter((s) => s.style.display !== "none"); // seulement les sections visibles
+  ).filter((s) => s.style.display !== "none");
 
   if (sections.length === 0) {
     scrollNextBtn.style.display = "none";
@@ -583,7 +519,6 @@ function updateScrollNextArrow() {
 
   const currentLabel = indicatorLabel.textContent.trim();
 
-  // Transition pour l'opacité
   scrollNextBtn.style.transition = "opacity 0.2s ease";
 
   if (currentLabel === lastLabel) {
@@ -632,7 +567,6 @@ document.addEventListener("mouseup", () => {
 
 document.addEventListener("DOMContentLoaded", updateIndicator);
 
-// Lazy-load des images contenues dans .more-text
 function loadMoreTextImages(moreText) {
   if (!moreText) return;
 
@@ -653,17 +587,14 @@ function toggleText(button) {
   const descriptionEl = container.querySelector(
     `.description[data-lang="${lang}"]`
   );
-  // Updated logic: find the .more-text inside the description element, which may contain multiple elements
   const moreText = descriptionEl
     ? descriptionEl.querySelector(".more-text")
     : null;
   const wasHidden = moreText && moreText.classList.contains("hidden");
 
   if (wasHidden) {
-    // ✅ Charger les images UNIQUEMENT à l'ouverture
     loadMoreTextImages(moreText);
 
-    // Afficher le texte
     moreText.classList.remove("hidden");
     const imagesRows = moreText.querySelectorAll(".images-row");
     imagesRows.forEach((row) => {
@@ -674,7 +605,6 @@ function toggleText(button) {
     const textTop = moreText.getBoundingClientRect().top + window.scrollY;
     window.scrollTo({ top: textTop - 300, behavior: "smooth" });
   } else {
-    // Si on affiche moins → garder la même distance visuelle
     const buttonOffsetBefore = button.getBoundingClientRect().top;
 
     moreText.classList.add("hidden");
@@ -711,8 +641,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// --- Nouvelle gestion fluide du scroll-parallax ---
-// --- Nouvelle gestion fluide du scroll-parallax (progressive scale & translateY) ---
 let parallaxScrollScheduled = false;
 
 function handleParallaxScroll() {
@@ -722,31 +650,24 @@ function handleParallaxScroll() {
   const windowHeight = window.innerHeight;
   elements.forEach((el) => {
     const rect = el.getBoundingClientRect();
-    // Si l'élément est complètement hors de la fenêtre, ne rien faire
     if (rect.bottom < 0 || rect.top > windowHeight) {
-      el.style.transform = ""; // Reset si jamais il y avait un style
+      el.style.transform = "";
       return;
     }
-    // Progress linéaire: 0 quand l'élément est à 10% visible, 1 quand il est à 90% visible
-    // On mesure la fraction de l'élément visible dans la fenêtre
     const elementTop = rect.top;
     const elementBottom = rect.bottom;
     const elementHeight = rect.height;
-    // Calcul du pourcentage visible de l'élément dans la fenêtre
     const visibleTop = Math.max(0, elementTop);
     const visibleBottom = Math.min(windowHeight, elementBottom);
     const visibleHeight = Math.max(0, visibleBottom - visibleTop);
     const visibleFraction =
       elementHeight > 0 ? visibleHeight / elementHeight : 0;
-    // On veut progress=0 à 10% visible, progress=1 à 90% visible
     let progress = (visibleFraction - 0.1) / 0.8;
     progress = Math.max(0, Math.min(1, progress));
-    // Scale: commence à 0.96, approche 1 au fur et à mesure que progress → 1
     const minScale = 0.96;
     const maxScale = 1.0;
     const scale = minScale + (maxScale - minScale) * progress;
-    // TranslateY: commence à 40px (en bas), va vers 0px
-    const maxTranslateY = 0; // px
+    const maxTranslateY = 0;
     const translateY = maxTranslateY * (1 - progress);
     el.style.transform = `translateY(${translateY.toFixed(
       2
@@ -776,32 +697,26 @@ function updateTxtBtnText() {
   if (!el) return;
 
   if (window.innerWidth < 500) {
-    // For English show "Resume", for French show "CV"
     el.textContent = lang === "en" ? "Curr. Vitae" : "Curr. Vitae";
   } else {
-    // Full text for both languages
     el.textContent = lang === "en" ? "Curriculum Vitae" : "Curriculum Vitae";
   }
 }
 
-// Call initially
 updateTxtBtnText();
-// Update on resize
 window.addEventListener("resize", updateTxtBtnText);
 
-// Scroll arrow to next section
 const scrollNextBtn = document.getElementById("scrollNextSection");
 if (scrollNextBtn) {
   scrollNextBtn.addEventListener("click", () => {
     const sections = document.querySelectorAll("section.scroll-parallax");
     const viewportHeight = window.innerHeight;
     const currentScroll = window.scrollY;
-    const triggerPoint = currentScroll + viewportHeight * 0.25; // 1/4 from bottom
+    const triggerPoint = currentScroll + viewportHeight * 0.25;
 
-    // Filter sections strictly below the triggerPoint
     const nextSection = Array.from(sections)
       .filter((section) => section.offsetTop > triggerPoint)
-      .shift(); // pick the first one
+      .shift();
 
     if (nextSection) {
       const targetScroll = nextSection.offsetTop - 150;
@@ -813,7 +728,6 @@ if (scrollNextBtn) {
   });
 }
 
-// Lightbox functionality with navigation arrows
 document.addEventListener("DOMContentLoaded", () => {
   const lightbox = document.getElementById("lightbox");
   const lightboxImg = document.getElementById("lightboxImg");
@@ -826,49 +740,39 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentIndex = 0;
   let currentGroup = [];
 
-  // Function to disable scroll
+  function navigateLightbox(direction) {
+    if (!currentGroup.length) return;
+
+    currentIndex =
+      (currentIndex + direction + currentGroup.length) % currentGroup.length;
+
+    const img = currentGroup[currentIndex];
+    if (!img || !img.src) return;
+
+    lightboxImg.src = img.src;
+
+    lightboxImg.style.transition = "none";
+    lightboxImg.style.transform = "scale(0.95)";
+    void lightboxImg.offsetWidth;
+    lightboxImg.style.transition = "transform 0.4s ease";
+    lightboxImg.style.transform = "scale(1)";
+  }
+
   function disableScroll() {
     document.body.style.overflow = "hidden";
   }
 
-  // Function to enable scroll
   function enableScroll() {
     document.body.style.overflow = "";
   }
 
-  function showImage(index) {
-    if (!currentGroup || currentGroup.length === 0) return;
-
-    // Circular navigation
-    if (index < 0) {
-      currentIndex = currentGroup.length - 1;
-    } else if (index >= currentGroup.length) {
-      currentIndex = 0;
-    } else {
-      currentIndex = index;
-    }
-
-    const imgSrc = currentGroup[currentIndex].src;
-    if (imgSrc) {
-      lightboxImg.src = imgSrc;
-
-      // Scale animation
-      lightboxImg.style.transition = "none";
-      lightboxImg.style.transform = "scale(0.95)";
-      void lightboxImg.offsetWidth; // force reflow
-      lightboxImg.style.transition = "transform 0.4s ease";
-      lightboxImg.style.transform = "scale(1)";
-    }
-  }
-
-  // Open lightbox on image click
   document.querySelectorAll(".imagesouspost").forEach((img) => {
     img.addEventListener("click", () => {
       currentGroup = Array.from(
         img
           .closest(".description-container")
           ?.querySelectorAll(".imagesouspost") || []
-      ).filter((i) => !!i.src); // Remove undefined or empty src
+      ).filter((i) => !!i.src);
       currentIndex = currentGroup.indexOf(img);
 
       if (!currentGroup.length) return;
@@ -882,31 +786,28 @@ document.addEventListener("DOMContentLoaded", () => {
       const scrollIndicator = document.querySelector(".scroll-indicator");
       if (scrollIndicator) scrollIndicator.style.opacity = "0";
 
-      // Scale animation
       lightboxImg.style.transition = "none";
       lightboxImg.style.transform = "scale(0.95)";
-      void lightboxImg.offsetWidth; // force reflow
+      void lightboxImg.offsetWidth;
       lightboxImg.style.transition = "transform 0.4s ease";
       lightboxImg.style.transform = "scale(1)";
     });
   });
 
-  // Navigation arrows
   if (prevBtn) {
     prevBtn.addEventListener("click", (e) => {
       e.stopPropagation();
-      showImage(currentIndex - 1);
+      navigateLightbox(-1);
     });
   }
 
   if (nextBtn) {
     nextBtn.addEventListener("click", (e) => {
       e.stopPropagation();
-      showImage(currentIndex + 1);
+      navigateLightbox(1);
     });
   }
 
-  // Close on click of the close button
   lightboxCloseBtn.addEventListener("click", () => {
     lightbox.style.display = "none";
     enableScroll();
@@ -914,9 +815,23 @@ document.addEventListener("DOMContentLoaded", () => {
     if (scrollIndicator) scrollIndicator.style.opacity = "1";
   });
 
-  // Close when clicking outside the image
   lightbox.addEventListener("click", (e) => {
     if (e.target === lightbox) {
+      lightbox.style.display = "none";
+      enableScroll();
+      const scrollIndicator = document.querySelector(".scroll-indicator");
+      if (scrollIndicator) scrollIndicator.style.opacity = "1";
+    }
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (lightbox.style.display !== "flex") return;
+
+    if (e.key === "ArrowRight") {
+      navigateLightbox(1);
+    } else if (e.key === "ArrowLeft") {
+      navigateLightbox(-1);
+    } else if (e.key === "Escape") {
       lightbox.style.display = "none";
       enableScroll();
       const scrollIndicator = document.querySelector(".scroll-indicator");
@@ -959,32 +874,26 @@ function handleHashNavigation() {
   }, 400);
 }
 
-// Splash video on page load with fade triggered at 1.3s
 document.addEventListener("DOMContentLoaded", () => {
   const splash = document.getElementById("splash-screen");
   const video = document.getElementById("splash-video");
 
   if (!splash || !video) return;
 
-  // Disable scrolling initially
   document.body.style.overflow = "hidden";
 
-  // Ensure initial opacity
   splash.style.opacity = "1";
   splash.style.transition = "opacity 0.2s ease";
 
   const hideSplash = () => {
-    // Scroll to 1px first, then back to 0 quickly
     window.scrollTo(0, 1);
     setTimeout(() => {
       window.scrollTo(0, 0);
     }, 5);
 
     splash.style.opacity = "0";
-    // Re-enable scrolling immediately
     document.body.style.overflow = "";
 
-    // Trigger the content-defilement animation
     document.querySelectorAll(".content-defilement").forEach((el) => {
       el.classList.add("active");
     });
@@ -993,12 +902,10 @@ document.addEventListener("DOMContentLoaded", () => {
       splash.style.display = "none";
       document.body.classList.add("loaded");
 
-      // 🔗 Navigation par lien direct (hash) APRÈS le splash
       handleHashNavigation();
-    }, 200); // match the CSS transition duration
+    }, 200);
   };
 
-  // Use timeupdate event to check video currentTime
   const onTimeUpdate = () => {
     if (video.currentTime >= 1.2) {
       hideSplash();
@@ -1008,69 +915,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
   video.addEventListener("timeupdate", onTimeUpdate);
 
-  // Also end if video naturally ends before 1.3s
   video.addEventListener("ended", hideSplash);
 
-  // Fallback: if video doesn't start (e.g. iOS low power mode), hide splash after short delay
   setTimeout(() => {
     if (video.currentTime === 0) {
       hideSplash();
     }
   }, 1000);
 
-  // Ensure page is scrolled to top during splash
   window.scrollTo(0, 0);
 });
 
-// Ensure parallax placement is correct on initial load
 document.addEventListener("DOMContentLoaded", () => {
   handleParallaxScroll();
 });
 
-document.addEventListener("keydown", (e) => {
-  const lightbox = document.getElementById("lightbox");
-  const lightboxImg = document.getElementById("lightboxImg");
-  const lightboxCloseBtn = document.getElementById("lightboxClose");
-  if (!lightbox || lightbox.style.display !== "flex" || !lightboxImg) return;
-
-  const currentSrc = lightboxImg.src;
-  const currentImgElement = Array.from(
-    document.querySelectorAll(".imagesouspost")
-  ).find((img) => img.src === currentSrc);
-  if (!currentImgElement) return;
-
-  const container =
-    currentImgElement.closest(".description-container") || document.body;
-  const allImgs = Array.from(container.querySelectorAll(".imagesouspost"));
-  let currentIndex = allImgs.findIndex((img) => img.src === currentSrc);
-  if (currentIndex === -1) return;
-
-  if (e.key === "ArrowRight") {
-    currentIndex = (currentIndex + 1) % allImgs.length;
-    lightboxImg.src = allImgs[currentIndex].src;
-  } else if (e.key === "ArrowLeft") {
-    currentIndex = (currentIndex - 1 + allImgs.length) % allImgs.length;
-    lightboxImg.src = allImgs[currentIndex].src;
-  } else if (e.key === "Escape") {
-    // Ferme la lightbox comme le bouton de fermeture
-    lightbox.style.display = "none";
-    document.body.style.overflow = ""; // réactive le scroll
-    const scrollIndicator = document.querySelector(".scroll-indicator");
-    if (scrollIndicator) scrollIndicator.style.opacity = "1";
-    return; // stop ici
-  } else {
-    return; // autre touche ignorée
-  }
-
-  // scale animation
-  lightboxImg.style.transition = "none";
-  lightboxImg.style.transform = "scale(0.95)";
-  void lightboxImg.offsetWidth; // force reflow
-  lightboxImg.style.transition = "transform 0.4s ease";
-  lightboxImg.style.transform = "scale(1)";
-});
-
-// Hide all .more-text elements (and reset buttons) if user scrolls near top of page
 window.addEventListener("scroll", function () {
   if (window.scrollY < window.innerHeight * 0.3) {
     document.querySelectorAll(".more-text:not(.hidden)").forEach((moreText) => {
@@ -1091,7 +950,6 @@ window.addEventListener("scroll", function () {
   }
 });
 
-// Swipe detection for lightbox (mobile) - horizontal swipes
 let touchStartX = 0;
 let touchEndX = 0;
 
@@ -1100,14 +958,12 @@ function handleSwipeGesture() {
   if (!lightbox || lightbox.style.display !== "flex") return;
 
   const deltaX = touchEndX - touchStartX;
-  const minSwipeDistance = 50; // px
+  const minSwipeDistance = 50;
 
   if (deltaX < -minSwipeDistance) {
-    // swipe left → next image
     const nextBtn = document.getElementById("lightboxNext");
     if (nextBtn) nextBtn.click();
   } else if (deltaX > minSwipeDistance) {
-    // swipe right → previous image
     const prevBtn = document.getElementById("lightboxPrev");
     if (prevBtn) prevBtn.click();
   }
@@ -1133,12 +989,11 @@ document.addEventListener("touchend", (e) => {
   handleSwipeGesture();
 });
 
-// Close lightbox if user scrolls
 window.addEventListener("scroll", () => {
   const lightbox = document.getElementById("lightbox");
   if (lightbox && lightbox.style.display === "flex") {
     lightbox.style.display = "none";
-    document.body.style.overflow = ""; // réactive le scroll
+    document.body.style.overflow = "";
     const scrollIndicator = document.querySelector(".scroll-indicator");
     if (scrollIndicator) scrollIndicator.style.opacity = "1";
   }
@@ -1151,7 +1006,7 @@ function updateBackgroundColor() {
     "section[data-label-en], section[data-label-fr]"
   );
   const body = document.body;
-  let appliedColor = "#000000ff"; // couleur par défaut
+  let appliedColor = "#000000ff";
 
   sections.forEach((section) => {
     const labelEN = section.getAttribute("data-label-en")?.trim();
@@ -1168,13 +1023,11 @@ function updateBackgroundColor() {
     mainContainer.style.transition = "background-color 1s ease";
     mainContainer.style.backgroundColor = appliedColor;
   }
-  // Ajout pour appliquer la couleur et la transition à .main
   const main = document.querySelector(".main");
   if (main) {
     main.style.transition = "background-color 1s ease";
     main.style.backgroundColor = appliedColor;
   }
-  // Ajout pour appliquer la couleur et la transition à .main__container-bandebp
   const bandeBP = document.querySelector(".main__container-bandebp");
   if (bandeBP) {
     bandeBP.style.transition = "background-color 1s ease";
@@ -1182,10 +1035,8 @@ function updateBackgroundColor() {
   }
 }
 
-// --- Exécuter sur scroll ---
 document.addEventListener("scroll", updateBackgroundColor);
 
-// --- Exécuter quand le label change ---
 const indicatorLabel = document.querySelector(".indicator-label");
 if (indicatorLabel) {
   const observer = new MutationObserver(updateBackgroundColor);
@@ -1196,23 +1047,16 @@ if (indicatorLabel) {
   });
 }
 
-// --- Exécuter aussi au chargement initial ---
 document.addEventListener("DOMContentLoaded", updateBackgroundColor);
 
-// Partage d'une publication via une page dédiée (share page) pour ne partager que le lien
 document.querySelectorAll(".social-share").forEach((button) => {
   button.addEventListener("click", async (e) => {
     e.preventDefault();
 
     const section = button.closest("section[id]");
     if (!section) return;
-
     const postId = section.id;
-
-    // Construire le lien à partager uniquement
     const shareLink = `https://aurelienpetit.com/share/${postId}`;
-
-    // Choisir le titre selon la langue actuelle
     const lang = getCurrentLanguage();
     const title =
       lang === "en"

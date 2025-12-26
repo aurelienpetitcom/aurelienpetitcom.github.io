@@ -6,24 +6,24 @@
 
 .accueil_section1 {
   position: relative;
-  max-width: 700px; /* Largeur maximale de la section */
+  max-width: 700px;
   padding-bottom: 0px;
   color: #ffffff;
   font-family: Arial, sans-serif;
   border-radius: 20px;
   display: flex;
   justify-content: center;
-  margin: 0 auto; /* Centre la section horizontalement */
+  margin: 0 auto;
   background-color: #ffffff11;
-  text-align: left; /* Centre le texte */
+  text-align: left;
   flex-direction: column;
   margin-bottom: 50px;
 }
 
 .content-container {
-  width: 100%; /* Largeur de 100% du conteneur */
+  width: 100%;
   position: relative;
-  max-width: 800px; /* Limite la largeur du conteneur */
+  max-width: 800px;
   padding-bottom: 20px;
 }
 
@@ -31,14 +31,12 @@
   padding-bottom: 20px;
 }
 
-/* Styles pour le bouton "learn-more" */
 .learn-more:hover {
   color: #dddddd;
   border-color: #dddddd;
   background-color: #b536361e;
 }
 
-/* Icônes des réseaux sociaux */
 .social-icons {
   bottom: 43px;
   right: 40px;
@@ -61,8 +59,8 @@
   gap: 10px;
   border-radius: 20px;
   color: rgb(255, 255, 255);
-  border: 1.5px solid rgba(255, 255, 255, 0.5); /* ajout du contour blanc */
-  padding: 5.7px; /* optionnel, pour que le contenu ne touche pas la bordure */
+  border: 1.5px solid rgba(255, 255, 255, 0.5);
+  padding: 5.7px;
   margin-left: -55px;
   padding-left: 45px;
   padding-right: 15px;
@@ -87,7 +85,7 @@
   transition: background-color 0.3s;
   translate: 0px 2px;
   opacity: 0.5;
-  pointer-events: auto; /* réactive les clics uniquement sur les liens */
+  pointer-events: auto;
 }
 
 .social-icon:hover {
@@ -110,9 +108,6 @@
   opacity: 1;
 }
 
-/* Couleurs spécifiques pour chaque réseau */
-
-/* Styles additionnels pour d'autres éléments */
 .date-category {
   font-size: 15px;
   color: #b5b5b5;
@@ -136,7 +131,7 @@ h2 {
   font-size: 24px;
   color: #fff;
   font-family: "SFProSemiBold", sans-serif;
-  line-height: 1; /* Réduit l'interligne */
+  line-height: 1;
   padding-bottom: 0px;
 }
 
@@ -216,7 +211,7 @@ h5 {
   position: fixed;
   left: 10px;
   top: 47%;
-  height: 140px; /* Barre fixe de 80% de la hauteur de l'écran */
+  height: 140px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -230,7 +225,7 @@ h5 {
   content: "";
   display: block;
   width: 10px;
-  height: 146px; /* La barre occupe toute la hauteur de .scroll-indicator */
+  height: 146px;
   background-color: #ffffff13;
   border-radius: 10px;
   position: absolute;
@@ -240,46 +235,44 @@ h5 {
 
 .indicator-container {
   display: flex;
-  align-items: center; /* Aligne la boule et le texte au centre */
-  position: relative; /* Position relative pour placer la boule */
+  align-items: center;
+  position: relative;
   translate: 30px -65px;
-  /* cursor: grab;  Curseur pour indiquer que l'élément peut être déplacé */
-  cursor: default; /* overrides the grab cursor */
+  cursor: default;
 }
 
 .scroll-indicator.hidden {
-  opacity: 0; /* Masquer l'indicateur avec opacité 0 */
+  opacity: 0;
 }
 
 .indicator-ball {
-  width: 10px; /* Diamètre de la boule */
+  width: 10px;
   height: 10px;
-  background-color: rgba(255, 255, 255, 0.501); /* Couleur de la boule */
-  border-radius: 50%; /* Rendre la boule circulaire */
-  position: absolute; /* Positionnement absolu par rapport au conteneur */
-  left: -20px; /* Décalage pour que la boule soit à gauche du texte */
-  transition: transform 0s, width 0s, height 0.1s; /* Ajout de la transition pour la taille */
+  background-color: rgba(255, 255, 255, 0.501);
+  border-radius: 50%;
+  position: absolute;
+  left: -20px;
+  transition: transform 0s, width 0s, height 0.1s;
 }
 
 .indicator-ball.expanded {
-  width: 15px; /* Nouvelle taille de la boule lorsqu'elle est agrandie */
-  height: 15px; /* Nouvelle taille de la boule lorsqu'elle est agrandie */
-  left: -22.5px; /* Décalage pour que la boule soit à gauche du texte */
-  background-color: rgba(255, 255, 255, 1); /* Couleur de la boule */
+  width: 15px;
+  height: 15px;
+  left: -22.5px;
+  background-color: rgba(255, 255, 255, 1);
 }
 
 .indicator-label {
-  background-color: rgba(255, 255, 255, 0.094); /* Rouge avec 50% d'opacité */
+  background-color: rgba(255, 255, 255, 0.094);
   color: #fff;
   padding: 10px 15px;
   border-radius: 20px;
   font-size: 15px;
   font-family: "SFProRegular", sans-serif;
-  position: relative; /* Position relative pour pouvoir la déplacer */
+  position: relative;
   transition: transform 0s ease-in-out;
 }
 
-/* Sections */
 .accueil_section1 {
   background-color: #ffffff11;
   position: center;
@@ -472,7 +465,6 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  /*height: 80vh;         */
   background-color: rgb(0, 0, 0);
   z-index: 0;
   width: 100%;
@@ -485,7 +477,6 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  /*height: 80vh;         */
   background-color: rgb(0, 0, 0);
   z-index: 0;
   width: 100%;
@@ -559,12 +550,12 @@ body {
   transition: all 1s ease;
   white-space: nowrap;
   margin-top: 0px;
-  transition: transform 0.3s ease, opacity 0.3s ease; /* Transition pour la transformation et l'opacité */
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 .main_btn:hover {
   background: rgb(240, 240, 240);
-  transform: scale(0.95); /* Réduit la taille à 80% */
+  transform: scale(0.95);
 }
 
 .main_btn.left {
@@ -637,9 +628,9 @@ body {
 
 .footer-links {
   display: flex;
-  gap: 20px; /* espace entre les boutons */
-  justify-content: center; /* ou flex-start si tu préfères */
-  flex-wrap: wrap; /* évite les débordements mobile */
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .txt_btn_cv {
@@ -667,10 +658,10 @@ body {
 }
 
 .image_production {
-  display: block; /* Permet de centrer l'image avec margin auto */
-  width: 100vw; /* Largeur de 100% de la largeur de la fenêtre */
-  max-width: 100%; /* Empêche l'image de dépasser la largeur de son conteneur */
-  margin: 0px auto 0 auto; /* Centre l'image horizontalement et ajoute une marge en haut */
+  display: block;
+  width: 100vw;
+  max-width: 100%;
+  margin: 0px auto 0 auto;
   border-radius: 0px;
 }
 
@@ -690,7 +681,6 @@ body {
   max-width: 80%;
   max-height: 60%;
   border-radius: 20px;
-  /*box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);*/
   z-index: 1000;
 }
 
@@ -710,7 +700,6 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    /*height: 80vh;         */
     background-color: rgb(0, 0, 0);
     z-index: 0;
     width: 100%;
@@ -723,7 +712,6 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    /*height: 80vh;         */
     background-color: rgb(0, 0, 0);
     z-index: 0;
     width: 100%;
@@ -784,7 +772,6 @@ body {
     max-width: 90%;
     max-height: 60%;
     border-radius: 20px;
-    /*box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);*/
     z-index: 1000;
   }
   .main__content p {
@@ -849,9 +836,9 @@ body {
 
   .images-row {
     display: flex;
-    flex-wrap: wrap; /* allow wrapping if necessary */
-    gap: 15px; /* space between images */
-    justify-content: flex-start; /* align to left */
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: flex-start;
     margin-left: 0;
     margin-right: 0;
     padding-left: 0;
@@ -887,40 +874,38 @@ body {
 }
 
 ::selection {
-  background-color: #ffffff; /* Couleur de fond de la sélection */
-  color: #000000; /* Couleur du texte sélectionné */
+  background-color: #ffffff;
+  color: #000000;
 }
 
 #loader {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%; /* Largeur à 100% pour occuper tout l'écran */
-  height: 100%; /* Hauteur à 100% pour occuper tout l'écran */
-  background-color: black; /* Fond noir */
+  width: 100%;
+  height: 100%;
+  background-color: black;
   display: flex;
-  justify-content: center; /* Centre horizontalement */
-  align-items: center; /* Centre verticalement */
-  z-index: 1000; /* Assurez-vous qu'il est au-dessus de tout */
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
 }
 
-/* Styles pour le GIF */
 .loader-gif {
-  width: 200px; /* Ajustez la largeur souhaitée */
-  height: auto; /* Garder les proportions */
+  width: 200px;
+  height: auto;
 }
 
-/* Animation de disparition */
 .fade-out {
   opacity: 0;
-  transition: opacity 0.2s ease-out; /* Durée de l'animation */
+  transition: opacity 0.2s ease-out;
 }
 
 .row-flex-bouton {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  align-items: center; /* centre verticalement */
+  align-items: center;
   gap: 20px;
   flex-wrap: wrap;
   height: 60px;
@@ -933,7 +918,7 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  align-items: center; /* centre verticalement */
+  align-items: center;
   gap: 20px;
   flex-wrap: wrap;
   height: 50px;
@@ -942,10 +927,9 @@ body {
   margin-bottom: 0px;
 }
 
-/* Bouton intégré dans le texte */
 .inline-button {
-  background-color: #ffffff36; /* Fond gris */
-  color: white; /* Texte blanc */
+  background-color: #ffffff36;
+  color: white;
   border: none;
   padding: 4px 8px;
   padding-bottom: 5px;
@@ -953,7 +937,7 @@ body {
   border-radius: 10px;
   cursor: pointer;
   font-size: 14px;
-  display: inline; /* important : en ligne */
+  display: inline;
   font-family: "SFProRegular", sans-serif;
 
   transition: background-color 0.3s ease;
@@ -967,12 +951,11 @@ body {
   display: none;
 }
 
-/* Images row layout for two and three images per row */
 .images-row {
   display: flex;
-  flex-wrap: wrap; /* allow wrapping if necessary */
-  gap: 20px; /* space between images */
-  justify-content: flex-start; /* align to left */
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: flex-start;
   margin-left: 0;
   margin-right: 0;
   padding-left: 0;
@@ -980,17 +963,17 @@ body {
 }
 
 .images-row.two-images .imagesouspost {
-  width: calc(50% - 10px); /* 50% minus half the gap */
+  width: calc(50% - 10px);
   height: auto;
 }
 
 .images-row.three-images .imagesouspost {
-  width: calc(33.333% - 13.333px); /* 33.333% minus half the gap */
+  width: calc(33.333% - 13.333px);
   height: auto;
 }
 
 .images-row .imagesouspost {
-  display: block; /* ensure block layout inside flex row */
+  display: block;
   max-width: 100%;
 }
 
@@ -1001,7 +984,7 @@ body {
 .scroll-parallax {
   transform: translateY(0) scale(0.96);
   will-change: transform;
-  transition: transform 0.5s ease-out; /* lissage de la transformation */
+  transition: transform 0.5s ease-out;
 }
 
 #scrollNextSection {
@@ -1012,7 +995,7 @@ body {
   font-size: 20px;
   color: rgba(80, 80, 80);
   z-index: 1001;
-  opacity: 0.5; /* initial transparency */
+  opacity: 0.5;
   transition: color 1s ease, opacity 1s ease;
 }
 
@@ -1023,14 +1006,14 @@ body {
   font-size: 20px;
   color: rgba(80, 80, 80);
   z-index: 1001;
-  opacity: 0.5; /* initial transparency */
+  opacity: 0.5;
   transition: color 1s ease, opacity 1s ease;
 }
 
 #scrollNextSection:hover {
   color: rgb(255, 255, 255);
   z-index: 1001;
-  opacity: 1; /* initial transparency */
+  opacity: 1;
   transition: color 1s ease, opacity 1s ease;
 }
 
@@ -1039,22 +1022,18 @@ body {
   margin-bottom: 3px;
   position: relative;
   top: -40px;
-  left: calc(
-    50% + 200px
-  ); /* center + 350px (right edge of section) minus its own width */
+  left: calc(50% + 200px);
   color: rgb(255, 255, 255);
   cursor: pointer;
   font-size: 20px;
-  pointer-events: none; /* la flèche ne capte pas le clic */
+  pointer-events: none;
 }
 
 @media (min-width: 750px) {
   .filter-container {
     display: inline-flex;
     position: absolute;
-    left: calc(
-      50% + 100px
-    ); /* center + 350px (right edge of section) minus its own width */
+    left: calc(50% + 100px);
     text-align: right;
     opacity: 0.7;
     transition: opacity 0s ease;
@@ -1078,17 +1057,16 @@ body {
 }
 
 .imagesouspost {
-  transition: transform 2s cubic-bezier(0.25, 0.1, 0.25, 1);
+  transition: transform 1s cubic-bezier(0.25, 0.1, 0.25, 1);
   will-change: transform;
 }
 
 .imagesouspost:hover {
-  transition: transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
-
   transform: scale(1.04);
+  transition: transform 0.2s cubic-bezier(0.25, 0.1, 0.25, 1);
+  cursor: pointer;
 }
 
-/* Lightbox overlay */
 .lightbox {
   display: none;
   position: fixed;
@@ -1101,7 +1079,7 @@ body {
   align-items: center;
   z-index: 2000;
   flex-direction: column;
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(30px);
 }
 
 .lightbox-close {
@@ -1122,7 +1100,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: black; /* Full black overlay */
+  background-color: black;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1170,8 +1148,8 @@ body.loaded #splash-screen {
   padding-right: 0px;
   border: none;
   outline: none;
-  width: 200px; /* largeur fixe pour que texte reste aligné */
-  padding-right: 25px; /* espace pour la flèche */
+  width: 200px;
+  padding-right: 25px;
 }
 
 #postFilter option {
@@ -1213,21 +1191,19 @@ body.loaded #splash-screen {
   padding: 15px;
 }
 
-/* Réserve l’espace pour les images lazy (évite les sauts) */
 .imagesouspost.lazy-more {
   width: 100%;
   height: auto;
   background-color: rgba(255, 255, 255, 0);
 }
 
-/* Style pour les éléments .text.lang (Privacy Policy, etc.) */
 .text.lang {
   font-family: "SFProRegular", sans-serif;
   font-size: 18px;
   line-height: 1.5;
   text-align: left;
   color: rgba(255, 255, 255, 0.7);
-  margin-bottom: 20px; /* espace entre les paragraphes */
+  margin-bottom: 20px;
   max-width: 960px;
   padding-left: 40px;
   padding-right: 40px;
@@ -1239,7 +1215,7 @@ body.loaded #splash-screen {
   line-height: 1.5;
   text-align: center;
   color: rgba(255, 255, 255, 0.7);
-  margin-bottom: 20px; /* espace entre les paragraphes */
+  margin-bottom: 20px;
   max-width: 960px;
   padding-left: 10px;
   padding-right: 40px;
@@ -1250,8 +1226,8 @@ body.loaded #splash-screen {
   font-size: 18px;
   line-height: 1.3;
   text-align: left;
-  color: #ffffff; /* Titles in white */
-  margin-bottom: 12px; /* Space below each title */
+  color: #ffffff;
+  margin-bottom: 12px;
   max-width: 960px;
   padding-left: 40px;
   padding-right: 40px;
@@ -1262,7 +1238,6 @@ body.loaded #splash-screen {
   text-decoration: underline;
 }
 
-/* Cookie Consent Banner */
 #cookie-banner {
   position: fixed;
   left: 50%;
@@ -1282,7 +1257,6 @@ body.loaded #splash-screen {
   flex-direction: column;
   gap: 10px;
 
-  /* Visible by default */
   opacity: 0;
   visibility: visible;
   pointer-events: auto;
@@ -1290,7 +1264,6 @@ body.loaded #splash-screen {
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-/* Ajout d'un léger effet d'apparition */
 #cookie-banner.show {
   opacity: 1;
   transform: translateX(-50%) translateY(0);
@@ -1306,7 +1279,6 @@ body.loaded #splash-screen {
   margin: 0;
 }
 
-/* Buttons row */
 #cookie-banner .button-row {
   display: flex;
   justify-content: center;
@@ -1314,7 +1286,6 @@ body.loaded #splash-screen {
   flex-wrap: nowrap;
 }
 
-/* Accept button */
 .accept-cookies {
   padding: 5px 12px;
   border: 1px solid #000000;
@@ -1328,10 +1299,9 @@ body.loaded #splash-screen {
 }
 
 .accept-cookies:hover {
-  transform: scale(0.95); /* Réduit la taille à 80% */
+  transform: scale(0.95);
 }
 
-/* Reject button */
 .reject-cookies {
   padding: 5px 12px;
   border: 1px solid #000000;
@@ -1345,7 +1315,7 @@ body.loaded #splash-screen {
 }
 
 .reject-cookies:hover {
-  transform: scale(0.95); /* Réduit la taille à 80% */
+  transform: scale(0.95);
 }
 
 @media (max-width: 800px) {
@@ -1367,26 +1337,19 @@ body.loaded #splash-screen {
   }
 }
 
-/* =========================
-   TABLE COOKIES – SYSTÈME SIMPLE ET ISOLÉ
-   ========================= */
-
-/* Conteneur uniquement pour la table */
 .cookies-table-wrapper {
   overflow-x: auto;
   margin: 30px 40px;
   opacity: 0.8;
 }
 
-/* Table */
 .cookies-table-wrapper table {
   border-collapse: collapse;
   font-family: "SFProRegular", sans-serif;
   font-size: 14px;
-  border: 1px solid #bdbdbd; /* seulement une ligne en bas */
+  border: 1px solid #bdbdbd;
 }
 
-/* Cellules */
 .cookies-table-wrapper th,
 .cookies-table-wrapper td {
   padding: 8px 12px;
@@ -1395,15 +1358,13 @@ body.loaded #splash-screen {
   vertical-align: top;
 }
 
-/* En-têtes */
 .cookies-table-wrapper th {
   color: #ffffff;
   font-weight: 600;
-  border: none; /* pas de cadrillage sur la première ligne */
-  border-bottom: 1px solid #bdbdbd; /* seulement une ligne en bas */
+  border: none;
+  border-bottom: 1px solid #bdbdbd;
 }
 
-/* Mobile */
 @media (max-width: 700px) {
   .cookies-table-wrapper {
     margin: 20px 0px;
@@ -1415,8 +1376,7 @@ body.loaded #splash-screen {
   .cookies-table-wrapper td {
     padding: 6px 8px;
     padding-right: 10px;
-
     font-size: 13px;
-    -webkit-overflow-scrolling: touch; /* scroll fluide iOS */
+    -webkit-overflow-scrolling: touch;
   }
 }
