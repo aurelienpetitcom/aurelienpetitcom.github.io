@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title id="page-title">Okbots Expedition</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<!-- Meta description pour Google (par défaut FR) -->
+<meta id="meta-desc" name="description"
+    content="Okbots Expedition est un projet de jeu plateforme narratif produit sur Unreal Engine 5.">
+
+<!-- Favicon & icônes -->
+<link rel="icon" href="../favicon.ico" sizes="any"> <!-- version classique -->
+<link rel="icon" href="../images/faviconap.png" type="image/png"> <!-- version PNG -->
+<link rel="apple-touch-icon" href="../images/faviconap.png"> <!-- iOS/Apple -->
+
+<!-- Feuille de style -->
+<link rel="stylesheet" href="style.css">
+
+<!-- Titre/description dynamiques (détection langue navigateur) -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const userLang = (navigator.language || "").toLowerCase();
+        const titleEl = document.getElementById("page-title");
+        const descEl = document.getElementById("meta-desc");
+
+        if (userLang.startsWith("en")) {
+            titleEl.textContent = "CV - Aurélien Petit";
+            descEl.setAttribute(
+                "content",
+                "Discover the resume of Aurélien Petit, Master's student in Industrial Electromechanical Engineering, including experiences, personal projects, and technical skills."
+            );
+        }
+    });
+</script>
+</head>
+
+<body>
+
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar__container">
+            <a href="https://aurelienpetit.com" id="navbar__logo">
+            </a>
+            <div class="navbar__toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="navbar__menu">
+                <li class="navbar__item">
+                    <select id="langSelector">
+                        <option value="en">English</option>
+                        <option value="fr">Français</option>
+                    </select>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Video Banner -->
+    <div class="video-banner">
+        <!--<video autoplay muted loop playsinline class="background-video">
+            <source src="images/video.webm" type="video/webm">
+        </video>-->
+        <img src="images/imagevideo.png" alt="Logo Okbots Expedition" class="background-video">
+
+        <img src="images/Logo blanc Okbots Expedition.png" alt="Logo Okbots Expedition" class="video-logo">
+    </div>
+
+    <div class="text-banner">
+        <p data-lang="en">Okbots Expedition is a narrative platformer game currently in development on Unreal Engine 5.
+            You play as a character tasked with infiltrating the civilization of the Okbots — intelligent robots created
+            by humans and sent to explore another potentially habitable solar system — to prevent them from surpassing
+            humanity.</p>
+
+        <p data-lang="fr">Okbots Expedition est un jeu de plateforme narratif en développement sur Unreal Engine 5.
+            Vous incarnez un personnage chargé d’infiltrer la civilisation des Okbots, des robots intelligents créés par
+            les humains et envoyés à la recherche d’un autre système solaire habitable, afin de les empêcher de
+            surpasser l’humanité.</p>
+    </div>
+
+
+
+    <!-- Contenu de la page -->
+
+    <!-- Cookie Consent Banner -->
+    <div id="cookie-banner">
+        <p data-lang="fr">Ce site utilise des <a href="https://aurelienpetit.com/privacy-policy" target="_blank"
+                style="color: black; ">cookies<img src="../images/logoreflechenoir.png" alt="Logo fleche redirection"
+                    class="logoflecheredirection right"></a> pour améliorer votre expérience.</p>
+        <p data-lang="en" style="display:none;">This site uses <a href="https://aurelienpetit.com/privacy-policy"
+                target="_blank" style="color: black;">cookies<img src="../images/logoreflechenoir.png"
+                    alt="Logo fleche redirection" class="logoflecheredirection right"></a> to enhance your experience.
+        </p>
+
+        <div class="button-row">
+            <button class="accept-cookies" data-lang="fr">Accepter</button>
+            <button class="accept-cookies" data-lang="en">Accept</button>
+            <button class="reject-cookies" data-lang="fr">Refuser</button>
+            <button class="reject-cookies" data-lang="en">Reject</button>
+        </div>
+    </div>
+
+    <div class="main">
+        <div class="main-video-container">
+            <div class="main">
+                <!--<div class="main-video-container">
+                    <iframe width="1120" height="468"
+                        src="" title="YouTube video player"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>-->
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="main__container-bandebp">
+        <a href="https://aurelienpetit.com" id="navbar__logo_bp">
+            <img src="../images/logoap.png" alt="Logo Aurélien Petit" class="logo">
+        </a>
+        <h5 data-lang="fr">Copyright © 2026 Aurélien Petit. Tous droits réservés.<br>
+            Les marques de commerce, logos et droits d'auteur appartiennent à leurs propriétaires respectifs. Tous
+            droits réservés.</h5>
+        <h5 data-lang="en" style="display:none;">Copyright © 2026 Aurélien Petit. All rights reserved.<br>
+            Trademarks, logos and copyrights are property of their respective owners. All rights reserved.</h5>
+        <div class="footer-links">
+            <a href="https://aurelienpetit.com/privacy-policy" target="_blank" class="txt_btn" data-lang="en">Privacy
+                policy<img src="../images/logoreflecheblanc.png" alt="Logo fleche redirection"
+                    class="logoflecheredirection right"></a>
+            <a href="https://aurelienpetit.com/privacy-policy" target="_blank" class="txt_btn" data-lang="fr"
+                style="display:none;">
+                Politique de confidentialité<img src="../images/logoreflecheblanc.png" alt="Logo fleche redirection"
+                    class="logoflecheredirection right">
+            </a>
+
+            <a href="https://aurelienpetit.com/terms" target="_blank" class="txt_btn" data-lang="en">Terms and
+                conditions<img src="../images/logoreflecheblanc.png" alt="Logo fleche redirection"
+                    class="logoflecheredirection right"></a>
+            <a href="https://aurelienpetit.com/terms" target="_blank" class="txt_btn" data-lang="fr"
+                style="display:none;">
+                Conditions générales<img src="../images/logoreflecheblanc.png" alt="Logo fleche redirection"
+                    class="logoflecheredirection right">
+            </a>
+        </div>
+    </div>
+
+    <script src="../app.js"></script>
+</body>
+
+</html>
