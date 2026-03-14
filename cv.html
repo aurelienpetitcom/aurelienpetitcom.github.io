@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title id="page-title">CV - Aurélien Petit</title>
+    <meta name="title-fr" content="CV - Aurélien Petit">
+    <meta name="title-en" content="CV - Aurélien Petit">
 
     <!-- Meta description par défaut FR -->
     <meta id="meta-desc" name="description"
@@ -17,23 +19,6 @@
 
     <!-- Feuille de style -->
     <link rel="stylesheet" href="styles.css">
-
-    <!-- Titre/description dynamiques (détection langue navigateur) -->
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const userLang = (navigator.language || "").toLowerCase();
-            const titleEl = document.getElementById("page-title");
-            const descEl = document.getElementById("meta-desc");
-
-            if (userLang.startsWith("en")) {
-                titleEl.textContent = "CV - Aurélien Petit";
-                descEl.setAttribute(
-                    "content",
-                    "Discover the resume of Aurélien Petit, Master's student in Industrial Electromechanical Engineering, including experiences, personal projects, and technical skills."
-                );
-            }
-        });
-    </script>
 </head>
 
 
@@ -78,43 +63,47 @@
     </nav>
 
     <div class="main">
-        <div class="main__content">
-            <div class="section_verticale">
+        <div class="main__container">
+            <div class="main__content">
+                <div class="section_verticale">
 
-                <div class="title-container">
-                    <h2 class="lang" data-lang="fr">Curriculum vitae</h2>
-                    <h2 class="lang" data-lang="en">Curriculum vitae</h2>
+                    <div class="title-container">
+                        <h2 class="lang" data-lang="fr">Curriculum vitae</h2>
+                        <h2 class="lang" data-lang="en">Curriculum vitae</h2>
+                    </div>
+
+                    <p class="text lang" data-lang="en" style="color: white; text-align: center;">
+                        Discover my background and more on my resume available below and for download.
+                    </p>
+                    <p class="text lang" data-lang="fr" style="color: white; text-align: center;">
+                        Découvrez mon parcours et plus encore sur mon résumé disponible ci-dessous ainsi qu'en
+                        téléchargement.
+                    </p>
+
+                    <div class="title-container">
+                        <!-- Boutons téléchargement -->
+                        <a href="fichiers/cv_aurelien_petit_20_02_26_fr.pdf" class="text main_btn" data-lang="fr"
+                            download>
+                            Télécharger en PDF
+                        </a>
+                        <a href="fichiers/cv_aurelien_petit_20_02_26_en.pdf" class="text main_btn" data-lang="en"
+                            download>
+                            Download PDF
+                        </a>
+
+                        <!-- Taille du fichier -->
+                        <h3 class="lang" data-lang="fr">497&nbsp;ko</h3>
+                        <h3 class="lang" data-lang="en">469&nbsp;ko</h3>
+                    </div>
+
+                    <img src="images/cv_aurelien_petit_20_02_26_fr.png"
+                        alt="CV Aurélien Petit, étudiant en master ingénieur industriel orientation électromécanique à l'ECAM Bruxelles, avec expériences, projets personnels et compétences."
+                        class="image_cv lang" data-lang="fr">
+
+                    <img src="images/cv_aurelien_petit_20_02_26_en.png"
+                        alt="Resume of Aurélien Petit, Master's student in Industrial Electromechanical Engineering at ECAM Brussels, with experiences, personal projects and skills."
+                        class="image_cv lang" data-lang="en">
                 </div>
-
-                <p class="text lang" data-lang="en" style="color: white; text-align: center;">
-                    Discover my background and more on my resume available below and for download.
-                </p>
-                <p class="text lang" data-lang="fr" style="color: white; text-align: center;">
-                    Découvrez mon parcours et plus encore sur mon résumé disponible ci-dessous ainsi qu'en
-                    téléchargement.
-                </p>
-
-                <div class="title-container">
-                    <!-- Boutons téléchargement -->
-                    <a href="fichiers/cv_aurelien_petit_20_02_26_fr.pdf" class="text main_btn" data-lang="fr" download>
-                        Télécharger en PDF
-                    </a>
-                    <a href="fichiers/cv_aurelien_petit_20_02_26_en.pdf" class="text main_btn" data-lang="en" download>
-                        Download PDF
-                    </a>
-
-                    <!-- Taille du fichier -->
-                    <h3 class="lang" data-lang="fr">497&nbsp;ko</h3>
-                    <h3 class="lang" data-lang="en">469&nbsp;ko</h3>
-                </div>
-
-                <img src="images/cv_aurelien_petit_20_02_26_fr.png"
-                    alt="CV Aurélien Petit, étudiant en master ingénieur industriel orientation électromécanique à l'ECAM Bruxelles, avec expériences, projets personnels et compétences."
-                    class="image_cv lang" data-lang="fr">
-
-                <img src="images/cv_aurelien_petit_20_02_26_en.png"
-                    alt="Resume of Aurélien Petit, Master's student in Industrial Electromechanical Engineering at ECAM Brussels, with experiences, personal projects and skills."
-                    class="image_cv lang" data-lang="en">
             </div>
         </div>
     </div>

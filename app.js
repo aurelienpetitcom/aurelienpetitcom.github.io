@@ -43,7 +43,7 @@ function updateCookieBannerLanguage(lang) {
   });
   banner
     .querySelectorAll(
-      `.accept-cookies[data-lang="${lang}"], .reject-cookies[data-lang="${lang}"]`
+      `.accept-cookies[data-lang="${lang}"], .reject-cookies[data-lang="${lang}"]`,
     )
     .forEach((btn) => {
       btn.style.display = "inline-block";
@@ -202,12 +202,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function getVisibleToggleButton(descContainer, lang) {
   let btn = descContainer.querySelector(
-    `[data-lang="${lang}"] button.inline-button`
+    `[data-lang="${lang}"] button.inline-button`,
   );
   if (btn) return btn;
 
   const candidates = Array.from(
-    descContainer.querySelectorAll("button.inline-button")
+    descContainer.querySelectorAll("button.inline-button"),
   );
   btn = candidates.find((b) => {
     const cs = window.getComputedStyle(b);
@@ -221,6 +221,7 @@ function getVisibleToggleButton(descContainer, lang) {
 }
 
 function changeLanguage(languageCode) {
+  updatePageTitle(languageCode);
   const elements = document.querySelectorAll("[data-lang]");
   elements.forEach(function (elem) {
     if (elem.closest("#cookie-banner")) return;
@@ -236,7 +237,7 @@ function changeLanguage(languageCode) {
   document.querySelectorAll(".description-container").forEach((container) => {
     const lang = languageCode;
     const moreText = container.querySelector(
-      `.description[data-lang="${lang}"] .more-text`
+      `.description[data-lang="${lang}"] .more-text`,
     );
     const button = getVisibleToggleButton(container, lang);
     if (!button) return;
@@ -276,7 +277,7 @@ function rebuildPostFilter(languageCode) {
         const lang = opt.getAttribute("data-lang");
         if (!store[lang]) store[lang] = [];
         store[lang].push({ value: opt.value, text: opt.textContent });
-      }
+      },
     );
     window.__postFilterStore = store;
   }
@@ -345,7 +346,7 @@ function filterPosts() {
   });
 
   const visibleSections = Array.from(sections).filter(
-    (s) => s.style.display !== "none"
+    (s) => s.style.display !== "none",
   );
   if (visibleSections.length > 0) {
     const lang = getCurrentLanguage();
@@ -378,7 +379,7 @@ function getLangCookie() {
 
 function setLangCookie(lang) {
   document.cookie = `siteLanguage=${encodeURIComponent(
-    lang
+    lang,
   )}; path=/; max-age=31536000; SameSite=Lax`;
 }
 
@@ -392,6 +393,7 @@ if (startLang === "none") {
 
 changeLanguage(startLang);
 updateCookieBannerLanguage(startLang);
+updatePageTitle(startLang);
 
 const selector = document.getElementById("langSelector");
 if (selector) {
@@ -457,7 +459,7 @@ function updateIndicator() {
 
   function updateIndicatorLabelAfterFilter() {
     const sections = Array.from(
-      document.querySelectorAll("section.scroll-parallax")
+      document.querySelectorAll("section.scroll-parallax"),
     ).filter((s) => s.style.display !== "none");
 
     if (!sections.length) return;
@@ -499,7 +501,7 @@ function updateScrollNextArrow() {
   if (!scrollNextBtn) return;
 
   const sections = Array.from(
-    document.querySelectorAll("section.scroll-parallax")
+    document.querySelectorAll("section.scroll-parallax"),
   ).filter((s) => s.style.display !== "none");
 
   if (sections.length === 0) {
@@ -585,7 +587,7 @@ function toggleText(button) {
   const container = button.closest(".description-container");
   const lang = getCurrentLanguage();
   const descriptionEl = container.querySelector(
-    `.description[data-lang="${lang}"]`
+    `.description[data-lang="${lang}"]`,
   );
   const moreText = descriptionEl
     ? descriptionEl.querySelector(".more-text")
@@ -625,7 +627,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.querySelectorAll(".description-container").forEach((container) => {
     const descriptionEl = container.querySelector(
-      `.description[data-lang="${lang}"]`
+      `.description[data-lang="${lang}"]`,
     );
     const moreText = descriptionEl
       ? descriptionEl.querySelector(".more-text")
@@ -645,7 +647,7 @@ let parallaxScrollScheduled = false;
 
 function handleParallaxScroll() {
   const elements = document.querySelectorAll(
-    ".scroll-parallax, .filter-container.scroll-parallax"
+    ".scroll-parallax, .filter-container.scroll-parallax",
   );
   const windowHeight = window.innerHeight;
   elements.forEach((el) => {
@@ -670,7 +672,7 @@ function handleParallaxScroll() {
     const maxTranslateY = 0;
     const translateY = maxTranslateY * (1 - progress);
     el.style.transform = `translateY(${translateY.toFixed(
-      2
+      2,
     )}px) scale(${scale.toFixed(3)})`;
     el.style.willChange = "transform";
   });
@@ -700,6 +702,22 @@ function updateTxtBtnText() {
     el.textContent = lang === "en" ? "Curr. Vitae" : "Curr. Vitae";
   } else {
     el.textContent = lang === "en" ? "Curriculum Vitae" : "Curriculum Vitae";
+  }
+}
+
+function updatePageTitle(lang) {
+  const titleEl = document.querySelector("title");
+  if (!titleEl) return;
+
+  const fr = document.querySelector('meta[name="title-fr"]')?.content;
+  const en = document.querySelector('meta[name="title-en"]')?.content;
+
+  if (lang === "fr") {
+    if (fr) titleEl.textContent = fr;
+    document.documentElement.lang = "fr";
+  } else {
+    if (en) titleEl.textContent = en;
+    document.documentElement.lang = "en";
   }
 }
 
@@ -771,7 +789,7 @@ document.addEventListener("DOMContentLoaded", () => {
       currentGroup = Array.from(
         img
           .closest(".description-container")
-          ?.querySelectorAll(".imagesouspost") || []
+          ?.querySelectorAll(".imagesouspost") || [],
       ).filter((i) => !!i.src);
       currentIndex = currentGroup.indexOf(img);
 
@@ -1003,7 +1021,7 @@ function updateBackgroundColor() {
   const indicatorLabel = document.querySelector(".indicator-label");
   const currentLabel = indicatorLabel ? indicatorLabel.textContent.trim() : "";
   const sections = document.querySelectorAll(
-    "section[data-label-en], section[data-label-fr]"
+    "section[data-label-en], section[data-label-fr]",
   );
   const body = document.body;
   let appliedColor = "#000000ff";

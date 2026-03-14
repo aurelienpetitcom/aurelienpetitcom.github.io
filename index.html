@@ -5,6 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title id="page-title">Aurélien Petit</title>
+  <meta name="title-fr" content="Aurélien Petit">
+  <meta name="title-en" content="Aurélien Petit">
 
   <!-- Meta description pour Google (par défaut FR) -->
   <meta id="meta-desc" name="description"
@@ -24,20 +26,6 @@
     "name": "Aurélien Petit",
     "logo": "https://aurelienpetit.com/images/faviconap.png"
   }
-  </script>
-
-  <!-- Script pour changer titre/meta en fonction de la langue -->
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const userLang = navigator.language || navigator.userLanguage;
-      const titleEl = document.getElementById("page-title");
-      const descEl = document.getElementById("meta-desc");
-
-      if (userLang.startsWith("en")) {
-        titleEl.textContent = "Aurélien Petit - Industrial Engineering Student";
-        descEl.setAttribute("content", "Master's student in Industrial Electromechanical Engineering, sharing personal projects and creations.");
-      }
-    });
   </script>
 </head>
 
@@ -156,102 +144,6 @@
 
   <!-- Sections -->
   <div class="content-defilement">
-    <section id="okbots-expedition-development-announcement" class="accueil_section1 scroll-parallax"
-      data-label-en="Okbots Expedition" data-label-fr="Okbots Expedition" data-category="highlights,development"
-      data-bgcolor="#000000">
-      <div class="content-container">
-        <img src="images/okbotsexpedition/okbotsexpedition_img2025_01.png" alt="Logo Okbots Expedition avec fond"
-          class="imagepost">
-        <div class="date-category">
-          <span data-lang="en">Okbots Expedition</span>
-          <span data-lang="fr" style="display:none;">Okbots Expedition</span>
-          <span class="nonmobile">-</span>
-          <span data-lang="en">Development announcement</span>
-          <span data-lang="fr" style="display:none;">Annonce de développement</span>
-        </div>
-        <div class="description-container">
-          <p class="description" data-lang="en">
-            Okbots Expedition is a narrative platformer game project produced on Unreal Engine 5.
-
-            <span class="more-text hidden">
-              <br><br>
-              <br>
-              <span class="images-row two-images">
-                <img data-src="images/okbotsexpedition/okbotsexpedition_img2025_04.png" alt="Okbots Expedition"
-                  class="imagesouspost lazy-more" loading="lazy">
-                <img data-src="images/okbotsexpedition/okbotsexpedition_img2025_05.png" alt="Okbots Expedition"
-                  class="imagesouspost lazy-more" loading="lazy">
-              </span>
-              <br>
-              The okbots, intelligent machines created by humans, were sent to explore another potentially
-              habitable solar system. The okbots learned a lot from their journey and claimed the explored territories.
-              <br><br>
-              <img data-src="images/okbotsexpedition/okbotsexpedition_img2025_02.png" alt="Okbots Expedition"
-                class="imagesouspost lazy-more" loading="lazy">
-              <br>
-              After many years, humans decided to deactivate them. But the task is not easy as these robots have become
-              independent. Your role will be to penetrate their civilization and prevent them from surpassing humanity.
-              <br><br>
-              <img data-src="images/okbotsexpedition/okbotsexpedition_img2025_03.png" alt="Okbots Expedition"
-                class="imagesouspost lazy-more" loading="lazy">
-              <br>
-              Project development since 2022. Graphic design, programming, gameplay, and audio design are all done
-              personally. </span>
-            <button class="inline-button" onclick="toggleText(this)">...</button>
-          </p>
-          <p class="description" data-lang="fr" style="display:none;">
-            Okbots Expedition est un projet de jeu de type plateforme narratif produit sur Unreal Engine 5.
-
-            <span class="more-text hidden">
-              <br><br>
-              <br>
-              <span class="images-row two-images">
-                <img data-src="images/okbotsexpedition/okbotsexpedition_img2025_04.png" alt="Okbots Expedition"
-                  class="imagesouspost lazy-more" loading="lazy">
-                <img data-src="images/okbotsexpedition/okbotsexpedition_img2025_05.png" alt="Okbots Expedition"
-                  class="imagesouspost lazy-more" loading="lazy">
-              </span>
-              <br>
-              Les okbots, des machines intelligentes créées par les humains, avaient été envoyées pour explorer un autre
-              système solaire potentiellement habitable.Les okbots ont beaucoup appris de leur voyage et ont
-              revendiqué les territoires explorés.
-              <br><br>
-              <img data-src="images/okbotsexpedition/okbotsexpedition_img2025_02.png" alt="Okbots Expedition"
-                class="imagesouspost lazy-more" loading="lazy">
-              <br>
-              Après de nombreuses années, les humains ont pris la décision de les désactiver. Mais la tâche n'est pas
-              aisée
-              tant ces robots sont devenus indépendants. Votre rôle sera de pénétrer leur civilisation et de les
-              empêcher de dépasser l'humanité.
-              <br><br>
-              <img data-src="images/okbotsexpedition/okbotsexpedition_img2025_03.png" alt="Okbots Expedition"
-                class="imagesouspost lazy-more" loading="lazy">
-              <br>
-              Développement du projet depuis 2022. Le design graphique, la programmation le gameplay, le design
-              audio sont réalisés de manière personnelle.
-            </span>
-            </span>
-            <button class="inline-button" onclick="toggleText(this)">...</button>
-          </p>
-        </div>
-        <div class="row-flex-bouton">
-          <a href="https://aurelienpetit.com/okbots-expedition" target="_blank" class="main_btn marginleft40"
-            data-lang="en">Production
-            page
-            <img src="images/logoreflechenoir.png" alt="Logo fleche redirection" class="logoflecheredirection"></a>
-          <a href="https://aurelienpetit.com/okbots-expedition" target="_blank" class="main_btn marginleft40"
-            data-lang="fr" style="display:none;">Page de la production<img src="images/logoreflechenoir.png"
-              alt="Logo fleche redirection" class="logoflecheredirection"></a>
-          <div class="social-icons absolute">
-            <a href="#" class="social-share">
-              <img src="images/logoshare.png" alt="Logo Share" class="social-icon">
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-
 
     <!-- PUBLICATION : Famous castle -->
 
@@ -482,6 +374,103 @@
             <a href="https://www.instagram.com/p/DOgMnDUiPID" target="_blank">
               <img src="images/logoinstagram.png" alt="Instagram" class="social-icon">
             </a>
+            <a href="#" class="social-share">
+              <img src="images/logoshare.png" alt="Logo Share" class="social-icon">
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PUBLICATION : Okbots Expedition Development announcement -->
+
+    <section id="okbots-expedition-development-announcement" class="accueil_section1 scroll-parallax"
+      data-label-en="Okbots Expedition" data-label-fr="Okbots Expedition" data-category="highlights,development"
+      data-bgcolor="#000000">
+      <div class="content-container">
+        <img src="images/okbotsexpedition/okbotsexpedition_img2025_01.png" alt="Logo Okbots Expedition avec fond"
+          class="imagepost">
+        <div class="date-category">
+          <span data-lang="en">Okbots Expedition</span>
+          <span data-lang="fr" style="display:none;">Okbots Expedition</span>
+          <span class="nonmobile">-</span>
+          <span data-lang="en">Development announcement</span>
+          <span data-lang="fr" style="display:none;">Annonce de développement</span>
+        </div>
+        <div class="description-container">
+          <p class="description" data-lang="en">
+            Okbots Expedition is a narrative platformer game project produced on Unreal Engine 5.
+
+            <span class="more-text hidden">
+              <br><br>
+              <br>
+              <span class="images-row two-images">
+                <img data-src="images/okbotsexpedition/okbotsexpedition_img2025_04.png" alt="Okbots Expedition"
+                  class="imagesouspost lazy-more" loading="lazy">
+                <img data-src="images/okbotsexpedition/okbotsexpedition_img2025_05.png" alt="Okbots Expedition"
+                  class="imagesouspost lazy-more" loading="lazy">
+              </span>
+              <br>
+              The okbots, intelligent machines created by humans, were sent to explore another potentially
+              habitable solar system. The okbots learned a lot from their journey and claimed the explored territories.
+              <br><br>
+              <img data-src="images/okbotsexpedition/okbotsexpedition_img2025_02.png" alt="Okbots Expedition"
+                class="imagesouspost lazy-more" loading="lazy">
+              <br>
+              After many years, humans decided to deactivate them. But the task is not easy as these robots have become
+              independent. Your role will be to penetrate their civilization and prevent them from surpassing humanity.
+              <br><br>
+              <img data-src="images/okbotsexpedition/okbotsexpedition_img2025_03.png" alt="Okbots Expedition"
+                class="imagesouspost lazy-more" loading="lazy">
+              <br>
+              Project development since 2022. Graphic design, programming, gameplay, and audio design are all done
+              personally. </span>
+            <button class="inline-button" onclick="toggleText(this)">...</button>
+          </p>
+          <p class="description" data-lang="fr" style="display:none;">
+            Okbots Expedition est un projet de jeu de type plateforme narratif produit sur Unreal Engine 5.
+
+            <span class="more-text hidden">
+              <br><br>
+              <br>
+              <span class="images-row two-images">
+                <img data-src="images/okbotsexpedition/okbotsexpedition_img2025_04.png" alt="Okbots Expedition"
+                  class="imagesouspost lazy-more" loading="lazy">
+                <img data-src="images/okbotsexpedition/okbotsexpedition_img2025_05.png" alt="Okbots Expedition"
+                  class="imagesouspost lazy-more" loading="lazy">
+              </span>
+              <br>
+              Les okbots, des machines intelligentes créées par les humains, avaient été envoyées pour explorer un autre
+              système solaire potentiellement habitable.Les okbots ont beaucoup appris de leur voyage et ont
+              revendiqué les territoires explorés.
+              <br><br>
+              <img data-src="images/okbotsexpedition/okbotsexpedition_img2025_02.png" alt="Okbots Expedition"
+                class="imagesouspost lazy-more" loading="lazy">
+              <br>
+              Après de nombreuses années, les humains ont pris la décision de les désactiver. Mais la tâche n'est pas
+              aisée
+              tant ces robots sont devenus indépendants. Votre rôle sera de pénétrer leur civilisation et de les
+              empêcher de dépasser l'humanité.
+              <br><br>
+              <img data-src="images/okbotsexpedition/okbotsexpedition_img2025_03.png" alt="Okbots Expedition"
+                class="imagesouspost lazy-more" loading="lazy">
+              <br>
+              Développement du projet depuis 2022. Le design graphique, la programmation le gameplay, le design
+              audio sont réalisés de manière personnelle.
+            </span>
+            </span>
+            <button class="inline-button" onclick="toggleText(this)">...</button>
+          </p>
+        </div>
+        <div class="row-flex-bouton">
+          <a href="https://aurelienpetit.com/okbots-expedition" target="_blank" class="main_btn marginleft40"
+            data-lang="en">Production
+            page
+            <img src="images/logoreflechenoir.png" alt="Logo fleche redirection" class="logoflecheredirection"></a>
+          <a href="https://aurelienpetit.com/okbots-expedition" target="_blank" class="main_btn marginleft40"
+            data-lang="fr" style="display:none;">Page de la production<img src="images/logoreflechenoir.png"
+              alt="Logo fleche redirection" class="logoflecheredirection"></a>
+          <div class="social-icons absolute">
             <a href="#" class="social-share">
               <img src="images/logoshare.png" alt="Logo Share" class="social-icon">
             </a>
