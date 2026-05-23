@@ -10,7 +10,7 @@
 
   <!-- Meta description pour Google (par défaut FR) -->
   <meta id="meta-desc" name="description"
-    content="Étudiant en Master Ingénieur Industriel électromécanique, je partage mes différents projets personnels que je réalise.">
+    content="Ingénieur industriel électromécanique, je partage différents projets personnels que je réalise.">
 
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" href="/images/faviconap.png" type="image/png">
@@ -87,10 +87,10 @@
           <h2 data-lang="en">Aurélien</h2>
           <h2 data-lang="fr" style="display:none;">Aurélien</h2>
         </div>
-        <p data-lang="en">Master's student in Electromechanical Industrial Engineering. I fully commit to every
+        <p data-lang="en">Electromechanical Industrial Engineering. I fully commit to every
           project I undertake, striving to exceed expectations and push boundaries. My professional goal is to combine
           my technical and artistic skills.</p>
-        <p data-lang="fr" style="display: none;">Étudiant en Master d’ingénierie industrielle électromécanique. Je
+        <p data-lang="fr" style="display: none;">Ingénieur industriel en électromécanique. Je
           m'investis pleinement dans chaque projet que je réalise avec la volonté de dépasser les attentes et repousser
           les limites. Mon objectif professionnel est d'allier mes compétences techniques et artistiques.</p>
         <div class="title-container">
@@ -130,11 +130,11 @@
   <div class="filter-container scroll-parallax">
     <select id="postFilter">
       <option value="highlights" data-lang="en">Highlighted</option>
-      <!--<option value="featured" data-lang="en">Featured</option>-->
+      <option value="development" data-lang="en">In development</option>
       <option value="2021" data-lang="en">Productions 2021</option>
       <option value="2020" data-lang="en">Productions 2020</option>
       <option value="highlights" data-lang="fr" style="display:none;">Mis en avant</option>
-      <!--<option value="featured" data-lang="fr" style="display:none;">Mis en avant</option>-->
+      <option value="development" data-lang="fr" style="display:none;">En développement</option>
       <option value="2021" data-lang="fr" style="display:none;">Productions 2021</option>
       <option value="2020" data-lang="fr" style="display:none;">Productions 2020</option>
     </select>
@@ -313,7 +313,7 @@
     <!-- PUBLICATION : L'ISS -->
 
     <section id="the-iss" class="accueil_section1 scroll-parallax" data-label-en="The ISS" data-label-fr="L'ISS"
-      data-category="highlights,2021">
+      data-category="2021">
       <div class="content-container">
         <img src="images/productions/The_ISS_post.png" alt="The ISS" class="imagepost">
         <div class="date-category">
@@ -385,7 +385,7 @@
     <!-- PUBLICATION : Okbots Expedition Development announcement -->
 
     <section id="okbots-expedition-development-announcement" class="accueil_section1 scroll-parallax"
-      data-label-en="Okbots Expedition" data-label-fr="Okbots Expedition" data-category="highlights,development"
+      data-label-en="Okbots Expedition" data-label-fr="Okbots Expedition" data-category="development"
       data-bgcolor="#000000">
       <div class="content-container">
         <img src="images/okbotsexpedition/okbotsexpedition_img2025_01.png" alt="Logo Okbots Expedition avec fond"
@@ -767,6 +767,22 @@
     </section>
   </div>
 
+  <div class="accueil_section1">
+    <div class="content-container" style="background-color: black;">
+      <div class="description-container" style="text-align: center;">
+        <p class="description" style="text-align: center; opacity: 50%; font-size: 16px;" data-lang="en">
+          Discover more productions using the <a href="#" onclick="openPostFilter(event)"
+            style="color: rgb(255, 255, 255);">filter</a> above
+        </p>
+        <p class="description" style="text-align: center;opacity: 50%;font-size: 16px;" data-lang="fr"
+          style="display:none;">
+          Découvrir davantage de productions via le <a href="#" onclick="openPostFilter(event)"
+            style="color: rgb(255, 255, 255);">filtre</a> en haut de page
+        </p>
+      </div>
+    </div>
+  </div>
+
   <div class="main__container-bandebp">
     <a href="https://aurelienpetit.com" id="navbar__logo_bp">
       <img src="images/logoap.png" alt="Logo Aurélien Petit" class="logo">
@@ -796,7 +812,6 @@
   </div>
   <script src="app.js"></script>
 
-  <!-- Lightbox Overlay -->
   <div class="lightbox" id="lightbox">
     <span class="lightbox-close" id="lightboxClose">&times;</span>
     <img class="lightbox-content" id="lightboxImg" alt="Expanded view">

@@ -372,6 +372,39 @@ if (postFilter) {
   });
 }
 
+function openPostFilter(event) {
+  event.preventDefault();
+
+  const filter = document.getElementById("postFilter");
+  if (!filter) return;
+
+  filter.scrollIntoView({
+    behavior: "smooth",
+    block: "center",
+  });
+
+  setTimeout(() => {
+    filter.focus();
+
+    try {
+      if (typeof filter.showPicker === "function") {
+        filter.showPicker();
+      } else {
+        const mouseDownEvent = new MouseEvent("mousedown", {
+          bubbles: true,
+          cancelable: true,
+          view: window,
+        });
+
+        filter.dispatchEvent(mouseDownEvent);
+        filter.click();
+      }
+    } catch (e) {
+      filter.click();
+    }
+  }, 500);
+}
+
 function getLangCookie() {
   const match = document.cookie.match(/(?:^|; )siteLanguage=([^;]+)/);
   return match ? decodeURIComponent(match[1]) : "none";
