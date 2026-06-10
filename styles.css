@@ -168,7 +168,7 @@ h5 {
   font-size: 15px;
   line-height: 1.5;
   text-align: left;
-  font-family: "SFProRegular", sans-serif;
+  font-family: "SFProLight", sans-serif;
   padding-left: 40px;
   padding-right: 40px;
   padding-top: 10px;
@@ -823,10 +823,6 @@ body {
     display: inline-block;
     align-items: center;
     white-space: normal;
-  }
-
-  .images-row {
-    padding-bottom: 20px;
   }
 
   .imagesouspost {
