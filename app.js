@@ -307,7 +307,7 @@ function filterPosts() {
   if (!postFilter) return;
 
   const selectedCategory = postFilter.value;
-  const sections = document.querySelectorAll("section.accueil_section1");
+  const sections = document.querySelectorAll("section[data-category]");
 
   sections.forEach((section) => {
     if (section.classList.contains("hidden")) {
