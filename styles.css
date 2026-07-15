@@ -148,9 +148,11 @@
 
 .instagram-number {
   font-family: "SFProRegular", sans-serif;
+  font-size: 14px;
   color: rgb(255, 255, 255);
   opacity: 0.5;
   margin-left: 1px;
+  margin-right: 3px;
 }
 
 .instagram-post-link {
