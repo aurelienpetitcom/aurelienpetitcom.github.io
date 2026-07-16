@@ -1130,13 +1130,15 @@ document.querySelectorAll(".social-share").forEach((button) => {
 function formatInstagramNumber(value) {
   if (value < 1000) return value.toString();
 
-  const kValue = value / 1000;
+  const truncatedValue = Math.floor(value / 10) / 100;
 
-  if (value % 1000 <= 1) {
-    return Math.floor(kValue) + "K";
-  }
-
-  return kValue.toFixed(2).replace(".", ",").replace(/,00$/, "") + "K";
+  return (
+    truncatedValue
+      .toFixed(2)
+      .replace(".", ",")
+      .replace(/,00$/, "")
+      .replace(/(,\d)0$/, "$1") + "K"
+  );
 }
 
 // --- Instagram Likes Loader ---
@@ -1185,7 +1187,4 @@ async function loadInstagramLikes() {
 
 document.addEventListener("DOMContentLoaded", () => {
   loadInstagramLikes();
-
-  // Refresh Instagram statistics every 10 minutes
-  setInterval(loadInstagramLikes, 600000);
 });
