@@ -1130,15 +1130,9 @@ document.querySelectorAll(".social-share").forEach((button) => {
 function formatInstagramNumber(value) {
   if (value < 1000) return value.toString();
 
-  const truncatedValue = Math.floor(value / 10) / 100;
+  const truncatedValue = Math.floor(value / 100) / 10;
 
-  return (
-    truncatedValue
-      .toFixed(2)
-      .replace(".", ",")
-      .replace(/,00$/, "")
-      .replace(/(,\d)0$/, "$1") + "K"
-  );
+  return truncatedValue.toFixed(1).replace(".", ",").replace(/,0$/, "") + "K";
 }
 
 // --- Instagram Likes Loader ---

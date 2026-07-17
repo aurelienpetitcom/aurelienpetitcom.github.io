@@ -16,6 +16,8 @@
   background-color: #ffffff11;
   text-align: left;
   flex-direction: column;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
 }
 
 .content-container {
