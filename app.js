@@ -1140,33 +1140,17 @@ async function loadInstagramLikes() {
   const instagramApiUrl =
     "https://script.google.com/macros/s/AKfycbww2ybMe-o9lQiLHULrDhSznw8IZqkby4WPvzBwcCHy39y1ZZhiQsJbLG_ZB_0AawJv/exec";
 
-  const instagramMapping = {
-    "mecalodon-aquatic-show": ["18004677797937468"],
-    "famous-castle": ["18042319628674118", "17898635577276801"],
-    "the-iss": ["18204067426137714"],
-    "the-electronic-brain": ["17927128369528165"],
-    "the-gift-agency": ["17866758551214433"],
-    "white-house-run": ["17893431067657850"],
-    "summer-time": ["17854304549092037"],
-    "yin-yang": ["17859455059968723"],
-  };
-
   try {
     const response = await fetch(instagramApiUrl);
     const data = await response.json();
 
     document.querySelectorAll("section[id]").forEach((section) => {
-      const instagramIds = instagramMapping[section.id];
-      if (!instagramIds) return;
-
-      const totalLikes = instagramIds.reduce((sum, id) => {
-        const post = data.posts.find((p) => p.id === id);
-        return sum + (post ? post.like_count : 0);
-      }, 0);
-
       const likesContainer = section.querySelector(".instagram-likes");
-      if (likesContainer) {
-        likesContainer.textContent = formatInstagramNumber(totalLikes);
+      if (!likesContainer) return;
+
+      const likes = data.likes?.[section.id];
+      if (likes !== undefined) {
+        likesContainer.textContent = formatInstagramNumber(likes);
       }
     });
 
