@@ -439,6 +439,22 @@ if (selector) {
   });
 }
 
+const langOptions = document.querySelectorAll(".lang-option");
+langOptions.forEach((button) => {
+  button.addEventListener("click", function () {
+    const lang = this.dataset.value;
+
+    changeLanguage(lang);
+    updateCookieBannerLanguage(lang);
+    setLangCookie(lang);
+
+    const details = this.closest("details");
+    if (details) {
+      details.removeAttribute("open");
+    }
+  });
+});
+
 const sections = document.querySelectorAll("section");
 const scrollIndicator = document.querySelector(".scroll-indicator");
 const indicatorContainer = document.querySelector(".indicator-container");

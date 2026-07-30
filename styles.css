@@ -23,7 +23,7 @@
 .content-container {
   width: 100%;
   position: relative;
-  max-width: 700px;
+  max-width: 750px;
   padding-bottom: 20px;
   border-bottom-right-radius: 20px;
   border-bottom-left-radius: 20px;
@@ -75,7 +75,7 @@
 .comment-text {
   line-height: 1.5;
   margin-bottom: 0px;
-  margin-top: 5px;
+  margin-top: 4px;
   font-family: "SFProRegular", sans-serif;
 }
 
@@ -424,13 +424,13 @@ h5 {
 
 .navbar__container {
   display: flex;
-  justify-content: space-between;
-  height: 80px;
+  justify-content: center;
+  height: 20px;
   z-index: 1;
   width: 100%;
   max-width: 1150px;
   margin: 0 auto;
-  padding: 0px 30px 0 10px;
+  padding: 0px 30px 0 30px;
 }
 
 #navbar__logo {
@@ -511,6 +511,12 @@ h5 {
 
 .logo {
   width: 80px;
+  height: auto;
+  cursor: pointer;
+}
+
+.logo_up {
+  width: 120px;
   height: auto;
   cursor: pointer;
 }
@@ -688,27 +694,27 @@ body {
   margin-left: 10px;
 }
 
+.language-selector-footer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  opacity: 90%;
+}
+
+#languageButton {
+  color: #ffffff;
+  font-size: 11px;
+  font-family: "SFProRegular", sans-serif;
+  cursor: pointer;
+  height: 15px;
+  line-height: 15px;
+}
+
 #langSelector {
-  text-align: right;
-  background-color: transparent;
-  color: #ffffff;
-  padding: 5px;
-  border: 1px solid #000000;
-  border-radius: 5px;
-  position: right;
-  z-index: 10;
-  appearance: none;
-  margin-left: 10px;
-  margin-top: 25px;
-  font-size: 15px;
-}
-
-#langSelector:hover {
-  color: #ffffff;
-}
-
-.marginleft40 {
-  margin-left: 40px;
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
 }
 
 #langSelector option {
@@ -718,7 +724,6 @@ body {
 
 #langSelector:focus {
   outline: none;
-  border-color: #000000;
 }
 
 .title-container {
@@ -748,11 +753,17 @@ body {
   opacity: 100%;
 }
 
+.language-selector-footer:hover {
+  opacity: 100%;
+}
+
 .footer-links {
   display: flex;
   gap: 20px;
   justify-content: center;
   flex-wrap: wrap;
+  row-gap: 10px;
+  padding: 0 20px;
 }
 
 .txt_btn_cv {
@@ -794,7 +805,7 @@ body {
   justify-content: center;
   background-color: rgb(0, 0, 0);
   z-index: 0;
-  margin-top: 30px;
+  margin-top: 5px;
   margin-bottom: 50px;
   width: 100%;
 }
@@ -825,7 +836,6 @@ body {
     background-color: rgb(0, 0, 0);
     z-index: 0;
     width: 100%;
-    padding-top: 80px;
     transform: translateY(-80px);
     margin-bottom: -30px;
   }
@@ -847,10 +857,11 @@ body {
     align-items: center;
     flex-direction: column;
     justify-content: flex-end;
-    height: 220px;
+    height: auto;
     background-color: rgb(0, 0, 0);
     z-index: 1;
     width: 100%;
+    padding-top: 20px;
     padding-bottom: 50px;
   }
 
@@ -886,9 +897,6 @@ body {
     padding-bottom: 15px;
   }
 
-  .section_verticale {
-    margin-top: 0px;
-  }
   .lightbox img {
     max-width: 90%;
     max-height: 60%;

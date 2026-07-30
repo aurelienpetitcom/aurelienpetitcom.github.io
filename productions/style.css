@@ -367,7 +367,9 @@ h5 {
   visibility: visible;
   pointer-events: auto;
 
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
 }
 
 #cookie-banner.show {
@@ -441,4 +443,36 @@ h5 {
     flex: initial;
     width: auto;
   }
+}
+
+.language-selector-footer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  opacity: 90%;
+}
+
+#languageButton {
+  color: #ffffff;
+  font-size: 11px;
+  font-family: "SFProRegular", sans-serif;
+  cursor: pointer;
+  height: 15px;
+  line-height: 15px;
+}
+
+#langSelector {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+#langSelector option {
+  background-color: black;
+  color: white;
+}
+
+#langSelector:focus {
+  outline: none;
 }

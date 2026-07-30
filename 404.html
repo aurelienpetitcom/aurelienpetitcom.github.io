@@ -40,21 +40,13 @@
     <nav class="navbar">
         <div class="navbar__container">
             <a href="https://aurelienpetit.com" id="navbar__logo">
-                <img src="images/logoap.png" alt="Logo Aurélien Petit" class="logo">
+                <img src="images/logoap.png" alt="Logo Aurélien Petit" class="logo_up">
             </a>
             <div class="navbar__toggle" id="mobile-menu">
                 <span class="bar"></span>
                 <span class="bar"></span>
                 <span class="bar"></span>
             </div>
-            <ul class="navbar__menu">
-                <li class="navbar__item">
-                    <select id="langSelector">
-                        <option value="en">English</option>
-                        <option value="fr">Français</option>
-                    </select>
-                </li>
-            </ul>
         </div>
     </nav>
 
@@ -71,7 +63,7 @@
                 <p data-lang="fr" style="display:none;">La page que vous recherchez n'existe pas. Cette
                     dernière a peut être été déplacée.
                 </p>
-                <div class="title-container">
+                <div class="title-container" style=margin-top:30px;>
                     <a href="https://aurelienpetit.com" class="main_btn marginleft" data-lang="en">Home page
                         <img src="images/logoreflechenoir.png" alt="Logo fleche redirection"
                             class="logoflecheredirection">
@@ -112,6 +104,16 @@
                 Conditions générales<img src="images/logoreflecheblanc.png" alt="Logo fleche redirection"
                     class="logoflecheredirection right">
             </a>
+            <div class="language-selector-footer">
+                <div class="language-selector-footer">
+                    <span id="languageButton" data-lang="fr">Changer la langue</span>
+                    <span id="languageButton" data-lang="en" style="display:none;">Change language</span>
+                    <select id="langSelector">
+                        <option value="en">English</option>
+                        <option value="fr">Français</option>
+                    </select>
+                </div>
+            </div>
         </div>
     </div>
     <script src="app.js"></script>
