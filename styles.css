@@ -676,14 +676,19 @@ body {
   transition: all 1s ease;
   white-space: nowrap;
   margin-top: 0px;
+  z-index: 100;
   transition:
     transform 0.3s ease,
     opacity 0.3s ease;
 }
 
+.marginleft40 {
+  margin-left: 40px;
+}
+
 .main_btn:hover {
   background: rgb(240, 240, 240);
-  transform: scale(0.95);
+  transform: scale(1.05);
 }
 
 .main_btn.left {
