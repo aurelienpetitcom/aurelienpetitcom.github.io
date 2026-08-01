@@ -687,7 +687,6 @@ body {
 }
 
 .main_btn:hover {
-  background: rgb(240, 240, 240);
   transform: scale(1.05);
 }
 
