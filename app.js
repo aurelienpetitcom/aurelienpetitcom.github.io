@@ -1151,27 +1151,35 @@ function formatInstagramNumber(value) {
   return truncatedValue.toFixed(1).replace(".", ",").replace(/,0$/, "") + "K";
 }
 
-// --- Instagram Likes Loader ---
 async function loadInstagramLikes() {
   const instagramApiUrl =
     "https://script.google.com/macros/s/AKfycbww2ybMe-o9lQiLHULrDhSznw8IZqkby4WPvzBwcCHy39y1ZZhiQsJbLG_ZB_0AawJv/exec";
 
   try {
     const response = await fetch(instagramApiUrl);
-    const data = await response.json();
+
+    console.log("HTTP status :", response.status);
+    console.log("Content-Type :", response.headers.get("content-type"));
+
+    const text = await response.text();
+    console.log("Réponse Google Apps Script :", text);
+
+    const data = JSON.parse(text);
 
     document.querySelectorAll("section[id]").forEach((section) => {
       const likesContainer = section.querySelector(".instagram-likes");
       if (!likesContainer) return;
 
       const likes = data.likes?.[section.id];
+
       if (likes !== undefined) {
         likesContainer.textContent = formatInstagramNumber(likes);
       }
     });
 
     const followersContainer = document.querySelector(".instagram-followers");
-    if (followersContainer) {
+
+    if (followersContainer && data.followers !== undefined) {
       followersContainer.textContent = formatInstagramNumber(data.followers);
     }
   } catch (error) {
@@ -1179,6 +1187,4 @@ async function loadInstagramLikes() {
   }
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  loadInstagramLikes();
-});
+document.addEventListener("DOMContentLoaded", loadInstagramLikes);
