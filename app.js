@@ -222,6 +222,12 @@ function getVisibleToggleButton(descContainer, lang) {
 
 function changeLanguage(languageCode) {
   updatePageTitle(languageCode);
+
+  const postSearch = document.getElementById("postSearch");
+  if (postSearch) {
+    postSearch.placeholder = languageCode === "en" ? "Research" : "Recherche";
+  }
+
   const elements = document.querySelectorAll("[data-lang]");
   elements.forEach(function (elem) {
     if (elem.closest("#cookie-banner")) return;
@@ -293,10 +299,12 @@ function rebuildPostFilter(languageCode) {
     postFilter.appendChild(o);
   });
 
-  if (data.some((d) => d.value === previousValue)) {
+  if (data.some((item) => item.value === previousValue)) {
     postFilter.value = previousValue;
-  } else if (data[0]) {
-    postFilter.value = data[0].value;
+  } else if (data.some((item) => item.value === "highlights")) {
+    postFilter.value = "highlights";
+  } else {
+    postFilter.value = "";
   }
 
   filterPosts();
@@ -306,8 +314,14 @@ function filterPosts() {
   const postFilter = document.getElementById("postFilter");
   if (!postFilter) return;
 
+  const postSearch = document.getElementById("postSearch");
+
   const selectedCategory = postFilter.value;
+  const searchTerm = postSearch ? postSearch.value.trim().toLowerCase() : "";
+
   const sections = document.querySelectorAll("section[data-category]");
+  let displayedCount = 0;
+  const maxDisplayedPosts = 3;
 
   sections.forEach((section) => {
     if (section.classList.contains("hidden")) {
@@ -316,18 +330,36 @@ function filterPosts() {
     }
 
     const categoriesAttr = section.getAttribute("data-category") || "";
+
     const categories = categoriesAttr
       .split(",")
-      .map((c) => c.trim())
-      .filter((c) => c.length > 0);
+      .map((category) => category.trim())
+      .filter((category) => category.length > 0);
 
-    if (categories.includes(selectedCategory)) {
+    // Vérification du filtre
+    const matchesCategory =
+      selectedCategory === "" || categories.includes(selectedCategory);
+
+    // Recherche dans tout le contenu de la publication
+    const publicationContent = section.textContent.toLowerCase();
+
+    const matchesSearch =
+      searchTerm === "" || publicationContent.includes(searchTerm);
+
+    if (
+      matchesCategory &&
+      matchesSearch &&
+      displayedCount < maxDisplayedPosts
+    ) {
       section.style.display = "block";
+      displayedCount++;
+
       section
         .querySelectorAll(".more-text:not(.hidden)")
         .forEach((moreText) => {
           loadMoreTextImages(moreText);
         });
+
       section.querySelectorAll(".content-defilement").forEach((content) => {
         content.style.transition = "none";
         content.style.transform = "translateY(100px) scale(1)";
@@ -337,7 +369,9 @@ function filterPosts() {
 
         content.style.transition =
           "transform 0.5s ease-out, opacity 0.5s ease-out";
+
         content.style.transform = "translateY(0)";
+
         content.style.opacity = "1";
       });
     } else {
@@ -346,17 +380,21 @@ function filterPosts() {
   });
 
   const visibleSections = Array.from(sections).filter(
-    (s) => s.style.display !== "none",
+    (section) => section.style.display !== "none",
   );
+
   if (visibleSections.length > 0) {
     const lang = getCurrentLanguage();
     const indicatorLabel = document.querySelector(".indicator-label");
+
     if (indicatorLabel) {
       const firstSection = visibleSections[0];
+
       const labelText =
         lang === "en"
           ? firstSection.getAttribute("data-label-en")
           : firstSection.getAttribute("data-label-fr");
+
       indicatorLabel.textContent = labelText;
     }
   }
@@ -371,6 +409,43 @@ if (postFilter) {
     filterPosts();
   });
 }
+
+const postSearch = document.getElementById("postSearch");
+const filterContainer = document.querySelector(".filter-container");
+
+function updateFilterVisibility() {
+  if (!filterContainer || !postSearch) return;
+
+  if (window.innerWidth < 750 && document.activeElement === postSearch) {
+    filterContainer.style.display = "none";
+  } else {
+    filterContainer.style.display = "";
+  }
+}
+
+if (postSearch) {
+  postSearch.addEventListener("input", () => {
+    const searchValue = postSearch.value.trim();
+
+    if (searchValue !== "") {
+      // Dès qu'une recherche commence,
+      // on désactive le filtre de catégorie.
+      postFilter.value = "";
+    } else {
+      // Quand la recherche est vidée,
+      // on remet le filtre sur "highlights".
+      postFilter.value = "highlights";
+    }
+
+    // Filtre à chaque modification
+    filterPosts();
+  });
+
+  postSearch.addEventListener("focus", updateFilterVisibility);
+  postSearch.addEventListener("blur", updateFilterVisibility);
+}
+
+window.addEventListener("resize", updateFilterVisibility);
 
 function openPostFilter(event) {
   event.preventDefault();
@@ -425,6 +500,14 @@ if (startLang === "none") {
 }
 
 changeLanguage(startLang);
+
+const initialPostFilter = document.getElementById("postFilter");
+
+if (initialPostFilter) {
+  initialPostFilter.value = "highlights";
+  filterPosts();
+}
+
 updateCookieBannerLanguage(startLang);
 updatePageTitle(startLang);
 
