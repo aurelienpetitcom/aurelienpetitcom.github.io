@@ -1478,6 +1478,12 @@ function initPostLightbox() {
     postLightboxBackdrop.addEventListener("click", closePostLightbox);
   }
 
+  postLightbox.addEventListener("click", (event) => {
+    if (event.target === postLightbox) {
+      closePostLightbox();
+    }
+  });
+
   document.addEventListener("keydown", (event) => {
     if (!postLightbox.classList.contains("active")) return;
 
