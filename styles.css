@@ -1251,7 +1251,7 @@ body {
 }
 
 .post-lightbox {
-  display: none;
+  display: flex;
   position: fixed;
   inset: 0;
   width: 100%;
@@ -1263,10 +1263,22 @@ body {
   backdrop-filter: blur(30px);
   -webkit-backdrop-filter: blur(30px);
   padding: 40px;
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    opacity 1s ease,
+    visibility 0s linear 1s;
 }
 
 .post-lightbox.active {
-  display: flex;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition:
+    opacity 1s ease,
+    visibility 0s linear 0s;
 }
 
 .post-lightbox-backdrop {
@@ -1284,6 +1296,29 @@ body {
   z-index: 1;
   scrollbar-width: thin;
   scrollbar-color: rgba(255, 255, 255, 0) transparent;
+
+  opacity: 0;
+  transform: scale(0.98);
+
+  /* Apparition : le fond apparaît d'abord pendant 0,5 s */
+  transition:
+    opacity 0.5s ease 0.5s,
+    transform 0.5s ease 0.5s;
+}
+
+.post-lightbox.active .post-lightbox-content {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Disparition : le contenu disparaît immédiatement */
+.post-lightbox:not(.active) .post-lightbox-content {
+  opacity: 0;
+  transform: scale(0.98);
+
+  transition:
+    opacity 0.5s ease 0s,
+    transform 0.5s ease 0s;
 }
 
 .post-lightbox-inner {

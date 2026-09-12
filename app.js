@@ -320,75 +320,136 @@ function filterPosts() {
   const searchTerm = postSearch ? postSearch.value.trim().toLowerCase() : "";
 
   const sections = document.querySelectorAll("section[data-category]");
-  let displayedCount = 0;
   const maxDisplayedPosts = 3;
 
-  sections.forEach((section) => {
-    if (section.classList.contains("hidden")) {
-      section.style.display = "none";
-      return;
-    }
+  function getSearchScore(section) {
+    if (searchTerm === "") return 1;
 
-    const categoriesAttr = section.getAttribute("data-category") || "";
+    const title = (
+      section.getAttribute("data-label-fr") ||
+      section.getAttribute("data-label-en") ||
+      ""
+    )
+      .trim()
+      .toLowerCase();
 
-    const categories = categoriesAttr
-      .split(",")
-      .map((category) => category.trim())
-      .filter((category) => category.length > 0);
+    const normalizedSearch = searchTerm.replace(/\s+/g, " ").trim();
+    const normalizedTitle = title.replace(/\s+/g, " ").trim();
 
-    // Vérification du filtre
-    const matchesCategory =
-      selectedCategory === "" || categories.includes(selectedCategory);
+    // PRIORITÉ AU TITRE
+    // 4 = titre exactement identique
+    if (normalizedTitle === normalizedSearch) return 4;
 
-    // Recherche dans tout le contenu de la publication
-    const publicationContent = section.textContent.toLowerCase();
+    // 3 = le titre commence par la recherche
+    if (normalizedTitle.startsWith(normalizedSearch)) return 3;
 
-    const matchesSearch =
-      searchTerm === "" || publicationContent.includes(searchTerm);
+    // 2 = la recherche correspond à un mot complet du titre
+    const titleWords = normalizedTitle
+      .split(/[^a-z0-9àâäçéèêëîïôöùûüÿœæ]+/i)
+      .filter(Boolean);
+
+    const searchWords = normalizedSearch
+      .split(/[^a-z0-9àâäçéèêëîïôöùûüÿœæ]+/i)
+      .filter(Boolean);
 
     if (
-      matchesCategory &&
-      matchesSearch &&
-      displayedCount < maxDisplayedPosts
+      searchWords.length > 0 &&
+      searchWords.every((word) => titleWords.includes(word))
     ) {
-      section.style.display = "block";
-      displayedCount++;
-
-      section
-        .querySelectorAll(".more-text:not(.hidden)")
-        .forEach((moreText) => {
-          loadMoreTextImages(moreText);
-        });
-
-      section.querySelectorAll(".content-defilement").forEach((content) => {
-        content.style.transition = "none";
-        content.style.transform = "translateY(100px) scale(1)";
-        content.style.opacity = "0";
-
-        void content.offsetWidth;
-
-        content.style.transition =
-          "transform 0.5s ease-out, opacity 0.5s ease-out";
-
-        content.style.transform = "translateY(0)";
-
-        content.style.opacity = "1";
-      });
-    } else {
-      section.style.display = "none";
+      return 2;
     }
+
+    // 1 = la recherche apparaît quelque part dans le titre
+    if (normalizedTitle.includes(normalizedSearch)) return 1;
+
+    // 0 = la recherche apparaît uniquement dans le contenu
+    const content = section.textContent.toLowerCase();
+
+    if (content.includes(normalizedSearch)) return 0;
+
+    // Aucun résultat
+    return -1;
+  }
+
+  const matchingSections = Array.from(sections)
+    .filter((section) => !section.classList.contains("hidden"))
+    .map((section, index) => {
+      const categoriesAttr = section.getAttribute("data-category") || "";
+
+      const categories = categoriesAttr
+        .split(",")
+        .map((category) => category.trim())
+        .filter((category) => category.length > 0);
+
+      const matchesCategory =
+        selectedCategory === "" || categories.includes(selectedCategory);
+
+      const searchScore = getSearchScore(section);
+
+      return {
+        section,
+        index,
+        matchesCategory,
+        searchScore,
+      };
+    })
+    .filter((item) => item.matchesCategory && item.searchScore >= 0);
+
+  // Classe les résultats par pertinence
+  if (searchTerm !== "") {
+    matchingSections.sort((a, b) => {
+      if (b.searchScore !== a.searchScore) {
+        return b.searchScore - a.searchScore;
+      }
+
+      // Si même pertinence, conserve l'ordre original
+      return a.index - b.index;
+    });
+  }
+
+  const visibleSections = matchingSections.slice(0, maxDisplayedPosts);
+
+  // Cache toutes les publications
+  sections.forEach((section) => {
+    section.style.display = "none";
   });
 
-  const visibleSections = Array.from(sections).filter(
-    (section) => section.style.display !== "none",
-  );
+  // Affiche les résultats dans l'ordre de pertinence
+  const firstSection = sections[0]?.parentNode;
 
+  visibleSections.forEach(({ section }) => {
+    section.style.display = "block";
+
+    if (searchTerm !== "" && firstSection) {
+      firstSection.appendChild(section);
+    }
+
+    section.querySelectorAll(".more-text:not(.hidden)").forEach((moreText) => {
+      loadMoreTextImages(moreText);
+    });
+
+    section.querySelectorAll(".content-defilement").forEach((content) => {
+      content.style.transition = "none";
+      content.style.transform = "translateY(100px) scale(1)";
+      content.style.opacity = "0";
+
+      void content.offsetWidth;
+
+      content.style.transition =
+        "transform 0.5s ease-out, opacity 0.5s ease-out";
+
+      content.style.transform = "translateY(0)";
+      content.style.opacity = "1";
+    });
+  });
+
+  // Met à jour le label de l'indicateur avec le premier résultat
   if (visibleSections.length > 0) {
     const lang = getCurrentLanguage();
     const indicatorLabel = document.querySelector(".indicator-label");
 
     if (indicatorLabel) {
-      const firstSection = visibleSections[0];
+      const firstSection = visibleSections[0].section;
 
       const labelText =
         lang === "en"
@@ -1302,9 +1363,12 @@ function initPostLightbox() {
   function closePostLightbox() {
     postLightbox.classList.remove("active");
     postLightbox.setAttribute("aria-hidden", "true");
-    postLightboxInner.innerHTML = "";
     postLightbox.style.zIndex = "";
     document.body.classList.remove("post-lightbox-open");
+
+    setTimeout(() => {
+      postLightboxInner.innerHTML = "";
+    }, 500);
   }
 
   function openPostLightbox(postId) {
