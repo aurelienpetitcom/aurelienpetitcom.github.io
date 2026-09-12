@@ -769,6 +769,8 @@ function loadMoreTextImages(moreText) {
     if (!img.src || img.src === "") {
       img.onload = () => {
         img.classList.add("loaded");
+
+        saveImageToCache(img.currentSrc || img.src);
       };
 
       img.src = img.dataset.src;
@@ -1315,16 +1317,50 @@ async function loadInstagramLikes() {
   const instagramApiUrl =
     "https://script.google.com/macros/s/AKfycbww2ybMe-o9lQiLHULrDhSznw8IZqkby4WPvzBwcCHy39y1ZZhiQsJbLG_ZB_0AawJv/exec";
 
+  const cacheKey = "instagramStatsCache";
+  const cacheDuration = 24 * 60 * 60 * 1000; // 24 heures
+
   try {
-    const response = await fetch(instagramApiUrl);
+    let data = null;
+    const cachedData = localStorage.getItem(cacheKey);
 
-    console.log("HTTP status :", response.status);
-    console.log("Content-Type :", response.headers.get("content-type"));
+    if (cachedData) {
+      try {
+        const parsedCache = JSON.parse(cachedData);
 
-    const text = await response.text();
-    console.log("Réponse Google Apps Script :", text);
+        if (
+          parsedCache.timestamp &&
+          Date.now() - parsedCache.timestamp < cacheDuration &&
+          parsedCache.data
+        ) {
+          data = parsedCache.data;
+        }
+      } catch (cacheError) {
+        localStorage.removeItem(cacheKey);
+      }
+    }
 
-    const data = JSON.parse(text);
+    if (!data) {
+      const response = await fetch(instagramApiUrl);
+
+      console.log("HTTP status :", response.status);
+      console.log("Content-Type :", response.headers.get("content-type"));
+
+      const text = await response.text();
+      console.log("Réponse Google Apps Script :", text);
+
+      data = JSON.parse(text);
+
+      localStorage.setItem(
+        cacheKey,
+        JSON.stringify({
+          timestamp: Date.now(),
+          data: data,
+        }),
+      );
+    } else {
+      console.log("Statistiques Instagram chargées depuis le cache local.");
+    }
 
     document.querySelectorAll("section[id]").forEach((section) => {
       const likesContainer = section.querySelector(".instagram-likes");
@@ -1456,8 +1492,6 @@ function initPostLightbox() {
     postLightbox.classList.add("active");
     postLightbox.setAttribute("aria-hidden", "false");
     document.body.classList.add("post-lightbox-open");
-
-    postLightboxClose.focus();
   }
 
   document.querySelectorAll(".post-more-button").forEach((button) => {
@@ -1494,3 +1528,97 @@ function initPostLightbox() {
 }
 
 document.addEventListener("DOMContentLoaded", initPostLightbox);
+
+const IMAGE_CACHE_NAME = "site-images-v1";
+const IMAGE_CACHE_DURATION = 7 * 24 * 60 * 60 * 1000; // 1 semaine
+
+async function saveImageToCache(src) {
+  if (!window.caches || !src) return;
+
+  try {
+    const url = new URL(src, window.location.href);
+
+    if (url.protocol !== "http:" && url.protocol !== "https:") return;
+    if (url.origin !== window.location.origin) return;
+
+    const cache = await caches.open(IMAGE_CACHE_NAME);
+    const existing = await cache.match(url.href);
+
+    if (existing) {
+      const cachedAt = Number(existing.headers.get("x-site-cache-time"));
+
+      if (cachedAt && Date.now() - cachedAt < IMAGE_CACHE_DURATION) {
+        return;
+      }
+
+      await cache.delete(url.href);
+    }
+
+    const response = await fetch(url.href, {
+      cache: "no-cache",
+    });
+
+    if (!response.ok) return;
+
+    const headers = new Headers(response.headers);
+    headers.set("x-site-cache-time", Date.now().toString());
+
+    const cachedResponse = new Response(await response.blob(), {
+      status: response.status,
+      statusText: response.statusText,
+      headers,
+    });
+
+    await cache.put(url.href, cachedResponse);
+  } catch (error) {
+    console.warn("Impossible de mettre l'image en cache :", src, error);
+  }
+}
+
+function setupImageCaching() {
+  document.querySelectorAll("img[src]").forEach((image) => {
+    // Ne touche pas aux images lazy qui ne sont pas encore chargées.
+    if (image.dataset.src && image.getAttribute("src") === image.dataset.src) {
+      return;
+    }
+
+    const src = image.currentSrc || image.src;
+    if (!src) return;
+
+    if (image.complete && image.naturalWidth > 0) {
+      saveImageToCache(src);
+    } else {
+      image.addEventListener(
+        "load",
+        () => {
+          saveImageToCache(image.currentSrc || image.src);
+        },
+        { once: true },
+      );
+    }
+  });
+}
+
+function cleanExpiredImageCache() {
+  if (!window.caches) return;
+
+  caches.open(IMAGE_CACHE_NAME).then(async (cache) => {
+    const requests = await cache.keys();
+
+    for (const request of requests) {
+      const response = await cache.match(request);
+      if (!response) continue;
+
+      const cachedAt = Number(response.headers.get("x-site-cache-time"));
+
+      if (!cachedAt || Date.now() - cachedAt >= IMAGE_CACHE_DURATION) {
+        await cache.delete(request);
+      }
+    }
+  });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  cleanExpiredImageCache();
+  setupImageCaching();
+});
