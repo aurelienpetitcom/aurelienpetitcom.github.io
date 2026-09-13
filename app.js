@@ -1434,8 +1434,20 @@ function initPostLightbox() {
   const postLightboxBackdrop = postLightbox?.querySelector(
     ".post-lightbox-backdrop",
   );
+  const postLightboxContent = document.querySelector(".post-lightbox-content");
 
-  if (!postLightbox || !postLightboxInner || !postLightboxClose) return;
+  let postLightboxTouchStartY = 0;
+  let postLightboxTouchEndY = 0;
+  let postLightboxTouchStartScrollTop = 0;
+  let postLightboxClosingFromScroll = false;
+
+  if (
+    !postLightbox ||
+    !postLightboxContent ||
+    !postLightboxInner ||
+    !postLightboxClose
+  )
+    return;
 
   function closePostLightbox() {
     postLightbox.classList.remove("active");
@@ -1512,23 +1524,39 @@ function initPostLightbox() {
         if (nextBtn) {
           nextBtn.style.display = currentGroup.length > 1 ? "block" : "none";
         }
+
         lightbox.tabIndex = -1;
         lightbox.focus();
+
         document.body.classList.remove("post-lightbox-open");
+
         postLightbox.style.zIndex = "3000";
         lightbox.style.zIndex = "4000";
+
         document.body.style.overflow = "hidden";
 
         const scrollIndicator = document.querySelector(".scroll-indicator");
-        if (scrollIndicator) scrollIndicator.style.opacity = "0";
+
+        if (scrollIndicator) {
+          scrollIndicator.style.opacity = "0";
+        }
 
         lightboxImg.style.transition = "none";
         lightboxImg.style.transform = "scale(0.95)";
+
         void lightboxImg.offsetWidth;
+
         lightboxImg.style.transition = "transform 0.4s ease";
         lightboxImg.style.transform = "scale(1)";
       });
     });
+
+    // IMPORTANT :
+    // c'est .post-lightbox-content qui est scrollable
+    postLightboxContent.scrollTop = 0;
+
+    postLightboxTouchStartScrollTop = 0;
+    postLightboxClosingFromScroll = false;
 
     postLightbox.classList.add("active");
     postLightbox.setAttribute("aria-hidden", "false");
@@ -1546,6 +1574,120 @@ function initPostLightbox() {
       }
     });
   });
+
+  // ==============================
+  // SCROLL DE LA LIGHTBOX
+  // ==============================
+
+  postLightboxContent.addEventListener(
+    "wheel",
+    (event) => {
+      if (postLightboxClosingFromScroll) {
+        event.preventDefault();
+        return;
+      }
+
+      const atTop = postLightboxContent.scrollTop <= 0;
+      const scrollingUp = event.deltaY < 0;
+
+      // On est au milieu :
+      // surtout ne pas fermer la lightbox.
+      if (!atTop) {
+        event.stopPropagation();
+        return;
+      }
+
+      // On est tout en haut + scroll vers le haut :
+      // fermeture de la lightbox.
+      if (scrollingUp) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        postLightboxClosingFromScroll = true;
+
+        closePostLightbox();
+
+        setTimeout(() => {
+          postLightboxClosingFromScroll = false;
+        }, 500);
+
+        return;
+      }
+
+      // Tout en haut + scroll vers le bas :
+      // le contenu peut défiler normalement.
+      event.stopPropagation();
+    },
+    { passive: false },
+  );
+
+  // ==============================
+  // TOUCH / MOBILE
+  // ==============================
+
+  postLightboxContent.addEventListener(
+    "touchstart",
+    (event) => {
+      if (!event.touches.length) return;
+
+      postLightboxTouchStartY = event.touches[0].clientY;
+
+      postLightboxTouchStartScrollTop = postLightboxContent.scrollTop;
+    },
+    { passive: true },
+  );
+
+  postLightboxContent.addEventListener(
+    "touchmove",
+    (event) => {
+      if (!event.touches.length) return;
+
+      const currentY = event.touches[0].clientY;
+
+      const deltaY = currentY - postLightboxTouchStartY;
+
+      const atTop = postLightboxContent.scrollTop <= 0;
+
+      // Empêche le scroll de passer derrière
+      // lorsqu'on tire vers le bas depuis le sommet.
+      if (atTop && deltaY > 0) {
+        event.preventDefault();
+      }
+    },
+    { passive: false },
+  );
+
+  postLightboxContent.addEventListener(
+    "touchend",
+    (event) => {
+      if (!event.changedTouches.length) return;
+
+      const touchEndY = event.changedTouches[0].clientY;
+
+      const deltaY = touchEndY - postLightboxTouchStartY;
+
+      // Fermeture uniquement si le geste
+      // commence réellement tout en haut.
+      if (
+        deltaY > 80 &&
+        postLightboxTouchStartScrollTop <= 0 &&
+        postLightboxContent.scrollTop <= 0
+      ) {
+        postLightboxClosingFromScroll = true;
+
+        closePostLightbox();
+
+        setTimeout(() => {
+          postLightboxClosingFromScroll = false;
+        }, 500);
+      }
+    },
+    { passive: true },
+  );
+
+  // ==============================
+  // FERMETURE
+  // ==============================
 
   postLightboxClose.addEventListener("click", closePostLightbox);
 
