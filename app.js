@@ -255,15 +255,6 @@ function changeLanguage(languageCode) {
     }
   });
 
-  const indicatorLabels = document.querySelectorAll(".indicator-label");
-  indicatorLabels.forEach((label) => {
-    if (label.getAttribute("data-lang") === languageCode) {
-      label.style.display = "block";
-    } else {
-      label.style.display = "none";
-    }
-  });
-
   window.scrollTo(0, 1);
   setTimeout(() => {
     window.scrollTo(0, 0);
@@ -462,6 +453,7 @@ function filterPosts() {
 
   updateScrollNextArrow();
   handleParallaxScroll();
+  updateScrollIndicatorVisibility();
 }
 
 const postFilter = document.getElementById("postFilter");
@@ -609,124 +601,154 @@ let isDragging = false;
 function updateIndicator() {
   const scrollTop = window.scrollY;
   const windowHeight = window.innerHeight;
-  const documentHeight = document.body.scrollHeight;
 
-  const totalScrollableHeight = documentHeight - windowHeight;
-  const scrollRatio = scrollTop / totalScrollableHeight;
+  const visibleSections = Array.from(
+    document.querySelectorAll("section.scroll-parallax"),
+  ).filter((section) => section.style.display !== "none");
 
-  const indicatorPosition = scrollRatio * scrollIndicator.offsetHeight;
-
-  if (scrollTop === 0) {
-    indicatorContainer.style.transform = `translateY(0)`;
-  } else if (scrollTop + windowHeight >= documentHeight) {
-    indicatorContainer.style.transform = `translateY(${scrollIndicator.offsetHeight}px)`;
-  } else {
-    indicatorContainer.style.transform = `translateY(${indicatorPosition}px)`;
+  if (!scrollIndicator || !indicatorContainer || !visibleSections.length) {
+    return;
   }
 
+  const firstSection = visibleSections[0];
+  const lastSection = visibleSections[visibleSections.length - 1];
+
+  const firstRect = firstSection.getBoundingClientRect();
+  const lastRect = lastSection.getBoundingClientRect();
+
+  // Début de la progression :
+  // le milieu de la première publication arrive au milieu de l'écran.
+  const firstCenterScroll =
+    scrollTop + firstRect.top + firstRect.height / 2 - windowHeight / 2;
+
+  // Fin de la progression :
+  // le milieu de la dernière publication arrive au milieu de l'écran.
+  const lastCenterScroll =
+    scrollTop + lastRect.top + lastRect.height / 2 - windowHeight / 2;
+
+  const scrollRange = Math.max(1, lastCenterScroll - firstCenterScroll);
+
+  const progress = Math.max(
+    0,
+    Math.min(1, (scrollTop - firstCenterScroll) / scrollRange),
+  );
+
+  const indicatorHeight = scrollIndicator.offsetHeight;
+  const indicatorPosition = progress * indicatorHeight;
+
+  indicatorContainer.style.transform = `translateY(${indicatorPosition}px)`;
+
+  // Le milieu de l'écran détermine la publication active.
+  const triggerPoint = scrollTop + windowHeight / 2;
+
   let activeSection = null;
-  let sectionProgress = 0;
-  const quarterFromBottom = window.innerHeight * 0.75;
-  const triggerPoint = window.scrollY + quarterFromBottom;
 
-  for (const section of sections) {
+  for (const section of visibleSections) {
     const rect = section.getBoundingClientRect();
-    const sectionTop = window.scrollY + rect.top;
-    let sectionHeight = rect.height;
 
-    if (
-      triggerPoint >= sectionTop &&
-      triggerPoint <= sectionTop + sectionHeight
-    ) {
+    const sectionTop = scrollTop + rect.top;
+    const sectionBottom = sectionTop + rect.height;
+
+    if (triggerPoint >= sectionTop && triggerPoint <= sectionBottom) {
       activeSection = section;
-      const moreText = activeSection.querySelector(".more-text");
-      if (moreText && !moreText.classList.contains("hidden")) {
-        sectionHeight = activeSection.scrollHeight;
-      }
-      sectionProgress = ((triggerPoint - sectionTop) / sectionHeight) * 100;
-      sectionProgress = Math.min(Math.max(sectionProgress, 0), 100);
-      sectionProgress = Math.round(sectionProgress / 10) * 10;
       break;
     }
   }
 
-  function updateIndicatorLabelAfterFilter() {
-    const sections = Array.from(
-      document.querySelectorAll("section.scroll-parallax"),
-    ).filter((s) => s.style.display !== "none");
+  // Sécurité : s'il n'y a aucune section exactement autour
+  // du milieu de l'écran, on prend la plus proche.
+  if (!activeSection) {
+    activeSection = visibleSections.reduce((closest, section) => {
+      const rect = section.getBoundingClientRect();
 
-    if (!sections.length) return;
+      const sectionCenter = scrollTop + rect.top + rect.height / 2;
 
-    const lang = getCurrentLanguage();
-    const indicatorLabel = document.querySelector(".indicator-label");
-    if (!indicatorLabel) return;
+      const closestRect = closest.getBoundingClientRect();
 
-    const firstSection = sections[0];
-    const labelText =
-      lang === "en"
-        ? firstSection.getAttribute("data-label-en")
-        : firstSection.getAttribute("data-label-fr");
+      const closestCenter =
+        scrollTop + closestRect.top + closestRect.height / 2;
 
-    indicatorLabel.textContent = labelText;
+      return Math.abs(sectionCenter - triggerPoint) <
+        Math.abs(closestCenter - triggerPoint)
+        ? section
+        : closest;
+    });
   }
 
+  // Met à jour le texte de l'indicateur.
   if (activeSection) {
-    let sectionProgressDisplay = sectionProgress;
-
-    sectionProgressDisplay = Math.min(Math.max(sectionProgressDisplay, 0), 100);
-
     const lang = getCurrentLanguage();
+
     const indicatorLabel = indicatorContainer.querySelector(".indicator-label");
+
     if (indicatorLabel) {
-      let labelText =
+      const labelText =
         lang === "en"
           ? activeSection.getAttribute("data-label-en")
           : activeSection.getAttribute("data-label-fr");
 
-      indicatorLabel.innerHTML = labelText;
-      indicatorLabel.style.display = "block";
+      indicatorLabel.textContent = labelText || "";
     }
   }
+
+  updateScrollNextArrow();
 }
 
 function updateScrollNextArrow() {
   const scrollNextBtn = document.getElementById("scrollNextSection");
+
   if (!scrollNextBtn) return;
 
   const sections = Array.from(
     document.querySelectorAll("section.scroll-parallax"),
-  ).filter((s) => s.style.display !== "none");
+  ).filter((section) => section.style.display !== "none");
 
-  if (sections.length === 0) {
-    scrollNextBtn.style.display = "none";
+  if (!sections.length) {
+    scrollNextBtn.style.opacity = "0";
+    scrollNextBtn.style.pointerEvents = "none";
     return;
   }
 
-  const lang = getCurrentLanguage();
-  const lastSection = sections[sections.length - 1];
-  const lastLabel =
-    lang === "en"
-      ? lastSection.getAttribute("data-label-en")
-      : lastSection.getAttribute("data-label-fr");
+  const scrollTop = window.scrollY;
+  const triggerPoint = scrollTop + window.innerHeight / 2;
 
-  const indicatorLabel = document.querySelector(".indicator-label");
-  if (!indicatorLabel) return;
+  let currentIndex = sections.findIndex((section) => {
+    const rect = section.getBoundingClientRect();
 
-  const currentLabel = indicatorLabel.textContent.trim();
+    const sectionTop = scrollTop + rect.top;
+
+    const sectionBottom = sectionTop + rect.height;
+
+    return triggerPoint >= sectionTop && triggerPoint <= sectionBottom;
+  });
+
+  if (currentIndex < 0) {
+    currentIndex = sections.reduce((closestIndex, section, index) => {
+      const rect = section.getBoundingClientRect();
+
+      const center = scrollTop + rect.top + rect.height / 2;
+
+      const closestRect = sections[closestIndex].getBoundingClientRect();
+
+      const closestCenter =
+        scrollTop + closestRect.top + closestRect.height / 2;
+
+      return Math.abs(center - triggerPoint) <
+        Math.abs(closestCenter - triggerPoint)
+        ? index
+        : closestIndex;
+    }, 0);
+  }
+
+  const hasNextSection = currentIndex < sections.length - 1;
 
   scrollNextBtn.style.transition = "opacity 0.2s ease";
 
-  if (currentLabel === lastLabel) {
-    scrollNextBtn.style.opacity = "0";
-    setTimeout(() => {
-      scrollNextBtn.style.display = "none";
-    }, 200);
-  } else {
-    scrollNextBtn.style.display = "block";
-    setTimeout(() => {
-      scrollNextBtn.style.opacity = "1";
-    }, 10);
-  }
+  scrollNextBtn.style.display = "block";
+
+  scrollNextBtn.style.opacity = hasNextSection ? "1" : "0";
+
+  scrollNextBtn.style.pointerEvents = hasNextSection ? "auto" : "none";
 }
 
 window.addEventListener("scroll", updateScrollNextArrow);
@@ -920,24 +942,43 @@ updateTxtBtnText();
 window.addEventListener("resize", updateTxtBtnText);
 
 const scrollNextBtn = document.getElementById("scrollNextSection");
+
 if (scrollNextBtn) {
   scrollNextBtn.addEventListener("click", () => {
-    const sections = document.querySelectorAll("section.scroll-parallax");
-    const viewportHeight = window.innerHeight;
-    const currentScroll = window.scrollY;
-    const triggerPoint = currentScroll + viewportHeight * 0.25;
+    const sections = Array.from(
+      document.querySelectorAll("section.scroll-parallax"),
+    ).filter((section) => section.style.display !== "none");
 
-    const nextSection = Array.from(sections)
-      .filter((section) => section.offsetTop > triggerPoint)
-      .shift();
+    if (!sections.length) return;
 
-    if (nextSection) {
-      const targetScroll = nextSection.offsetTop - 150;
-      window.scrollTo({
-        top: targetScroll + 400,
-        behavior: "smooth",
-      });
+    const indicatorLabel = document.querySelector(".indicator-label");
+
+    const currentLabel = indicatorLabel?.textContent.trim() || "";
+
+    const lang = getCurrentLanguage();
+
+    const currentIndex = sections.findIndex((section) => {
+      const label =
+        lang === "en"
+          ? section.getAttribute("data-label-en")
+          : section.getAttribute("data-label-fr");
+
+      return label === currentLabel;
+    });
+
+    if (currentIndex < 0 || currentIndex >= sections.length - 1) {
+      return;
     }
+
+    const nextSection = sections[currentIndex + 1];
+
+    const targetScroll =
+      window.scrollY + nextSection.getBoundingClientRect().top - 150;
+
+    window.scrollTo({
+      top: targetScroll,
+      behavior: "smooth",
+    });
   });
 }
 
@@ -1622,3 +1663,204 @@ document.addEventListener("DOMContentLoaded", () => {
   cleanExpiredImageCache();
   setupImageCaching();
 });
+
+// Synchronize video2.webm playback with scroll
+const scrollVideo = document.querySelector(".background-video");
+
+if (scrollVideo) {
+  scrollVideo.pause();
+  scrollVideo.currentTime = 0;
+  scrollVideo.style.visibility = "hidden";
+  scrollVideo.preload = "auto";
+
+  let targetProgress = 0;
+  let videoReady = false;
+  let videoAnimationFrame = null;
+  let lastTargetProgress = 0;
+
+  const updateScrollVideoTarget = () => {
+    if (
+      !videoReady ||
+      !scrollVideo.duration ||
+      !isFinite(scrollVideo.duration)
+    ) {
+      return;
+    }
+
+    const rect = scrollVideo.getBoundingClientRect();
+    const viewportHeight = window.innerHeight;
+
+    // Début : 50 % de la vidéo est visible dans l'écran.
+    const startPoint = viewportHeight - rect.height * 0;
+
+    // Fin : 50 % de la vidéo est sorti par le haut.
+    const endPoint = -rect.height * 0.9;
+
+    const isInPlaybackZone = rect.top <= startPoint && rect.top >= endPoint;
+
+    scrollVideo.style.visibility = isInPlaybackZone ? "visible" : "hidden";
+
+    targetProgress = Math.max(
+      0,
+      Math.min(1, (startPoint - rect.top) / (startPoint - endPoint)),
+    );
+
+    if (Math.abs(targetProgress - lastTargetProgress) < 0.001) {
+      return;
+    }
+
+    lastTargetProgress = targetProgress;
+
+    if (!videoAnimationFrame) {
+      videoAnimationFrame = requestAnimationFrame(syncVideoToScroll);
+    }
+  };
+
+  const syncVideoToScroll = () => {
+    if (!videoReady || !scrollVideo.duration) {
+      videoAnimationFrame = null;
+      return;
+    }
+
+    const targetTime = targetProgress * scrollVideo.duration;
+    const difference = targetTime - scrollVideo.currentTime;
+
+    // On descend : la vidéo joue vers l'avant.
+    if (difference > 0.03) {
+      scrollVideo.playbackRate = Math.min(6, Math.max(1, difference * 4));
+
+      if (scrollVideo.paused) {
+        scrollVideo.play().catch(() => {});
+      }
+    }
+
+    // On remonte : la vidéo est jouée progressivement vers l'arrière.
+    else if (difference < -0.03) {
+      scrollVideo.pause();
+
+      const reverseStep = Math.min(
+        0.08,
+        Math.max(0.016, Math.abs(difference) * 0.35),
+      );
+
+      scrollVideo.currentTime = Math.max(
+        targetTime,
+        scrollVideo.currentTime - reverseStep,
+      );
+    }
+
+    // Arrivé au point demandé : pause.
+    else {
+      scrollVideo.pause();
+      scrollVideo.currentTime = targetTime;
+    }
+
+    if (
+      Math.abs(scrollVideo.currentTime - targetTime) > 0.03 &&
+      targetProgress > 0 &&
+      targetProgress < 1
+    ) {
+      videoAnimationFrame = requestAnimationFrame(syncVideoToScroll);
+    } else {
+      videoAnimationFrame = null;
+    }
+  };
+
+  scrollVideo.addEventListener("loadedmetadata", () => {
+    videoReady = true;
+    scrollVideo.currentTime = 0;
+    updateScrollVideoTarget();
+  });
+
+  scrollVideo.load();
+
+  window.addEventListener("scroll", updateScrollVideoTarget, {
+    passive: true,
+  });
+
+  window.addEventListener("resize", updateScrollVideoTarget);
+}
+
+// Show the scroll indicator when at least 50% of the viewport
+// is occupied by a visible .content-defilement
+function updateScrollIndicatorVisibility() {
+  const scrollIndicator = document.querySelector(".scroll-indicator");
+
+  if (!scrollIndicator) return;
+
+  const contentDefilements = Array.from(
+    document.querySelectorAll(".content-defilement"),
+  ).filter((content) => {
+    return content.style.display !== "none";
+  });
+
+  if (!contentDefilements.length) {
+    scrollIndicator.style.display = "flex";
+    scrollIndicator.style.opacity = "0";
+    scrollIndicator.style.pointerEvents = "none";
+    return;
+  }
+
+  const viewportHeight = window.innerHeight;
+
+  const hasEnoughContentVisible = contentDefilements.some((content) => {
+    const rect = content.getBoundingClientRect();
+
+    if (rect.height <= 0) return false;
+
+    const visibleTop = Math.max(0, rect.top);
+    const visibleBottom = Math.min(viewportHeight, rect.bottom);
+
+    const visibleHeight = Math.max(0, visibleBottom - visibleTop);
+
+    return visibleHeight >= viewportHeight * 0.5;
+  });
+
+  scrollIndicator.style.display = "flex";
+
+  scrollIndicator.style.opacity = hasEnoughContentVisible ? "1" : "0";
+
+  scrollIndicator.style.pointerEvents = hasEnoughContentVisible
+    ? "auto"
+    : "none";
+}
+
+const scrollIndicatorElement = document.querySelector(".scroll-indicator");
+
+if (scrollIndicatorElement) {
+  scrollIndicatorElement.style.transition = "opacity 0.35s ease";
+}
+
+window.addEventListener("scroll", updateScrollIndicatorVisibility, {
+  passive: true,
+});
+
+window.addEventListener("resize", updateScrollIndicatorVisibility);
+
+document.addEventListener("DOMContentLoaded", updateScrollIndicatorVisibility);
+
+window.addEventListener("scroll", updateScrollIndicatorVisibility, {
+  passive: true,
+});
+
+window.addEventListener("resize", updateScrollIndicatorVisibility);
+
+document.addEventListener("DOMContentLoaded", updateScrollIndicatorVisibility);
+
+const okbotsProductionButton = document.querySelector(
+  ".okbots-production-button",
+);
+
+if (okbotsProductionButton) {
+  okbotsProductionButton.addEventListener("click", (event) => {
+    event.preventDefault();
+
+    const postButton = document.querySelector(
+      '.post-more-button[data-post="okbots-expedition-development-announcement"]',
+    );
+
+    if (postButton) {
+      postButton.click();
+    }
+  });
+}
