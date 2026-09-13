@@ -1665,6 +1665,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // Synchronize video2.webm playback with scroll
+// Synchronize video2.webm playback with scroll
 const scrollVideo = document.querySelector(".background-video");
 
 if (scrollVideo) {
@@ -1690,19 +1691,16 @@ if (scrollVideo) {
     const rect = scrollVideo.getBoundingClientRect();
     const viewportHeight = window.innerHeight;
 
-    // Début : 50 % de la vidéo est visible dans l'écran.
     const startPoint = viewportHeight - rect.height * 0;
-
-    // Fin : 50 % de la vidéo est sorti par le haut.
     const endPoint = -rect.height * 1;
 
     const isInPlaybackZone = rect.top <= startPoint && rect.top >= endPoint;
 
-    scrollVideo.style.visibility = isInPlaybackZone ? "visible" : "hidden";
+    scrollVideo.style.visibility = isInPlaybackZone ? "visible" : "visible";
 
     targetProgress = Math.max(
-      0,
-      Math.min(1, (startPoint - rect.top) / (startPoint - endPoint)),
+      0.2,
+      Math.min(0.8, (startPoint - rect.top) / (startPoint - endPoint)),
     );
 
     if (Math.abs(targetProgress - lastTargetProgress) < 0.001) {
@@ -1734,19 +1732,28 @@ if (scrollVideo) {
       }
     }
 
-    // On remonte : la vidéo est jouée progressivement vers l'arrière.
-    else if (difference < -0.03) {
+    // On remonte : retour progressif image par image.
+    else if (difference < -1000.53) {
       scrollVideo.pause();
 
-      const reverseStep = Math.min(
-        0.08,
-        Math.max(0.016, Math.abs(difference) * 0.35),
-      );
+      const reverseStep = Math.min(Math.abs(difference), 1 / 1);
 
       scrollVideo.currentTime = Math.max(
         targetTime,
         scrollVideo.currentTime - reverseStep,
       );
+
+      // Petit délai entre chaque étape du retour
+      // pour ralentir et rendre le mouvement plus fluide.
+      videoAnimationFrame = null;
+
+      setTimeout(() => {
+        if (!videoAnimationFrame) {
+          videoAnimationFrame = requestAnimationFrame(syncVideoToScroll);
+        }
+      }, 1000);
+
+      return;
     }
 
     // Arrivé au point demandé : pause.
@@ -1756,7 +1763,7 @@ if (scrollVideo) {
     }
 
     if (
-      Math.abs(scrollVideo.currentTime - targetTime) > 0.03 &&
+      Math.abs(scrollVideo.currentTime - targetTime) > 0.001 &&
       targetProgress > 0 &&
       targetProgress < 1
     ) {

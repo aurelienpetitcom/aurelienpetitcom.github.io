@@ -1952,4 +1952,9 @@ body.loaded #splash-screen {
   .okbots-production-button {
     transform: translateY(-220px);
   }
+
+  .background-video {
+    height: 500px;
+    top: 80px;
+  }
 }
