@@ -234,7 +234,8 @@ function changeLanguage(languageCode) {
 
     const tag = elem.tagName.toLowerCase();
     if (elem.getAttribute("data-lang") === languageCode) {
-      elem.style.display = tag === "span" ? "inline" : "block";
+      elem.style.display =
+        tag === "span" || tag === "span2" ? "inline" : "block";
     } else {
       elem.style.display = "none";
     }

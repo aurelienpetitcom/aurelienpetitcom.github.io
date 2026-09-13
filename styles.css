@@ -233,12 +233,20 @@
   padding: 40px;
   padding-bottom: 20px;
   font-family: "SFProSemiBold", sans-serif;
-  display: inline-block;
+  display: inline;
   align-items: center;
   white-space: normal;
 }
 .date-category span {
   display: inline;
+}
+
+.date-category span2 {
+  display: inline;
+  font-family: "SFProLight", sans-serif;
+  font-size: 15px;
+  margin-left: 5px;
+  color: #d0d0d0;
 }
 
 .nonmobile {
