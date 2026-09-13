@@ -1694,7 +1694,7 @@ if (scrollVideo) {
     const startPoint = viewportHeight - rect.height * 0;
 
     // Fin : 50 % de la vidéo est sorti par le haut.
-    const endPoint = -rect.height * 0.9;
+    const endPoint = -rect.height * 1;
 
     const isInPlaybackZone = rect.top <= startPoint && rect.top >= endPoint;
 
