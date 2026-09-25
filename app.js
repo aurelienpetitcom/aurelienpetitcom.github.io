@@ -767,14 +767,38 @@ indicatorContainer.addEventListener("mousedown", (event) => {
 });
 
 document.addEventListener("mousemove", (event) => {
-  if (isDragging) {
-    const scrollIndicatorRect = scrollIndicator.getBoundingClientRect();
-    const offsetY = event.clientY - scrollIndicatorRect.top;
-    const percentage = offsetY / scrollIndicatorRect.height;
-    const scrollTop =
-      percentage * (document.body.scrollHeight - window.innerHeight);
-    window.scrollTo(0, scrollTop);
-  }
+  if (!isDragging) return;
+
+  const contentDefilements = Array.from(
+    document.querySelectorAll(".content-defilement"),
+  ).filter((content) => content.style.display !== "none");
+
+  if (!contentDefilements.length) return;
+
+  const scrollIndicatorRect = scrollIndicator.getBoundingClientRect();
+  const offsetY = event.clientY - scrollIndicatorRect.top;
+
+  const percentage = Math.max(
+    0,
+    Math.min(1, offsetY / scrollIndicatorRect.height),
+  );
+
+  const firstContent = contentDefilements[0];
+  const lastContent = contentDefilements[contentDefilements.length - 1];
+
+  const firstTop = firstContent.getBoundingClientRect().top + window.scrollY;
+
+  const lastBottom =
+    lastContent.getBoundingClientRect().bottom + window.scrollY;
+
+  const minScrollTop = firstTop - 100;
+
+  const maxScrollTop =
+    Math.max(minScrollTop, lastBottom - window.innerHeight) + 100;
+
+  const scrollTop = minScrollTop + (maxScrollTop - minScrollTop) * percentage;
+
+  window.scrollTo(0, scrollTop);
 });
 
 document.addEventListener("mouseup", () => {
@@ -1980,14 +2004,6 @@ const scrollIndicatorElement = document.querySelector(".scroll-indicator");
 if (scrollIndicatorElement) {
   scrollIndicatorElement.style.transition = "opacity 0.35s ease";
 }
-
-window.addEventListener("scroll", updateScrollIndicatorVisibility, {
-  passive: true,
-});
-
-window.addEventListener("resize", updateScrollIndicatorVisibility);
-
-document.addEventListener("DOMContentLoaded", updateScrollIndicatorVisibility);
 
 window.addEventListener("scroll", updateScrollIndicatorVisibility, {
   passive: true,
