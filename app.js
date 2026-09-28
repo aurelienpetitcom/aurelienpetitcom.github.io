@@ -1518,6 +1518,14 @@ function initPostLightbox() {
 
     postLightboxInner.replaceChildren(contentClone);
 
+    // Autoplay de la vidéo YouTube dans la lightbox
+    const youtubeIframe = contentClone.querySelector(".timelapse-youtube");
+
+    if (youtubeIframe) {
+      youtubeIframe.src =
+        "https://www.youtube.com/embed/DSK1pp9jjGE?autoplay=1&mute=1&controls=0&rel=0&modestbranding=1&playsinline=1";
+    }
+
     contentClone.querySelectorAll(".imagesouspost").forEach((image) => {
       // Les vidéos YouTube ne doivent pas être traitées comme des images
       if (image.tagName.toLowerCase() === "iframe") return;
