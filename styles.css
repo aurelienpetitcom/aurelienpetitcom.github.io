@@ -1973,4 +1973,6 @@ body.loaded #splash-screen {
   height: auto;
   display: block;
   border: 0;
+  border-radius: 20px;
+  margin-bottom: 20px;
 }
