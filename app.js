@@ -1522,8 +1522,12 @@ function initPostLightbox() {
     const youtubeIframe = contentClone.querySelector(".timelapse-youtube");
 
     if (youtubeIframe) {
-      youtubeIframe.src =
-        "https://www.youtube.com/embed/DSK1pp9jjGE?autoplay=1&mute=1&controls=0&rel=0&modestbranding=1&playsinline=1";
+      const youtubeUrl = new URL(youtubeIframe.src);
+      youtubeUrl.searchParams.set("autoplay", "1");
+      youtubeUrl.searchParams.set("mute", "1");
+      youtubeUrl.searchParams.set("controls", "0");
+      youtubeUrl.searchParams.set("playsinline", "1");
+      youtubeIframe.src = youtubeUrl.toString();
     }
 
     contentClone.querySelectorAll(".imagesouspost").forEach((image) => {
