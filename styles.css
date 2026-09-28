@@ -1966,3 +1966,11 @@ body.loaded #splash-screen {
     top: 80px;
   }
 }
+
+.timelapse-youtube {
+  width: 100%;
+  aspect-ratio: 1920 / 994;
+  height: auto;
+  display: block;
+  border: 0;
+}

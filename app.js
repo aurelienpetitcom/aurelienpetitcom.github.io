@@ -1519,6 +1519,9 @@ function initPostLightbox() {
     postLightboxInner.replaceChildren(contentClone);
 
     contentClone.querySelectorAll(".imagesouspost").forEach((image) => {
+      // Les vidéos YouTube ne doivent pas être traitées comme des images
+      if (image.tagName.toLowerCase() === "iframe") return;
+
       image.addEventListener("click", () => {
         const lightbox = document.getElementById("lightbox");
         const lightboxImg = document.getElementById("lightboxImg");
@@ -1527,9 +1530,10 @@ function initPostLightbox() {
 
         if (!lightbox || !lightboxImg || !image.src) return;
 
+        // Seules les images font partie de la galerie
         const currentGroup = Array.from(
           contentClone.querySelectorAll(".imagesouspost"),
-        ).filter((img) => !!img.src);
+        ).filter((img) => img.tagName.toLowerCase() === "img" && !!img.src);
 
         const currentIndex = currentGroup.indexOf(image);
 
