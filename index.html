@@ -178,6 +178,45 @@
     </select>
     <div id="scrollfilterfleche" class="scroll-arrow">&#x2193</div>
   </div>
+  <!-- Aucun résultat de recherche -->
+  <div id="noSearchResults" class="no-search-results scroll-parallax" style="display: none;">
+
+    <!-- Image de fond -->
+    <img class="no-search-results-bg no-search-results-bg-desktop" src="images/noresult_dekstop.png" alt="">
+
+    <img class="no-search-results-bg no-search-results-bg-mobile" src="images/noresult_mobile.png" alt="">
+
+    <!-- Contenu par-dessus -->
+    <div class="no-search-results-content">
+
+      <p class="description" data-lang="fr" style="color: white;">
+        Aucune production ne correspond à la recherche
+      </p>
+
+      <p class="description" data-lang="en" style="color: white; display:none;">
+        No production matches your search
+      </p>
+
+      <div class="no-search-results-buttons">
+
+        <button type="button" class="main_btn no-search-suggestion" data-search="Lune" data-search-en="Moon">
+          <span data-lang="fr">Lune</span>
+          <span data-lang="en">Moon</span>
+        </button>
+
+        <button type="button" class="main_btn no-search-suggestion" data-search="Cerveau" data-search-en="Brain">
+          <span data-lang="fr">Cerveau</span>
+          <span data-lang="en">Brain</span>
+        </button>
+
+        <button type="button" class="main_btn no-search-suggestion" data-search="2020">
+          2020
+        </button>
+
+      </div>
+
+    </div>
+  </div>
 
 
   <!-- Sections -->
@@ -1449,19 +1488,30 @@
     </section>
   </div>
 
-  <div class="accueil_section1">
-    <div class="content-container2" style="background-color: black;">
-      <div class="description-container" style="text-align: center;">
-        <p class="description" style="text-align: center; opacity: 50%; font-size: 16px;" data-lang="en">
-          Discover more productions using the search bar or the <a href="#" onclick="openPostFilter(event)"
-            style="color: rgb(255, 255, 255);">filter</a> above
-        </p>
-        <p class="description" style="text-align: center;opacity: 50%;font-size: 16px;" data-lang="fr"
-          style="display:none;">
-          Découvrir davantage de productions via la barre de recherche ou le <a href="#" onclick="openPostFilter(event)"
-            style="color: rgb(255, 255, 255);">filtre</a> en haut de page
-        </p>
-      </div>
+  <div class="quick-links-container">
+    <div class="quick-links-header">
+      <strong data-lang="en">Quick links</strong>
+      <strong data-lang="fr" style="display:none;">Liens rapides</strong>
+
+      <span data-lang="en">Find what you're looking for.</span>
+      <span data-lang="fr" style="display:none;">Trouvez ce que vous cherchez.</span>
+    </div>
+
+    <div class="quick-links-buttons">
+      <button type="button" class="main_btn quick-link-filter" data-filter="2021">
+        <span data-lang="en">Productions 2021</span>
+        <span data-lang="fr" style="display:none;">Productions 2021</span>
+      </button>
+
+      <button type="button" class="main_btn quick-link-filter" data-filter="2020">
+        <span data-lang="en">Productions 2020</span>
+        <span data-lang="fr" style="display:none;">Productions 2020</span>
+      </button>
+
+      <a href="https://aurelienpetit.com/cv" class="main_btn quick-link-about">
+        <span data-lang="en">Curriculum Vitae</span>
+        <span data-lang="fr" style="display:none;">Curriculum Vitae</span>
+      </a>
     </div>
   </div>
 

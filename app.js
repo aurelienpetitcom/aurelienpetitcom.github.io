@@ -400,6 +400,16 @@ function filterPosts() {
   }
 
   const visibleSections = matchingSections.slice(0, maxDisplayedPosts);
+  // Affiche le panneau "aucun résultat" uniquement lorsqu'une recherche
+  // textuelle est active et qu'aucune publication ne correspond.
+  const noSearchResults = document.getElementById("noSearchResults");
+
+  if (noSearchResults) {
+    const shouldShowNoResults =
+      searchTerm !== "" && visibleSections.length === 0;
+
+    noSearchResults.style.display = shouldShowNoResults ? "block" : "none";
+  }
 
   // Cache toutes les publications
   sections.forEach((section) => {
@@ -498,6 +508,49 @@ if (postSearch) {
   postSearch.addEventListener("focus", updateFilterVisibility);
   postSearch.addEventListener("blur", updateFilterVisibility);
 }
+
+// Boutons de suggestion du panneau "aucun résultat".
+document.querySelectorAll(".no-search-suggestion").forEach((button) => {
+  button.addEventListener("click", () => {
+    const currentLanguage = document.documentElement.lang || "fr";
+    const searchValue =
+      currentLanguage === "en"
+        ? button.dataset.searchEn || button.dataset.search || ""
+        : button.dataset.search || "";
+
+    if (!postSearch) return;
+
+    postSearch.value = searchValue;
+    postSearch.dispatchEvent(new Event("input", { bubbles: true }));
+    postSearch.focus();
+  });
+});
+
+// Boutons des quick links.
+document.querySelectorAll(".quick-link-filter").forEach((button) => {
+  button.addEventListener("click", () => {
+    const filterValue = button.dataset.filter || "";
+    const postFilter = document.getElementById("postFilter");
+    const postSearch = document.getElementById("postSearch");
+
+    if (!postFilter) return;
+
+    if (postSearch) {
+      postSearch.value = "";
+    }
+
+    postFilter.value = filterValue;
+    postFilter.dispatchEvent(new Event("change", { bubbles: true }));
+
+    const productions = document.querySelector(".content-defilement");
+    if (productions) {
+      productions.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  });
+});
 
 window.addEventListener("resize", updateFilterVisibility);
 
