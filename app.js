@@ -1570,17 +1570,50 @@ function initPostLightbox() {
     });
 
     postLightboxInner.replaceChildren(contentClone);
+    // Reconnecte les boutons .social-share dans la lightbox clonée
+    contentClone.querySelectorAll(".social-share").forEach((button) => {
+      button.addEventListener("click", async (event) => {
+        event.preventDefault();
+        event.stopPropagation();
 
-    // Autoplay de la vidéo YouTube dans la lightbox
-    const youtubeIframe = contentClone.querySelector(".timelapse-youtube");
+        const section = document.getElementById(postId);
+        if (!section) return;
 
-    if (youtubeIframe) {
-      const youtubeUrl = new URL(youtubeIframe.src);
-      youtubeUrl.searchParams.set("autoplay", "1");
-      youtubeUrl.searchParams.set("mute", "1");
-      youtubeUrl.searchParams.set("controls", "0");
-      youtubeUrl.searchParams.set("playsinline", "1");
-      youtubeIframe.src = youtubeUrl.toString();
+        const lang = getCurrentLanguage();
+        const title =
+          lang === "en"
+            ? section.getAttribute("data-label-en") || postId
+            : section.getAttribute("data-label-fr") || postId;
+
+        const shareLink = `https://aurelienpetit.com/share/${postId}`;
+
+        if (navigator.share) {
+          try {
+            await navigator.share({
+              title: title,
+              text: shareLink,
+            });
+          } catch (err) {
+            console.log("Sharing failed", err);
+          }
+        }
+      });
+    });
+
+    // Autoplay de la vidéo locale correspondant à la langue active dans la lightbox
+    const currentLanguage = getCurrentLanguage();
+    const lightboxVideo = contentClone.querySelector(
+      `.description[data-lang="${currentLanguage}"] .timelapse-youtube`,
+    );
+
+    if (lightboxVideo && lightboxVideo.tagName.toLowerCase() === "video") {
+      lightboxVideo.autoplay = true;
+      lightboxVideo.muted = true;
+      lightboxVideo.controls = false;
+      lightboxVideo.playsInline = true;
+      lightboxVideo.load();
+
+      lightboxVideo.play().catch(() => {});
     }
 
     contentClone.querySelectorAll(".imagesouspost").forEach((image) => {
@@ -1900,7 +1933,6 @@ document.addEventListener("DOMContentLoaded", () => {
   setupImageCaching();
 });
 
-// Synchronize video2.webm playback with scroll
 // Synchronize video2.webm playback with scroll
 const scrollVideo = document.querySelector(".background-video");
 
