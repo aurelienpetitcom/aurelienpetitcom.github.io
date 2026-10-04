@@ -994,9 +994,9 @@ function updateTxtBtnText() {
   if (!el) return;
 
   if (window.innerWidth < 500) {
-    el.textContent = lang === "en" ? "Curr. Vitae" : "Curr. Vitae";
+    el.textContent = lang === "en" ? "About" : "A propos";
   } else {
-    el.textContent = lang === "en" ? "Curriculum Vitae" : "Curriculum Vitae";
+    el.textContent = lang === "en" ? "About me" : "A propos de moi";
   }
 }
 
