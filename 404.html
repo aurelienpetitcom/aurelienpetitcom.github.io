@@ -1,124 +1,32 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="pageTitle">Page not found - Aurélien Petit</title>
-    <meta name="title-fr" content="Page inexistante — Aurélien Petit">
-    <meta name="title-en" content="Page not found — Aurélien Petit">
-    <link rel="icon" href="images/faviconap.png" type="image/png">
-    <link rel="stylesheet" href="https://aurelienpetit.com/styles.css">
+    <meta charset="utf-8">
+    <base href="/">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="The page you are looking for does not exist or may have moved."
+        data-i18n-content="notFound.description">
+    <title data-i18n="notFound.title">Page not found — Aurélien Petit</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <script src="page-transition.js"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
-    <!-- Écran de chargement 
-    <div id="loader">
-        <img src="images/LogoAP.gif" alt="Chargement..." class="loader-gif">
-        
-    </div>-->
+<body class="not-found-page" data-site-root=".">
+    <header class="site-header" data-site-header></header>
 
-    <!-- Cookie Consent Banner -->
-    <div id="cookie-banner">
-        <p data-lang="fr">Ce site utilise des <a href="https://aurelienpetit.com/privacy-policy" target="_blank"
-                style="color: black; ">cookies<img src="https://aurelienpetit.com/images/logoreflechenoir.png"
-                    alt="Logo fleche redirection" class="logoflecheredirection right"></a> pour améliorer votre
-            expérience.</p>
-        <p data-lang="en" style="display:none;">This site uses <a href="https://aurelienpetit.com/privacy-policy"
-                target="_blank" style="color: black;">cookies<img
-                    src="https://aurelienpetit.com/images/logoreflechenoir.png" alt="Logo fleche redirection"
-                    class="logoflecheredirection right"></a> to enhance your experience.
-        </p>
+    <main class="not-found-main">
+        <section class="not-found-content" aria-labelledby="not-found-title">
+            <h1 id="not-found-title" data-i18n="notFound.heading">Page not found</h1>
+            <p data-i18n="notFound.message">The page you are looking for does not exist. It may have been moved.</p>
+            <a class="not-found-home-link" href="./index.html" data-i18n="notFound.home">Home page</a>
+        </section>
+    </main>
 
-        <div class="button-row">
-            <button class="accept-cookies" data-lang="fr">Accepter</button>
-            <button class="accept-cookies" data-lang="en">Accept</button>
-            <button class="reject-cookies" data-lang="fr">Refuser</button>
-            <button class="reject-cookies" data-lang="en">Reject</button>
-        </div>
-    </div>
-
-    <!-- Navbar Section-->
-    <nav class="navbar">
-        <div class="navbar__container">
-            <a href="https://aurelienpetit.com" id="navbar__logo">
-                <img src="https://aurelienpetit.com/images/logoap.png" alt="Logo Aurélien Petit" class="logo_up">
-            </a>
-            <div class="navbar__toggle" id="mobile-menu">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Hero Section-->
-    <div class="main">
-        <div class="main__container2">
-            <div class="main__content">
-                <div class="title-container">
-                    <h2 data-lang="en">Page not found</h2>
-                    <h2 data-lang="fr" style="display:none;">Page inexistante</h2>
-                </div>
-                <p data-lang="en">The page you were looking for doesn’t exist. You may have mistyped the
-                    address or the page may have moved.</p>
-                <p data-lang="fr" style="display:none;">La page que vous recherchez n'existe pas. Cette
-                    dernière a peut être été déplacée.
-                </p>
-                <div class="title-container" style=margin-top:30px;>
-                    <a href="https://aurelienpetit.com" class="main_btn marginleft" data-lang="en">Home page
-                        <img src="https://aurelienpetit.com/images/logoreflechenoir.png" alt="Logo fleche redirection"
-                            class="logoflecheredirection">
-                    </a>
-                    <a href="https://aurelienpetit.com" class="main_btn marginleft" data-lang="fr"
-                        style="display:none;">Page d'accueil
-                        <img src="https://aurelienpetit.com/images/logoreflechenoir.png" alt="Logo fleche redirection"
-                            class="logoflecheredirection">
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="main__container-bandebp">
-        <a href="https://aurelienpetit.com" id="navbar__logo_bp">
-            <img src="https://aurelienpetit.com/images/logoap.png" alt="Logo Aurélien Petit" class="logo">
-        </a>
-        <h5 data-lang="fr">Copyright © 2026 Aurélien Petit. Tous droits réservés.<br>
-            Les marques de commerce, logos et droits d'auteur appartiennent à leurs propriétaires respectifs. Tous
-            droits réservés.</h5>
-        <h5 data-lang="en" style="display:none;">Copyright © 2026 Aurélien Petit. All rights reserved.<br>
-            Trademarks, logos and copyrights are property of their respective owners. All rights reserved.</h5>
-        <div class="footer-links">
-            <a href="https://aurelienpetit.com/privacy-policy" target="_blank" class="txt_btn" data-lang="en">Privacy
-                policy<img src="https://aurelienpetit.com/images/logoreflecheblanc.png" alt="Logo fleche redirection"
-                    class="logoflecheredirection right"></a>
-            <a href="https://aurelienpetit.com/privacy-policy" target="_blank" class="txt_btn" data-lang="fr"
-                style="display:none;">
-                Politique de confidentialité<img src="images/logoreflecheblanc.png" alt="Logo fleche redirection"
-                    class="logoflecheredirection right">
-            </a>
-
-            <a href="https://aurelienpetit.com/terms" target="_blank" class="txt_btn" data-lang="en">Terms and
-                conditions<img src="https://aurelienpetit.com/images/logoreflecheblanc.png"
-                    alt="Logo fleche redirection" class="logoflecheredirection right"></a>
-            <a href="https://aurelienpetit.com/terms" target="_blank" class="txt_btn" data-lang="fr"
-                style="display:none;">
-                Conditions générales<img src="https://aurelienpetit.com/images/logoreflecheblanc.png"
-                    alt="Logo fleche redirection" class="logoflecheredirection right">
-            </a>
-            <div class="language-selector-footer">
-                <div class="language-selector-footer">
-                    <span id="languageButton" data-lang="fr">Changer la langue</span>
-                    <span id="languageButton" data-lang="en" style="display:none;">Change language</span>
-                    <select id="langSelector">
-                        <option value="en">English</option>
-                        <option value="fr">Français</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-    </div>
-    <script src="https://aurelienpetit.com/app.js"></script>
+    <footer class="site-footer" data-site-footer></footer>
+    <script src="site-data.js"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="While the drone show is in full swing, the robots appear to have taken over the castle."
+        data-i18n-content="project.castle.description">
+    <meta name="theme-color" content="#000000">
+    <title data-i18n="project.castle.pageTitle">Famous Castle — Aurélien Petit</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body data-production-theme="dark">
+    <site-header></site-header>
+    <main class="production-detail-page">
+        <section class="production-detail-hero page-width">
+            <h1 data-i18n="project.castle.title">Famous Castle</h1>
+            <p data-i18n="project.castle.description">
+                Découvrez un château réinventé dans un style graphique unique, où les Okbots semblent prêts à tout pour
+                atteindre les sommets.
+            </p>
+            <figure class="production-detail-main-figure">
+                <img class="production-detail-main-image" src="../assets/images/famous-castle.png"
+                    alt="Illustration de Famous Castle" data-i18n-alt="project.castle.alt">
+            </figure>
+        </section>
+
+        <production-gallery data-title-key="project.castle.galleryTitle"
+            data-description-one-key="project.castle.imageDescriptionOne"
+            data-description-two-key="project.castle.imageDescriptionTwo"
+            data-description-three-key="project.castle.imageDescriptionThree" data-alt-key="project.castle.alt"
+            data-image-one="famous-castle-1.png" data-image-two="famous-castle-2.png"></production-gallery>
+    </main>
+    <production-comments></production-comments>
+    <site-footer></site-footer>
+    <script src="../productions-data.js"></script>
+    <script src="../site-components.js"></script>
+    <script src="../i18n.js"></script>
+    <script src="../script.js"></script>
+</body>
+
+</html>

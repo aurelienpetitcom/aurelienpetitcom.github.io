@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Découvrez les productions d’Aurélien Petit, classées par année."
+    data-i18n-content="productions.metaDescription">
+  <title data-i18n="productions.pageTitle">Productions — Aurélien Petit</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <site-header></site-header>
+
+  <main class="productions-page">
+    <section class="productions-intro">
+      <div class="page-width">
+        <h1 data-i18n="productions.title">Productions</h1>
+        <div class="production-index-carousel">
+          <button type="button" class="production-index-control production-index-prev"
+            aria-label="Productions précédentes" data-i18n-aria-label="carousel.previous" hidden>‹</button>
+          <nav class="production-index" aria-label="Accès aux productions"
+            data-i18n-aria-label="productions.indexLabel"></nav>
+          <button type="button" class="production-index-control production-index-next"
+            aria-label="Productions suivantes" data-i18n-aria-label="carousel.next" hidden>›</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="year-explorer" aria-labelledby="year-explorer-title">
+      <div class="page-width">
+        <h2 id="year-explorer-title" data-i18n="productions.exploreByYear">Explore by year</h2>
+        <div class="year-tabs" role="group" aria-label="Filtrer par année"
+          data-i18n-aria-label="productions.filterByYear">
+          <button type="button" class="year-tab is-selected" data-year-filter="2025-2026" aria-pressed="true"
+            disabled>2025-2026</button>
+          <button type="button" class="year-tab" data-year-filter="2021" aria-pressed="false">2021</button>
+          <button type="button" class="year-tab" data-year-filter="2020" aria-pressed="false">2020</button>
+        </div>
+
+        <div class="carousel production-carousel" aria-label="Productions de l’année"
+          data-i18n-aria-label="productions.yearProjects">
+          <div class="carousel-track" id="featured-track"></div>
+        </div>
+        <div class="carousel-controls">
+          <button type="button" id="carousel-prev" aria-label="Productions précédentes"
+            data-i18n-aria-label="carousel.previous">‹</button>
+          <button type="button" id="carousel-next" aria-label="Productions suivantes"
+            data-i18n-aria-label="carousel.next">›</button>
+        </div>
+      </div>
+    </section>
+
+    <production-comments></production-comments>
+  </main>
+
+  <site-footer></site-footer>
+  <script src="productions-data.js"></script>
+  <script src="site-components.js"></script>
+  <script src="i18n.js"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>

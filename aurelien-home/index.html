@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Portfolio d’Aurélien Petit — ingénieur industriel en électromécanique et créateur. Projets, productions et univers créatifs."
+    data-i18n-content="site.description">
+  <title data-i18n="site.title">Aurélien Petit — Accueil</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <site-header></site-header>
+
+  <main class="main-content">
+    <section class="intro page-width" id="about">
+      <div class="intro-copy searchable"
+        data-search="Aurélien Petit ingénieur industriel électromécanique profil about">
+        <h1>PETIT Aurélien</h1>
+        <p data-i18n="intro.description">Ingénieur industriel en électromécanique, je m’investis pleinement dans chaque
+          projet avec l’ambition de dépasser les attentes et de repousser les limites. Mon objectif professionnel est
+          d’allier expertise technique et créativité afin d’apporter une touche personnelle et une valeur ajoutée aux
+          projets auxquels je contribue.</p>
+      </div>
+    </section>
+
+    <section class="featured page-width" id="productions">
+      <div class="section-heading">
+        <h2 data-i18n="featured.title">Mis en avant.</h2>
+        <p data-i18n="featured.description">Le meilleur à découvrir dès maintenant.</p>
+      </div>
+      <div class="carousel" aria-label="Productions mises en avant" data-i18n-aria-label="carousel.label">
+        <div class="carousel-track" id="featured-track"></div>
+      </div>
+      <div class="carousel-controls"><button type="button" id="carousel-prev" aria-label="Productions précédentes"
+          data-i18n-aria-label="carousel.previous">‹</button><button type="button" id="carousel-next"
+          aria-label="Productions suivantes" data-i18n-aria-label="carousel.next">›</button></div>
+    </section>
+
+    <section class="quick-links page-width" id="newswire">
+      <div class="section-heading">
+        <h2 data-i18n="quick.title">Liens rapides.</h2>
+        <p data-i18n="quick.description">Trouvez ce que vous cherchez.</p>
+      </div>
+      <div class="quick-buttons"><a class="pill-button" href="#about" data-i18n="quick.about">À propos</a><a
+          class="pill-button" href="mailto:contact@aurelienpetit.com?subject=Website%20feedback"
+          data-i18n="quick.review">Laisser un avis</a></div>
+      <aside class="stay-informed" id="contact">
+        <h2 data-i18n="social.title">Restez informé</h2>
+        <a href="https://www.instagram.com/ap.aurelienpetit/" target="_blank" rel="noreferrer">Instagram ↗</a>
+        <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LinkedIn ↗</a>
+      </aside>
+    </section>
+
+    <section class="okbots-banner" id="videos">
+      <div class="okbots-content searchable"
+        data-search="Okbots Expedition game video game narrative platformer Unreal Engine 5 robots jeu vidéo plateforme récit robots">
+        <img class="okbots-logo" src="assets/images/okbots-expedition-logo.png" alt="Okbots Expedition">
+        <p data-i18n="okbots.description">Okbots Expedition est un jeu de plateforme narratif en cours de développement
+          sous Unreal Engine 5. Vous incarnez un personnage chargé d’infiltrer la civilisation des Okbots — des robots
+          intelligents créés par l’humanité et envoyés explorer un autre système solaire potentiellement habitable —
+          afin de les empêcher de surpasser l’humanité.</p>
+        <a class="learn-more" href="/okbots-expedition/">
+          <span data-i18n="okbots.learnMore">En savoir plus</span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <site-footer></site-footer>
+  <script src="productions-data.js"></script>
+  <script src="site-components.js"></script>
+  <script src="i18n.js"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>

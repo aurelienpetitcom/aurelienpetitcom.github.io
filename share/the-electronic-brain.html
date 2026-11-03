@@ -1,89 +1,24 @@
-<!DOCTYPE html>
-<html lang="fr">
-
-<style>
-    html,
-    body {
-        background: #000;
-        margin: 0;
-    }
-</style>
-
+<!doctype html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Titres pour partage -->
-    <title>The Electronic Brain</title>
-    <link rel="icon" href="/images/productions/The_Electronic_Brain_post.png" type="image/png">
-
-    <!-- Open Graph -->
-    <meta property="og:title" content="The Electronic Brain">
-    <meta property="og:image" content="/images/productions/The_Electronic_Brain_post.png">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://aurelienpetit.com/share/the-electronic-brain.html">
-
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="The Electronic Brain">
-    <meta name="twitter:image" content="/images/productions/The_Electronic_Brain_post.png">
-
-    <style>
-        body {
-            background-color: #000;
-            color: #fff;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            font-family: 'SF Pro', system-ui, sans-serif;
-            text-align: center;
-        }
-
-        a {
-            color: #1e90ff;
-            text-decoration: underline;
-            margin-top: 1rem;
-        }
-    </style>
-
-    <!-- Redirection instantanée vers la section sur le site principal -->
-    <script>
-        const lang = new URLSearchParams(window.location.search).get('lang') || 'fr';
-        const title = lang === 'en' ? 'The Electronic Brain' : 'The Electronic Brain';
-        const description = lang === 'en'
-            ? 'Discover a unique graphic representation of the brain and its structure, accompanied by the okbots.'
-            : 'Découvrez une représentation du cerveau et de sa structure dans un style graphique unique, accompagnée par les okbots.';
-
-        // Mettre à jour les meta OG et Twitter description
-        let ogDesc = document.querySelector('meta[property="og:description"]');
-        if (!ogDesc) {
-            ogDesc = document.createElement('meta');
-            ogDesc.setAttribute('property', 'og:description');
-            document.head.appendChild(ogDesc);
-        }
-        ogDesc.setAttribute('content', description);
-
-        let twitterDesc = document.querySelector('meta[name="twitter:description"]');
-        if (!twitterDesc) {
-            twitterDesc = document.createElement('meta');
-            twitterDesc.setAttribute('name', 'twitter:description');
-            document.head.appendChild(twitterDesc);
-        }
-        twitterDesc.setAttribute('content', description);
-
-        // Redirection vers la section
-        window.location.replace(`https://aurelienpetit.com/#the-electronic-brain`);
-    </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Electronic Brain — Aurélien Petit</title>
+  <meta name="description" content="Discover The Electronic Brain, a creative production by Aurélien Petit.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Aurélien Petit">
+  <meta property="og:title" content="The Electronic Brain — Aurélien Petit">
+  <meta property="og:description" content="Discover The Electronic Brain, a creative production by Aurélien Petit.">
+  <meta property="og:url" content="https://aurelienpetit.com/share/the-electronic-brain.html">
+  <meta property="og:image" content="https://aurelienpetit.com/assets/images/the-electronic-brain/the-electronic-brain-1.png">
+  <meta property="og:image:alt" content="Illustration of The Electronic Brain">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="The Electronic Brain — Aurélien Petit">
+  <meta name="twitter:description" content="Discover The Electronic Brain, a creative production by Aurélien Petit.">
+  <meta name="twitter:image" content="https://aurelienpetit.com/assets/images/the-electronic-brain/the-electronic-brain-1.png">
+  <script>window.location.replace("../productions.html#production-electronicBrain");</script>
 </head>
-
 <body>
-    <p>Redirection en cours vers la publication...</p>
-    <p>
-        <a href="https://aurelienpetit.com/#the-electronic-brain">Cliquez ici si la redirection ne fonctionne pas</a>
-    </p>
+  <p>Redirecting to the production… <a href="../productions.html#production-electronicBrain">Continue to The Electronic Brain</a></p>
 </body>
-
 </html>

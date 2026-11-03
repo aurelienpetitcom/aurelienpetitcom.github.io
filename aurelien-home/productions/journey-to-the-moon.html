@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Embarquez à bord du légendaire vaisseau en route vers la Lune."
+        data-i18n-content="project.journey.description">
+    <title data-i18n="project.journey.pageTitle">Journey to the Moon — Aurélien Petit</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body class="journey-page-body">
+    <site-header></site-header>
+    <main class="journey-page">
+
+        <aside class="journey-news-banner">
+            <p data-i18n="project.journey.newswireMessage">
+                Discover the latest news about productions through the Newswire page
+            </p>
+            <a href="../newswire.html" data-i18n="project.journey.newswireLink">Learn more ›</a>
+        </aside>
+
+        <section class="journey-opening" data-journey-opening>
+            <div class="journey-opening-stage">
+                <section class="journey-intro" aria-labelledby="journey-title">
+                    <div class="journey-intro-band">
+                        <img class="journey-logo" src="../assets/images/Journey-to-the-moon-logoup.png"
+                            alt="Journey to the Moon" data-i18n-alt="project.journey.title">
+                        <div class="journey-intro-copy">
+                            <h1 id="journey-title" data-i18n="project.journey.title">Journey to the Moon</h1>
+                            <div class="journey-release">
+                                <span data-i18n="project.journey.releaseDate">Sortie le 08.08.26</span>
+                                <a class="pill-button" href="https://www.instagram.com/ap.aurelienpetit/"
+                                    target="_blank" rel="noopener noreferrer">Instagram ↗</a>
+                                <a class="pill-button" href="https://www.linkedin.com/" target="_blank"
+                                    rel="noopener noreferrer">LinkedIn ↗</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="journey-narrative" data-journey-reveal aria-label="Journey to the Moon">
+                    <p>
+                        <span data-i18n="project.journey.narrativeOne">Embark on a journey</span>
+                        <span data-i18n="project.journey.narrativeTwo">aboard the legendary spaceship</span>
+                        <span data-i18n="project.journey.narrativeThree">bound for the Moon</span>
+                    </p>
+                </section>
+            </div>
+        </section>
+
+        <nav class="journey-subnav" aria-label="Journey to the Moon">
+            <div class="journey-subnav-inner page-width">
+                <a class="journey-subnav-title" href="#top" data-i18n="project.journey.title">Journey to the Moon</a>
+                <div class="journey-subnav-links">
+                    <a class="journey-overview-link" href="#journey-overview"
+                        data-i18n="project.journey.overview">Overview</a>
+                    <a class="journey-timelapse-link" href="#journey-timelapse"
+                        data-i18n="project.journey.timelapse">Timelapse</a>
+                    <a class="journey-buy-link" href="../productions.html" data-i18n="project.journey.buy">Buy</a>
+                </div>
+            </div>
+        </nav>
+
+        <section class="journey-overview" id="journey-overview" aria-label="Journey to the Moon">
+            <figure class="journey-main-artwork page-width">
+                <img src="../assets/images/Journey-to-the-moon.png" alt="Illustration de Journey to the Moon"
+                    data-i18n-alt="project.journey.alt">
+                <figcaption data-i18n="project.journey.mainArtworkDescription">
+                    Inspired by the dimensions and spirit of the original attraction, this artwork was born from a
+                    creative challenge: depicting the contrast between the building's interior and exterior.
+                    Significant simplification was required due to the architectural richness of the venue and the
+                    thickness of the lines.
+                </figcaption>
+            </figure>
+        </section>
+
+        <section class="journey-launch-band" aria-label="Journey to the Moon">
+            <div class="journey-launch-content page-width">
+                <p data-i18n="project.journey.launchText">
+                    The cannon tilts, a deep roar echoes, and the rocket is launched at full speed towards the Moon.
+                </p>
+                <img src="../assets/images/Journey-to-the-moon-1.png" alt="" aria-hidden="true" loading="lazy">
+            </div>
+        </section>
+
+        <production-gallery class="journey-dimensions" data-title-key="project.journey.dimensionsTitle"
+            data-description-one-key="project.journey.galleryDescriptionOne"
+            data-description-two-key="project.journey.galleryDescriptionTwo" data-alt-key="project.journey.alt"
+            data-image-one="Journey-to-the-moon-2.png" data-image-two="Journey-to-the-moon-3.png"></production-gallery>
+
+        <production-video-carousel class="journey-timelapse" id="journey-timelapse"
+            data-title-key="project.journey.videoTitle" data-description-key="project.journey.videoDescription"
+            data-card-title-key="project.journey.videoCardTitle"
+            data-card-description-key="project.journey.videoCardDescription"
+            data-src-prefix="Journey-to-the-moon-video-" data-count="3"></production-video-carousel>
+    </main>
+    <production-comments></production-comments>
+    <site-footer></site-footer>
+    <script src="../productions-data.js"></script>
+    <script src="../site-components.js"></script>
+    <script src="../i18n.js"></script>
+    <script src="../script.js"></script>
+</body>
+
+</html>
