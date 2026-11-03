@@ -4,7 +4,7 @@ window.siteProductions = {
     searchPageTitleKey: "journey.pageTitle",
     shareSlug: "journey-to-the-moon",
     searchAliases: ["lune", "voyage vers la lune"],
-    releaseDate: "2026-08-05",
+    releaseDate: "2026-08-08",
     instagram: "https://www.instagram.com/p/Db8OM6_CJjF/",
     timelapseInstagram: "https://www.instagram.com/p/DcOPs2UtcM4/",
     page: "productions/journey-to-the-moon.html",
@@ -14,7 +14,7 @@ window.siteProductions = {
     searchPageTitleKey: "castle.pageTitle",
     shareSlug: "famous-castle",
     searchAliases: ["château", "château célèbre"],
-    releaseDate: "2026-08-08",
+    releaseDate: "2026-09-12",
     instagram: "https://www.instagram.com/p/DOgMnDUiPID/",
     timelapseInstagram: "https://www.instagram.com/p/DOwMXDwD7Tn/",
     page: "productions/famous-castle.html",
@@ -23,7 +23,7 @@ window.siteProductions = {
     searchTitleKey: "production.mecalodon",
     shareSlug: "mecalodon-aquatic-show",
     searchAliases: ["spectacle aquatique mecalodon"],
-    releaseDate: "2025-09-12",
+    releaseDate: "2025-06-22",
     instagram: "https://www.instagram.com/p/DZ4r2bkCLyv/",
   },
   electronicBrain: {
@@ -66,20 +66,25 @@ window.siteTranslations = {
   en: {
     "site.homeTitle": "Aurélien Petit",
     "site.archiveTitle": "Productions — Aurélien Petit",
-    "site.archiveDescription": "Explore Aurélien Petit’s productions, organized by year.",
+    "site.archiveDescription":
+      "Explore Aurélien Petit’s productions, organized by year.",
     "site.description": "Discover the creative productions of Aurélien Petit.",
     "about.title": "About — Aurélien Petit",
-    "about.description": "Discover Aurélien Petit, industrial electromechanical engineer and creator.",
+    "about.description":
+      "Discover Aurélien Petit, industrial electromechanical engineer and creator.",
     "about.heading": "About",
     "about.download": "Download PDF",
     "about.fileSize.en": "542 ko",
     "about.fileSize.fr": "563 ko",
     "about.imageAlt": "Aurélien Petit’s résumé",
-    "about.introduction": "As an Industrial Engineer in Electromechanics, I fully invest myself in every project with the ambition to exceed expectations and push boundaries. My professional goal is to combine technical expertise and creativity to bring a personal touch and added value to the projects I contribute to.",
+    "about.introduction":
+      "As an Industrial Engineer in Electromechanics, I fully invest myself in every project with the ambition to exceed expectations and push boundaries. My professional goal is to combine technical expertise and creativity to bring a personal touch and added value to the projects I contribute to.",
     "notFound.title": "Page not found — Aurélien Petit",
-    "notFound.description": "The page you are looking for does not exist or may have moved.",
+    "notFound.description":
+      "The page you are looking for does not exist or may have moved.",
     "notFound.heading": "Page not found",
-    "notFound.message": "The page you are looking for does not exist. It may have been moved.",
+    "notFound.message":
+      "The page you are looking for does not exist. It may have been moved.",
     "notFound.home": "Home page",
     "legal.privacyTitle": "Privacy policy — Aurélien Petit",
     "legal.privacyDescription": "Privacy policy for aurelienpetit.com.",
@@ -89,9 +94,11 @@ window.siteTranslations = {
     "legal.termsHeading": "Terms and conditions",
     "legal.section": "Legal information",
     "journey.pageTitle": "Journey to the Moon — Aurélien Petit",
-    "journey.metaDescription": "Journey to the Moon: embark on a journey aboard the legendary spaceship bound for the Moon.",
+    "journey.metaDescription":
+      "Journey to the Moon: embark on a journey aboard the legendary spaceship bound for the Moon.",
     "castle.pageTitle": "Famous Castle — Aurélien Petit",
-    "castle.metaDescription": "Discover a reimagined castle in a unique style, where the Okbots seem ready to reach the summit.",
+    "castle.metaDescription":
+      "Discover a reimagined castle in a unique style, where the Okbots seem ready to reach the summit.",
     "nav.productions": "Productions",
     "nav.newswire": "Newswire",
     "nav.about": "About",
@@ -102,7 +109,8 @@ window.siteTranslations = {
     "header.menuClose": "Close menu",
     "header.search": "Open search",
     "header.searchClose": "Close search",
-    "screen.minimumWidth": "Please enlarge the window, zoom out, or use another device.",
+    "screen.minimumWidth":
+      "Please enlarge the window, zoom out, or use another device.",
     "search.placeholder": "Search aurelienpetit.com",
     "search.inputLabel": "Search this site",
     "search.clear": "Clear search",
@@ -114,7 +122,8 @@ window.siteTranslations = {
     "search.privacy": "Privacy policy",
     "search.terms": "Terms and conditions",
     "footer.copyright": "Copyright © 2026 Aurélien Petit. All rights reserved.",
-    "footer.trademarks": "Trademarks, logos, and copyrights are the property of their respective owners. All rights reserved.",
+    "footer.trademarks":
+      "Trademarks, logos, and copyrights are the property of their respective owners. All rights reserved.",
     "footer.navigation": "Legal information and language",
     "footer.privacy": "Privacy policy ↗",
     "footer.terms": "Terms and conditions ↗",
@@ -155,18 +164,21 @@ window.siteTranslations = {
     "image.whiteHouseRun": "Illustration of the White House",
     "image.yinYang": "Illustration inspired by yin and yang",
     "image.journeyLogo": "Journey to the Moon spaceship and lettering",
-    "image.journeyHero": "Detailed black-and-white drawing of the Journey to the Moon spaceship",
+    "image.journeyHero":
+      "Detailed black-and-white drawing of the Journey to the Moon spaceship",
     "image.journeyDetails": "Three details of the spaceship illustration",
     "image.journeyInterior": "Close-up of the spaceship's interior",
     "image.journeyFramework": "Close-up of the spaceship's framework",
     "image.journeyStructure": "Close-up of the spaceship's structure",
     "image.castleLogo": "Famous Castle logo",
     "image.castleHero": "Detailed castle beneath a starry night sky",
-    "image.castleDetails": "Three close-up details from the Famous Castle illustration",
+    "image.castleDetails":
+      "Three close-up details from the Famous Castle illustration",
     "image.castleTowers": "Close-up of the castle's lower towers",
     "image.castleClockTower": "Close-up of the castle's central clock tower",
     "image.castleArchitecture": "Close-up of the castle's ornate architecture",
-    "image.castleTimelapse": "A close-up of the castle illustration, showing its fine architectural details",
+    "image.castleTimelapse":
+      "A close-up of the castle illustration, showing its fine architectural details",
     "productions.title": "Explore per year",
     "productions.list": "Productions",
     "productions.filter": "Filter productions by year",
@@ -175,10 +187,13 @@ window.siteTranslations = {
     "journey.heroTwo": "aboard the legendary",
     "journey.heroThree": "spaceship bound for the Moon",
     "journey.detailsTitle": "Two dimensions",
-    "journey.detailsDescription": "Inspired by the dimensions and spirit of the original attraction, this artwork was born from a creative challenge: depicting the contrast between the building's interior and exterior. Significant simplification was required due to the architectural richness of the venue and the thickness of the lines.",
+    "journey.detailsDescription":
+      "Inspired by the dimensions and spirit of the original attraction, this artwork was born from a creative challenge: depicting the contrast between the building's interior and exterior. Significant simplification was required due to the architectural richness of the venue and the thickness of the lines.",
     "journey.destinationTitle": "Destination",
-    "journey.destinationDescription": "The cannon tilts, a deep roar echoes, and the rocket is launched at full speed towards the Moon. The trip won't be a walk in the park, as the return journey promises to be particularly bumpy amidst a dangerous asteroid cloud. By the way, wearing hats is strongly discouraged: some had to learn that the hard way!",
-    "journey.timelapse": "records your every move from the very first stroke, perfect for creating a social media splash.",
+    "journey.destinationDescription":
+      "The cannon tilts, a deep roar echoes, and the rocket is launched at full speed towards the Moon. The trip won't be a walk in the park, as the return journey promises to be particularly bumpy amidst a dangerous asteroid cloud. By the way, wearing hats is strongly discouraged: some had to learn that the hard way!",
+    "journey.timelapse":
+      "records your every move from the very first stroke, perfect for creating a social media splash.",
     "castle.title": "Famous Castle",
     "production.mecalodon": "Mecalodon Aquatic Show",
     "production.electronicBrain": "The Electronic Brain",
@@ -189,8 +204,10 @@ window.siteTranslations = {
     "castle.heroOne": "Discover a reimagined",
     "castle.heroTwo": "castle in a unique style",
     "castle.detailsTitle": "Two dimensions",
-    "castle.detailsDescription": "A reimagined castle, drawn in intricate detail beneath a starry night sky. Layered architecture and a surrounding landscape give this familiar landmark a new graphic style.",
-    "castle.timelapse": "records every move from the very first stroke, perfect for creating a social media splash.",
+    "castle.detailsDescription":
+      "A reimagined castle, drawn in intricate detail beneath a starry night sky. Layered architecture and a surrounding landscape give this familiar landmark a new graphic style.",
+    "castle.timelapse":
+      "records every move from the very first stroke, perfect for creating a social media splash.",
     "comments.title": "Your comments",
     "comments.subtitle": "are important.",
     "comments.review": "Leave a review online",
@@ -200,32 +217,40 @@ window.siteTranslations = {
   fr: {
     "site.homeTitle": "Aurélien Petit",
     "site.archiveTitle": "Productions — Aurélien Petit",
-    "site.archiveDescription": "Découvrez les productions d’Aurélien Petit, classées par année.",
+    "site.archiveDescription":
+      "Découvrez les productions d’Aurélien Petit, classées par année.",
     "site.description": "Découvrez les productions créatives d’Aurélien Petit.",
     "about.title": "A propos — Aurélien Petit",
-    "about.description": "Découvrez Aurélien Petit, ingénieur industriel en électromécanique et créateur.",
+    "about.description":
+      "Découvrez Aurélien Petit, ingénieur industriel en électromécanique et créateur.",
     "about.heading": "A propos",
     "about.download": "Télécharger le PDF",
     "about.fileSize.en": "542 ko",
     "about.fileSize.fr": "563 ko",
     "about.imageAlt": "CV d’Aurélien Petit",
-    "about.introduction": "Ingénieur industriel en électromécanique, je m’investis pleinement dans chaque projet avec l’ambition de dépasser les attentes et de repousser les limites. Mon objectif professionnel est d’allier expertise technique et créativité afin d’apporter une touche personnelle et une valeur ajoutée aux projets auxquels je contribue.",
+    "about.introduction":
+      "Ingénieur industriel en électromécanique, je m’investis pleinement dans chaque projet avec l’ambition de dépasser les attentes et de repousser les limites. Mon objectif professionnel est d’allier expertise technique et créativité afin d’apporter une touche personnelle et une valeur ajoutée aux projets auxquels je contribue.",
     "notFound.title": "Page inexistante — Aurélien Petit",
-    "notFound.description": "La page que vous recherchez n'existe pas ou a peut-être été déplacée.",
+    "notFound.description":
+      "La page que vous recherchez n'existe pas ou a peut-être été déplacée.",
     "notFound.heading": "Page inexistante",
-    "notFound.message": "La page que vous recherchez n'existe pas. Cette dernière a peut-être été déplacée.",
+    "notFound.message":
+      "La page que vous recherchez n'existe pas. Cette dernière a peut-être été déplacée.",
     "notFound.home": "Page d'accueil",
     "legal.privacyTitle": "Politique de confidentialité — Aurélien Petit",
-    "legal.privacyDescription": "Politique de confidentialité de aurelienpetit.com.",
+    "legal.privacyDescription":
+      "Politique de confidentialité de aurelienpetit.com.",
     "legal.privacyHeading": "Politique de confidentialité",
     "legal.termsTitle": "Conditions générales — Aurélien Petit",
     "legal.termsDescription": "Conditions générales de aurelienpetit.com.",
     "legal.termsHeading": "Conditions générales",
     "legal.section": "Informations légales",
     "journey.pageTitle": "Journey to the Moon — Aurélien Petit",
-    "journey.metaDescription": "Journey to the Moon : embarquez à bord du légendaire vaisseau en route vers la Lune.",
+    "journey.metaDescription":
+      "Journey to the Moon : embarquez à bord du légendaire vaisseau en route vers la Lune.",
     "castle.pageTitle": "Famous Castle — Aurélien Petit",
-    "castle.metaDescription": "Découvrez un château réinventé dans un style unique, où les Okbots semblent prêts à atteindre le sommet.",
+    "castle.metaDescription":
+      "Découvrez un château réinventé dans un style unique, où les Okbots semblent prêts à atteindre le sommet.",
     "nav.productions": "Productions",
     "nav.newswire": "Actualités",
     "nav.about": "A propos",
@@ -236,7 +261,8 @@ window.siteTranslations = {
     "header.menuClose": "Fermer le menu",
     "header.search": "Ouvrir la recherche",
     "header.searchClose": "Fermer la recherche",
-    "screen.minimumWidth": "Veuillez agrandir la fenêtre, réduire le zoom ou changer d’appareil.",
+    "screen.minimumWidth":
+      "Veuillez agrandir la fenêtre, réduire le zoom ou changer d’appareil.",
     "search.placeholder": "Rechercher sur aurelienpetit.com",
     "search.inputLabel": "Rechercher sur ce site",
     "search.clear": "Effacer la recherche",
@@ -247,14 +273,17 @@ window.siteTranslations = {
     "search.about": "A propos",
     "search.privacy": "Politique de confidentialité",
     "search.terms": "Conditions générales",
-    "footer.copyright": "Copyright © 2026 Aurélien Petit. Tous droits réservés.",
-    "footer.trademarks": "Les marques de commerce, logos et droits d’auteur appartiennent à leurs propriétaires respectifs. Tous droits réservés.",
+    "footer.copyright":
+      "Copyright © 2026 Aurélien Petit. Tous droits réservés.",
+    "footer.trademarks":
+      "Les marques de commerce, logos et droits d’auteur appartiennent à leurs propriétaires respectifs. Tous droits réservés.",
     "footer.navigation": "Informations légales et langue",
     "footer.privacy": "Politique de confidentialité ↗",
     "footer.terms": "Conditions générales ↗",
     "footer.backToTop": "Retour en haut",
     "cookie.bannerLabel": "Préférences relatives aux cookies",
-    "cookie.message": "Ce site utilise des cookies pour améliorer votre expérience.",
+    "cookie.message":
+      "Ce site utilise des cookies pour améliorer votre expérience.",
     "cookie.privacy": "Lire notre politique de confidentialité",
     "cookie.accept": "Accepter",
     "cookie.reject": "Refuser",
@@ -289,7 +318,8 @@ window.siteTranslations = {
     "image.whiteHouseRun": "Illustration de la Maison-Blanche",
     "image.yinYang": "Illustration inspirée du yin et du yang",
     "image.journeyLogo": "Vaisseau et lettrage de Journey to the Moon",
-    "image.journeyHero": "Dessin détaillé en noir et blanc du vaisseau de Journey to the Moon",
+    "image.journeyHero":
+      "Dessin détaillé en noir et blanc du vaisseau de Journey to the Moon",
     "image.journeyDetails": "Trois détails de l’illustration du vaisseau",
     "image.journeyInterior": "Gros plan sur l’intérieur du vaisseau",
     "image.journeyFramework": "Gros plan sur la structure du vaisseau",
@@ -300,7 +330,8 @@ window.siteTranslations = {
     "image.castleTowers": "Gros plan sur les tours inférieures du château",
     "image.castleClockTower": "Gros plan sur la tour de l’horloge du château",
     "image.castleArchitecture": "Gros plan sur l’architecture ornée du château",
-    "image.castleTimelapse": "Gros plan sur l’illustration du château et ses détails architecturaux",
+    "image.castleTimelapse":
+      "Gros plan sur l’illustration du château et ses détails architecturaux",
     "productions.title": "Explorer par année",
     "productions.list": "Productions",
     "productions.filter": "Filtrer les productions par année",
@@ -309,10 +340,13 @@ window.siteTranslations = {
     "journey.heroTwo": "à bord du légendaire",
     "journey.heroThree": "vaisseau en route vers la Lune",
     "journey.detailsTitle": "Deux dimensions",
-    "journey.detailsDescription": "Inspirée des dimensions et de l’esprit de l’attraction originale, cette œuvre est née d’un défi créatif : représenter le contraste entre l’intérieur et l’extérieur du bâtiment. Une simplification importante était nécessaire en raison de la richesse architecturale du lieu et de l’épaisseur des lignes.",
+    "journey.detailsDescription":
+      "Inspirée des dimensions et de l’esprit de l’attraction originale, cette œuvre est née d’un défi créatif : représenter le contraste entre l’intérieur et l’extérieur du bâtiment. Une simplification importante était nécessaire en raison de la richesse architecturale du lieu et de l’épaisseur des lignes.",
     "journey.destinationTitle": "Destination",
-    "journey.destinationDescription": "Le canon s’incline, un grondement profond résonne et la fusée est lancée à toute vitesse vers la Lune. Le voyage ne sera pas de tout repos : le retour s’annonce particulièrement mouvementé au milieu d’un dangereux nuage d’astéroïdes. Au fait, le port du chapeau est fortement déconseillé : certains l’ont appris à leurs dépens !",
-    "journey.timelapse": "retrace chaque geste depuis le premier trait, idéal pour créer un contenu marquant sur les réseaux sociaux.",
+    "journey.destinationDescription":
+      "Le canon s’incline, un grondement profond résonne et la fusée est lancée à toute vitesse vers la Lune. Le voyage ne sera pas de tout repos : le retour s’annonce particulièrement mouvementé au milieu d’un dangereux nuage d’astéroïdes. Au fait, le port du chapeau est fortement déconseillé : certains l’ont appris à leurs dépens !",
+    "journey.timelapse":
+      "retrace chaque geste depuis le premier trait, idéal pour créer un contenu marquant sur les réseaux sociaux.",
     "castle.title": "Famous Castle",
     "production.mecalodon": "Mecalodon Aquatic Show",
     "production.electronicBrain": "The Electronic Brain",
@@ -323,8 +357,10 @@ window.siteTranslations = {
     "castle.heroOne": "Découvrez un château réinventé",
     "castle.heroTwo": "dans un style unique",
     "castle.detailsTitle": "Deux dimensions",
-    "castle.detailsDescription": "Un château réinventé, dessiné avec minutie sous un ciel étoilé. Son architecture en strates et le paysage qui l’entoure donnent un nouveau style graphique à ce monument familier.",
-    "castle.timelapse": "retrace chaque geste depuis le premier trait, idéal pour créer un contenu marquant sur les réseaux sociaux.",
+    "castle.detailsDescription":
+      "Un château réinventé, dessiné avec minutie sous un ciel étoilé. Son architecture en strates et le paysage qui l’entoure donnent un nouveau style graphique à ce monument familier.",
+    "castle.timelapse":
+      "retrace chaque geste depuis le premier trait, idéal pour créer un contenu marquant sur les réseaux sociaux.",
     "comments.title": "Vos commentaires",
     "comments.subtitle": "sont importants.",
     "comments.review": "Laisser un avis en ligne",
