@@ -2,6 +2,18 @@
   const storageKey = "site-page-transition";
   const root = document.documentElement;
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const legacyPath = window.location.pathname;
+  if (/\.html$/i.test(legacyPath)) {
+    if (!document.querySelector("base")) {
+      const base = document.createElement("base");
+      base.href = "/";
+      document.head.prepend(base);
+    }
+    const cleanPath = legacyPath === "/index.html"
+      ? "/"
+      : `${legacyPath.slice(0, -5)}/`;
+    window.history.replaceState(null, "", `${cleanPath}${window.location.search}${window.location.hash}`);
+  }
   let navigationStarted = false;
   let entranceTimer;
   let productionHeroTimer;
@@ -11,7 +23,7 @@
     root.classList.remove("production-hero-entering");
     if (
       reducedMotion.matches
-      || !/\/productions\/[^/]+\.html?$/i.test(window.location.pathname)
+      || !/\/productions\/[^/]+(?:\.html)?\/?$/i.test(window.location.pathname)
     ) return;
     void root.offsetWidth;
     root.classList.add("production-hero-entering");

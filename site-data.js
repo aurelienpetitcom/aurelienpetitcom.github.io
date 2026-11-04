@@ -7,7 +7,7 @@ window.siteProductions = {
     releaseDate: "2026-08-08",
     instagram: "https://www.instagram.com/p/Db8OM6_CJjF/",
     timelapseInstagram: "https://www.instagram.com/p/DcOPs2UtcM4/",
-    page: "productions/journey-to-the-moon.html",
+    page: "productions/journey-to-the-moon",
   },
   famousCastle: {
     searchTitleKey: "castle.title",
@@ -17,7 +17,7 @@ window.siteProductions = {
     releaseDate: "2026-09-12",
     instagram: "https://www.instagram.com/p/DOgMnDUiPID/",
     timelapseInstagram: "https://www.instagram.com/p/DOwMXDwD7Tn/",
-    page: "productions/famous-castle.html",
+    page: "productions/famous-castle",
   },
   mecalodon: {
     searchTitleKey: "production.mecalodon",

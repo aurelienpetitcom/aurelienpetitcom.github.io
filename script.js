@@ -1,13 +1,13 @@
 const siteStructure = {
   header: (siteRoot, isHomePage, isProductionsPage) => `
-    <a class="brand" href="${siteRoot}/index.html" data-i18n-aria-label="header.home">
+    <a class="brand" href="${siteRoot}/" data-i18n-aria-label="header.home">
       <img src="${siteRoot}/assets/images/logo-ap.png" data-i18n-alt="header.logo">
     </a>
     <nav class="site-nav" data-i18n-aria-label="header.primaryNavigation">
       <div class="site-nav-links">
-        <a href="${isProductionsPage ? "#productions" : `${siteRoot}/productions.html`}"
+        <a href="${isProductionsPage ? `${window.location.pathname}#productions` : `${siteRoot}/productions`}"
           ${isProductionsPage ? 'data-current-page' : ""} data-i18n="nav.productions"></a>
-        <a href="${siteRoot}/about.html"
+        <a href="${siteRoot}/about"
           data-i18n="nav.about"></a>
       </div>
       <div class="site-search">
@@ -53,22 +53,22 @@ const siteStructure = {
     </section>
     <nav class="site-mobile-menu" id="site-mobile-menu" data-i18n-aria-label="header.primaryNavigation"
       aria-hidden="true">
-      <a href="${isProductionsPage ? "#productions" : `${siteRoot}/productions.html`}"
+      <a href="${isProductionsPage ? `${window.location.pathname}#productions` : `${siteRoot}/productions`}"
         ${isProductionsPage ? 'data-current-page' : ""} data-i18n="nav.productions"></a>
-      <a href="${siteRoot}/about.html"
+      <a href="${siteRoot}/about"
         data-i18n="nav.about"></a>
     </nav>
   `,
   footer: (siteRoot) => `
-    <a class="footer-brand" href="${siteRoot}/index.html" data-i18n-aria-label="footer.backToTop">
+    <a class="footer-brand" href="${siteRoot}/" data-i18n-aria-label="footer.backToTop">
       <img src="${siteRoot}/assets/images/logo-ap.png" data-i18n-alt="header.logo">
     </a>
     <p data-i18n="footer.copyright"></p>
     <p data-i18n="footer.trademarks"></p>
     <nav class="footer-links" data-i18n-aria-label="footer.navigation">
-      <a href="${siteRoot}/legal/privacy-policy.html" target="_blank" rel="noopener noreferrer"
+      <a href="${siteRoot}/legal/privacy-policy" target="_blank" rel="noopener noreferrer"
         data-i18n="footer.privacy"></a>
-      <a href="${siteRoot}/legal/terms.html" target="_blank" rel="noopener noreferrer"
+      <a href="${siteRoot}/legal/terms" target="_blank" rel="noopener noreferrer"
         data-i18n="footer.terms"></a>
       <button type="button" id="language-toggle" data-i18n="language.toggle"
         data-i18n-aria-label="language.switchToFrench"></button>
@@ -169,7 +169,7 @@ function initializeCookieConsent() {
   banner.innerHTML = `
     <div class="cookie-consent-copy">
       <p data-i18n="cookie.message"></p>
-      <a href="${siteRoot}/legal/privacy-policy.html" target="_blank" rel="noopener noreferrer"
+      <a href="${siteRoot}/legal/privacy-policy" target="_blank" rel="noopener noreferrer"
         data-i18n="cookie.privacy"></a>
     </div>
     <div class="cookie-consent-actions">
@@ -419,7 +419,7 @@ document.querySelectorAll("[data-share-production]").forEach(button => {
     }
 
     const shareUrl = new URL(
-      `${siteRoot}/share/${production.shareSlug}.html`,
+      `${siteRoot}/share/${production.shareSlug}`,
       document.baseURI,
     ).href;
     const feedback = button.nextElementSibling;
@@ -472,22 +472,22 @@ const searchEntries = [
   {
     titleKey: "site.archiveTitle",
     displayTitleKey: "search.archive",
-    href: `${siteRoot}/productions.html`,
+    href: `${siteRoot}/productions`,
   },
   {
     titleKey: "about.title",
     displayTitleKey: "search.about",
-    href: `${siteRoot}/about.html`,
+    href: `${siteRoot}/about`,
   },
   {
     titleKey: "legal.privacyTitle",
     displayTitleKey: "search.privacy",
-    href: `${siteRoot}/legal/privacy-policy.html`,
+    href: `${siteRoot}/legal/privacy-policy`,
   },
   {
     titleKey: "legal.termsTitle",
     displayTitleKey: "search.terms",
-    href: `${siteRoot}/legal/terms.html`,
+    href: `${siteRoot}/legal/terms`,
   },
 ];
 
@@ -499,7 +499,7 @@ const productionSearchEntries = Object.entries(siteProductions).map(([id, produc
   searchTitleKeys: [production.searchTitleKey, production.searchPageTitleKey].filter(Boolean),
   href: production.page
     ? `${siteRoot}/${production.page}`
-    : `${siteRoot}/productions.html#production-${id}`,
+    : `${siteRoot}/productions#production-${id}`,
 }));
 
 function renderSearchResults() {
